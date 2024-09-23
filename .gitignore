@@ -1,0 +1,13 @@
+# R/RStudio related
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+model-metadata/README_files/
+model-output/README_files/
+hub-config/README_files/
+/README_files/
+/DISCLAIMER_files/
+*.html
