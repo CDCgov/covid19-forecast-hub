@@ -12,5 +12,13 @@
         "name": "covid19-forecast-hub"
     },
     "file_format": ["csv", "parquet"],
-    "timezone": "US/Eastern"
+    "timezone": "US/Eastern",
+    "cloud": {
+        "enabled": true,
+        "host": {
+          "name": "aws",
+          "storage_service": "s3",
+          "storage_location": "covid19-forecast-hub"
+        }
+    }
 }
