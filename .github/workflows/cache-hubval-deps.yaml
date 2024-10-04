@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-deps-cache-on-main:
-    if: ${{ github.repository_owner == github.repository_owner }}
+    if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
