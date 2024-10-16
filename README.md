@@ -22,7 +22,6 @@ Participating teams will be able to submit national- and jurisdiction-specific (
    1. Quantile predictions for epiweekly total laboratory-confirmed COVID-19 hospital admissions. This target is mandatory for any submitted location and forecast horizon.
    2. Individual forecast trajectories for epiweekly total laboratory-confirmed COVID-19 hospitalizations over time (i.e sampled trajectories). This target is optional for any submitted location.
 
-
 Teams are encouraged but not required to submit forecasts for all weekly horizons or for all locations. 
 
 ### Horizons 
@@ -56,6 +55,8 @@ Standard software packages for R and Python can help you convert from dates to e
 
 Detailed guidelines for formatting and submitting forecasts are available in the [`model-output` directory README](model-output/README.md). Detailed guidelines for formatting and submitting model metadata can be found in the [`model-metadata` directory README](model-metadata/README.md).
 
+## Suggested Workflow for firstime submitters
+We suggest teams submit an initial pull request (PR) with model metadata to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on Wednesday. This will ensure that subsequent PRs with forecasts can be merged automatically before the submission deadline.
 
 ## Alignment between CovidHub and FluSight
 
