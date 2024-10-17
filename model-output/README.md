@@ -240,7 +240,7 @@ intent for these tests are to validate the requirements above. Please
 
 ### Local forecast validation
 
-Optionally, you may validate a forecast file locally before submitting it to the hub in a pull request. Note that this is not required, since the validations will also run on the pull request. To run the validations locally, follow the steps described [here](https://github.com/reichlab/covid19-forecast-hub/wiki/Running-Checks-Locally).
+Optionally, you may validate a forecast file locally before submitting it to the hub in a pull request. Note that this is not required, since the validations will also run on the pull request. To run the validations locally, follow the steps described [here](https://hubverse-org.github.io/hubValidations/articles/validate-submission.html).
 
 
 ## Weekly ensemble build 
