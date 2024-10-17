@@ -55,8 +55,10 @@ Standard software packages for R and Python can help you convert from dates to e
 
 Detailed guidelines for formatting and submitting forecasts are available in the [`model-output` directory README](model-output/README.md). Detailed guidelines for formatting and submitting model metadata can be found in the [`model-metadata` directory README](model-metadata/README.md).
 
-## Suggested Workflow for firstime submitters
-We suggest teams submit an initial pull request (PR) with model metadata to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on Wednesday. This will ensure that subsequent PRs with forecasts can be merged automatically before the submission deadline.
+## Suggested workflow for first time submitters
+First-time pull requests (PRs) into the Hub repository must be reviewed and merged manually; subsequent ones can be merged automatically if they pass appropriate checks. 
+
+ We suggest that teams submitting for the first time make a PR adding their model metadata file to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on the Wednesday they plan to submit their first forecast. This will ensure that subsequent PRs submitting forecasts can be merged automatically before the submission deadline.
 
 ## Alignment between CovidHub and FluSight
 
