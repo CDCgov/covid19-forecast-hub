@@ -1,0 +1,12 @@
+data-submission:
+  - all: ['model-output/**/*.csv']
+ 
+code:
+  - code/**/*
+
+model-metadata:
+  - all: ['model-metadata/**/*.yml', 'model-metadata/**/*.yaml']
+
+-documentation:
+  - changed-files:
+    - any-glob-to-any-file: '**/*.md'
