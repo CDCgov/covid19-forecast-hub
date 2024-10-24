@@ -1,10 +1,4 @@
-#Package list to load in CI
-library(dplyr)
-library(purrr)
-library(lubridate)
-library(hubEnsembles)
-library(hubData)
-library(yaml)
+# R script to create ensemble forecats using models submitted to the CovidHub
 
 ref_date <- lubridate::ceiling_date(Sys.Date(), "week") - lubridate::days(1)
 hub_path <- "../.."

@@ -1,12 +1,4 @@
-# library(readr)
-# library(dplyr)
-# library(tidyr)
-# library(purrr)
-# library(checkmate)
-# library(cli)
-# library(epidatr)
-# library(epiprocess)
-# library(lubridate)
+
 library(epipredict)
 
 #' Return `date` if it has the desired weekday, else the next date that does
@@ -36,13 +28,12 @@ location_to_abbr <- function(location) {
 
 # Prepare data
 target_tbl <- readr::read_csv(
-  "target-data/target-hospital-admissions.csv",
+  "target-data/test-hospital-admissions.csv",
   col_types = readr::cols_only(
     date = readr::col_date(format = ""),
     location = readr::col_character(),
     location_name = readr::col_character(),
-    value = readr::col_double(),
-    weekly_rate = readr::col_double()
+    value = readr::col_double()
   )
 )
 
@@ -55,7 +46,7 @@ target_epi_df <- target_tbl |>
   epiprocess::as_epi_df()
 
 # date settings
-forecast_as_of_date <- Sys.Date()
+forecast_as_of_date <- lubridate::as_date("2024-04-28") # Sys.Date()
 reference_date <- curr_or_next_date_with_ltwday(forecast_as_of_date, 6L)
 desired_max_time_value <- reference_date - 7L
 
@@ -84,7 +75,7 @@ prop_locs_overlatent <- mean(excess_latency_tbl$has_excess_latency)
 # Error handling for excess latency
 if (prop_locs_overlatent > overlatent_err_thresh) {
   cli::cli_abort("
-    More than {100*prop_locs_overlatent_err_thresh}% of locations have excess
+    More than {100*overlatent_err_thresh}% of locations have excess
     latency. The reference date is {reference_date} so we desire observations at
     least through {desired_max_time_value}. However,
     {nrow(excess_latency_small_tbl)} location{?s} had excess latency and did not
@@ -101,6 +92,9 @@ if (prop_locs_overlatent > overlatent_err_thresh) {
 }
 
 # Prepare baseline, rng_seed for reproducibility
+
+## TODO: change the date for data filtering based
+# on this years hospital admissions data
 rng_seed <- as.integer((59460707 + as.numeric(reference_date)) %% 2e9)
 withr::with_rng_version("4.0.0", withr::with_seed(rng_seed, {
   fcst <- epipredict::cdc_baseline_forecaster(
@@ -111,7 +105,7 @@ withr::with_rng_version("4.0.0", withr::with_seed(rng_seed, {
     epipredict::cdc_baseline_args_list(aheads = 1:4, nsims = 1e5)
   )
 
-  # advance forecast_date by a week due to data latency and 
+  # advance forecast_date by a week due to data latency and
   # create forecast for horizon -1
   preds <- fcst$predictions |>
     dplyr::mutate(
