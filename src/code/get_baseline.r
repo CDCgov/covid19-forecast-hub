@@ -154,9 +154,8 @@ if (!dir.exists(output_dirpath)) {
   dir.create(output_dirpath, recursive = TRUE)
 }
 
-write.csv(preds_formatted, paste0(
-  output_dirpath,
-  reference_date,
+write.csv(preds_formatted, file.path(output_dirpath, paste0(
+  as.character(reference_date),
   "-",
   "CovidHub-baseline.csv"
-))
+)))

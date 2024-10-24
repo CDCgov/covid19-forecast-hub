@@ -6,7 +6,10 @@ task_id_cols <- c(
   "reference_date", "location", "horizon",
   "target", "target_end_date"
 )
-out_path <- "CovidHub-ensemble/"
+output_dirpath <- "CovidHub-ensemble/"
+if (!dir.exists(output_dirpath)) {
+  dir.create(output_dirpath, recursive = TRUE)
+}
 
 # Get current forecasts from the hub, excluding baseline and ensembles
 hub_content <- hubData::connect_hub(hub_path)
@@ -36,14 +39,11 @@ eligible_models <- data.frame(
   Model = file.names, Designated_Model = designated_models
 ) |> filter(Designated_Model == TRUE)
 
-write.csv(
-  eligible_models,
-  paste0(out_path,
-         ref_date,
-         "-",
-         "models-to-include-in-ensemble",
-         ".csv")
-)
+write.csv(eligible_models, file.path(output_dirpath, paste0(
+  as.character(ref_date),
+  "-",
+  "models-to-include-in-ensemble.csv"
+)))
 
 models <- eligible_models$Model
 current_forecasts <- current_forecasts |>
@@ -63,8 +63,8 @@ median_ensemble_outputs <- quantile_forecasts |>
   dplyr::mutate(value = pmax(value, 0)) |>
   dplyr::select(-model_id)
 
-ensemble_name <- "CovidHub-ensemble"
-ensemble_path <- paste0(
-  out_path, ref_date, "-", ensemble_name, ".csv"
-)
-write.csv(median_ensemble_outputs, ensemble_path)
+write.csv(median_ensemble_outputs, file.path(output_dirpath, paste0(
+  as.character(reference_date),
+  "-",
+  "CovidHub-ensemble.csv"
+)))
