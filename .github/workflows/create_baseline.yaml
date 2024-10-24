@@ -19,13 +19,14 @@ jobs:
       
     - name: Install dependencies
       run: |
-        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes"))
+        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes", "genlasso"))
+        remotes::install_github("cmu-delphi/epiprocess")
         remotes::install_github("cmu-delphi/epipredict")
       shell: Rscript {0}
   
     - name: generate baseline
       run: |
-        Rscript src/code/get_baseline.R
+        Rscript src/code/get_baseline.r
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v7
