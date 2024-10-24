@@ -169,7 +169,7 @@ Values in the `output_type` column are either
 -   "quantile" or
 -   "samples".
 
-This value indicates whether that row corresponds to a quantile forecast or sample trajectories for weekly incident hospital admissions. Samples can be submitted either for individual modeling tasks, where each `horizon` and `location` is treated independently, or as a part of a compound modeling task that encodes dependencies across forecast `horizon` and `location`.
+This value indicates whether that row corresponds to a quantile forecast or sample trajectories for weekly incident hospital admissions. Samples can be submitted either for individual modeling tasks, where each `horizon` and `location` is treated independently, or as a part of a compound modeling task that encodes predictive statistical dependency across forecast `horizon`s and/or `location`s.
 
 ### `output_type_id`
 Values in the `output_type_id` column specify identifying information for the output type.
@@ -217,7 +217,7 @@ Teams must provide the following 23 quantiles:
 
 #### sample output
 
-When the predictions are samples, values in the `output_type_id` column are indexes for the samples. The `output_type_id` is used to indicate the dependence across multiple task id variables when samples come from a joint predictive distribution. For example, samples from a joint predictive distribution across `horizon`, will share `output_type_id` for predictions for different horizons within a same `location` as below:
+When the predictions are samples, values in the `output_type_id` column are indexes for the samples. The `output_type_id` is used to indicate the dependence across multiple task id variables when samples come from a joint predictive distribution. For example, samples from a joint predictive distribution across `horizon`s for a given `location`, will share `output_type_id` for predictions for different horizons within a same `location` as below:
 
 | origin_date|horizon| location | output_type| output_type_id | value |
 |:---------- |:-----:|:-----:| :-------- | :------------ | :---- |
