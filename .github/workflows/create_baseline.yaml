@@ -21,6 +21,7 @@ jobs:
       run: |
         install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes"))
         remotes::install_github("cmu-delphi/epipredict")
+      shell: Rscript {0}
   
     - name: generate baseline
       run: |
