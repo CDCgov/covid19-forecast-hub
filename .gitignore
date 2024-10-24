@@ -3,7 +3,10 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rprofile
 *.Rproj
+
+/renv/
 
 model-metadata/README_files/
 model-output/README_files/
