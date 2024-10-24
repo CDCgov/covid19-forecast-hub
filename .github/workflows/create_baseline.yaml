@@ -2,7 +2,7 @@ name: "CovidHub-baseline"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 21 * * 4" #modified for testing
+    - cron: "45 21 * * 4" #modified for testing
 
 jobs:
   generate-baseline-forecasts:
@@ -19,7 +19,7 @@ jobs:
       
     - name: Install dependencies
       run: |
-        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remote"))
+        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes"))
         remotes::install_github("cmu-delphi/epipredict")
   
     - name: generate baseline
