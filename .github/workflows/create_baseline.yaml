@@ -2,7 +2,7 @@ name: "CovidHub-baseline"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "45 21 * * 4"
+    - cron: "30 19 * * 3"
 
 jobs:
   generate-baseline-forecasts:
