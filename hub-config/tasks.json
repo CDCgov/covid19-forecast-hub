@@ -134,8 +134,8 @@
                                 "is_required": false,
                                 "type": "character",
                                 "max_length": 15,
-                                "min_samples_per_task": 100,
-                                "max_samples_per_task": 100,
+                                "min_samples_per_task": 200,
+                                "max_samples_per_task": 200,
                                 "compound_taskid_set": ["reference_date"]
                             },
                             "value": {
