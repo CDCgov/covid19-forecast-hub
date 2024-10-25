@@ -217,7 +217,11 @@ Teams must provide the following 23 quantiles:
 
 #### sample output
 
-When the predictions are samples, values in the `output_type_id` column are indexes for the samples. The `output_type_id` is used to indicate the dependence across multiple task id variables when samples come from a joint predictive distribution. For example, samples from a joint predictive distribution across `horizon`s for a given `location`, will share `output_type_id` for predictions for different `horizon`s within a same `location`, as shown in the table below:
+When the predictions are samples, values in the `output_type_id` column are indexes for the samples. 
+The `output_type_id` is used to indicate the dependence across multiple task id variables when samples
+ come from a joint predictive distribution. For example, samples from a joint predictive distribution 
+ across `horizon`s for a given `location`, will share `output_type_id` for predictions for different
+  `horizon`s within a same `location`, as shown in the table below:
 
 | origin_date|horizon| location | output_type| output_type_id | value |
 |:---------- |:-----:|:-----:| :-------- | :------------ | :---- |
@@ -234,7 +238,10 @@ When the predictions are samples, values in the `output_type_id` column are inde
 | 2024-10-15 |  0      |  NH | sample | s3 | - |
 | 2024-10-15 |  1      |  NH | sample | s3 | - |
 
-Here, `output_type_id = s0` and `output_type_id = s1` specifies that the predictions for horizons -1, 0, and 1 are part of the same joint distribution. Samples from joint distribution across `horizon`s and `location`s can be specified by shared `output_type_id` across `location`s and `horizon`s as shown in the example below:
+Here, `output_type_id = s0` and `output_type_id = s1` specifies that the predictions
+ for horizons -1, 0, and 1 are part of the same joint distribution. Samples from joint 
+ distribution across `horizon`s and `location`s can be specified by shared `output_type_id`
+  across `location`s and `horizon`s as shown in the example below:
 
 | origin_date|horizon| location | output_type| output_type_id | value |
 |:---------- |:-----:|:-----:| :-------- | :------------ | :---- |
@@ -251,7 +258,7 @@ Here, `output_type_id = s0` and `output_type_id = s1` specifies that the predict
 | 2024-10-15 |  0      |  NH | sample | S1 | - |
 | 2024-10-15 |  1      |  NH | sample | S1 | - |
 
-
+The above table shows two samples indexed by `output_type_id:` `S1` and `S2` from a joint predictive distribution across `location`s and `horizon`s.
 More details on sample output can be found in the [hubverse documentation of sample output type](https://hubverse.io/en/latest/user-guide/sample-output-type.html).
 
 ### `value`
