@@ -19,7 +19,8 @@ jobs:
       
     - name: Install dependencies
       run: |
-        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes"))
+        install.packages(c("readr", "dplyr", "tidyr", "purrr", "checkmate", "cli", "lubridate", "remotes", "genlasso"))
+        remotes::install_github("cmu-delphi/epiprocess")
         remotes::install_github("cmu-delphi/epipredict")
       shell: Rscript {0}
   
