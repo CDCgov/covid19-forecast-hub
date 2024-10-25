@@ -26,9 +26,9 @@ location_to_abbr <- function(location) {
   dictionary$abbr[match(location, dictionary$location)]
 }
 
-# Prepare data
+# Prepare data, use tentative file-name/location, might need to be changed
 target_tbl <- readr::read_csv(
-  "target-data/test-hospital-admissions.csv",
+  "target-data/covid-hospital-admissions.csv",
   col_types = readr::cols_only(
     date = readr::col_date(format = ""),
     location = readr::col_character(),
@@ -46,7 +46,7 @@ target_epi_df <- target_tbl |>
   epiprocess::as_epi_df()
 
 # date settings
-forecast_as_of_date <- lubridate::as_date("2024-04-28") # Sys.Date()
+forecast_as_of_date <- Sys.Date()
 reference_date <- curr_or_next_date_with_ltwday(forecast_as_of_date, 6L)
 desired_max_time_value <- reference_date - 7L
 
@@ -90,8 +90,6 @@ if (prop_locs_overlatent > overlatent_err_thresh) {
     {excess_latency_small_tbl$geo_value}.
   ")
 }
-
-# Prepare baseline, rng_seed for reproducibility
 
 ## TODO: change the date for data filtering based
 # on this years hospital admissions data
