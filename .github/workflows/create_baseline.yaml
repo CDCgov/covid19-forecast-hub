@@ -2,7 +2,7 @@ name: "CovidHub-baseline"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "45 21 * * 4"
+    - cron: "30 19 * * 3"
 
 jobs:
   generate-baseline-forecasts:
@@ -29,7 +29,7 @@ jobs:
         Rscript src/code/get_baseline.r
 
     - name: Commit changes
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with: 
         message: "Add baseline forecasts"
         default_author: github_actions
@@ -42,5 +42,5 @@ jobs:
         title: "Add baseline forecasts"
         body: "This PR adds baseline forecasts to the repo."
         branch: "auto-generated-baseline" 
-        base: "main"  # Base branch where the PR should be created
-        labels: "automation"
+        base: "main" 
+        labels: "automerge"
