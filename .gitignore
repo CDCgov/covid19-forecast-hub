@@ -14,3 +14,5 @@ hub-config/README_files/
 /README_files/
 /DISCLAIMER_files/
 *.html
+
+/test
