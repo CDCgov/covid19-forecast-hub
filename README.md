@@ -8,7 +8,7 @@ During the submission period, participating teams will be invited to submit nati
 These weekly total COVID-19 admissions data will be sourced from the public releases of National Healthcare Safety Network (NHSN) data on [`data.cdc.gov`](https://data.cdc.gov). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
 ## Dates and Deadlines 
-The Challenge Period is tentatively scheduled to begin with the epiweek of Sunday, November 17, 2024 with the first Forecast Due Date of November ,20 2024.
+The Challenge Period is tentatively scheduled to begin with the epiweek of Sunday, November 17, 2024 with the first Forecast Due Date of November 20, 2024.
 
 Participants will be asked to submit nowcasts and forecasts by 11PM USA Eastern Time each Wednesday (the "Forecast Due Date"). If it becomes necessary to change the Forecast Due Date or time deadline, CovidHub will notify participants at least one week in advance. 
 
