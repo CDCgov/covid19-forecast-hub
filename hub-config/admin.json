@@ -1,7 +1,7 @@
 {
     "schema_version": "https://raw.githubusercontent.com/hubverse-org/schemas/main/v3.0.0/admin-schema.json",
     "name": "COVID-19 Forecast Hub",
-    "maintainer": "CDC",
+    "maintainer": "US CDC",
     "contact": {
         "name": "Subekshya Bidari",
         "email": "covidhub@cdc.gov"

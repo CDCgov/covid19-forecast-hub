@@ -7,7 +7,7 @@
                     "task_ids": {
                         "reference_date": {
                             "required": null,
-                            "optional": ["2024-11-09", "2024-11-16", "2024-11-23", 
+                            "optional": ["2024-11-16", "2024-11-23", 
                                 "2024-11-30", "2024-12-07", "2024-12-14", "2024-12-21", 
                                 "2024-12-28", "2025-01-04", "2025-01-11", "2025-01-18", 
                                 "2025-01-25", "2025-02-01", "2025-02-08", "2025-02-15", 
@@ -84,7 +84,7 @@
                         },
                         "target_end_date": {
                             "required": null,
-                            "optional": ["2024-11-09", "2024-11-16", "2024-11-23", 
+                            "optional": ["2024-11-16", "2024-11-23", 
                                 "2024-11-30", "2024-12-07", "2024-12-14", "2024-12-21", 
                                 "2024-12-28", "2025-01-04", "2025-01-11", "2025-01-18", 
                                 "2025-01-25", "2025-02-01", "2025-02-08", "2025-02-15", 
@@ -150,9 +150,7 @@
                             "target_name": "incident covid hospitalizations",
                             "target_units": "count",
                             "target_keys": {
-                                "target": [
-                                    "wk inc covid hosp"
-                                ]
+                                "target": "wk inc covid hosp"
                             },
                             "target_type": "continuous",
                             "description": "This target represents the count of new hospitalizations in the week ending on the date [horizon] weeks after the reference_date, on the target_end_date.",

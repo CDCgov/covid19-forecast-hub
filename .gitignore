@@ -7,6 +7,7 @@
 *.Rproj
 
 /renv/
+/test/
 
 model-metadata/README_files/
 model-output/README_files/
