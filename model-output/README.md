@@ -75,10 +75,11 @@ The combination of `team` and `model` should be unique from any other model in t
 
 ### Metadata
 
-The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository, and should have the following naming convention:
+The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository, and should have either of the following naming convention:
 
+    team-model.yml
 
-      team-model.yml
+    team-model.yaml
 
 Details on the content and formatting of metadata files are provided in the [model-metadata README](https://github.com/hubverse-org/hubTemplate/blob/master/model-metadata/README.md).
 
@@ -91,6 +92,8 @@ Each forecast file should have the following
 format
 
     YYYY-MM-DD-team-model.csv
+
+    YYYY-MM-DD-team-model.parquet
 
 where
 
@@ -105,7 +108,7 @@ The date YYYY-MM-DD is the [`reference_date`](#reference_date). This should be t
 The `team` and `model` in this file must match the `team` and `model` in
 the directory this file is in. Both `team` and `model` should be less
 than 15 characters, alpha-numeric and underscores only, with no spaces
-or hyphens. 
+or hyphens. Submission of both targets- quantiles and samples must be in the same weekly csv or parquet submission file.
 
 ## Forecast file format 
 
@@ -123,7 +126,7 @@ columns (in any order):
 
 No additional columns are allowed.
 
-The value in each row of the file is a quantile for a particular combination of location, date, and horizon. 
+The value in each row of the file is either a quantile or sample for a particular combination of location, date, and horizon. 
 
 ### `reference_date` 
 
@@ -169,7 +172,7 @@ Values in the `output_type` column are either
 -   "quantile" or
 -   "samples".
 
-This value indicates whether that row corresponds to a quantile forecast or sample trajectories for weekly incident hospital admissions. Samples can be submitted either for individual modeling tasks, where each `horizon` and `location` is treated independently, or as a part of a compound modeling task that encodes predictive statistical dependency across forecast `horizon`s and/or `location`s.
+This value indicates whether that row corresponds to a quantile forecast or sample trajectories for weekly incident hospital admissions. Samples can either encode both temporal and spatial dependency across forecast `horizon`s and `location`s or just encode temporal dependency across `horizon` but treats each `location` independently.
 
 ### `output_type_id`
 Values in the `output_type_id` column specify identifying information for the output type.
@@ -180,7 +183,7 @@ When the predictions are quantiles, values in the `output_type_id` column are a 
 ```
 0.###
 ```
-This value indicates the quantile probability level for for the `value` in this row.
+This value indicates the quantile probability level for the `value` in this row.
 
 Teams must provide the following 23 quantiles:
 
@@ -217,11 +220,7 @@ Teams must provide the following 23 quantiles:
 
 #### sample output
 
-When the predictions are samples, values in the `output_type_id` column are indexes for the samples. 
-The `output_type_id` is used to indicate the dependence across multiple task id variables when samples
- come from a joint predictive distribution. For example, samples from a joint predictive distribution 
- across `horizon`s for a given `location`, will share `output_type_id` for predictions for different
-  `horizon`s within a same `location`, as shown in the table below:
+When the predictions are samples, values in the `output_type_id` column are indexes for the samples. The `output_type_id` is used to indicate the dependence across multiple task id variables when samples come from a joint predictive distribution. For example, samples from a joint predictive distribution across `horizon`s for a given `location`, will share `output_type_id` for predictions for different `horizon`s within a same `location`, as shown in the table below:
 
 | origin_date|horizon| location | output_type| output_type_id | value |
 |:---------- |:-----:|:-----:| :-------- | :------------ | :---- |
