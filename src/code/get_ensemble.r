@@ -70,7 +70,7 @@ write.csv(
   median_ensemble_outputs,
   file.path(
     output_dirpath,
-    paste0(as.character(reference_date), "-", "CovidHub-ensemble.csv")
+    paste0(as.character(ref_date), "-", "CovidHub-ensemble.csv")
   ),
   row.names = FALSE
 )
