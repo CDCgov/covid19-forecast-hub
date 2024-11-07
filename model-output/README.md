@@ -75,11 +75,11 @@ The combination of `team` and `model` should be unique from any other model in t
 
 ### Metadata
 
-The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository, and should have either of the following naming convention:
+The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team name}-{model name}`, and extension `.yml` or `.yaml`, e.g.
 
-    team-model.yml
+    exampleteam-examplemodel.yml
+    otherteam-othermodel.yaml
 
-    team-model.yaml
 
 Details on the content and formatting of metadata files are provided in the [model-metadata README](https://github.com/hubverse-org/hubTemplate/blob/master/model-metadata/README.md).
 
@@ -91,7 +91,7 @@ Details on the content and formatting of metadata files are provided in the [mod
 Each forecast file should have the following
 format
 
-    YYYY-MM-DD-team-model.csv
+    {YYYY}-MM-DD}-{team name}-{model name}.csv
 
     YYYY-MM-DD-team-model.parquet
 
