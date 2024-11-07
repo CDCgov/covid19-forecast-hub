@@ -1,7 +1,7 @@
 # R script to create ensemble forecats using models submitted to the CovidHub
 
 ref_date <- lubridate::ceiling_date(Sys.Date(), "week") - lubridate::days(1)
-hub_path <- "../.."
+hub_path <- "."
 task_id_cols <- c(
   "reference_date", "location", "horizon",
   "target", "target_end_date"
@@ -27,7 +27,11 @@ yml_files <- list.files(paste0(hub_path, "/model-metadata"),
 # Read model metadata and extract designated models
 designated_models <- purrr::map_chr(yml_files, function(file) {
   yml_data <- yaml::yaml.load_file(file)
-  ifelse("designated_model" %in% names(yml_data), yml_data$designated_model, NA)
+  as.character(
+    ifelse(
+      "designated_model" %in% names(yml_data), yml_data$designated_model, NA
+    )
+  )
 })
 
 eligible_models <- data.frame(
@@ -35,15 +39,14 @@ eligible_models <- data.frame(
   Designated_Model = designated_models
 ) |> dplyr::filter(Designated_Model == TRUE)
 
-eligible_models <- data.frame(
-  Model = file.names, Designated_Model = designated_models
-) |> filter(Designated_Model == TRUE)
-
-write.csv(eligible_models, file.path(output_dirpath, paste0(
-  as.character(ref_date),
-  "-",
-  "models-to-include-in-ensemble.csv"
-)))
+write.csv(
+  eligible_models,
+  file.path(
+    output_dirpath,
+    paste0(as.character(ref_date), "-", "models-to-include-in-ensemble.csv")
+  ),
+  row.names = FALSE
+)
 
 models <- eligible_models$Model
 current_forecasts <- current_forecasts |>
@@ -63,8 +66,11 @@ median_ensemble_outputs <- quantile_forecasts |>
   dplyr::mutate(value = pmax(value, 0)) |>
   dplyr::select(-model_id)
 
-write.csv(median_ensemble_outputs, file.path(output_dirpath, paste0(
-  as.character(reference_date),
-  "-",
-  "CovidHub-ensemble.csv"
-)))
+write.csv(
+  median_ensemble_outputs,
+  file.path(
+    output_dirpath,
+    paste0(as.character(reference_date), "-", "CovidHub-ensemble.csv")
+  ),
+  row.names = FALSE
+)
