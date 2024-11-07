@@ -75,7 +75,7 @@ The combination of `team` and `model` should be unique from any other model in t
 
 ### Metadata
 
-The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team name}-{model name}`, and extension `.yml` or `.yaml`, e.g.
+The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team}-{model}`, and extension `.yml` or `.yaml`, e.g.
 
     exampleteam-examplemodel.yml
     otherteam-othermodel.yaml
@@ -91,19 +91,21 @@ Details on the content and formatting of metadata files are provided in the [mod
 Each forecast file should have the following
 format
 
-    {YYYY}-MM-DD}-{team name}-{model name}.csv
+    {YYYY-MM-DD}-{team}-{model}.csv
 
-    YYYY-MM-DD-team-model.parquet
+    {YYYY-MM-DD}-{team}-{model}.parquet
 
 where
 
 -   `YYYY` is the 4 digit year,
 -   `MM` is the 2 digit month,
 -   `DD` is the 2 digit day,
--   `team` is the team name, and
--   `model` is the name of your model.
+-   `team` is the abbreviated team name, and
+-   `model` is the abbreviated name of your model.
 
-The date YYYY-MM-DD is the [`reference_date`](#reference_date). This should be the Saturday following the submission date.
+The date YYYY-MM-DD is the [`reference_date`](#reference_date). This should be the Saturday following the submission date. For example, submission from the team above for a reference date of November 2, 2024 will be named:
+
+    2024-11-02-exampleteam-examplemodel.csv
 
 The `team` and `model` in this file must match the `team` and `model` in
 the directory this file is in. Both `team` and `model` should be less
