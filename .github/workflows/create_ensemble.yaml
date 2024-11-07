@@ -19,7 +19,8 @@ jobs:
       
     - name: Install dependencies
       run: |
-        install.packages(c("hubEnsemble", "dplyr", "lubridate", "purrr", "hubData", "yaml"))
+        install.packages(c("hubEnsemble", "dplyr", "lubridate", "purrr", "yaml", "remotes"))
+        remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
   
     - name: generate ensemble
