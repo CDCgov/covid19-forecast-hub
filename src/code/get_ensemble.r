@@ -25,19 +25,19 @@ yml_files <- list.files(paste0(hub_path, "/model-metadata"),
 )
 
 # Read model metadata and extract designated models
-designated_models <- purrr::map_chr(yml_files, function(file) {
-  yml_data <- yaml::yaml.load_file(file)
-  as.character(
-    ifelse(
-      "designated_model" %in% names(yml_data), yml_data$designated_model, NA
-    )
+is_model_designated <- function(yaml_file) {
+  yml_data <- yaml::yaml.load_file(yaml_file)
+  team_and_model <- glue::glue("{yml_data$team_abbr}-{yml_data$model_abbr}")
+  is_designated <- ifelse("designated_model" %in% names(yml_data),
+    as.logical(yml_data$designated_model),
+    FALSE
   )
-})
+  return(list(Model = team_and_model, Designated_Model = is_designated))
+}
 
-eligible_models <- data.frame(
-  Model = tools::file_path_sans_ext(basename(yml_files)),
-  Designated_Model = designated_models
-) |> dplyr::filter(Designated_Model == TRUE)
+eligible_models <- purrr::map(yml_files, is_model_designated) |>
+  dplyr::bind_rows() |>
+  dplyr::filter(Designated_Model)
 
 write.csv(
   eligible_models,
@@ -49,13 +49,17 @@ write.csv(
 )
 
 models <- eligible_models$Model
+#filter excluded locations
+exclude_data <- jsonlite::fromJSON("auxiliary-data/exclude_ensemble.json")
+excluded_locations <- exclude_data$locations
 current_forecasts <- current_forecasts |>
-  dplyr::filter(model_id %in% models, location != 78)
+  dplyr::filter(model_id %in% models, !(location %in% excluded_locations))
 
 # QUANTILE ENSEMBLE
 quantile_forecasts <- current_forecasts |>
   dplyr::filter(output_type == "quantile") |>
-  dplyr::mutate(output_type_id = as.character(as.numeric(output_type_id)))
+  #ensure quantiles are handled accurately even with leading/trailing zeros
+  dplyr::mutate(output_type_id = as.factor(as.numeric(output_type_id)))
 
 median_ensemble_outputs <- quantile_forecasts |>
   hubEnsembles::simple_ensemble(

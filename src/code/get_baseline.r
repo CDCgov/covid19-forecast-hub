@@ -1,4 +1,3 @@
-
 library(epipredict)
 
 #' Return `date` if it has the desired weekday, else the next date that does
@@ -22,7 +21,7 @@ target_tbl <- readr::read_csv(
     value = readr::col_double()
   )
 )
-
+target_start_date <- min(target_tbl$date)
 loc_df <- read.csv("target-data/locations.csv")
 
 target_epi_df <- target_tbl |>
@@ -79,13 +78,11 @@ if (prop_locs_overlatent > overlatent_err_thresh) {
   ")
 }
 
-## TODO: change the date for data filtering based
-# on this years hospital admissions data
 rng_seed <- as.integer((59460707 + as.numeric(reference_date)) %% 2e9)
 withr::with_rng_version("4.0.0", withr::with_seed(rng_seed, {
   fcst <- epipredict::cdc_baseline_forecaster(
     target_epi_df |>
-      dplyr::filter(time_value >= as.Date("2024-11-01")) |>
+      dplyr::filter(time_value >= target_start_date) |>
       dplyr::filter(time_value <= desired_max_time_value),
     "weekly_count",
     epipredict::cdc_baseline_args_list(aheads = 1:4, nsims = 1e5)
