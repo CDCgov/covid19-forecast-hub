@@ -37,6 +37,6 @@ jobs:
     - name: Create pull request
       id: create_pr
       run: |
-        gh pr create --base main --head add-ensemble --title "Add ensemble forecast" --body "This PR is generated automatically to add ensemble forecast."
+        gh pr create --base main --head add-ensemble --title "Add ensemble forecast" --body "This PR is generated automatically to add a quantile median ensemble forecast."
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
