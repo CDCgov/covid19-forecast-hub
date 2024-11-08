@@ -1,0 +1,19 @@
+data-submission:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'model-output/**/*.csv'
+
+model-metadata:
+  - changed-files:
+    - any-glob-to-any-file:
+      - model-metadata/**/*.yml
+      - model-metadata/**/*.yaml
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: '**/*.md'
+
+configuration:
+  - changed-files:
+    - any-glob-to-any-file:
+      - hub-config/*
