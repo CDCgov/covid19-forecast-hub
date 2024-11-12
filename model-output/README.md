@@ -173,7 +173,7 @@ Values in the `location` column must be one of the "locations" in this [file](..
 
 ### `output_type`
 
-Values in the `output_type` column are either
+Values in the `output_type` column should be one of
 
 -   `quantile` 
 -   `samples`
