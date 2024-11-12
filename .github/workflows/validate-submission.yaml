@@ -4,10 +4,6 @@ on:
   workflow_dispatch:
   pull_request:
     branches: main
-    paths:
-      - 'model-output/**'
-      - 'model-metadata/*'
-      - '!**README**'
 
 jobs:
   validate-submission:
