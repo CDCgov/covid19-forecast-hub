@@ -12,15 +12,11 @@ extract_metadata <- function(file) {
   model_abbr <- ifelse(
     "model_abbr" %in% names(yml_data), yml_data$model_abbr, NA
   )
-  designated_user <- if ("designated_github_users" %in% names(yml_data)) {
-    if (is.vector(yml_data$designated_github_users)) {
-      paste(yml_data$designated_github_users, collapse = ", ")
-    } else {
-      yml_data$designated_github_users
-    }
-  } else {
+  designated_user <- ifelse(
+    "designated_github_user" %in% names(yml_data),
+    paste(yml_data$designated_github_user, collapse = ", "),
     NA
-  }
+  )
 
   return(list(
     team_abbr = team_abbr,
