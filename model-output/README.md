@@ -93,7 +93,11 @@ format
 
     {YYYY-MM-DD}-{team}-{model}.csv
 
+or
+
     {YYYY-MM-DD}-{team}-{model}.parquet
+
+depending on whether the team is submitting forecasts as `.csv` files or as `.parquet` files.
 
 where
 
@@ -171,8 +175,8 @@ Values in the `location` column must be one of the "locations" in this [file](..
 
 Values in the `output_type` column are either
 
--   "quantile" or
--   "samples".
+-   `quantile` 
+-   `samples`
 
 This value indicates whether that row corresponds to a quantile forecast or sample trajectories for weekly incident hospital admissions. Samples can either encode both temporal and spatial dependency across forecast `horizon`s and `location`s or just encode temporal dependency across `horizon` but treats each `location` independently.
 
