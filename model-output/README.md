@@ -146,7 +146,7 @@ This is the date from which all forecasts should be considered. This date is the
 
 Values in the `target` column must be a character (string) and be the following specific target:
 
--   *`wk inc covid hosp`*
+-   `wk inc covid hosp`
 
 
 ### `horizon`
