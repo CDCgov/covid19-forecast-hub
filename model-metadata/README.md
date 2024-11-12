@@ -118,6 +118,20 @@ Any information about funding source(s) for the team or members of the team that
 team_funding: "National Institutes of General Medical Sciences (R01GM123456). The content is solely the responsibility of the authors and does not necessarily represent the official views of NIGMS."
 ```
 
+### `designated_github_users`
+
+GitHub user ids of team members who would be responsible for submitting forecasts as a pull request to the CovidHub repository. Only the pull request from users specified here can get merged automatically after validation. Example:
+```
+designated_github_users: [
+  "dependabot",
+  "octocat"
+]
+```
+or 
+```
+designated_github_users: ["dependabot"]
+```
+
 # Metadata validation
 
 Optionally, you may validate a model metadata file locally before submitting it to the hub in a pull request. Note that this is not required, since the validations will also run on the pull request, but it is encouraged. To run validations locally, follow these steps:

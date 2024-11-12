@@ -109,6 +109,13 @@
         "ensemble_of_hub_models": {
             "description": "Indicator for whether this model is an ensemble of other models submitted to this Hub",
             "type": "boolean"
+        },
+        "designated_github_users": {
+            "description": "Team member(s) who would be responsible for submitting forecasts as a pull request to the CovidHub repository. Only the pull request from users specified here can get merged automatically after validation.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         }
     },
     "additionalProperties": false,
