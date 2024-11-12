@@ -24,7 +24,7 @@ jobs:
         uses: jaywcjlove/github-action-read-file@main
         with:
           branch: main
-          path: 'src/code/authorized_users.txt'
+          path: 'auxiliary-data/authorized_users.txt'
 
       - name: Get changed files
         id: get_changed_files_in_model_output
@@ -33,12 +33,23 @@ jobs:
           path: 'model-output'
           dir_names: 'True'
 
-      - name: Get changed metadata files
-        id: get_changed_metadata_files
+      - name: Get all changed files
+        id: get_all_changed_files
         uses: tj-actions/changed-files@v45
-        with:
-          path: 'model-metadata'
 
+      - name: Check for changes outside model-output folder
+        id: check_changes_outside_model_output
+        run: |
+          echo "Changed files:"
+          echo "${{ steps.get_all_changed_files.outputs.all_modified_files }}"
+          
+          for file in ${{ steps.get_all_changed_files.outputs.all_modified_files }}; do
+            if [[ "$file" != model-output/* ]]; then
+              echo "Error: Changes detected outside 'model-output' folder. File changed: $file"
+              exit 1
+            fi
+          done
+          
       - name: Get Token
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v4
@@ -47,7 +58,6 @@ jobs:
           application_private_key: ${{ secrets.GH_APP_KEY }}
 
       - name: Approve PR if changes made by authorized user
-        if: steps.get_changed_metadata_files.outputs.any_changed != 'true'
         run: |
           readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
           
@@ -82,7 +92,6 @@ jobs:
           GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Enable auto-merge for approved PRs
-        if: steps.get_changed_metadata_files.outputs.any_changed != 'true'
         run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
