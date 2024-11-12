@@ -1,0 +1,97 @@
+name: Merge valid PRs
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    branches: main
+    paths:
+      - 'model-output/**'
+      
+jobs:
+  validate-user-and-merge:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+        
+      - name: Read authorized user
+        id: read_authorized_user
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          branch: main
+          path: 'auxiliary-data/authorized_users.txt'
+
+      - name: Get changed files
+        id: get_changed_files_in_model_output
+        uses: tj-actions/changed-files@v45
+        with:
+          path: 'model-output'
+          dir_names: 'True'
+
+      - name: Get all changed files
+        id: get_all_changed_files
+        uses: tj-actions/changed-files@v45
+
+      - name: Check for changes outside model-output folder
+        id: check_changes_outside_model_output
+        run: |
+          echo "Changed files:"
+          echo "${{ steps.get_all_changed_files.outputs.all_modified_files }}"
+          
+          for file in ${{ steps.get_all_changed_files.outputs.all_modified_files }}; do
+            if [[ "$file" != model-output/* ]]; then
+              echo "Error: Changes detected outside 'model-output' folder. File changed: $file"
+              exit 1
+            fi
+          done
+          
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v4
+        with:
+          application_id: ${{ vars.GH_APP_ID }}
+          application_private_key: ${{ secrets.GH_APP_KEY }}
+
+      - name: Approve PR if changes made by authorized user
+        run: |
+          readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
+          
+          for line in "${lines_arr[@]}"; do
+            read -r dir user_list <<< $line
+            IFS=', ' read -r -a user_array <<< "$user_list"  
+            
+            for file in ${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}; do
+              if [[ "$file" == "$dir" ]]; then
+                is_authorized=false
+
+                for user in "${user_array[@]}"; do
+                  if [[ "${{ github.actor }}" == "$user" ]]; then
+                    is_authorized=true
+                    break
+                  fi
+                done
+
+                if [[ "$is_authorized" == true ]]; then
+                  gh pr review --approve "${{ github.event.pull_request.html_url }}"
+                  exit 0
+                else
+                  echo "Error: Only following users are allowed to change files in '$dir/': ${user_array[*]}"
+                  exit 1
+                fi
+
+              fi
+            done
+            
+          done
+        env:
+          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+
+      - name: Enable auto-merge for approved PRs
+        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+        env:
+          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
