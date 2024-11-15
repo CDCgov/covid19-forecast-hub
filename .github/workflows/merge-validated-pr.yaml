@@ -6,6 +6,7 @@ on:
     branches: main
     paths:
       - 'model-output/**'
+      - '!**README**'
       
 jobs:
   validate-user-and-merge:
