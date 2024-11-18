@@ -1,12 +1,12 @@
-name: Update authorized users
+name: Update target data
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 07 * * 3'
+    - cron: '00 17 * * 3'
     
 jobs:
-  update-users-list:
+  update-target-data:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -26,15 +26,13 @@ jobs:
         install.packages(c("argparser", "RSocrata", "dplyr", "stringr", "readr", "remotes"))
         remotes::install_github('cdcgov/forecasttools')
       shell: Rscript {0}
-
-    - name: Set environment variables
-      env:
-        NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
-        NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
     
     - name: get updated target data
       run: |
         Rscript src/code/get_target_data.r
+      env:
+        NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
+        NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
 
     - name: Check for Changes
       id: check_diff
