@@ -1,6 +1,16 @@
 # R script to create ensemble forecats using models submitted to the CovidHub
 
-ref_date <- lubridate::ceiling_date(Sys.Date(), "week") - lubridate::days(1)
+parser <- argparser::arg_parser(
+  "Create a hub ensemble model for covid-19 hospital admissions"
+)
+parser <- argparser::add_argument(
+  parser,
+  "--reference_date"
+)
+
+args <- argparser::parse_args(parser)
+reference_date <- as.Date(args$reference_data)
+
 hub_path <- "."
 task_id_cols <- c(
   "reference_date", "location", "horizon",
@@ -15,7 +25,7 @@ if (!dir.exists(output_dirpath)) {
 hub_content <- hubData::connect_hub(hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(
-    reference_date == ref_date,
+    reference_date == reference_date,
     !str_detect(model_id, "CovidHub")
   ) |>
   hubData::collect_hub()
@@ -41,9 +51,10 @@ eligible_models <- purrr::map(yml_files, is_model_designated) |>
 
 write.csv(
   eligible_models,
-  file.path(
-    output_dirpath,
-    paste0(as.character(ref_date), "-", "models-to-include-in-ensemble.csv")
+  file.path(output_dirpath,
+    paste0(
+      as.character(reference_date), "-", "models-to-include-in-ensemble.csv"
+    )
   ),
   row.names = FALSE
 )
@@ -74,7 +85,7 @@ write.csv(
   median_ensemble_outputs,
   file.path(
     output_dirpath,
-    paste0(as.character(ref_date), "-", "CovidHub-ensemble.csv")
+    paste0(as.character(reference_date), "-", "CovidHub-ensemble.csv")
   ),
   row.names = FALSE
 )

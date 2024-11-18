@@ -1,17 +1,18 @@
 library(epipredict)
 
-#' Return `date` if it has the desired weekday, else the next date that does
-#' @param date `Date` vector
-#' @param ltwday integerish vector; of weekday code(s), following POSIXlt
-#'   encoding but allowing either 0 or 7 to represent Sunday.
-#' @return `Date` object
-curr_or_next_date_with_ltwday <- function(date, ltwday) {
-  checkmate::assert_class(date, "Date")
-  checkmate::assert_integerish(ltwday, lower = 0L, upper = 7L)
-  date + (ltwday - as.POSIXlt(date)$wday) %% 7L
-}
+parser <- argparser::arg_parser(
+  "Create a flat baseline model for covid-19 hospital admissions"
+)
+parser <- argparser::add_argument(
+  parser,
+  "--reference_date"
+)
 
-# Prepare data, use tentative file-name/location, might need to be changed
+args <- argparser::parse_args(parser)
+reference_date <- as.Date(args$reference_data)
+
+desired_max_time_value <- reference_date - 7L
+
 target_tbl <- readr::read_csv(
   "target-data/covid-hospital-admissions.csv",
   col_types = readr::cols_only(
@@ -31,11 +32,6 @@ target_epi_df <- target_tbl |>
     weekly_count = .data$value
   ) |>
   epiprocess::as_epi_df()
-
-# date settings
-forecast_as_of_date <- Sys.Date()
-reference_date <- curr_or_next_date_with_ltwday(forecast_as_of_date, 6L)
-desired_max_time_value <- reference_date - 7L
 
 # Validation:
 excess_latency_tbl <- target_epi_df |>
