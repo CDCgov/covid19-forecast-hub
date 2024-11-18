@@ -12,14 +12,12 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 first_full_weekending_date <- as.Date(args$first_full_weekending_date)
 
-# Fetch covid-19 data
-covid_data <- RSocrata::read.socrata(
-  url = "https://data.cdc.gov/resource/ua7e-t2fy.json"
+covid_data <- forecasttools::pull_nhsn(
+  columns = c("totalconfc19newadm"),
+  start_date = first_full_weekending_date
 ) |>
-  dplyr::filter(weekendingdate >= first_full_weekending_date) |>
-  dplyr::select(jurisdiction, weekendingdate, totalconfc19hosppats) |>
   dplyr::rename(
-    value = totalconfc19hosppats,
+    value = totalconfc19newadm,
     date = weekendingdate,
     state = jurisdiction
   ) |>
@@ -37,7 +35,7 @@ excluded_locations <- exclude_data$locations
 formatted_data <- covid_data |>
   dplyr::left_join(loc_df, by = c("state" = "abbreviation")) |>
   dplyr::filter(!(location %in% excluded_locations)) |>
-  dplyr::select(date, state, value, location) 
+  dplyr::select(date, state, value, location)
 
 output_dirpath <- "target-data/"
 
