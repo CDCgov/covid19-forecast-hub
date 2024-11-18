@@ -4,12 +4,12 @@ parser <- argparser::arg_parser(
   "Create a hub ensemble model for covid-19 hospital admissions"
 )
 parser <- argparser::add_argument(
-  parser,
-  "--reference_date"
+  parser, "--reference-date",
+  help = "reference date in YYYY-MM-DD format"
 )
 
 args <- argparser::parse_args(parser)
-reference_date <- as.Date(args$reference_data)
+reference_date <- as.Date(args$reference_date)
 
 hub_path <- "."
 task_id_cols <- c(

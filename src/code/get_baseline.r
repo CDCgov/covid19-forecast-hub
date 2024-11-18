@@ -4,12 +4,12 @@ parser <- argparser::arg_parser(
   "Create a flat baseline model for covid-19 hospital admissions"
 )
 parser <- argparser::add_argument(
-  parser,
-  "--reference_date"
+  parser, "--reference-date",
+  help = "reference date in YYYY-MM-DD format"
 )
 
 args <- argparser::parse_args(parser)
-reference_date <- as.Date(args$reference_data)
+reference_date <- as.Date(args$reference_date)
 
 desired_max_time_value <- reference_date - 7L
 
@@ -18,7 +18,7 @@ target_tbl <- readr::read_csv(
   col_types = readr::cols_only(
     date = readr::col_date(format = ""),
     location = readr::col_character(),
-    location_name = readr::col_character(),
+    state = readr::col_character(),
     value = readr::col_double()
   )
 )
@@ -27,7 +27,7 @@ loc_df <- read.csv("target-data/locations.csv")
 
 target_epi_df <- target_tbl |>
   dplyr::transmute(
-    geo_value = loc_df$abbreviation[match(location_name, loc_df$location_name)],
+    geo_value = state,
     time_value = .data$date,
     weekly_count = .data$value
   ) |>
