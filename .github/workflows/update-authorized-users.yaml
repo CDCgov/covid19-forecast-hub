@@ -30,7 +30,13 @@ jobs:
       run: |
         Rscript src/code/get_authorized_users.r
 
+    - name: Check for Changes
+      id: check_diff
+      run: |
+        git diff --exit-code auxiliary-data/authorized_users.txt || echo "changed=true" >> $GITHUB_ENV 
+
     - name: Commit changes
+      if: env.changed == 'true'
       uses: EndBug/add-and-commit@v9
       with: 
         message: "Update authorized users"
@@ -39,7 +45,7 @@ jobs:
         new_branch: update-authorized-users
   
     - name: Create pull request
-      id: create_pr
+      if: env.changed == 'true'
       run: |
         gh pr create --base main --head update-authorized-users --title "Update authorized users" --body "This PR updates the authorized users list based on the latest metadata."
       env:
