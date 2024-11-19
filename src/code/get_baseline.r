@@ -11,6 +11,19 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
 
+dow_supplied <- lubridate::wday(reference_date,
+  week_start = 7,
+  label = FALSE
+)
+if (dow_supplied != 7) {
+  cli::cli_abort(message = paste0(
+    "Expected `reference_date` to be a Saturday, day number 7 ",
+    "of the week, given the `week_start` value 7. ",
+    "Got {reference_date}, which is day number ",
+    "{dow_supplied} of the week."
+  ))
+}
+
 desired_max_time_value <- reference_date - 7L
 
 target_tbl <- readr::read_csv(
