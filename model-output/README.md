@@ -300,5 +300,3 @@ In order to ensure that forecasting is done in real-time, all forecasts are requ
 
 ## Evaluation criteria
 Forecasts will be evaluated using a variety of metrics, including the weighted interval score (WIS).
-
-<!-- change to test pr again -->
