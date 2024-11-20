@@ -7,10 +7,14 @@ on:
 jobs:
   generate-baseline-forecasts:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
+    - name: Get Token
+      id: get_workflow_token
+      uses: peter-murray/workflow-application-token-action@v4
+      with:
+        application_id: ${{ vars.GH_APP_ID }}
+        application_private_key: ${{ secrets.GH_APP_KEY }}
+
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -46,4 +50,4 @@ jobs:
       run: |
         gh pr create --base main --head add-baseline --title "Add baseline forecast" --body "This PR is generated automatically."
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
