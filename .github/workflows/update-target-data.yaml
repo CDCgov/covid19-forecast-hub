@@ -8,10 +8,15 @@ on:
 jobs:
   update-target-data:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
+    - name: Get Token
+      id: get_workflow_token
+      uses: peter-murray/workflow-application-token-action@v4
+      with:
+        application_id: ${{ vars.GH_APP_ID }}
+        application_private_key: ${{ secrets.GH_APP_KEY }}
+
     - name: Checkout code
       uses: actions/checkout@v4
 
@@ -53,4 +58,4 @@ jobs:
       run: |
         gh pr create --base main --head update-target-data --title "Update target data" --body "This PR updates the covid-19 hospital admissions data based on the latest NHSN wednesday data release."
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
