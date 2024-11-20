@@ -23,7 +23,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "dplyr", "jsonlite", "remotes"))
+        install.packages(c("argparser", "readr", "dplyr", "jsonlite", "remotes"))
         remotes::install_github('cdcgov/forecasttools')
       shell: Rscript {0}
     

@@ -13,6 +13,7 @@ args <- argparser::parse_args(parser)
 first_full_weekending_date <- as.Date(args$first_full_weekending_date)
 
 covid_data <- forecasttools::pull_nhsn(
+  api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadm"),
   start_date = first_full_weekending_date
 ) |>
@@ -27,7 +28,7 @@ covid_data <- forecasttools::pull_nhsn(
     state = stringr::str_replace(state, "USA", "US")
   )
 
-loc_df <- read.csv("target-data/locations.csv")
+loc_df <- readr::read_csv("target-data/locations.csv", show_col_types = FALSE)
 
 exclude_data <- jsonlite::fromJSON("auxiliary-data/exclude_ensemble.json")
 excluded_locations <- exclude_data$locations
@@ -39,8 +40,7 @@ formatted_data <- covid_data |>
 
 output_dirpath <- "target-data/"
 
-write.csv(
+readr::write_csv(
   formatted_data,
-  file.path(output_dirpath, "covid-hospital-admissions.csv"),
-  row.names = FALSE
+  file.path(output_dirpath, "covid-hospital-admissions.csv")
 )
