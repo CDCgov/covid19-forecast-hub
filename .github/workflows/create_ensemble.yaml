@@ -24,7 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        install.packages(c("hubEnsembles", "dplyr", "lubridate", "purrr", "yaml", "remotes"))
+        install.packages(c("hubEnsembles", "dplyr", "lubridate", "purrr", "yaml", "argparser", "remotes"))
         remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
   
