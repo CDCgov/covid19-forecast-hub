@@ -3,7 +3,7 @@ name: Update authorized users
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 11 * * 3'
+    - cron: '30 21 * * 3'
     
 jobs:
   update-users-list:
