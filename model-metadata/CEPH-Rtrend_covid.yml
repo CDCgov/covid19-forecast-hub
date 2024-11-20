@@ -1,7 +1,7 @@
 team_name: "CEPH Lab at Indiana University"
 team_abbr: "CEPH"
-model_name: "Rtrend_covid"
-model_abbr: "CEPH-Rtrend_covid"
+model_name: "Rtrend COVID"
+model_abbr: "Rtrend_covid"
 model_contributors: [
   {
     "name": "Marco Ajelli",
