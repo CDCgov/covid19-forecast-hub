@@ -36,7 +36,6 @@ target_tbl <- readr::read_csv(
   )
 )
 target_start_date <- min(target_tbl$date)
-loc_df <- read.csv("target-data/locations.csv")
 
 target_epi_df <- target_tbl |>
   dplyr::transmute(
@@ -146,11 +145,10 @@ if (!dir.exists(output_dirpath)) {
   dir.create(output_dirpath, recursive = TRUE)
 }
 
-write.csv(
+readr::write_csv(
   preds_formatted,
   file.path(
     output_dirpath,
     paste0(as.character(reference_date), "-", "CovidHub-baseline.csv")
-  ),
-  row.names = FALSE
+  )
 )
