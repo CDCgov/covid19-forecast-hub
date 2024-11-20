@@ -1,2 +1,4 @@
 CMU-TimeSeries dshemetov, dsweber2
 OHT_JHU-nbxd atulchin, eklein-cddep
+UM-DeepOutbreak NA
+UMass-gbqr elray1
