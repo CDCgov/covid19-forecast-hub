@@ -1,0 +1,27 @@
+team_name: "UMass-Amherst"
+team_abbr: "UMass"
+model_name: "gradient boosting quantile regression"
+model_abbr: "gbqr"
+model_version: "1.0"
+model_contributors:
+  [
+    {
+      "name": "Evan Ray",
+      "affiliation": "UMass Amherst",
+      "email": "elray@umass.edu"
+    }
+  ]
+website_url: "https://github.com/reichlab/idmodels"
+repo_url: "https://github.com/reichlab/idmodels"
+license: "CC-BY-4.0"
+designated_model: true
+team_funding: "This work has been supported by the National Institutes of General Medical Sciences (R35GM119582) and the U.S. CDC(1U01IP001122). The content is solely the responsibility of the authors and does not necessarily represent the official views of NIGMS, the National Institutes of Health, or CDC."
+methods: "Gradient boosting quantile regression."
+data_inputs: "Weekly covid hospital admissions from NHSN."
+methods_long: "Gradient boosting using features summarizing signal activity, properties of the location, information about the timing of forecast creation, and the forecast horizon. See https://arxiv.org/abs/2407.19054 for more detail."
+ensemble_of_models: true
+ensemble_of_hub_models: false
+designated_github_users:
+  [
+    "elray1"
+  ]
