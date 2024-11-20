@@ -1,4 +1,3 @@
-
 hub_path <- "."
 output_path <- "auxiliary-data/"
 
@@ -13,8 +12,8 @@ extract_metadata <- function(file) {
     "model_abbr" %in% names(yml_data), yml_data$model_abbr, NA
   )
   designated_user <- ifelse(
-    "designated_github_user" %in% names(yml_data),
-    paste(yml_data$designated_github_user, collapse = ", "),
+    "designated_github_users" %in% names(yml_data),
+    paste(yml_data$designated_github_users, collapse = ", "),
     NA
   )
 
