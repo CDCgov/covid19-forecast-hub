@@ -21,4 +21,7 @@ data_inputs: "Weekly covid hospital admissions from NHSN."
 methods_long: "Gradient boosting using features summarizing signal activity, properties of the location, information about the timing of forecast creation, and the forecast horizon. See https://arxiv.org/abs/2407.19054 for more detail."
 ensemble_of_models: true
 ensemble_of_hub_models: false
-designated_github_users: ["elray1"]
+designated_github_users:
+  [
+    "elray1"
+  ]
