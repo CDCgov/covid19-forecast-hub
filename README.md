@@ -5,9 +5,9 @@ This repository is designed to collect forecast data for the COVID-19 Forecast H
 ## Nowcasts and Forecasts of Confirmed Covid 19 Hospitalizations 
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
-These weekly total COVID-19 admissions data is based on the `totalconfc19newadm` column from the public releases of National Healthcare Safety Network (NHSN) data. 
+These weekly total COVID-19 admissions counts can be found in the`totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data] (HRD) dataset (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
-A preliminary release of this data is available on Wednesdays [`here`](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data). Official weekly data is released on Fridays and is available [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy/about_data). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+NHSN provides a preliminary release of each week's HRD data on Wednesdays [`here`](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data). Official weekly data is released on Fridays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy/about_data). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
 ## Dates and Deadlines 
 The Challenge Period is tentatively scheduled to begin with the epiweek of Sunday, November 17, 2024 with the first Forecast Due Date of November 20, 2024.
