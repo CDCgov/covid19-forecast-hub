@@ -29,7 +29,7 @@ task_id_cols <- c(
   "reference_date", "location", "horizon",
   "target", "target_end_date"
 )
-output_dirpath <- "model-output/"
+output_dirpath <- file.path("model-output", "CovidHub-ensemble")
 if (!dir.exists(output_dirpath)) {
   dir.create(output_dirpath, recursive = TRUE)
 }
