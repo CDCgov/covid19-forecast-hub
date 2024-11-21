@@ -14,3 +14,8 @@ https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data
 methods_long: "Median-based ensemble of quantile forecasts submissions. The hubEnsembles package from hubverse is used to generate the CovidHub-ensemble."
 ensemble_of_models: true
 ensemble_of_hub_models: true
+designated_github_users:
+  [
+    "covidhub-pr-bot"
+  ]
+  
