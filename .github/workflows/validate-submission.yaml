@@ -30,6 +30,21 @@ jobs:
             any::hubValidations
             any::sessioninfo
 
+      - name: Get changed files
+        id: get_changed_files_in_model_output
+        uses: tj-actions/changed-files@v45
+        with:
+          path: 'model-output'
+          dir_names: 'True'
+      
+      - name: check if ensemble
+        run: |   
+          if [[ ${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }} == CovidHub-ensemble ]]; then
+            { echo "model=ensemble" | tee -a $GITHUB_ENV; }
+          else
+            { echo "model=other" | tee -a $GITHUB_ENV; }
+          fi
+
       - name: Run validations
         env:
           PR_NUMBER: ${{ github.event.number }}
@@ -38,7 +53,7 @@ jobs:
           v <- hubValidations::validate_pr(
               gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
               pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = FALSE
+              skip_submit_window_check = if (Sys.getenv("model") == "ensemble") TRUE else FALSE
           )
           hubValidations::check_for_errors(v, verbose = TRUE)
         shell: Rscript {0}
