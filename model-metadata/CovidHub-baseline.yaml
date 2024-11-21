@@ -1,0 +1,16 @@
+team_name: "CovidHub-hub-models"
+team_abbr: "CovidHub"
+model_name: "CovidHub baseline model"
+model_abbr: "baseline"
+model_version: "1.0"
+model_contributors: []
+website_url: "https://github.com/CDCgov/covid19-forecast-hub"
+license: "CC-BY-4.0"
+designated_model: false
+methods: "Flat baseline model. The most observed value from the target dataset is the median forward projection. Prospective uncertainty is based on the preceding timeseries."
+data_inputs: "Epiweekly incident COVID-19 hospital admissions from the NHSN Weekly Hospital Respiratory Data dataset,
+https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data
+"
+methods_long: "Flat baseline model. The most observed value from the target dataset is the median forward projection. Prospective uncertainty is based on the preceding timeseries. This is the standard baseline model used by the COVID-19 Forecast Hub and the FluSight Forecast Hub. It is implemented using the `cdc_baseline_forecaster()` function from the `epipredict` R package. https://cmu-delphi.github.io/epipredict/reference/cdc_baseline_forecaster.html"
+ensemble_of_models: false
+ensemble_of_hub_models: false

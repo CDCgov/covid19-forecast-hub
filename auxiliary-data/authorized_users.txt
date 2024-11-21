@@ -1,2 +1,7 @@
+CEPH-Rtrend_covid paulocv
 CMU-TimeSeries dshemetov, dsweber2
+CovidHub-baseline NA
+CovidHub-ensemble NA
 OHT_JHU-nbxd atulchin, eklein-cddep
+UM-DeepOutbreak NA
+UMass-gbqr elray1
