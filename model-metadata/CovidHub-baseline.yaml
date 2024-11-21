@@ -4,7 +4,7 @@ model_name: "CovidHub baseline model"
 model_abbr: "baseline"
 model_version: "1.0"
 model_contributors: []
-website_url: "https://github.com/cdcepi/FluSight-forecast-hub"
+website_url: "https://github.com/CDCgov/covid19-forecast-hub"
 license: "CC-BY-4.0"
 designated_model: false
 methods: "Flat baseline model. The most observed value from the target dataset is the median forward projection. Prospective uncertainty is based on the preceding timeseries."
