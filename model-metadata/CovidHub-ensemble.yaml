@@ -1,0 +1,16 @@
+team_name: "CovidHub"
+team_abbr: "CovidHub"
+model_name: "Ensemble model using CovidHub submissions"
+model_abbr: "ensemble"
+model_version: "1.0"
+model_contributors: []
+website_url: "https://github.com/CDCgov/covid19-forecast-hub"
+license: "CC-BY-4.0"
+designated_model: false
+methods: "Median-based ensemble of quantile forecasts submissions."
+data_inputs: "Epiweekly incident COVID-19 hospital admissions from the NHSN Weekly Hospital Respiratory Data dataset,
+https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data
+"
+methods_long: "Median-based ensemble of quantile forecasts submissions. The hubEnsembles package from hubverse is used to generate the CovidHub-ensemble."
+ensemble_of_models: true
+ensemble_of_hub_models: true
