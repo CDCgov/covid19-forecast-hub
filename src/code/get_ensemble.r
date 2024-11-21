@@ -29,7 +29,7 @@ task_id_cols <- c(
   "reference_date", "location", "horizon",
   "target", "target_end_date"
 )
-output_dirpath <- "CovidHub-ensemble/"
+output_dirpath <- file.path("model-output", "CovidHub-ensemble")
 if (!dir.exists(output_dirpath)) {
   dir.create(output_dirpath, recursive = TRUE)
 }
@@ -64,7 +64,8 @@ eligible_models <- purrr::map(yml_files, is_model_designated) |>
 
 write.csv(
   eligible_models,
-  file.path(output_dirpath,
+  file.path(
+    "auxiliary-data",
     paste0(
       as.character(reference_date), "-", "models-to-include-in-ensemble.csv"
     )
@@ -73,7 +74,7 @@ write.csv(
 )
 
 models <- eligible_models$Model
-#filter excluded locations
+# filter excluded locations
 exclude_data <- jsonlite::fromJSON("auxiliary-data/exclude_ensemble.json")
 excluded_locations <- exclude_data$locations
 current_forecasts <- current_forecasts |>
@@ -82,7 +83,7 @@ current_forecasts <- current_forecasts |>
 # QUANTILE ENSEMBLE
 quantile_forecasts <- current_forecasts |>
   dplyr::filter(output_type == "quantile") |>
-  #ensure quantiles are handled accurately even with leading/trailing zeros
+  # ensure quantiles are handled accurately even with leading/trailing zeros
   dplyr::mutate(output_type_id = as.factor(as.numeric(output_type_id)))
 
 median_ensemble_outputs <- quantile_forecasts |>
