@@ -37,7 +37,7 @@ jobs:
           library("hubValidations")
           library("hubUtils")
           tasks <- hubUtils::read_config(".", "tasks")
-          rounds <- hubUtils::get_round_ids("tasks")
+          rounds <- hubUtils::get_round_ids(tasks)
           current <- rounds[which.min(abs(Sys.Date() - as.Date(rounds)))]
           slug <- "CovidHub-ensemble"
           ensemble <- file.path("model-output", slug,
