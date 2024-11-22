@@ -30,21 +30,6 @@ jobs:
             any::hubValidations
             any::sessioninfo
 
-      - name: Get changed files
-        id: get_changed_files_in_model_output
-        uses: tj-actions/changed-files@v45
-        with:
-          path: 'model-output'
-          dir_names: 'True'
-      
-      - name: check if ensemble
-        run: |   
-          if echo "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" | grep -q "CovidHub-ensemble"; then
-            { echo "model=ensemble" | tee -a $GITHUB_ENV; }
-          else
-            { echo "model=other" | tee -a $GITHUB_ENV; }
-          fi
-
       - name: Run validations
         env:
           PR_NUMBER: ${{ github.event.number }}
