@@ -32,4 +32,4 @@ methods: "A Multi-Pathogen Optimized Geo-Hierarchical Ensemble Framework (MPOG-E
 methods_long: "This model forecasts state-level COVID-19 hospitalizations using a combination of time series forecasting methods, organized across three hierarchical levels. At the individual state level, forecasts are generated using Holt-Winters Exponential Smoothing. For regional predictions, which group states based on past 2 years covid-19 activity trends identified through the Louvain method, Long Short-Term Memory (LSTM) models are employed. Additionally, a LSTM model that covers all states is implemented. These three-tiered model outputs are integrated, selecting weights based on their recent performance in terms of Mean Absolute Error (MAE) to produce the final prediction."
 ensemble_of_models: true
 ensemble_of_hub_models: false
-
+designated_github_users: ["Shawn-Tsui"] 
