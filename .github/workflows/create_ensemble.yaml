@@ -6,6 +6,7 @@ on:
 
 jobs:
   generate-covidhub-ensemble:
+    if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
