@@ -7,8 +7,10 @@ on:
     
 jobs:
   update-target-data:
+    if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
-    
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - name: Get Token
       id: get_workflow_token

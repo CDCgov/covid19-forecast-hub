@@ -140,7 +140,7 @@ Optionally, you may validate a model metadata file locally before submitting it 
 2. Create a draft of the model metadata file for your model and place it in the `model-metadata` folder of this clone.
 3. Install the hubValidations package for R by running the following command from within an R session:
 ``` r
-remotes::install_github("hubverse-org/hubValidations")
+install.packages("hubValidations", repos = c("https://hubverse-org.r-universe.dev", "https://cloud.r-project.org"))
 ```
 4. Validate your draft metadata file by running the following command in an R session:
 ``` r

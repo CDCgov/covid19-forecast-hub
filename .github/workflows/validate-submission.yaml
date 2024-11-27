@@ -35,10 +35,17 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           library("hubValidations")
+          library("hubUtils")
+          tasks <- hubUtils::read_config(".", "tasks")
+          rounds <- hubUtils::get_round_ids(tasks)
+          current <- rounds[which.min(abs(Sys.Date() - as.Date(rounds)))]
+          slug <- "CovidHub-ensemble"
+          ensemble <- file.path("model-output", slug,
+            paste0(current, "-", slug, ".csv"))
           v <- hubValidations::validate_pr(
               gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
               pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = FALSE
+              skip_submit_window_check = file.exists(ensemble)
           )
           hubValidations::check_for_errors(v, verbose = TRUE)
         shell: Rscript {0}
