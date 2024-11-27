@@ -4,4 +4,5 @@ CovidHub-baseline NA
 CovidHub-ensemble NA
 OHT_JHU-nbxd atulchin, eklein-cddep
 UM-DeepOutbreak NA
+UMass-ar6_pooled elray1
 UMass-gbqr elray1
