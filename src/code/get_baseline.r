@@ -140,7 +140,7 @@ preds_formatted <- preds |>
     output_type, output_type_id, value
   )
 
-output_dirpath <- "CovidHub-baseline/"
+output_dirpath <- file.path("model-output", "CovidHub-baseline")
 if (!dir.exists(output_dirpath)) {
   dir.create(output_dirpath, recursive = TRUE)
 }
