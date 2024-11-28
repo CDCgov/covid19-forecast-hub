@@ -41,3 +41,4 @@ data_inputs: "Weekly incident COVID-19 hospitalizations, queried through HHS"
 methods_long: "The GLEAM framework is based on a metapopulation approach in which the US is divided into geographical subpopulations. Human mobility between subpopulations is represented on a network.  This mobility data layer identifies the numbers of individuals traveling from one sub-population to  another. The mobility network is made up of different kinds of mobility processes from short-range commuting between nearby subpopulations to flights. To model short-range mobility  such as commuting or car travel, we rely on databases collected from the Offices of Statistics of 30  countries on five continents. Superimposed on the US population and mobility layers is an compartmental epidemic model that defines the infection and population dynamics. "
 ensemble_of_models: false
 ensemble_of_hub_models: false
+designated_github_users: ["jessica-davis"]
