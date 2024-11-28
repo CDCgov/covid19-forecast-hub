@@ -1,0 +1,35 @@
+team_name: "The Center for Systems Science and Engineering at Johns Hopkins University"
+team_abbr: "JHU_CSSE"
+model_name: "CSSE Ensemble"
+model_abbr: "CSSE_Ensemble"
+model_contributors: [
+  {
+    "name": "Lauren Gardner",
+    "affiliation": "Johns Hopkins University",
+    "email": "l.gardner@jhu.edu"
+  },
+  {
+    "name": "Hongru Du",
+    "affiliation": "Johns Hopkins University",
+    "email": "hdu9@jh.edu"
+  },
+
+  {
+    "name": "Shaochong Xu",
+    "affiliation": "Johns Hopkins University",
+    "email": "sxu75@jh.edu"
+  },
+  {
+    "name": "Liyue Zhang",
+    "affiliation": "Johns Hopkins University",
+    "email": "lzhan261@jh.edu"
+  }
+]
+license: "CC-BY-4.0"
+designated_model: true
+data_inputs: "Weekly flu/ COVID-19 hospitalizations, Google search volume for covid-related symptoms, healthcare claims data (accessed via covidcast)"
+methods: "A Multi-Pathogen Optimized Geo-Hierarchical Ensemble Framework (MPOG-Ensemble)"
+methods_long: "This model forecasts state-level COVID-19 hospitalizations using a combination of time series forecasting methods, organized across three hierarchical levels. At the individual state level, forecasts are generated using Holt-Winters Exponential Smoothing. For regional predictions, which group states based on past 2 years covid-19 activity trends identified through the Louvain method, Long Short-Term Memory (LSTM) models are employed. Additionally, a LSTM model that covers all states is implemented. These three-tiered model outputs are integrated, selecting weights based on their recent performance in terms of Mean Absolute Error (MAE) to produce the final prediction."
+ensemble_of_models: true
+ensemble_of_hub_models: false
+designated_github_users: ["Shawn-Tsui"] 
