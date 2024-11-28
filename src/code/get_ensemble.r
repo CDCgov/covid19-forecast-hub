@@ -38,7 +38,7 @@ if (!dir.exists(output_dirpath)) {
 hub_content <- hubData::connect_hub(hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(
-    reference_date == reference_date,
+    reference_date == !!reference_date,
     !str_detect(model_id, "CovidHub")
   ) |>
   hubData::collect_hub()
