@@ -19,3 +19,4 @@ hub-config/README_files/
 *.html
 
 /test
+model-output/.DS_Store
