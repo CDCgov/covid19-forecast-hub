@@ -78,10 +78,17 @@ map_data <- ensemble_data %>%
       location_input_format = "hub", 
       location_output_format = "long_name"
     )
+  ) %>%
+  # long name "United States" to "US"
+  dplyr::mutate(
+    location = dplyr::if_else(
+      location == "United States", 
+      "US", 
+      location)
   ) %>% # add populations
   dplyr::left_join(
     pop_data, 
-    by = c("location" = "abbreviation")
+    by = c("location" = "location_name")
   ) %>% 
   # add quantile columns for per-100k rates 
   # and rounded values
