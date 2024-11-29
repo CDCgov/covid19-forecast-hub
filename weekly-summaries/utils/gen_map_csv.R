@@ -54,7 +54,7 @@ if (length(missing_columns) > 0) {
 }
 
 # population data, add later to forecasttools
-pop_data <- readr::read_csv("../data/pop_locs.csv")
+pop_data <- readr::read_csv("../../target-data/locations.csv")
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(pop_required_columns, colnames(pop_data))
 if (length(missing_pop_columns) > 0) {
