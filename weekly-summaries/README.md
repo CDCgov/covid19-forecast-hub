@@ -22,8 +22,8 @@ _Contains data from the ensemble COVID or flu forecast for all states (including
 * `quantile_0.5_count` (numeric) 0.5 quantile forecast value 
 * `quantile_0.975_count` (numeric) 0.975 quantile forecast value 
 * `quantile_0.025_per100k_rounded` (numeric): forecasted value as a rate per 100k, rounded to 2 places (Ex: 3.57) 
-* `quantile_0.5_ per100k_rounded` (numeric): forecasted value as a rate per 100k, rounded to 2 places 
-* `quantile_0.975_ per100k_rounded` (numeric): forecasted value as a rate per 100k, rounded to 2 places 
+* `quantile_0.5_per100k_rounded` (numeric): forecasted value as a rate per 100k, rounded to 2 places 
+* `quantile_0.975_per100k_rounded` (numeric): forecasted value as a rate per 100k, rounded to 2 places 
 * `quantile_0.025_count_rounded` (numeric): 0.025 quantile forecast value, rounded up to the nearest integer (Ex: 3755) 
 * `quantile_0.5_count_rounded` (numeric) 0.5 quantile forecast value, rounded up to the nearest integer 
 * `quantile_0.975_count_rounded` (numeric) 0.975 quantile forecast value, rounded up to the nearest integer 

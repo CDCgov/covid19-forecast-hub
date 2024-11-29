@@ -34,7 +34,7 @@ library("magrittr") # for %>%
 covid_data <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadm"),
-  start_date = "2024-11-09"  # replace with appropriate date if needed
+  #start_date = "2024-11-09"  # replace with appropriate date if needed
 ) %>%
   dplyr::rename(
     value = totalconfc19newadm,
