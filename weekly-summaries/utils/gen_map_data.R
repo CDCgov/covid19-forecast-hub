@@ -64,7 +64,7 @@ if (length(missing_pop_columns) > 0) {
 
 # # excluded locations (from external data file)
 # # only for the first week; this should 
-# # check for output truth data, if csv found, 
+# # check for output data, if csv found, 
 # # then do not use
 # exclude_data <- jsonlite::fromJSON(
 #   "../../auxiliary-data/2024-11-23-exclude-locations.json")

@@ -30,6 +30,15 @@
 
 library("magrittr") # for %>%
 
+
+# # excluded locations (from external data file)
+# # only for the first week; this should 
+# # check for output data, if csv found, 
+# # then do not use
+# exclude_data <- jsonlite::fromJSON(
+#   "../../auxiliary-data/2024-11-23-exclude-locations.json")
+# excluded_locations <- exclude_data$locations
+
 # reference date and paths
 reference_date <- as.Date("2024-11-23")
 hub_path <- "../../"  
@@ -45,12 +54,13 @@ current_forecasts <- hub_content |>
   ) |>
   hubData::collect_hub()
 
-print(colnames(current_forecasts))
+
 
 all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   hubverse_table = current_forecasts,
-  pivot_quantiles = c("point" = 0.5, "lower" = 0.025, "upper" = 0.975)  # pivot 0.025, 0.5, 0.975 quantiles
+  pivot_quantiles = c("point" = 0.5, "lower" = 0.025, "q25" = 0.25, "q75" = 0.75, "upper" = 0.975)  
 ) %>%
+  # dplyr::filter(!(location %in% excluded_locations)) %>%
   # convert location to full location names 
   # and abbreviations
   dplyr::mutate(
@@ -64,9 +74,11 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # round the quantiles to nearest integer 
   # for rounded versions (2 places?)
   dplyr::mutate(
-    quantile_lower_rounded = round(lower),
-    quantile_point_rounded = round(point),
-    quantile_upper_rounded = round(upper)
+    quantile_0.025_rounded = round(lower),
+    quantile_0.25_rounded = round(q25),
+    quantile_0.5_rounded = round(point),
+    quantile_0.75_rounded = round(q75),
+    quantile_0.975_rounded = round(upper)
   ) %>%
   dplyr::select(
     location_name,
@@ -75,12 +87,16 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     forecast_date = reference_date,  # rename reference_date to forecast_date
     target_end_date,
     model_id,
-    quantile_lower,
-    quantile_point,
-    quantile_upper,
-    quantile_lower_rounded,
-    quantile_point_rounded,
-    quantile_upper_rounded
+    quantile_0.025 = lower,  # rename lower to quantile_0.025
+    quantile_0.25 = q25,      # rename q25 to quantile_0.25
+    quantile_0.5 = point,     # rename point to quantile_0.5
+    quantile_0.75 = q75,      # rename q75 to quantile_0.75
+    quantile_0.975 = upper,   # rename upper to quantile_0.975
+    quantile_0.025_rounded,
+    quantile_0.25_rounded,
+    quantile_0.5_rounded,
+    quantile_0.75_rounded,
+    quantile_0.975_rounded
   )
 
 # # process forecasts into the required format
