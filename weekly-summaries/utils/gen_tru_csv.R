@@ -51,30 +51,33 @@ covid_data <- forecasttools::pull_nhsn(
     )
   )
 
-# read location data
-loc_df <- readr::read_csv(
-  "../../target-data/locations.csv", 
-  show_col_types = FALSE)
+# convert state abbreviation to location code 
+# and tp long name
+covid_data <- covid_data %>%
+  dplyr::mutate(
+    location = forecasttools::us_loc_abbr_to_code(state), 
+    location_name = forecasttools::location_lookup(
+      location, 
+      location_input_format = "hub", 
+      location_output_format = "long_name")
+  ) %>%
+  # long name "United States" to "US"
+  dplyr::mutate(
+    location_name = dplyr::if_else(
+      location_name == "United States", 
+      "US", 
+      location_name)
+  )
 
-# # TODO: to exclude or now to exclude locs?
-# # excluded locations (from external data file)
-# exclude_data <- jsonlite::fromJSON(
-#   "../../auxiliary-data/exclude_ensemble.json")
-# excluded_locations <- exclude_data$locations
 
 # filter and format the data
 formatted_data <- covid_data %>%
-  dplyr::left_join(
-    loc_df, 
-    by = c("state" = "abbreviation")
-  ) %>%
-  # dplyr::filter(!(location %in% excluded_locations)) %>%
   dplyr::select(
     week_ending_date = date, 
     location, 
     location_name, 
     value
-)
+  )
 
 # save to CSV
 readr::write_csv(
