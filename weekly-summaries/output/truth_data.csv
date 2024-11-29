@@ -1,0 +1,172 @@
+week_ending_date,location,location_name,value
+2024-11-09,02,Alaska,13
+2024-11-16,02,Alaska,10
+2024-11-23,02,Alaska,7
+2024-11-09,01,Alabama,112
+2024-11-16,01,Alabama,81
+2024-11-23,01,Alabama,70
+2024-11-09,05,Arkansas,59
+2024-11-16,05,Arkansas,41
+2024-11-23,05,Arkansas,51
+2024-11-09,60,American Samoa,NA
+2024-11-16,60,American Samoa,NA
+2024-11-23,60,American Samoa,0
+2024-11-09,04,Arizona,505
+2024-11-16,04,Arizona,680
+2024-11-23,04,Arizona,734
+2024-11-09,06,California,603
+2024-11-16,06,California,650
+2024-11-23,06,California,608
+2024-11-09,08,Colorado,143
+2024-11-16,08,Colorado,161
+2024-11-23,08,Colorado,131
+2024-11-09,09,Connecticut,79
+2024-11-16,09,Connecticut,68
+2024-11-23,09,Connecticut,79
+2024-11-09,11,District of Columbia,8
+2024-11-16,11,District of Columbia,17
+2024-11-23,11,District of Columbia,24
+2024-11-09,10,Delaware,19
+2024-11-16,10,Delaware,18
+2024-11-23,10,Delaware,20
+2024-11-09,12,Florida,401
+2024-11-16,12,Florida,318
+2024-11-23,12,Florida,252
+2024-11-09,13,Georgia,83
+2024-11-16,13,Georgia,76
+2024-11-23,13,Georgia,68
+2024-11-09,66,Guam,0
+2024-11-16,66,Guam,3
+2024-11-23,66,Guam,0
+2024-11-09,15,Hawaii,22
+2024-11-16,15,Hawaii,20
+2024-11-23,15,Hawaii,12
+2024-11-09,19,Iowa,48
+2024-11-16,19,Iowa,40
+2024-11-23,19,Iowa,50
+2024-11-09,16,Idaho,33
+2024-11-16,16,Idaho,22
+2024-11-23,16,Idaho,17
+2024-11-09,17,Illinois,225
+2024-11-16,17,Illinois,198
+2024-11-23,17,Illinois,243
+2024-11-09,18,Indiana,181
+2024-11-16,18,Indiana,143
+2024-11-23,18,Indiana,163
+2024-11-09,20,Kansas,61
+2024-11-16,20,Kansas,45
+2024-11-23,20,Kansas,53
+2024-11-09,21,Kentucky,124
+2024-11-16,21,Kentucky,94
+2024-11-23,21,Kentucky,92
+2024-11-09,22,Louisiana,76
+2024-11-16,22,Louisiana,66
+2024-11-23,22,Louisiana,67
+2024-11-09,25,Massachusetts,217
+2024-11-16,25,Massachusetts,295
+2024-11-23,25,Massachusetts,357
+2024-11-09,24,Maryland,99
+2024-11-16,24,Maryland,66
+2024-11-23,24,Maryland,77
+2024-11-09,23,Maine,35
+2024-11-16,23,Maine,25
+2024-11-23,23,Maine,21
+2024-11-09,26,Michigan,546
+2024-11-16,26,Michigan,600
+2024-11-23,26,Michigan,426
+2024-11-09,27,Minnesota,202
+2024-11-16,27,Minnesota,189
+2024-11-23,27,Minnesota,226
+2024-11-09,29,Missouri,150
+2024-11-16,29,Missouri,143
+2024-11-23,29,Missouri,171
+2024-11-09,69,Northern Mariana Islands,NA
+2024-11-16,69,Northern Mariana Islands,NA
+2024-11-23,69,Northern Mariana Islands,NA
+2024-11-09,28,Mississippi,37
+2024-11-16,28,Mississippi,38
+2024-11-23,28,Mississippi,37
+2024-11-09,30,Montana,18
+2024-11-16,30,Montana,21
+2024-11-23,30,Montana,20
+2024-11-09,37,North Carolina,192
+2024-11-16,37,North Carolina,177
+2024-11-23,37,North Carolina,134
+2024-11-09,38,North Dakota,14
+2024-11-16,38,North Dakota,11
+2024-11-23,38,North Dakota,18
+2024-11-09,31,Nebraska,32
+2024-11-16,31,Nebraska,41
+2024-11-23,31,Nebraska,25
+2024-11-09,33,New Hampshire,55
+2024-11-16,33,New Hampshire,58
+2024-11-23,33,New Hampshire,20
+2024-11-09,34,New Jersey,184
+2024-11-16,34,New Jersey,200
+2024-11-23,34,New Jersey,31
+2024-11-09,35,New Mexico,89
+2024-11-16,35,New Mexico,77
+2024-11-23,35,New Mexico,116
+2024-11-09,32,Nevada,43
+2024-11-16,32,Nevada,47
+2024-11-23,32,Nevada,29
+2024-11-09,36,New York,417
+2024-11-16,36,New York,366
+2024-11-23,36,New York,386
+2024-11-09,39,Ohio,393
+2024-11-16,39,Ohio,334
+2024-11-23,39,Ohio,259
+2024-11-09,40,Oklahoma,59
+2024-11-16,40,Oklahoma,71
+2024-11-23,40,Oklahoma,59
+2024-11-09,41,Oregon,73
+2024-11-16,41,Oregon,70
+2024-11-23,41,Oregon,56
+2024-11-09,42,Pennsylvania,892
+2024-11-16,42,Pennsylvania,1005
+2024-11-23,42,Pennsylvania,996
+2024-11-09,72,Puerto Rico,9
+2024-11-16,72,Puerto Rico,18
+2024-11-23,72,Puerto Rico,24
+2024-11-09,44,Rhode Island,28
+2024-11-16,44,Rhode Island,20
+2024-11-23,44,Rhode Island,30
+2024-11-09,45,South Carolina,75
+2024-11-16,45,South Carolina,69
+2024-11-23,45,South Carolina,66
+2024-11-09,46,South Dakota,30
+2024-11-16,46,South Dakota,35
+2024-11-23,46,South Dakota,31
+2024-11-09,47,Tennessee,113
+2024-11-16,47,Tennessee,148
+2024-11-23,47,Tennessee,97
+2024-11-09,48,Texas,341
+2024-11-16,48,Texas,228
+2024-11-23,48,Texas,249
+2024-11-09,US,US,7691
+2024-11-16,US,US,7595
+2024-11-23,US,US,7290
+2024-11-09,49,Utah,41
+2024-11-16,49,Utah,46
+2024-11-23,49,Utah,57
+2024-11-09,51,Virginia,126
+2024-11-16,51,Virginia,102
+2024-11-23,51,Virginia,102
+2024-11-09,78,Virgin Islands,0
+2024-11-16,78,Virgin Islands,0
+2024-11-23,78,Virgin Islands,NA
+2024-11-09,50,Vermont,19
+2024-11-16,50,Vermont,9
+2024-11-23,50,Vermont,21
+2024-11-09,53,Washington,93
+2024-11-16,53,Washington,81
+2024-11-23,53,Washington,88
+2024-11-09,55,Wisconsin,155
+2024-11-16,55,Wisconsin,147
+2024-11-23,55,Wisconsin,140
+2024-11-09,54,West Virginia,60
+2024-11-16,54,West Virginia,59
+2024-11-23,54,West Virginia,150
+2024-11-09,56,Wyoming,59
+2024-11-16,56,Wyoming,48
+2024-11-23,56,Wyoming,30

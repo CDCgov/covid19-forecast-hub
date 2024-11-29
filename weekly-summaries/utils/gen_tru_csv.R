@@ -27,19 +27,57 @@
 #' `truth_data.csv`.
 
 
-# use get_target_data.R
-source("get_target_data.R")
+library("magrittr") # for %>%
 
-# load the formatted data from get_target_data.R)
-formatted_data <- covid_data %>%
-  dplyr::filter(!location %in% excluded_locations) %>%
-  dplyr::select(
-    week_ending_date,
-    location,
-    location_name,
-    value
+
+# fetch COVID-19 hospitalization data
+covid_data <- forecasttools::pull_nhsn(
+  api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+  columns = c("totalconfc19newadm"),
+  start_date = "2024-11-09"  # replace with appropriate date if needed
+) %>%
+  dplyr::rename(
+    value = totalconfc19newadm,
+    date = weekendingdate,
+    state = jurisdiction
+  ) %>%
+  dplyr::mutate(
+    date = as.Date(date),
+    value = as.numeric(value),
+    state = stringr::str_replace(
+      state, 
+      "USA", 
+      "US"
+    )
   )
 
+# read location data
+loc_df <- readr::read_csv(
+  "../../target-data/locations.csv", 
+  show_col_types = FALSE)
+
+# # TODO: to exclude or now to exclude locs?
+# # excluded locations (from external data file)
+# exclude_data <- jsonlite::fromJSON(
+#   "../../auxiliary-data/exclude_ensemble.json")
+# excluded_locations <- exclude_data$locations
+
+# filter and format the data
+formatted_data <- covid_data %>%
+  dplyr::left_join(
+    loc_df, 
+    by = c("state" = "abbreviation")
+  ) %>%
+  # dplyr::filter(!(location %in% excluded_locations)) %>%
+  dplyr::select(
+    week_ending_date = date, 
+    location, 
+    location_name, 
+    value
+)
+
 # save to CSV
-readr::write_csv(formatted_data, "../output/truth_data.csv")
+readr::write_csv(
+  formatted_data, 
+  "../output/truth_data.csv")
 
