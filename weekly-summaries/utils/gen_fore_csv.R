@@ -1,11 +1,19 @@
-#' Generate the `all_forecasts.csv` file containing all model submissions
+#' Generate the `all_forecasts.csv` file 
+#' containing all model submissions
 #'
-#' This script fetches all COVID-19 or flu model submissions from the specified hub, filters the data based on the 
-#' `reference_date`, and excludes any submissions from the `CovidHub` model. The forecast data is then pivoted to 
-#' create a wide format with quantile levels as columns. 
+#' This script fetches all COVID-19 or 
+#' flu model submissions from the specified 
+#' hub, filters the data based on the 
+#' `reference_date`, and excludes any 
+#' submissions from the `CovidHub` model. The 
+#' forecast data is then pivoted to 
+#' create a wide format with quantile levels 
+#' as columns. 
 #'
-#' The resulting `all_forecasts.csv` will contain the following columns:
-#' - `location_name`: full state name (including "US" for the US state)
+#' The resulting `all_forecasts.csv` will 
+#' contain the following columns:
+#' - `location_name`: full state name 
+#' (including "US" for the US state)
 #' - `abbreviation`: state abbreviation
 #' - `horizon`: forecast horizon
 #' - `forecast_date`: date the forecast was generated
@@ -15,20 +23,40 @@
 #' - `forecast_teams`: name of the team that generated the model
 #' - `forecast_fullnames`: full model name
 #'
-#' The file is saved in the `weekly-summaries/output/` directory as `all_forecasts.csv`.
+#' The file is saved in the 
+#' `weekly-summaries/output/` directory as 
+#' s`all_forecasts.csv`.
 
+# connect to hub, excluding baseline and 
+# ensembles, i.e. only getting model
+# submissions
+hub_path <- "../../"
+task_id_cols <- c(
+  "reference_date", "location", "horizon",
+  "target", "target_end_date"
+)
+hub_content <- hubData::connect_hub(hub_path)
+current_forecasts <- hub_content |>
+  dplyr::filter(
+    reference_date == !!reference_date,
+    !str_detect(model_id, "CovidHub")
+  ) |>
+  hubData::collect_hub()
 
-# connect to the forecast hub
-hub_content <- hubData::connect_hub("path_to_hub_data")
-
-# filter for forecasts from all models (excluding "CovidHub" models)
+# filter for forecasts from all models
 current_forecasts <- hub_content %>%
-  dplyr::filter(reference_date == as.Date("2024-11-23"), !stringr::str_detect(model_id, "CovidHub")) %>%
+  dplyr::filter(
+    reference_date == as.Date("2024-11-23"), 
+    !stringr::str_detect(
+      model_id, 
+      "CovidHub")
+  ) %>%
   hubData::collect_hub()
 
 # process forecasts into the required format
 all_forecasts_data <- current_forecasts %>%
-  # assume columns are `model_id`, `location`, `forecast_date`, `horizon`, etc.
+  # assume columns are `model_id`, 
+  # `location`, `forecast_date`, `horizon`, etc.
   dplyr::mutate(
     location_name = dplyr::case_when(
       location == "US" ~ "US",
@@ -57,6 +85,8 @@ all_forecasts_data <- current_forecasts %>%
   )
 
 # save to CSV
-readr::write_csv(all_forecasts_data, "weekly-summaries/output/all_forecasts.csv")
+readr::write_csv(
+  all_forecasts_data, 
+  "../output/all_forecasts.csv")
 
 
