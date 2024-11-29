@@ -70,17 +70,17 @@ covid_data <- covid_data %>%
   )
 
 
-# excluded locations (from external data file)
-# only for the first week; this should 
-# check for output truth data, if csv found, 
-# then do not use
-exclude_data <- jsonlite::fromJSON(
-  "../../auxiliary-data/2024-11-23-exclude-locations.json")
-excluded_locations <- exclude_data$locations
+# # excluded locations (from external data file)
+# # only for the first week; this should 
+# # check for output truth data, if csv found, 
+# # then do not use
+# exclude_data <- jsonlite::fromJSON(
+#   "../../auxiliary-data/2024-11-23-exclude-locations.json")
+# excluded_locations <- exclude_data$locations
 
 # filter and format the data
 formatted_data <- covid_data %>%
-  dplyr::filter(!(location %in% excluded_locations)) %>%
+  #dplyr::filter(!(location %in% excluded_locations)) %>%
   dplyr::select(
     week_ending_date = date, 
     location, 

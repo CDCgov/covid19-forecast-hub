@@ -62,9 +62,18 @@ if (length(missing_pop_columns) > 0) {
 }
 
 
+# # excluded locations (from external data file)
+# # only for the first week; this should 
+# # check for output truth data, if csv found, 
+# # then do not use
+# exclude_data <- jsonlite::fromJSON(
+#   "../../auxiliary-data/2024-11-23-exclude-locations.json")
+# excluded_locations <- exclude_data$locations
+
 # process ensemble data into the required 
 # format for map.csv
 map_data <- ensemble_data %>%
+  #dplyr::filter(!(location %in% excluded_locations)) %>%
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
