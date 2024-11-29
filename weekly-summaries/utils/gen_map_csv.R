@@ -34,30 +34,61 @@
 #' `weekly-summaries/output/` directory as 
 #' `map.csv`.
 
+library("magrittr") # for %>%
 
 # load the latest ensemble data from the model-output folder
 ensemble_file <- list.files(
-  "../model-output/CovidHub-ensemble/", 
+  "../../model-output/CovidHub-ensemble/", 
   pattern = "\\.csv$", full.names = TRUE) %>%
   tail(1)  # the latest file
-
+if (length(ensemble_file) == 0) {
+  stop("No ensemble CSV files found in the directory!")
+}
 ensemble_data <- readr::read_csv(ensemble_file)
 
-# process ensemble data into the required format for map.csv
+# some required cols, need to update
+required_columns <- c("reference_date", "target_end_date", "value", "location")
+missing_columns <- setdiff(required_columns, colnames(ensemble_data))
+if (length(missing_columns) > 0) {
+  stop(paste("Missing columns in ensemble data:", paste(missing_columns, collapse = ", ")))
+}
+
+# population data, add later to forecasttools
+pop_data <- readr::read_csv("../data/pop_locs.csv")
+pop_required_columns <- c("abbreviation", "population")
+missing_pop_columns <- setdiff(pop_required_columns, colnames(pop_data))
+if (length(missing_pop_columns) > 0) {
+  stop(paste("Missing columns in population data:", paste(missing_pop_columns, collapse = ", ")))
+}
+
+
+# process ensemble data into the required 
+# format for map.csv
 map_data <- ensemble_data %>%
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
     value = as.numeric(value)
   ) %>%
-  # add full state names (assuming a 'location_names' CSV file is available)
-  dplyr::left_join(readr::read_csv(
-    "../target-data/locations.csv"), by = c("location" = "abbreviation")) %>%
-  # add the quantile columns for per 100k rates and rounded values
+  # convert location column (FIPS code) to 
+  # full location names
   dplyr::mutate(
-    quantile_0.025_per100k = value / population * 100000,
-    quantile_0.5_per100k = value / population * 100000,
-    quantile_0.975_per100k = value / population * 100000,
+    location = forecasttools::location_lookup(
+      location, 
+      location_input_format = "hub", 
+      location_output_format = "long_name"
+    )
+  ) %>% # add populations
+  dplyr::left_join(
+    pop_data, 
+    by = c("location" = "abbreviation")
+  ) %>% 
+  # add quantile columns for per-100k rates 
+  # and rounded values
+  dplyr::mutate(
+    quantile_0.025_per100k = value / as.numeric(population) * 100000,
+    quantile_0.5_per100k = value /  as.numeric(population) * 100000,
+    quantile_0.975_per100k = value /  as.numeric(population) *100000,
     quantile_0.025_count = value,
     quantile_0.5_count = value,
     quantile_0.975_count = value,
@@ -69,9 +100,9 @@ map_data <- ensemble_data %>%
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
     reference_date_formatted = format(reference_date, "%B %d, %Y")
-  ) %>%
+  ) %>% # select relevant
   dplyr::select(
-    location_name, 
+    location, 
     quantile_0.025_per100k, 
     quantile_0.5_per100k, 
     quantile_0.975_per100k,
@@ -89,9 +120,12 @@ map_data <- ensemble_data %>%
     reference_date, 
     target_end_date_formatted, 
     reference_date_formatted
-  )
+  ) %>% # rename location col
+  dplyr::rename(location_name = location)
+
 
 # save to CSV
-readr::write_csv(map_data, "../output/map.csv")
+readr::write_csv(
+  map_data, "../output/map.csv")
 
 
