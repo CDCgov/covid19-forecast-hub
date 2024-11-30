@@ -1,11 +1,9 @@
 #' Generate the `all_forecasts.csv` file 
 #' containing all model submissions
 #'
-#' This script fetches all COVID-19 or 
-#' flu model submissions from the specified 
-#' hub, filters the data based on the 
-#' `reference_date`, and excludes any 
-#' submissions from the `CovidHub` model. The 
+#' This script fetches all forecast submissions from the 
+#' covid19-forecast-hub based on the 
+#' `reference_date`. The 
 #' forecast data is then pivoted to 
 #' create a wide format with quantile levels 
 #' as columns. 
