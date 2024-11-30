@@ -3,13 +3,13 @@
 #' hospitalization data.
 #'
 #' This script fetches the most recent 
-#' observed [COVID-19 or flu hospital
+#' observed COVID-19 hospital
 #' admissions data for all states 
 #' (including US, DC, and Puerto Rico) 
 #' and processes it into the required format 
 #' for `truth_data.csv`. The data is sourced 
-#' from the CDC's COVID-19 hospitalization
-#' data (using the `get_target_data.r` script).
+#' from the NHSN hospital respiratory
+#' data (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 #'
 #' The resulting `truth_data.csv` will contain 
 #' the following columns:
