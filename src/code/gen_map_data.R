@@ -46,7 +46,6 @@
 #' Rscript gen_map_data.R --reference_date 2024-11-23
 
 
-library("magrittr") # for %>%
 
 
 # set up command line argument parser
@@ -100,12 +99,12 @@ if (length(missing_pop_columns) > 0) {
 
 # process ensemble data into the required 
 # format for Map file
-map_data <- ensemble_data %>%
+map_data <- ensemble_data |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
     value = as.numeric(value)
-  ) %>%
+  ) |>
   # convert location column codes to full 
   # location names
   dplyr::mutate(
@@ -114,19 +113,19 @@ map_data <- ensemble_data %>%
       location_input_format = "hub", 
       location_output_format = "long_name"
     )
-  ) %>%
+  ) |>
   # long name "United States" to "US"
   dplyr::mutate(
     location = dplyr::if_else(
       location == "United States", 
       "US", 
       location)
-  ) %>% 
+  ) |> 
   # add population data for later calculations
   dplyr::left_join(
     pop_data, 
     by = c("location" = "location_name")
-  ) %>% 
+  ) |> 
   # add quantile columns for per-100k rates 
   # and rounded values
   dplyr::mutate(
@@ -144,7 +143,7 @@ map_data <- ensemble_data %>%
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
     reference_date_formatted = format(reference_date, "%B %d, %Y")
-  ) %>% 
+  ) |> 
   dplyr::select(
     location_name = location, # rename location col
     quantile_0.025_per100k, 

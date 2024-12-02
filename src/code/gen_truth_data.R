@@ -24,7 +24,6 @@
 #' To run:
 #' Rscript gen_truth_data.R --reference_date 2024-11-23
 
-library("magrittr") # for %>%
 
 
 # set up command line argument parser
@@ -44,12 +43,12 @@ reference_date <- args$reference_date
 covid_data <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadm"),
-) %>%
+) |>
   dplyr::rename(
     value = totalconfc19newadm,
     date = weekendingdate,
     state = jurisdiction
-  ) %>%
+  ) |>
   dplyr::mutate(
     date = as.Date(date),
     value = as.numeric(value),
@@ -62,14 +61,14 @@ covid_data <- forecasttools::pull_nhsn(
 
 # convert state abbreviation to location code 
 # and to long name
-covid_data <- covid_data %>%
+covid_data <- covid_data |>
   dplyr::mutate(
     location = forecasttools::us_loc_abbr_to_code(state), 
     location_name = forecasttools::location_lookup(
       location, 
       location_input_format = "hub", 
       location_output_format = "long_name")
-  ) %>%
+  ) |>
   # long name "United States" to "US"
   dplyr::mutate(
     location_name = dplyr::if_else(
@@ -79,7 +78,7 @@ covid_data <- covid_data %>%
   )
 
 # filter and format the data
-truth_data <- covid_data %>%
+truth_data <- covid_data |>
   dplyr::select(
     week_ending_date = date, 
     location, 

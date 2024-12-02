@@ -24,7 +24,6 @@
 #' To run:
 #' Rscript gen_forecast_data.R --reference_date 2024-11-23
 
-library("magrittr") # for %>%
 
 
 # set up command line argument parser
@@ -46,12 +45,12 @@ model_metadata_path <- "../../model-metadata/"
 # get `covid19-forecast-hub` content
 base_hub_path <- "../../"  
 hub_content <- hubData::connect_hub(base_hub_path)
-current_forecasts <- hub_content %>%
-  dplyr::filter(reference_date == as.Date(ref_date)) %>%
+current_forecasts <- hub_content |>
+  dplyr::filter(reference_date == as.Date(ref_date)) |>
   hubData::collect_hub()
 
 # add forecast team and model name
-current_forecasts <- current_forecasts %>%
+current_forecasts <- current_forecasts |>
   dplyr::mutate(
     # extract model_name and team_name from 
     # YAML metadata files
@@ -97,7 +96,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "quantile_0.5" = 0.5, 
     "quantile_0.75" = 0.75, 
     "quantile_0.975" = 0.975)  
-) %>%
+) |>
   # convert location codes to full location 
   # names and to abbreviations
   dplyr::mutate(
@@ -107,7 +106,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       location_output_format = "long_name"
     ),
     abbreviation = forecasttools::us_loc_code_to_abbr(location)
-  ) %>%
+  ) |>
   # round the quantiles to nearest integer 
   # for rounded versions
   dplyr::mutate(
@@ -116,7 +115,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.5_rounded = round(quantile_0.5),
     quantile_0.75_rounded = round(quantile_0.75),
     quantile_0.975_rounded = round(quantile_0.975)
-  ) %>%
+  ) |>
   dplyr::select(
     location_name,
     abbreviation,
