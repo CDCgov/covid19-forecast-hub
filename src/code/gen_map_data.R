@@ -77,8 +77,6 @@ if (file.exists(ensemble_file_current)) {
   stop("Ensemble file for reference date ", ref_date, " not found in the directory: ", ensemble_folder)
 }
 ensemble_data <- readr::read_csv(ensemble_file)
-
-# some required cols, need to update
 required_columns <- c("reference_date", "target_end_date", "value", "location")
 missing_columns <- setdiff(required_columns, colnames(ensemble_data))
 if (length(missing_columns) > 0) {
