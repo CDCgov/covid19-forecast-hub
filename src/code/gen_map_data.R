@@ -99,7 +99,7 @@ if (length(missing_pop_columns) > 0) {
 map_data <- ensemble_data |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
-    target_end_date = as.Date(target_end_date),
+    target_end_date = as.Date(!!target_end_date),
     value = as.numeric(value)
   ) |>
   # convert location column codes to full 
