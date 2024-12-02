@@ -96,8 +96,8 @@ if (length(missing_pop_columns) > 0) {
 # format for Map file
 map_data <- ensemble_data |>
   dplyr::mutate(
-    reference_date = as.Date(!!reference_date),
-    target_end_date = as.Date(!!target_end_date),
+    reference_date = as.Date(reference_date),
+    target_end_date = as.Date(target_end_date),
     value = as.numeric(value)
   ) |>
   # convert location column codes to full 
@@ -123,10 +123,12 @@ map_data <- ensemble_data |>
   ) |> 
   # add quantile columns for per-100k rates 
   # and rounded values
+   # add quantile columns for per-100k rates 
+  # and rounded values
   dplyr::mutate(
     quantile_0.025_per100k = value / as.numeric(population) * 100000,
     quantile_0.5_per100k = value /  as.numeric(population) * 100000,
-    quantile_0.975_per100k = value /  as.numeric(population) * 100000,
+    quantile_0.975_per100k = value /  as.numeric(population) *100000,
     quantile_0.025_count = value,
     quantile_0.5_count = value,
     quantile_0.975_count = value,
@@ -160,21 +162,19 @@ map_data <- ensemble_data |>
     reference_date_formatted
   )
 
-# determine if output folder exists, create
-# if it doesn't
-output_folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
-if (!dir.exists(output_folder_path)) {
-  dir.create(output_folder_path, recursive = TRUE)
-  message("Directory created: ", output_folder_path)
-} else {
-  message("Directory already exists: ", output_folder_path)
-}
-
-# check if Truth Data for reference date 
-# already exist, if not, save to csv
+# output folder and file paths for Map Data
+output_folder_path <- fs::path(base_hub_path, "weekly-summaries", ref_date)
 output_filename <- paste0(ref_date, "_map-data.csv")
-output_filepath <- file.path(output_folder_path, output_filename)
-if (!file.exists(output_filepath)) {
+output_filepath <- fs::path(output_folder_path, output_filename)
+
+# determine if the output folder exists, 
+# create it if not
+fs::dir_create(output_folder_path)
+message("Directory is ready: ", output_folder_path)
+
+# check if the file exists, and if not, 
+# save to csv, else throw an error
+if (!fs::file_exists(output_filepath)) {
   readr::write_csv(map_data, output_filepath)
   message("File saved as: ", output_filepath)
 } else {

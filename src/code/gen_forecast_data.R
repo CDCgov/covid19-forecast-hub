@@ -72,11 +72,11 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       location_input_format = "hub", 
       location_output_format = "long_name"
     ),
-    abbreviation = forecasttools::us_loc_code_to_abbr(location)
+    abbreviation = forecasttools::us_loc_code_to_abbr(location),
+    # round the quantiles to nearest integer 
+    # for rounded versions
+    dplyr::across(dplyr::starts_with("quantile_"), round, .names = "{.col}_rounded")
   ) |>
-  # round the quantiles to nearest integer 
-  # for rounded versions
-  dplyr::across(dplyr::starts_with("quantile_"), round, .names = "{.col}_rounded") |>
   dplyr::left_join(
     model_metadata, by = "model_id") |>
   dplyr::select(
@@ -100,21 +100,19 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     forecast_fullnames = model_name
   )
 
-# determine if output folder exists, create
-# if it doesn't
-output_folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
-if (!dir.exists(output_folder_path)) {
-  dir.create(output_folder_path, recursive = TRUE)
-  message("Directory created: ", output_folder_path)
-} else {
-  message("Directory already exists: ", output_folder_path)
-}
-
-# check if Truth Data for reference date 
-# already exist, if not, save to csv
+# output folder and file paths for All Forecasts
+output_folder_path <- fs::path(base_hub_path, "weekly-summaries", ref_date)
 output_filename <- paste0(ref_date, "_all-forecasts.csv")
-output_filepath <- file.path(output_folder_path, output_filename)
-if (!file.exists(output_filepath)) {
+output_filepath <- fs::path(output_folder_path, output_filename)
+
+# determine if the output folder exists, 
+# create it if not
+fs::dir_create(output_folder_path)
+message("Directory is ready: ", output_folder_path)
+
+# check if the file exists, and if not, 
+# save to csv, else throw an error
+if (!fs::file_exists(output_filepath)) {
   readr::write_csv(all_forecasts_data, output_filepath)
   message("File saved as: ", output_filepath)
 } else {

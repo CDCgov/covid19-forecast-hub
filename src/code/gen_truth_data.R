@@ -92,21 +92,19 @@ truth_data <- covid_data |>
     value
   )
 
-# determine if output folder exists, create
-# if it doesn't
-output_folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
-if (!dir.exists(output_folder_path)) {
-  dir.create(output_folder_path, recursive = TRUE)
-  message("Directory created: ", output_folder_path)
-} else {
-  message("Directory already exists: ", output_folder_path)
-}
-
-# check if Truth Data for reference date 
-# already exist, if not, save to csv
+# output folder and file paths for Truth Data
+output_folder_path <- fs::path(base_hub_path, "weekly-summaries", reference_date)
 output_filename <- paste0(reference_date, "_truth-data.csv")
-output_filepath <- file.path(output_folder_path, output_filename)
-if (!file.exists(output_filepath)) {
+output_filepath <- fs::path(output_folder_path, output_filename)
+
+# determine if the output folder exists, 
+# create it if not
+fs::dir_create(output_folder_path)
+message("Directory is ready: ", output_folder_path)
+
+# check if the file exists, and if not, 
+# save to csv, else throw an error
+if (!fs::file_exists(output_filepath)) {
   readr::write_csv(truth_data, output_filepath)
   message("File saved as: ", output_filepath)
 } else {
