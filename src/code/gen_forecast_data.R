@@ -34,20 +34,26 @@ parser$add_argument(
   type = "character", 
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
+parser$add_argument(
+  "--base_hub_path", 
+  type = "character", 
+  help = "Path to the Covid19 forecast hub directory."
+)
 
-# read CLAs; get reference date
+# read CLAs; get reference date and paths
 args <- parser$parse_args()
 ref_date <- args$reference_date
+base_hub_path <- args$base_hub_path
 
-# store base metadata path for use later
-model_metadata_path <- "../../model-metadata/" 
+# create model metadata path
+model_metadata_path <- paste0(base_hub_path, "model-metadata/")
 
 # get `covid19-forecast-hub` content
-base_hub_path <- "../../"  
 hub_content <- hubData::connect_hub(base_hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(reference_date == as.Date(ref_date)) |>
   hubData::collect_hub()
+
 
 # add forecast team and model name
 current_forecasts <- current_forecasts |>
@@ -139,7 +145,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path("../../weekly-summaries/", ref_date)
+folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
 if (!dir.exists(folder_path)) {
   dir.create(folder_path, recursive = TRUE)
   message("Directory created: ", folder_path)

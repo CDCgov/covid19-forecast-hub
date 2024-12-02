@@ -56,10 +56,16 @@ parser$add_argument(
   type = "character", 
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
+parser$add_argument(
+  "--base_hub_path", 
+  type = "character", 
+  help = "Path to the Covid19 forecast hub directory."
+)
 
-# read CLAs; get reference date
+# read CLAs; get reference date and paths
 args <- parser$parse_args()
 ref_date <- args$reference_date
+base_hub_path <- args$base_hub_path
 
 # load the latest ensemble data from the 
 # model-output folder
@@ -167,7 +173,7 @@ map_data <- ensemble_data |>
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path("../../weekly-summaries/", ref_date)
+folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
 if (!dir.exists(folder_path)) {
   dir.create(folder_path, recursive = TRUE)
   message("Directory created: ", folder_path)

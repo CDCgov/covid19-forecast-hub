@@ -34,10 +34,16 @@ parser$add_argument(
   type = "character", 
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
+parser$add_argument(
+  "--base_hub_path", 
+  type = "character", 
+  help = "Path to the Covid19 forecast hub directory."
+)
 
-# read CLAs; get reference date
+# read CLAs; get reference date and paths
 args <- parser$parse_args()
 reference_date <- args$reference_date
+base_hub_path <- args$base_hub_path
 
 # fetch all NHSN COVID-19 hospital admissions
 covid_data <- forecasttools::pull_nhsn(
@@ -88,7 +94,7 @@ truth_data <- covid_data |>
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path("../../weekly-summaries/", reference_date)
+folder_path <- file.path(base_hub_path, "weekly-summaries", reference_date)
 if (!dir.exists(folder_path)) {
   dir.create(folder_path, recursive = TRUE)
   message("Directory created: ", folder_path)
