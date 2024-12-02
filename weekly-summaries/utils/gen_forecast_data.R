@@ -29,13 +29,7 @@
 library("magrittr") # for %>%
 
 
-# # excluded locations (from external data file)
-# # only for the first week; this should 
-# # check for output data, if csv found, 
-# # then do not use
-# exclude_data <- jsonlite::fromJSON(
-#   "../../auxiliary-data/2024-11-23-exclude-locations.json")
-# excluded_locations <- exclude_data$locations
+
 
 # reference date and paths
 reference_date <- as.Date("2024-11-23")
