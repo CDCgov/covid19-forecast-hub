@@ -178,5 +178,5 @@ if (!file.exists(output_filepath)) {
   readr::write_csv(map_data, output_filepath)
   message("File saved as: ", output_filepath)
 } else {
-  message("File already exists: ", output_filepath)
+  stop("File already exists: ", output_filepath)
 }
