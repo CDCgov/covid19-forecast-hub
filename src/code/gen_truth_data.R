@@ -22,7 +22,7 @@
 #' admissions (integer)
 #' 
 #' To run:
-#' Rscript gen_truth_data.R --reference_date 2024-11-23
+#' Rscript gen_truth_data.R --reference_date 2024-11-23 --base_hub_path ../../
 
 
 
@@ -94,18 +94,18 @@ truth_data <- covid_data |>
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path(base_hub_path, "weekly-summaries", reference_date)
-if (!dir.exists(folder_path)) {
-  dir.create(folder_path, recursive = TRUE)
-  message("Directory created: ", folder_path)
+output_folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
+if (!dir.exists(output_folder_path)) {
+  dir.create(output_folder_path, recursive = TRUE)
+  message("Directory created: ", output_folder_path)
 } else {
-  message("Directory already exists: ", folder_path)
+  message("Directory already exists: ", output_folder_path)
 }
 
 # check if Truth Data for reference date 
 # already exist, if not, save to csv
 output_filename <- paste0(reference_date, "_truth-data.csv")
-output_filepath <- file.path(folder_path, output_filename)
+output_filepath <- file.path(output_folder_path, output_filename)
 if (!file.exists(output_filepath)) {
   readr::write_csv(truth_data, output_filepath)
   message("File saved as: ", output_filepath)

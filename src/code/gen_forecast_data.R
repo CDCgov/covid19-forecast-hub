@@ -22,8 +22,7 @@
 #' - `forecast_fullnames`: full model name
 #' 
 #' To run:
-#' Rscript gen_forecast_data.R --reference_date 2024-11-23
-
+#' Rscript gen_forecast_data.R --reference_date 2024-11-23 --base_hub_path ../../
 
 
 # set up command line argument parser
@@ -46,52 +45,14 @@ ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 
 # create model metadata path
-model_metadata_path <- paste0(base_hub_path, "model-metadata/")
+model_metadata <- hubData::load_model_metadata(
+  base_hub_path, model_ids = NULL)
 
 # get `covid19-forecast-hub` content
 hub_content <- hubData::connect_hub(base_hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(reference_date == as.Date(ref_date)) |>
   hubData::collect_hub()
-
-
-# add forecast team and model name
-current_forecasts <- current_forecasts |>
-  dplyr::mutate(
-    # extract model_name and team_name from 
-    # YAML metadata files
-    forecast_team = sapply(model_id, function(model_id) {
-      model_yaml_path <- file.path(model_metadata_path, paste0(model_id, ".yml"))
-      # check if the YAML file exists
-      if (file.exists(model_yaml_path)) {
-        model_metadata <- yaml::read_yaml(model_yaml_path)
-        # extract team_name
-        return(model_metadata$team_name)
-      } else {
-        return(NA) # NA if file doesn't exist
-      }
-    }),
-    forecast_fullnames = sapply(model_id, function(model_id) {
-      model_yaml_path <- file.path(model_metadata_path, paste0(model_id, ".yml"))
-      if (file.exists(model_yaml_path)) {
-        model_metadata <- yaml::read_yaml(model_yaml_path)
-        return(model_metadata$model_name)
-      } else {
-        return(NA) # NA if file doesn't exist
-      }
-    })
-  )
-
-# pivot forecast data and prepare final output
-all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
-  hubverse_table = current_forecasts,
-  pivot_quantiles = c(
-    "quantile_0.025" = 0.025, 
-    "quantile_0.25" = 0.25, 
-    "quantile_0.5" = 0.5, 
-    "quantile_0.75" = 0.75, 
-    "quantile_0.975" = 0.975)
-)
 
 # get data for All Forecasts file
 all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
@@ -122,6 +83,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.75_rounded = round(quantile_0.75),
     quantile_0.975_rounded = round(quantile_0.975)
   ) |>
+  dplyr::left_join(
+    model_metadata, by = "model_id") |>
   dplyr::select(
     location_name,
     abbreviation,
@@ -139,24 +102,24 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.5_rounded,
     quantile_0.75_rounded,
     quantile_0.975_rounded,
-    forecast_team,
-    forecast_fullnames
+    forecast_team = team_name,
+    forecast_fullnames = model_name
   )
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
-if (!dir.exists(folder_path)) {
-  dir.create(folder_path, recursive = TRUE)
-  message("Directory created: ", folder_path)
+output_folder_path <- file.path(base_hub_path, "weekly-summaries", ref_date)
+if (!dir.exists(output_folder_path)) {
+  dir.create(output_folder_path, recursive = TRUE)
+  message("Directory created: ", output_folder_path)
 } else {
-  message("Directory already exists: ", folder_path)
+  message("Directory already exists: ", output_folder_path)
 }
 
 # check if Truth Data for reference date 
 # already exist, if not, save to csv
 output_filename <- paste0(ref_date, "_all-forecasts.csv")
-output_filepath <- file.path(folder_path, output_filename)
+output_filepath <- file.path(output_folder_path, output_filename)
 if (!file.exists(output_filepath)) {
   readr::write_csv(all_forecasts_data, output_filepath)
   message("File saved as: ", output_filepath)
