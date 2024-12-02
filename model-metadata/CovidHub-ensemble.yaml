@@ -3,7 +3,14 @@ team_abbr: "CovidHub"
 model_name: "Ensemble model using CovidHub submissions"
 model_abbr: "ensemble"
 model_version: "1.0"
-model_contributors: []
+model_contributors:
+  [
+    {
+      "name": "Covid Hub",
+      "affiliation": "Centers for Disease Control and Prevention (CDC)",
+      "email": "covidhub@cdc.gov"
+    }
+  ]
 website_url: "https://github.com/CDCgov/covid19-forecast-hub"
 license: "CC-BY-4.0"
 designated_model: false
