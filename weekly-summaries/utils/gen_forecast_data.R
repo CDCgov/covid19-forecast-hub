@@ -56,7 +56,7 @@ current_forecasts <- hub_content |>
 
 all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   hubverse_table = current_forecasts,
-  pivot_quantiles = c("point" = 0.5, "lower" = 0.025, "q25" = 0.25, "q75" = 0.75, "upper" = 0.975)  
+  pivot_quantiles = c("quantile_0.025" = 0.025, "quantile_0.25" = 0.25, "quantile_0.5" = 0.5, "quantile_0.75" = 0.75, "quantile_0.975" = 0.975)  
 ) %>%
   # dplyr::filter(!(location %in% excluded_locations)) %>%
   # convert location to full location names 
@@ -72,11 +72,11 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # round the quantiles to nearest integer 
   # for rounded versions (2 places?)
   dplyr::mutate(
-    quantile_0.025_rounded = round(lower),
-    quantile_0.25_rounded = round(q25),
-    quantile_0.5_rounded = round(point),
-    quantile_0.75_rounded = round(q75),
-    quantile_0.975_rounded = round(upper)
+    quantile_0.025_rounded = round(quantile_0.025),
+    quantile_0.25_rounded = round(quantile_0.25),
+    quantile_0.5_rounded = round(quantile_0.5),
+    quantile_0.75_rounded = round(quantile_0.75),
+    quantile_0.975_rounded = round(quantile_0.975)
   ) %>%
   dplyr::select(
     location_name,
@@ -85,11 +85,11 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     forecast_date = reference_date,  # rename reference_date to forecast_date
     target_end_date,
     model_id = model, # rename model_id to model
-    quantile_0.025 = lower,  # rename lower to quantile_0.025
-    quantile_0.25 = q25, # rename q25 to quantile_0.25
-    quantile_0.5 = point, # rename point to quantile_0.5
-    quantile_0.75 = q75, # rename q75 to quantile_0.75
-    quantile_0.975 = upper,  # rename upper to quantile_0.975
+    quantile_0.025,
+    quantile_0.25,
+    quantile_0.5,
+    quantile_0.75,
+    quantile_0.975,
     quantile_0.025_rounded,
     quantile_0.25_rounded,
     quantile_0.5_rounded,
