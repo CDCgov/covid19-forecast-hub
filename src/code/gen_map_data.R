@@ -41,16 +41,44 @@
 #' - `reference_date_formatted`: date that the 
 #' forecast was generated, prettily re-formatted 
 #' as a string (Ex: "November 23, 2024")
+#' 
+#' To run:
+#' Rscript gen_map_data.R --reference_date 2024-11-23
+
 
 library("magrittr") # for %>%
 
-# load the latest ensemble data from the model-output folder
-ensemble_file <- list.files(
-  "../../model-output/CovidHub-ensemble/", 
-  pattern = "\\.csv$", full.names = TRUE) %>%
-  tail(1)  # the latest file
-if (length(ensemble_file) == 0) {
-  stop("No ensemble CSV files found in the directory!")
+
+# set up command line argument parser
+parser <- argparse::ArgumentParser(
+  description = "Save Truth Data as CSV.")
+parser$add_argument(
+  "--reference_date", 
+  type = "character", 
+  help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
+)
+
+# read CLAs; get reference date
+args <- parser$parse_args()
+ref_date <- args$reference_date
+
+# load the latest ensemble data from the 
+# model-output folder
+ensemble_folder <- "../../model-output/CovidHub-ensemble/"
+ensemble_file_current <- file.path(ensemble_folder, paste0(ref_date, "-CovidHub-ensemble.csv"))
+if (file.exists(ensemble_file_current)) {
+  ensemble_file <- ensemble_file_current
+} else {
+  ensemble_files <- list.files(
+    ensemble_folder, 
+    pattern = "\\.csv$", 
+    full.names = TRUE
+  )
+  if (length(ensemble_files) == 0) {
+    stop("No ensemble CSV files found in the directory.")
+  }
+  ensemble_file <- tail(ensemble_files, 1)
+  message("Using the latest file: ", ensemble_file)
 }
 ensemble_data <- readr::read_csv(ensemble_file)
 
@@ -62,33 +90,24 @@ if (length(missing_columns) > 0) {
 }
 
 # population data, add later to forecasttools
-pop_data <- readr::read_csv("../../target-data/locations.csv")
+pop_data_path <- "../../target-data/locations.csv"
+pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(pop_required_columns, colnames(pop_data))
 if (length(missing_pop_columns) > 0) {
   stop(paste("Missing columns in population data:", paste(missing_pop_columns, collapse = ", ")))
 }
 
-
-# # excluded locations (from external data file)
-# # only for the first week; this should 
-# # check for output data, if csv found, 
-# # then do not use
-# exclude_data <- jsonlite::fromJSON(
-#   "../../auxiliary-data/2024-11-23-exclude-locations.json")
-# excluded_locations <- exclude_data$locations
-
 # process ensemble data into the required 
-# format for map.csv
+# format for Map file
 map_data <- ensemble_data %>%
-  #dplyr::filter(!(location %in% excluded_locations)) %>%
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
     value = as.numeric(value)
   ) %>%
-  # convert location column (FIPS code) to 
-  # full location names
+  # convert location column codes to full 
+  # location names
   dplyr::mutate(
     location = forecasttools::location_lookup(
       location, 
@@ -102,7 +121,8 @@ map_data <- ensemble_data %>%
       location == "United States", 
       "US", 
       location)
-  ) %>% # add populations
+  ) %>% 
+  # add population data for later calculations
   dplyr::left_join(
     pop_data, 
     by = c("location" = "location_name")
@@ -124,9 +144,9 @@ map_data <- ensemble_data %>%
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
     reference_date_formatted = format(reference_date, "%B %d, %Y")
-  ) %>% # select relevant
+  ) %>% 
   dplyr::select(
-    location, 
+    location_name = location, # rename location col
     quantile_0.025_per100k, 
     quantile_0.5_per100k, 
     quantile_0.975_per100k,
@@ -144,12 +164,25 @@ map_data <- ensemble_data %>%
     reference_date, 
     target_end_date_formatted, 
     reference_date_formatted
-  ) %>% # rename location col
-  dplyr::rename(location_name = location)
+  )
 
+# determine if output folder exists, create
+# if it doesn't
+folder_path <- file.path("../../weekly-summaries/", ref_date)
+if (!dir.exists(folder_path)) {
+  dir.create(folder_path, recursive = TRUE)
+  message("Directory created: ", folder_path)
+} else {
+  message("Directory already exists: ", folder_path)
+}
 
-# save to CSV
-readr::write_csv(
-  map_data, "../output/map.csv")
-
-
+# check if Truth Data for reference date 
+# already exist, if not, save to csv
+output_filename <- paste0(ref_date, "_map-data.csv")
+output_filepath <- file.path(folder_path, output_filename)
+if (!file.exists(output_filepath)) {
+  readr::write_csv(map_data, output_filepath)
+  message("File saved as: ", output_filepath)
+} else {
+  message("File already exists: ", output_filepath)
+}

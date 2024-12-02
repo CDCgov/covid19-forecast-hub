@@ -20,7 +20,9 @@
 #' (including "US" for the US state)
 #' - `value`: the number of hospital 
 #' admissions (integer)
-
+#' 
+#' To run:
+#' Rscript gen_truth_data.R --reference_date 2024-11-23
 
 library("magrittr") # for %>%
 
@@ -87,7 +89,7 @@ truth_data <- covid_data %>%
 
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path("..", reference_date)
+folder_path <- file.path("../../weekly-summaries/", reference_date)
 if (!dir.exists(folder_path)) {
   dir.create(folder_path, recursive = TRUE)
   message("Directory created: ", folder_path)
@@ -105,4 +107,3 @@ if (!file.exists(output_filepath)) {
 } else {
   message("File already exists: ", output_filepath)
 }
-

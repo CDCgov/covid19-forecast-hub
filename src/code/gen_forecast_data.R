@@ -20,7 +20,9 @@
 #' quantiles (e.g., 0.025, 0.5, 0.975)
 #' - `forecast_teams`: name of the team that generated the model
 #' - `forecast_fullnames`: full model name
-
+#' 
+#' To run:
+#' Rscript gen_forecast_data.R --reference_date 2024-11-23
 
 library("magrittr") # for %>%
 
@@ -37,7 +39,6 @@ parser$add_argument(
 # read CLAs; get reference date
 args <- parser$parse_args()
 ref_date <- args$reference_date
-
 
 # store base metadata path for use later
 model_metadata_path <- "../../model-metadata/" 
@@ -137,10 +138,9 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     forecast_fullnames
   )
 
-
 # determine if output folder exists, create
 # if it doesn't
-folder_path <- file.path("..", ref_date)
+folder_path <- file.path("../../weekly-summaries/", ref_date)
 if (!dir.exists(folder_path)) {
   dir.create(folder_path, recursive = TRUE)
   message("Directory created: ", folder_path)
@@ -158,5 +158,3 @@ if (!file.exists(output_filepath)) {
 } else {
   message("File already exists: ", output_filepath)
 }
-
-
