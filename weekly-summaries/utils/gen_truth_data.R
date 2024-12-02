@@ -25,11 +25,23 @@
 library("magrittr") # for %>%
 
 
-# fetch COVID-19 hospitalization data
+# set up command line argument parser
+parser <- argparse::ArgumentParser(
+  description = "Save Truth Data as CSV.")
+parser$add_argument(
+  "--reference_date", 
+  type = "character", 
+  help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
+)
+
+# read CLAs; get reference date
+args <- parser$parse_args()
+reference_date <- args$reference_date
+
+# fetch all NHSN COVID-19 hospital admissions
 covid_data <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadm"),
-  #start_date = "2024-11-09"  # replace with appropriate date if needed
 ) %>%
   dplyr::rename(
     value = totalconfc19newadm,
@@ -47,7 +59,7 @@ covid_data <- forecasttools::pull_nhsn(
   )
 
 # convert state abbreviation to location code 
-# and tp long name
+# and to long name
 covid_data <- covid_data %>%
   dplyr::mutate(
     location = forecasttools::us_loc_abbr_to_code(state), 
@@ -64,18 +76,8 @@ covid_data <- covid_data %>%
       location_name)
   )
 
-
-# excluded locations (from external data file)
-# only for the first week; this should 
-# check for output truth data, if csv found, 
-# then do not use
-exclude_data <- jsonlite::fromJSON(
-  "../../auxiliary-data/2024-11-23-exclude-locations.json")
-excluded_locations <- exclude_data$locations
-
 # filter and format the data
-formatted_data <- covid_data %>%
-  #dplyr::filter(!(location %in% excluded_locations)) %>%
+truth_data <- covid_data %>%
   dplyr::select(
     week_ending_date = date, 
     location, 
@@ -83,8 +85,24 @@ formatted_data <- covid_data %>%
     value
   )
 
-# save to CSV
-readr::write_csv(
-  formatted_data, 
-  "../output/truth_data.csv")
+# determine if output folder exists, create
+# if it doesn't
+folder_path <- file.path("..", reference_date)
+if (!dir.exists(folder_path)) {
+  dir.create(folder_path, recursive = TRUE)
+  message("Directory created: ", folder_path)
+} else {
+  message("Directory already exists: ", folder_path)
+}
+
+# check if Truth Data for reference date 
+# already exist, if not, save to csv
+output_filename <- paste0(reference_date, "_truth-data.csv")
+output_filepath <- file.path(folder_path, output_filename)
+if (!file.exists(output_filepath)) {
+  readr::write_csv(truth_data, output_filepath)
+  message("File saved as: ", output_filepath)
+} else {
+  message("File already exists: ", output_filepath)
+}
 
