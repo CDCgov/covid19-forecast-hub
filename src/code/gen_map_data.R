@@ -69,21 +69,12 @@ base_hub_path <- args$base_hub_path
 
 # load the latest ensemble data from the 
 # model-output folder
-ensemble_folder <- "../../model-output/CovidHub-ensemble/"
+ensemble_folder <- file.path(base_hub_path, "model-output", "CovidHub-ensemble")
 ensemble_file_current <- file.path(ensemble_folder, paste0(ref_date, "-CovidHub-ensemble.csv"))
 if (file.exists(ensemble_file_current)) {
   ensemble_file <- ensemble_file_current
 } else {
-  ensemble_files <- list.files(
-    ensemble_folder, 
-    pattern = "\\.csv$", 
-    full.names = TRUE
-  )
-  if (length(ensemble_files) == 0) {
-    stop("No ensemble CSV files found in the directory.")
-  }
-  ensemble_file <- tail(ensemble_files, 1)
-  message("Using the latest file: ", ensemble_file)
+  stop("Ensemble file for reference date ", ref_date, " not found in the directory: ", ensemble_folder)
 }
 ensemble_data <- readr::read_csv(ensemble_file)
 
