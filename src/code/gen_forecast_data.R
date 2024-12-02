@@ -51,7 +51,7 @@ model_metadata <- hubData::load_model_metadata(
 # get `covid19-forecast-hub` content
 hub_content <- hubData::connect_hub(base_hub_path)
 current_forecasts <- hub_content |>
-  dplyr::filter(reference_date == as.Date(ref_date)) |>
+  dplyr::filter(reference_date == as.Date(!!ref_date)) |>
   hubData::collect_hub()
 
 # get data for All Forecasts file
