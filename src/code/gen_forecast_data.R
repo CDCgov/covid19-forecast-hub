@@ -48,6 +48,8 @@ base_hub_path <- args$base_hub_path
 model_metadata <- hubData::load_model_metadata(
   base_hub_path, model_ids = NULL)
 
+print(model_metadata)
+
 # get `covid19-forecast-hub` content
 hub_content <- hubData::connect_hub(base_hub_path)
 current_forecasts <- hub_content |>
