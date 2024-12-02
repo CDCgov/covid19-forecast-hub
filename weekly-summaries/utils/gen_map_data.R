@@ -1,38 +1,46 @@
-#' Generate the `map.csv` file containing 
-#' ensemble forecast data.
+#' Generate the Map file containing ensemble 
+#' forecast data.
 #'
 #' This script loads the latest ensemble 
 #' forecast data from the `CovidHub-ensemble` 
 #' folder and processes it into the required 
-#' format for `map.csv`. The resulting CSV
-#'  contains forecast values for all states 
-#' (including US, DC, and Puerto Rico),
-#' for various forecast horizons, and 
-#' quantiles (0.025, 0.5, and 0.975).
+#' format. The resulting CSV file contains forecast 
+#' values for all regions (including US, DC, 
+#' and Puerto Rico), for various forecast 
+#' horizons, and quantiles (0.025, 0.5, and 0.975).
 #' 
 #' The ensemble data is expected to contain 
 #' the following columns:
 #' - `reference_date`: the date of the forecast
 #' - `location`: state abbreviation
 #' - `horizon`: forecast horizon
-#' - `target`: forecast target (e.g., "wk inc covid hosp")
+#' - `target`: forecast target (e.g., "wk inc 
+#' covid hosp")
 #' - `target_end_date`: the forecast target date
 #' - `output_type`: type of output (e.g., "quantile")
-#' - `output_type_id`: quantile value (e.g., 0.025, 0.5, 0.975)
+#' - `output_type_id`: quantile value (e.g., 
+#' 0.025, 0.5, 0.975)
 #' - `value`: forecast value
 #'
 #' The resulting `map.csv` file will have the 
 #' following columns:
-#' - `location_name`: full state name (including "US" for the US state)
-#' - `abbreviation`: state abbreviation
+#' - `location_name`: full state name (
+#' including "US" for the US state)
+#' - `quantile_*`: the quantile forecast values 
+#' (rounded to two decimal places)
 #' - `horizon`: forecast horizon
-#' - `target`: forecast target
-#' - `target_end_date`: target date for the forecast
-#' - `quantile_*`: the quantile forecast values (rounded to two decimal places)
-#'
-#' The file is saved in the 
-#' `weekly-summaries/output/` directory as 
-#' `map.csv`.
+#' - `target`: forecast target (e.g., "7 day 
+#' ahead inc hosp")
+#' - `target_end_date`: target date for the 
+#' forecast (Ex: 2024-11-30)
+#' - `reference_date`: date that the forecast 
+#' was generated (Ex: 2024-11-23)
+#' - `target_end_date_formatted`: target date 
+#' for the forecast, prettily re-formatted as
+#' a string (Ex: "November 30, 2024")
+#' - `reference_date_formatted`: date that the 
+#' forecast was generated, prettily re-formatted 
+#' as a string (Ex: "November 23, 2024")
 
 library("magrittr") # for %>%
 

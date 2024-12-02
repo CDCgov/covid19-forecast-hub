@@ -1,30 +1,25 @@
-#' Generate the `truth_data.csv` file 
-#' containing the most recent observed 
-#' hospitalization data.
+#' Generate the Truth Data file containing 
+#' the most recent observed NHSN hospital 
+#' admissions data.
 #'
 #' This script fetches the most recent 
 #' observed COVID-19 hospital
-#' admissions data for all states 
+#' admissions data for all regions 
 #' (including US, DC, and Puerto Rico) 
-#' and processes it into the required format 
-#' for `truth_data.csv`. The data is sourced 
-#' from the NHSN hospital respiratory
-#' data (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+#' and processes it into the required format. 
+#' The data is sourced from the NHSN hospital respiratory
+#' data: (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 #'
-#' The resulting `truth_data.csv` will contain 
-#' the following columns:
-#' - `week_ending_date`: the week ending date 
-#' for the observed data
-#' - `location`: two-digit FIPS code associated 
-#' with the state
+#' The resulting csv file contains the 
+#' following columns:
+#' - `week_ending_date`: week ending date of 
+#' observed data per row (Ex: 2024-11-16) 
+#' - `location`: two-digit FIPS code 
+#' associated with each state (Ex: 06) 
 #' - `location_name`: full state name 
 #' (including "US" for the US state)
 #' - `value`: the number of hospital 
 #' admissions (integer)
-#'
-#' The file is saved in the 
-#' `weekly-summaries/output/` directory as 
-#' `truth_data.csv`.
 
 
 library("magrittr") # for %>%
