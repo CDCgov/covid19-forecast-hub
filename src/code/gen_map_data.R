@@ -86,7 +86,7 @@ if (length(missing_columns) > 0) {
 }
 
 # population data, add later to forecasttools
-pop_data_path <- "../../target-data/locations.csv"
+pop_data_path <- file.path(base_hub_path, "target-data", "locations.csv")
 pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(pop_required_columns, colnames(pop_data))
