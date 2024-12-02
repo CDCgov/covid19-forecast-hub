@@ -128,7 +128,7 @@ map_data <- ensemble_data |>
   dplyr::mutate(
     quantile_0.025_per100k = value / as.numeric(population) * 100000,
     quantile_0.5_per100k = value /  as.numeric(population) * 100000,
-    quantile_0.975_per100k = value /  as.numeric(population) *100000,
+    quantile_0.975_per100k = value /  as.numeric(population) * 100000,
     quantile_0.025_count = value,
     quantile_0.5_count = value,
     quantile_0.975_count = value,
