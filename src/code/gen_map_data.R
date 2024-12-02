@@ -98,7 +98,7 @@ if (length(missing_pop_columns) > 0) {
 # format for Map file
 map_data <- ensemble_data |>
   dplyr::mutate(
-    reference_date = as.Date(reference_date),
+    reference_date = as.Date(!!reference_date),
     target_end_date = as.Date(!!target_end_date),
     value = as.numeric(value)
   ) |>
