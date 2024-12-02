@@ -7,7 +7,7 @@ model_contributors:
   [
     {
       "name": "Covid Hub",
-      "affiliation": "US CDC",
+      "affiliation": "Centers for Disease Control and Prevention (CDC)",
       "email": "covidhub@cdc.gov"
     }
   ]
