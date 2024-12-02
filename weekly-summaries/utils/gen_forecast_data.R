@@ -84,12 +84,12 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     horizon,
     forecast_date = reference_date,  # rename reference_date to forecast_date
     target_end_date,
-    model_id,
+    model_id = model, # rename model_id to model
     quantile_0.025 = lower,  # rename lower to quantile_0.025
-    quantile_0.25 = q25,      # rename q25 to quantile_0.25
-    quantile_0.5 = point,     # rename point to quantile_0.5
-    quantile_0.75 = q75,      # rename q75 to quantile_0.75
-    quantile_0.975 = upper,   # rename upper to quantile_0.975
+    quantile_0.25 = q25, # rename q25 to quantile_0.25
+    quantile_0.5 = point, # rename point to quantile_0.5
+    quantile_0.75 = q75, # rename q75 to quantile_0.75
+    quantile_0.975 = upper,  # rename upper to quantile_0.975
     quantile_0.025_rounded,
     quantile_0.25_rounded,
     quantile_0.5_rounded,
