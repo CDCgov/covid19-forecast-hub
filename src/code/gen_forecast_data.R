@@ -76,8 +76,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   ) |>
   # round the quantiles to nearest integer 
   # for rounded versions
-  dplyr::across(dplyr::starts_with("quantile_"), round, .names = "{.col}_rounded")
-  ) |>
+  dplyr::across(dplyr::starts_with("quantile_"), round, .names = "{.col}_rounded") |>
   dplyr::left_join(
     model_metadata, by = "model_id") |>
   dplyr::select(
