@@ -78,6 +78,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     dplyr::across(dplyr::starts_with("quantile_"), round, .names = "{.col}_rounded")
   ) |>
   dplyr::left_join(
+    dplyr::distinct(model_metadata, model_id, .keep_all = TRUE), # duplicate model_ids
     model_metadata, by = "model_id") |>
   dplyr::select(
     location_name,
