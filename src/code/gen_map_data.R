@@ -92,13 +92,6 @@ if (length(missing_pop_columns) > 0) {
   stop(paste("Missing columns in population data:", paste(missing_pop_columns, collapse = ", ")))
 }
 
-# create model metadata path
-model_metadata <- hubData::load_model_metadata(
-  base_hub_path, model_ids = NULL)
-
-# get `covid19-forecast-hub` content
-hub_content <- hubData::connect_hub(base_hub_path)
-
 # check if the reference date is the first
 # week for the season (2024-11-23), if so
 # exclude some locations
