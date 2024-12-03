@@ -68,8 +68,8 @@ if (ref_date == "2024-11-23") {
     hubData::collect_hub()
 } else {
   current_forecasts <- hub_content |>
-  dplyr::filter(reference_date == as.Date(!!ref_date)) |>
-  hubData::collect_hub()
+    dplyr::filter(reference_date == as.Date(!!ref_date)) |>
+    hubData::collect_hub()
 }
 
 
