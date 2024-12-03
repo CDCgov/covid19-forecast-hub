@@ -36,7 +36,7 @@ jobs:
     
     - name: get updated target data
       run: |
-        Rscript src/code/get_target_data.r
+        Rscript src/code/get_target_data.R
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
