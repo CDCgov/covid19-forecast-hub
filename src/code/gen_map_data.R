@@ -113,6 +113,9 @@ if (ref_date == "2024-11-23") {
 # process ensemble data into the required 
 # format for Map file
 map_data <- ensemble_data |>
+  # filter out horizon 3 columns at behest
+  # of Inform+Flu Division
+  dplyr::filter(horizon != 3) |>
   # filter out excluded locations if the 
   # ref date is the first week in season
   dplyr::filter(!(location %in% excluded_locations)) |>
@@ -144,8 +147,6 @@ map_data <- ensemble_data |>
   ) |> 
   # add quantile columns for per-100k rates 
   # and rounded values
-   # add quantile columns for per-100k rates 
-  # and rounded values
   dplyr::mutate(
     quantile_0.025_per100k = value / as.numeric(population) * 100000,
     quantile_0.5_per100k = value /  as.numeric(population) * 100000,
@@ -163,7 +164,7 @@ map_data <- ensemble_data |>
     reference_date_formatted = format(reference_date, "%B %d, %Y")
   ) |> 
   dplyr::select(
-    location_name = location, # rename location col
+    location_name = location,
     quantile_0.025_per100k, 
     quantile_0.5_per100k, 
     quantile_0.975_per100k,
