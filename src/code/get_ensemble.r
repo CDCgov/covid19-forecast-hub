@@ -76,7 +76,7 @@ write.csv(
 models <- eligible_models$Model
 # filter excluded locations
 exclude_territory_data <- jsonlite::fromJSON(
-  "auxiliary-data/exclude_territories.json"
+  "auxiliary-data/excluded_territories.json"
 )
 excluded_locations <- exclude_territory_data$locations
 current_forecasts <- current_forecasts |>

@@ -31,7 +31,7 @@ covid_data <- forecasttools::pull_nhsn(
 loc_df <- readr::read_csv("target-data/locations.csv", show_col_types = FALSE)
 
 exclude_territory_data <- jsonlite::fromJSON(
-  "auxiliary-data/exclude_territories.json"
+  "auxiliary-data/excluded_territories.json"
 )
 excluded_locations <- exclude_territory_data$locations
 
