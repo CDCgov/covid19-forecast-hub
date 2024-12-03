@@ -45,6 +45,20 @@ args <- parser$parse_args()
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 
+
+# gather locations to exclude such that the 
+# only territories are the 50 US states, DC, 
+# and PR
+exclude_data_path <- fs::path(
+  base_hub_path, 
+  "auxiliary-data", 
+  "excluded_territories.json")
+if (!fs::file_exists(exclude_data_path)) {
+  stop("Exclude locations file not found: ", exclude_data_path)
+}
+exclude_data <- jsonlite::fromJSON(exclude_data_path)
+excluded_locations <- exclude_data$locations
+
 # fetch all NHSN COVID-19 hospital admissions
 covid_data <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
@@ -75,6 +89,8 @@ covid_data <- covid_data |>
       location_input_format = "hub", 
       location_output_format = "long_name")
   ) |>
+  # exclude certain territories
+  dplyr::filter(!(location %in% excluded_locations)) |>
   # long name "United States" to "US"
   dplyr::mutate(
     location_name = dplyr::if_else(
