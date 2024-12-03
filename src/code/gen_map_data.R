@@ -92,9 +92,37 @@ if (length(missing_pop_columns) > 0) {
   stop(paste("Missing columns in population data:", paste(missing_pop_columns, collapse = ", ")))
 }
 
+# create model metadata path
+model_metadata <- hubData::load_model_metadata(
+  base_hub_path, model_ids = NULL)
+
+# get `covid19-forecast-hub` content
+hub_content <- hubData::connect_hub(base_hub_path)
+
+# check if the reference date is the first
+# week for the season (2024-11-23), if so
+# exclude some locations
+if (ref_date == "2024-11-23") {
+  exclude_data_path <- fs::path(
+    base_hub_path, 
+    "auxiliary-data", 
+    paste0(ref_date, "-exclude-locations.json"))
+  if (!fs::file_exists(exclude_data_path)) {
+    stop("Exclude locations file not found: ", exclude_data_path)
+  }
+  exclude_data <- jsonlite::fromJSON(exclude_data_path)
+  excluded_locations <- exclude_data$locations
+  message("Excluding locations for ref_date ", ref_date)
+} else {
+  excluded_locations <- character(0)
+}
+
 # process ensemble data into the required 
 # format for Map file
 map_data <- ensemble_data |>
+  # filter out excluded locations if the 
+  # ref date is the first week in season
+  dplyr::filter(!(location %in% excluded_locations)) |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
