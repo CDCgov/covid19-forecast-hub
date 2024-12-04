@@ -110,6 +110,10 @@ if (ref_date == "2024-11-23") {
   excluded_locations <- character(0)
 }
 
+
+# save ensemble name (same as in metadata)
+model_name <- "Ensemble model using CovidHub submissions"
+
 # process ensemble data into the required 
 # format for Map file
 map_data <- ensemble_data |>
@@ -122,7 +126,8 @@ map_data <- ensemble_data |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
-    value = as.numeric(value)
+    value = as.numeric(value),
+    model = model_name
   ) |>
   # convert location column codes to full 
   # location names
@@ -165,6 +170,7 @@ map_data <- ensemble_data |>
   ) |> 
   dplyr::select(
     location_name = location,
+    model,
     quantile_0.025_per100k, 
     quantile_0.5_per100k, 
     quantile_0.975_per100k,
