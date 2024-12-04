@@ -111,8 +111,8 @@ if (ref_date == "2024-11-23") {
 }
 
 
-# save ensemble name (same as in metadata)
-model_name <- "Ensemble model using CovidHub submissions"
+# save ensemble name (using value suggested by MB)
+model_name <- "CovidHub-ensemble"
 
 # process ensemble data into the required 
 # format for Map file
