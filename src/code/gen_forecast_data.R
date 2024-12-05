@@ -54,6 +54,7 @@ hub_content <- hubData::connect_hub(base_hub_path)
 # check if the reference date is the first
 # week for the season (2024-11-23), if so
 # exclude some locations
+# TODO: toml, json, etc... for file?
 if (ref_date == "2024-11-23") {
   exclude_data_path <- fs::path(base_hub_path, "auxiliary-data", paste0(ref_date, "-exclude-locations.json"))
   if (!fs::file_exists(exclude_data_path)) {
