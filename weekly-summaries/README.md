@@ -15,6 +15,7 @@ _Contains data from the ensemble COVID or flu forecast for all states (including
 
 
 * `location_name` (string): state name column. Includes US (Ex: Alabama)
+* `model` (string): the ensemble model name (Ex: CovidHub-ensemble)
 * `quantile_0.025_per100k` (numeric): 0.025 quantile forecast value as a rate per 100k (Ex: 1.12777351608532) 
 * `quantile_0.5_per100k` (numeric) 0.5 quantile forecast value as a rate per 100k 
 * `quantile_0.975_per100k` (numeric) 0.975 quantile forecast value as a rate per 100k 
