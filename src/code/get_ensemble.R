@@ -38,7 +38,7 @@ if (!dir.exists(output_dirpath)) {
 hub_content <- hubData::connect_hub(hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(
-    reference_date == reference_date,
+    reference_date == !!reference_date,
     !str_detect(model_id, "CovidHub")
   ) |>
   hubData::collect_hub()
@@ -75,8 +75,10 @@ write.csv(
 
 models <- eligible_models$Model
 # filter excluded locations
-exclude_data <- jsonlite::fromJSON("auxiliary-data/exclude_ensemble.json")
-excluded_locations <- exclude_data$locations
+exclude_territory_data <- jsonlite::fromJSON(
+  "auxiliary-data/excluded_territories.json"
+)
+excluded_locations <- exclude_territory_data$locations
 current_forecasts <- current_forecasts |>
   dplyr::filter(model_id %in% models, !(location %in% excluded_locations))
 

@@ -33,7 +33,7 @@ jobs:
     
     - name: generate users list
       run: |
-        Rscript src/code/get_authorized_users.r
+        Rscript src/code/get_authorized_users.R
 
     - name: Check for Changes
       id: check_diff
