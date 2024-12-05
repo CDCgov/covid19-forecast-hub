@@ -68,7 +68,7 @@ jobs:
             read -r dir user_list <<< $line
 
             if [[ "$user_list" == "NA" ]]; then
-              echo "No authorized users found. Skipping approval."
+              echo "No authorized users found. Will not attempt auto-approval."
               exit 0
             fi
 
