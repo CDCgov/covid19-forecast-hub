@@ -11,7 +11,7 @@ on:
       - '!model-output/CovidHub-baseline/**'
       
 jobs:
-  validate-user-and-merge:
+  validate-user-and-approve:
     runs-on: ubuntu-latest
     permissions: 
       contents: write
@@ -66,6 +66,12 @@ jobs:
           
           for line in "${lines_arr[@]}"; do
             read -r dir user_list <<< $line
+
+            if [[ "$user_list" == "NA" ]]; then
+              echo "No authorized users found. Skipping approval."
+              exit 0
+            fi
+
             IFS=', ' read -r -a user_array <<< "$user_list"  
             
             for file in ${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}; do
