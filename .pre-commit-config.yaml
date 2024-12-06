@@ -1,0 +1,41 @@
+################################################################################
+# OVERVIEW
+################################################################################
+# Only check files in ./src/code
+#
+# Links:
+#
+# Pre-commit: https://pre-commit.com/
+# The author's template: https://github.com/AFg6K7h4fhy2/AFg6K7h4fhy2-Template
+# Supported hooks: https://github.com/pre-commit/pre-commit-hooks
+repos:
+################################################################################
+# GENERAL
+################################################################################
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    # attempts to load all TOML files to
+    # verify syntax.
+    -   id: check-toml
+        files: ^src/code/
+    # makes sure files end in a newline and
+    # only a newline.
+    -   id: end-of-file-fixer
+        files: ^src/code/
+    # replaces or checks mixed line ending.
+    -   id: mixed-line-ending
+        files: ^src/code/
+    # trims trailing whitespace.
+    -   id: trailing-whitespace
+        files: ^src/code/
+################################################################################
+# R
+################################################################################
+-   repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3.9003
+    hooks:
+    -   id: style-files
+    -   id: lintr
+        files: ^src/code/
+################################################################################
