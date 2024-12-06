@@ -83,6 +83,9 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "quantile_0.75" = 0.75, 
     "quantile_0.975" = 0.975)  
 ) |>
+  # filter out horizon 3 columns at behest
+  # of Inform+Flu Division
+  dplyr::filter(horizon != 3) |>
   # convert location codes to full location 
   # names and to abbreviations
   dplyr::mutate(
