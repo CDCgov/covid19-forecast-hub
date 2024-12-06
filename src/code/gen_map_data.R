@@ -92,9 +92,8 @@ if (length(missing_pop_columns) > 0) {
   stop(paste("Missing columns in population data:", paste(missing_pop_columns, collapse = ", ")))
 }
 
-# check if the reference date is the first
-# week for the season (2024-11-23), if so
-# exclude some locations
+# check if the reference date has any
+# exclusions and exclude specified locations if any
 exclude_data_path_toml <- fs::path(base_hub_path, "auxiliary-data", "excluded_locations.toml")
 if (fs::file_exists(exclude_data_path_toml)) {
   exclude_data_toml <- RcppTOML::parseTOML(exclude_data_path_toml)
