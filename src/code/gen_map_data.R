@@ -110,21 +110,6 @@ if (fs::file_exists(exclude_data_path_toml)) {
 }
 
 
-if (ref_date == "2024-11-23") {
-  exclude_data_path <- fs::path(
-    base_hub_path, 
-    "auxiliary-data", 
-    paste0(ref_date, "-exclude-locations.json"))
-  if (!fs::file_exists(exclude_data_path)) {
-    stop("Exclude locations file not found: ", exclude_data_path)
-  }
-  exclude_data <- jsonlite::fromJSON(exclude_data_path)
-  excluded_locations <- exclude_data$locations
-  message("Excluding locations for ref_date ", ref_date)
-} else {
-  excluded_locations <- character(0)
-}
-
 # process ensemble data into the required 
 # format for Map file
 map_data <- ensemble_data |>
