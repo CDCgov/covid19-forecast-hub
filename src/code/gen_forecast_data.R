@@ -51,9 +51,8 @@ model_metadata <- hubData::load_model_metadata(
 # get `covid19-forecast-hub` content
 hub_content <- hubData::connect_hub(base_hub_path)
 
-# check if the reference date is the first
-# week for the season (2024-11-23), if so
-# exclude some locations
+# check if the reference date has any
+# exclusions and exclude specified locations (if any)
 exclude_data_path_toml <- fs::path(
   base_hub_path, 
   "auxiliary-data", 
