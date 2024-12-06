@@ -71,7 +71,11 @@ base_hub_path <- args$base_hub_path
 
 # load the latest ensemble data from the
 # model-output folder
-ensemble_folder <- file.path(base_hub_path, "model-output", "CovidHub-ensemble")
+ensemble_folder <- file.path(
+  base_hub_path,
+  "model-output",
+  "CovidHub-ensemble"
+)
 ensemble_file_current <- file.path(
   ensemble_folder,
   paste0(ref_date, "-CovidHub-ensemble.csv")
@@ -87,7 +91,12 @@ if (file.exists(ensemble_file_current)) {
   )
 }
 ensemble_data <- readr::read_csv(ensemble_file)
-required_columns <- c("reference_date", "target_end_date", "value", "location")
+required_columns <- c(
+  "reference_date",
+  "target_end_date",
+  "value",
+  "location"
+)
 missing_columns <- setdiff(
   required_columns,
   colnames(ensemble_data)
@@ -102,7 +111,11 @@ if (length(missing_columns) > 0) {
 }
 
 # population data, add later to forecasttools
-pop_data_path <- file.path(base_hub_path, "target-data", "locations.csv")
+pop_data_path <- file.path(
+  base_hub_path,
+  "target-data",
+  "locations.csv"
+)
 pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(
@@ -117,24 +130,26 @@ if (length(missing_pop_columns) > 0) {
   )
 }
 
-# check if the reference date is the first
-# week for the season (2024-11-23), if so
-# exclude some locations
-if (ref_date == "2024-11-23") {
-  exclude_data_path <- fs::path(
-    base_hub_path,
-    "auxiliary-data",
-    paste0(ref_date, "-exclude-locations.json")
-  )
-  if (!fs::file_exists(exclude_data_path)) {
-    stop("Exclude locations file not found: ", exclude_data_path)
+# check if the reference date has any
+# exclusions and exclude specified locations if any
+exclude_data_path_toml <- fs::path(
+  base_hub_path,
+  "auxiliary-data",
+  "excluded_locations.toml"
+)
+if (fs::file_exists(exclude_data_path_toml)) {
+  exclude_data_toml <- RcppTOML::parseTOML(exclude_data_path_toml)
+  if (ref_date %in% names(exclude_data_toml)) {
+    excluded_locations <- exclude_data_toml[[ref_date]]
+    message("Excluding locations for reference date: ", ref_date)
+  } else {
+    excluded_locations <- character(0)
+    message("No exclusion for reference date: ", ref_date)
   }
-  exclude_data <- jsonlite::fromJSON(exclude_data_path)
-  excluded_locations <- exclude_data$locations
-  message("Excluding locations for ref_date ", ref_date)
 } else {
-  excluded_locations <- character(0)
+  stop("TOML file not found: ", exclude_data_path_toml)
 }
+
 
 # process ensemble data into the required
 # format for Map file
