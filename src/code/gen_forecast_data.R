@@ -54,25 +54,28 @@ hub_content <- hubData::connect_hub(base_hub_path)
 # check if the reference date is the first
 # week for the season (2024-11-23), if so
 # exclude some locations
-# TODO: toml, json, etc... for file?
-if (ref_date == "2024-11-23") {
-  exclude_data_path <- fs::path(base_hub_path, "auxiliary-data", paste0(ref_date, "-exclude-locations.json"))
-  if (!fs::file_exists(exclude_data_path)) {
-    stop("Exclude locations file not found: ", exclude_data_path)
-  }
-  exclude_data <- jsonlite::fromJSON(exclude_data_path)
-  excluded_locations <- exclude_data$locations
-  message("Excluding locations for ref_date ", ref_date)
-  current_forecasts <- hub_content |>
-    dplyr::filter(reference_date == as.Date(!!ref_date)) |>
-    dplyr::filter(!(location %in% excluded_locations)) |>
-    hubData::collect_hub()
+exclude_data_path_toml <- fs::path(
+  base_hub_path, 
+  "auxiliary-data", 
+  "excluded_locations.toml")
+if (fs::file_exists(exclude_data_path_toml)) {
+  exclude_data_toml <- RcppTOML::parseTOML(exclude_data_path_toml)
+  if (ref_date %in% names(exclude_data_toml)) {
+    excluded_locations <- exclude_data_toml[[ref_date]]
+    message("Excluding locations for reference date: ", ref_date)
+    current_forecasts <- hub_content |>
+      dplyr::filter(reference_date == as.Date(!!ref_date)) |>
+      dplyr::filter(!(location %in% excluded_locations)) |>
+      hubData::collect_hub()
+    } else {
+    message("No exclusions for reference date: ", ref_date)
+    current_forecasts <- hub_content |>
+      dplyr::filter(reference_date == as.Date(!!ref_date)) |>
+      hubData::collect_hub()
+    }
 } else {
-  current_forecasts <- hub_content |>
-    dplyr::filter(reference_date == as.Date(!!ref_date)) |>
-    hubData::collect_hub()
+  stop("TOML file not found: ", exclude_data_path_toml)
 }
-
 
 # get data for All Forecasts file
 all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
