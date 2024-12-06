@@ -6,7 +6,6 @@
 # Links:
 #
 # Pre-commit: https://pre-commit.com/
-# The author's template: https://github.com/AFg6K7h4fhy2/AFg6K7h4fhy2-Template
 # Supported hooks: https://github.com/pre-commit/pre-commit-hooks
 repos:
 ################################################################################
