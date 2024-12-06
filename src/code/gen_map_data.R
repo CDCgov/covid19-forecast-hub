@@ -97,13 +97,13 @@ if (length(missing_pop_columns) > 0) {
 # exclude some locations
 exclude_data_path_toml <- fs::path(base_hub_path, "auxiliary-data", "excluded_locations.toml")
 if (fs::file_exists(exclude_data_path_toml)) {
-  exclude_data_toml <- toml::read_toml(exclude_data_path_toml)
+  exclude_data_toml <- RcppTOML::parseTOML(exclude_data_path_toml)
   if (ref_date %in% names(exclude_data_toml)) {
     excluded_locations <- exclude_data_toml[[ref_date]]
-    message("Excluding locations for ref_date ", ref_date)
+    message("Excluding locations for reference date: ", ref_date)
   } else {
     excluded_locations <- character(0)
-    message("No exclusion for ref_date ", ref_date)
+    message("No exclusion for reference date: ", ref_date)
   }
 } else {
   stop("TOML file not found: ", exclude_data_path_toml)
