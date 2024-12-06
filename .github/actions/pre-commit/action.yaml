@@ -1,0 +1,16 @@
+name: pre-commit
+description: run pre-commit
+inputs:
+  extra_args:
+    description: options to pass to pre-commit run
+    required: false
+    default: '--all-files'
+runs:
+  using: composite
+  steps:
+  - run: python -m pip install pre-commit
+    shell: bash
+  - run: python -m pip freeze --local
+    shell: bash
+  - run: pre-commit run --show-diff-on-failure --color=always ${{ inputs.extra_args }}
+    shell: bash
