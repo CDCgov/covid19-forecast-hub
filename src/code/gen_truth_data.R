@@ -91,6 +91,11 @@ covid_data <- covid_data |>
   ) |>
   # exclude certain territories
   dplyr::filter(!(location %in% excluded_locations)) |>
+  # exclude dates between April 27, 2024 and 
+  # October 31, 2024 by request of Inform
+  dplyr::filter(
+    !(date >= as.Date("2024-04-27") & date <= as.Date("2024-10-31"))
+  ) |>
   # long name "United States" to "US"
   dplyr::mutate(
     location_name = dplyr::if_else(
