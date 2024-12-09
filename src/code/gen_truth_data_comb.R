@@ -51,6 +51,13 @@ argparse::ArgumentParser(
     default = FALSE, 
     help = "If TRUE, fetches target data."
   )
+  parser <- argparser::add_argument(
+    parser,
+    "--first_full_weekending_date",
+    help = "Filter data by week ending date",
+    type = "character",
+    default = "2024-11-09"
+    )
 
 args <- parser$parse_args()
 reference_date <- args$reference_date
