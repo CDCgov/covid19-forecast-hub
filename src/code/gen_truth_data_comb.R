@@ -21,8 +21,8 @@
 #' - `value`: the number of hospital 
 #' admissions (integer)
 #' 
-#' To get dataset for Inform division:
-#' Rscript gen_truth_data_comb.R --get-inform-data --reference_date 2024-11-23 --base_hub_path ../../
+#' To get historical dataset for visualization:
+#' Rscript gen_truth_data_comb.R --get-viz-data --reference_date 2024-11-23 --base_hub_path ../../
 #' 
 #' To get target COVID-19 hospital admissions data:
 #' Rscript gen_truth_data_comb.R --get-target-data --reference_date 2024-11-23 --base_hub_path ../../
@@ -108,10 +108,6 @@ covid_data <- forecasttools::pull_nhsn(
   )
 
 if (get_target_data) {
-  # ROUTINE TARGET DATASET CREATION
-  # difference from inform task: name of "date"
-  # column, "United States" not "US", state 
-  # column included
   loc_df <- readr::read_csv(
       "target-data/locations.csv", 
       show_col_types = FALSE)
@@ -127,9 +123,6 @@ if (get_target_data) {
 }
 
 if (get_inform_data) {
-  # DATA FILE FOR INFORM DIVISION
-  # convert state abbreviation to location code 
-  # and to long name for inform truth data, 
   inform_covid_truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state), 
