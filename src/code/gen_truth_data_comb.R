@@ -101,10 +101,6 @@ covid_data <- forecasttools::pull_nhsn(
   )
 
 if (get_target_data) {
-  # ROUTINE TARGET DATASET CREATION
-  # difference from inform task: name of "date"
-  # column, "United States" not "US", state 
-  # column included
   loc_df <- readr::read_csv(
       "target-data/locations.csv", 
       show_col_types = FALSE)
