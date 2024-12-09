@@ -116,9 +116,6 @@ if (get_target_data) {
 }
 
 if (get_inform_data) {
-  # DATA FILE FOR INFORM DIVISION
-  # convert state abbreviation to location code 
-  # and to long name for inform truth data, 
   inform_covid_truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state), 
