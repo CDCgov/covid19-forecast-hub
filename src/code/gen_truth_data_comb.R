@@ -21,57 +21,147 @@
 #' - `value`: the number of hospital 
 #' admissions (integer)
 #' 
-#' To run:
-#' Rscript gen_truth_data_comb.R --reference_date 2024-11-23 --base_hub_path ../../
+#' To get dataset for Inform division:
+#' Rscript gen_truth_data_comb.R --get-inform-data --reference_date 2024-11-23 --base_hub_path ../../
+#' 
+#' To get target COVID-19 hospital admissions data:
+#' Rscript gen_truth_data_comb.R --get-target-data --reference_date 2024-11-23 --base_hub_path ../../
 
-argparse::ArgumentParser(description = "Save Truth Data as CSV.") %>%
+argparse::ArgumentParser(
+    description = "Fetch and process COVID-19 hospital admissions data.") |>
   add_argument(
     "--reference_date", 
     type = "character", 
-    help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
-  ) %>%
+    help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
+  ) |>
   add_argument(
     "--base_hub_path", 
     type = "character", 
-    help = "Path to the Covid19 forecast hub directory."
+    help = "Path to the COVID-19 forecast hub directory."
+  )
+  add_argument(
+    "--get-inform-data", 
+    type = "logical", 
+    default = FALSE, 
+    help = "If TRUE, fetches inform data."
+  ) |>
+  add_argument(
+    "--get-target-data", 
+    type = "logical", 
+    default = FALSE, 
+    help = "If TRUE, fetches target data."
   )
 
 args <- parser$parse_args()
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+get_inform_data <- args$get_inform_data
+get_target_data <- args$get_target_data
 
-exclude_data_path <- fs::path(base_hub_path, "auxiliary-data", "excluded_territories.json")
+# ensure at least one of --get-inform-data 
+# or --get-target-data is used
+if (!get_inform_data && !get_target_data) {
+  stop("Error: At least one of --get-inform-data or --get-target-data must be specified.")
+}
+
+# read CLAs; get reference date and paths
+args <- parser$parse_args()
+reference_date <- args$reference_date
+base_hub_path <- args$base_hub_path
+
+# gather locations to exclude such that the 
+# only territories are the 50 US states, DC, 
+# and PR
+exclude_data_path <- fs::path(
+  base_hub_path, 
+  "auxiliary-data", 
+  "excluded_territories.json")
 if (!fs::file_exists(exclude_data_path)) {
   stop("Exclude locations file not found: ", exclude_data_path)
 }
 exclude_data <- jsonlite::fromJSON(exclude_data_path)
 excluded_locations <- exclude_data$locations
 
+
+# fetch all NHSN COVID-19 hospital admissions
 covid_data <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
-  columns = c("totalconfc19newadm")
-) %>%
+  columns = c("totalconfc19newadm"),
+  start_date = first_full_weekending_date
+) |>
   dplyr::rename(
     value = totalconfc19newadm,
     date = weekendingdate,
     state = jurisdiction
-  ) %>%
+  ) |>
   dplyr::mutate(
-    date = as.Date(date)
+    date = as.Date(date),
+    value = as.numeric(value),
+    state = stringr::str_replace(state, "USA", "US")
   )
 
-covid_data <- covid_data %>%
-  dplyr::filter(!state %in% excluded_locations)
+if (get_target_data) {
+  # ROUTINE TARGET DATASET CREATION
+  # difference from inform task: name of "date"
+  # column, "United States" not "US", state 
+  # column included
+  loc_df <- readr::read_csv(
+      "target-data/locations.csv", 
+      show_col_types = FALSE)
+  formatted_data <- covid_data |>
+    dplyr::left_join(loc_df, by = c("state" = "abbreviation")) |>
+    dplyr::filter(!(location %in% excluded_locations)) |>
+    dplyr::select(date, state, value, location)
+  output_dirpath <- "target-data/"
+  readr::write_csv(
+    formatted_data,
+    file.path(output_dirpath, "covid-hospital-admissions.csv")
+  )
+}
 
-output_file_path <- paste0("truth_data_", reference_date, ".csv")
-
-covid_data %>%
-  dplyr::mutate(
-    week_ending_date = format(date, "%Y-%m-%d"),
-    location_name = dplyr::recode(state, `06` = "US") 
-  ) %>%
-  dplyr::select(week_ending_date, state, location_name, value) %>%
-  write.csv(., output_file_path, row.names = FALSE)
-
-cat("Truth data successfully saved to: ", output_file_path, "\n")
-
+if (get_inform_data) {
+  # DATA FILE FOR INFORM DIVISION
+  # convert state abbreviation to location code 
+  # and to long name for inform truth data, 
+  inform_covid_truth_data <- covid_data |>
+    dplyr::mutate(
+      location = forecasttools::us_loc_abbr_to_code(state), 
+      location_name = forecasttools::location_lookup(
+        location, 
+        location_input_format = "hub", 
+        location_output_format = "long_name")
+    ) |>
+    # exclude certain territories
+    dplyr::filter(!(location %in% excluded_locations)) |>
+    # long name "United States" to "US"
+    dplyr::mutate(
+      location_name = dplyr::if_else(
+        location_name == "United States", 
+        "US", 
+        location_name)
+    )
+  # filter and format the data
+  truth_data <- inform_covid_truth_data |>
+    dplyr::select(
+      week_ending_date = date, 
+      location, 
+      location_name, 
+      value
+    )
+  # output folder and file paths for Truth Data
+  output_folder_path <- fs::path(base_hub_path, "weekly-summaries", reference_date)
+  output_filename <- paste0(reference_date, "_truth-data.csv")
+  output_filepath <- fs::path(output_folder_path, output_filename)
+  # determine if the output folder exists, 
+  # create it if not
+  fs::dir_create(output_folder_path)
+  message("Directory is ready: ", output_folder_path)
+  # check if the file exists, and if not, 
+  # save to csv, else throw an error
+  if (!fs::file_exists(output_filepath)) {
+    readr::write_csv(truth_data, output_filepath)
+    message("File saved as: ", output_filepath)
+  } else {
+    stop("File already exists: ", output_filepath)
+  }
+}
