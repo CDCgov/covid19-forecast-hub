@@ -21,8 +21,8 @@
 #' - `value`: the number of hospital 
 #' admissions (integer)
 #' 
-#' To get dataset for Inform division:
-#' Rscript gen_truth_data_comb.R --get-inform-data --reference_date 2024-11-23 --base_hub_path ../../
+#' To get historical dataset for visualization:
+#' Rscript gen_truth_data_comb.R --get-viz-data --reference_date 2024-11-23 --base_hub_path ../../
 #' 
 #' To get target COVID-19 hospital admissions data:
 #' Rscript gen_truth_data_comb.R --get-target-data --reference_date 2024-11-23 --base_hub_path ../../
