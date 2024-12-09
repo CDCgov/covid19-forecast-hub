@@ -25,6 +25,7 @@
 #' Rscript gen_truth_data.R --reference_date 2024-11-23 --base_hub_path ../../
 
 
+# this file will be combined with get_target_data.R
 
 # set up command line argument parser
 parser <- argparse::ArgumentParser(
