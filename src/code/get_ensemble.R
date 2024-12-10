@@ -10,7 +10,7 @@ parser <- argparser::add_argument(
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
-# %%
+
 dow_supplied <- lubridate::wday(reference_date,
   week_start = 7,
   label = FALSE
