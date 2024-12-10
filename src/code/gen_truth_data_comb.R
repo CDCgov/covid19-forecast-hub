@@ -22,38 +22,43 @@
 #' admissions (integer)
 #' 
 #' To get historical dataset for visualization:
-#' Rscript gen_truth_data_comb.R --get-viz-data --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript gen_truth_data_comb.R --get_viz_data TRUE --reference_date 2024-11-23 --base_hub_path ../../
 #' 
 #' To get target COVID-19 hospital admissions data:
-#' Rscript gen_truth_data_comb.R --get-target-data --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript gen_truth_data_comb.R --get_target_data --reference_date 2024-11-23 --base_hub_path ../../
 
 
 # set up command line argument parser
-parser <- argparse::ArgumentParser(
-  description = "Fetch and process COVID-19 hospital admissions data.") |>
-parser$add_argument(
+parser <- argparser::arg_parser(
+  "Fetch and process COVID-19 hospital admissions data."
+)
+parser <- argparser::add_argument(
+  parser,
   "--reference_date", 
   type = "character", 
   help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
 ) 
-parser$add_argument(
+parser <- argparser::add_argument(
+  parser,
   "--base_hub_path", 
   type = "character", 
   help = "Path to the COVID-19 forecast hub directory."
 )
-parser$add_argument(
-  "--get-inform-data", 
+parser <- argparser::add_argument(
+  parser,
+  "--get_viz_data", 
   type = "logical", 
   default = FALSE, 
   help = "If TRUE, fetches inform data."
 ) 
-parser$add_argument(
-  "--get-target-data", 
+parser <- argparser::add_argument(
+  parser,
+  "--get_target_data", 
   type = "logical", 
   default = FALSE, 
   help = "If TRUE, fetches target data."
 )
-parser$add_argument(
+parser <- argparser::add_argument(
   parser,
   "--first_full_weekending_date",
   help = "Filter data by week ending date",
@@ -61,22 +66,19 @@ parser$add_argument(
   default = "2024-11-09"
 )
 
-args <- parser$parse_args()
+# read CLAs; get reference date and paths
+args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
-get_inform_data <- args$get_inform_data
+get_viz_data <- args$get_viz_data
 get_target_data <- args$get_target_data
+first_full_weekending_date <- args$first_full_weekending_date
 
 # ensure at least one of --get-inform-data 
 # or --get-target-data is used
-if (!get_inform_data && !get_target_data) {
+if (!get_viz_data && !get_target_data) {
   stop("Error: At least one of --get-inform-data or --get-target-data must be specified.")
 }
-
-# read CLAs; get reference date and paths
-args <- parser$parse_args()
-reference_date <- args$reference_date
-base_hub_path <- args$base_hub_path
 
 # gather locations to exclude such that the 
 # only territories are the 50 US states, DC, 
@@ -124,7 +126,7 @@ if (get_target_data) {
   )
 }
 
-if (get_inform_data) {
+if (get_viz_data) {
   inform_covid_truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state), 
