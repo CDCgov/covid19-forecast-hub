@@ -25,7 +25,7 @@
 #' Rscript gen_truth_data_comb.R --get_viz_data TRUE --reference_date 2024-11-23 --base_hub_path ../../
 #' 
 #' To get target COVID-19 hospital admissions data:
-#' Rscript gen_truth_data_comb.R --get_target_data --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript gen_truth_data_comb.R --get_target_data TRUE --reference_date 2024-11-23 --base_hub_path ../../
 
 
 # set up command line argument parser
@@ -95,7 +95,7 @@ excluded_locations <- exclude_data$locations
 
 
 if (get_target_data) {
-  # fetch all NHSN COVID-19 hospital admissions
+  # fetch some NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
