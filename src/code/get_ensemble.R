@@ -43,6 +43,15 @@ current_forecasts <- hub_content |>
   ) |>
   hubData::collect_hub()
 
+list_submission_files <- list.files(paste0(hub_path, "/model-output"),
+  pattern = paste0("^", reference_date, "-.*\\.csv$"),
+  full.names = TRUE, recursive = TRUE
+)
+list_model_ids <- gsub(
+  pattern = paste0("^", reference_date, "-|\\.csv$"),
+  replacement = "",
+  x = basename(list_submission_files)
+)
 yml_files <- list.files(paste0(hub_path, "/model-metadata"),
   pattern = "\\.ya?ml$", full.names = TRUE
 )
@@ -55,7 +64,12 @@ is_model_designated <- function(yaml_file) {
     as.logical(yml_data$designated_model),
     FALSE
   )
-  return(list(Model = team_and_model, Designated_Model = is_designated))
+
+  if (team_and_model %in% list_model_ids) {
+    return(list(Model = team_and_model, Designated_Model = is_designated))
+  } else {
+    return(NULL)
+  }
 }
 
 eligible_models <- purrr::map(yml_files, is_model_designated) |>
