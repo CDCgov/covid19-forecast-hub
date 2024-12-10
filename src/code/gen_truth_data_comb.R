@@ -145,29 +145,29 @@ if (get_viz_data) {
         "US"
       )
     )
-  inform_covid_truth_data <- covid_data |>
+  truth_data <- covid_data |>
     dplyr::mutate(
-      location = forecasttools::us_loc_abbr_to_code(state), 
+      location = forecasttools::us_loc_abbr_to_code(state),
       location_name = forecasttools::location_lookup(
-        location, 
-        location_input_format = "hub", 
-        location_output_format = "long_name")
+        location,
+        location_input_format = "hub",
+        location_output_format = "long_name"
+      )
     ) |>
     # exclude certain territories
     dplyr::filter(!(location %in% excluded_locations)) |>
     # long name "United States" to "US"
     dplyr::mutate(
       location_name = dplyr::if_else(
-        location_name == "United States", 
-        "US", 
-        location_name)
-    )
-  # filter and format the data
-  truth_data <- inform_covid_truth_data |>
+        location_name == "United States",
+        "US",
+        location_name
+      )
+    ) |>
     dplyr::select(
-      week_ending_date = date, 
-      location, 
-      location_name, 
+      week_ending_date = date,
+      location,
+      location_name,
       value
     )
   # output folder and file paths for Truth Data
