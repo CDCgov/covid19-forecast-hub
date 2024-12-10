@@ -47,7 +47,6 @@ args <- parser$parse_args()
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 
-
 # gather locations to exclude such that the
 # only territories are the 50 US states, DC,
 # and PR
