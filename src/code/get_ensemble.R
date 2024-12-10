@@ -10,7 +10,7 @@ parser <- argparser::add_argument(
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
-
+# %%
 dow_supplied <- lubridate::wday(reference_date,
   week_start = 7,
   label = FALSE
@@ -43,38 +43,23 @@ current_forecasts <- hub_content |>
   ) |>
   hubData::collect_hub()
 
-list_submission_files <- list.files(paste0(hub_path, "/model-output"),
-  pattern = paste0("^", reference_date, "-.*\\.csv$"),
-  full.names = TRUE, recursive = TRUE
-)
-list_model_ids <- gsub(
-  pattern = paste0("^", reference_date, "-|\\.csv$"),
-  replacement = "",
-  x = basename(list_submission_files)
-)
-yml_files <- list.files(paste0(hub_path, "/model-metadata"),
-  pattern = "\\.ya?ml$", full.names = TRUE
-)
+list_model_current <- unique(current_forecasts$model_id)
+list_model_metadata <- hubData::load_model_metadata(
+  hub_path,
+  model_ids = NULL
+) |>
+  dplyr::select(c("model_id", "designated_model")) |>
+  dplyr::distinct()
 
-# Read model metadata and extract designated models
-is_model_designated <- function(yaml_file) {
-  yml_data <- yaml::yaml.load_file(yaml_file)
-  team_and_model <- glue::glue("{yml_data$team_abbr}-{yml_data$model_abbr}")
-  is_designated <- ifelse("designated_model" %in% names(yml_data),
-    as.logical(yml_data$designated_model),
-    FALSE
-  )
-
-  if (team_and_model %in% list_model_ids) {
-    return(list(Model = team_and_model, Designated_Model = is_designated))
-  } else {
-    return(NULL)
-  }
-}
-
-eligible_models <- purrr::map(yml_files, is_model_designated) |>
-  dplyr::bind_rows() |>
-  dplyr::filter(Designated_Model)
+eligible_models <- do.call(
+  rbind, lapply(list_model_current, function(model_id) {
+    metadata <- list_model_metadata[list_model_metadata$model_id == model_id, ]
+    data.frame(
+      Model = model_id,
+      Designated_Model = metadata$designated_model
+    )
+  })
+)
 
 write.csv(
   eligible_models,
