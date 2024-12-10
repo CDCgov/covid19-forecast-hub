@@ -46,18 +46,10 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
-  "--get_viz_data", 
-  type = "logical", 
-  default = FALSE, 
-  help = "If TRUE, fetches NHSN historical data."
+  "--target_data", 
+  type = "logical",
+  help = "If FALSE, fetches NHSN historical data. IF TRUE, gets target data."
 ) 
-parser <- argparser::add_argument(
-  parser,
-  "--get_target_data", 
-  type = "logical", 
-  default = FALSE, 
-  help = "If TRUE, fetches target data."
-)
 parser <- argparser::add_argument(
   parser,
   "--first_full_weekending_date",
@@ -70,15 +62,8 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
-get_viz_data <- args$get_viz_data
-get_target_data <- args$get_target_data
+target_data  <- args$target_data 
 first_full_weekending_date <- args$first_full_weekending_date
-
-# ensure at least one of --get-viz-data 
-# or --get-target-data is used
-if (!get_viz_data && !get_target_data) {
-  stop("Error: At least one of --get-viz-data or --get-target-data must be specified.")
-}
 
 # gather locations to exclude such that the 
 # only territories are the 50 US states, DC, 
@@ -94,7 +79,7 @@ exclude_data <- jsonlite::fromJSON(exclude_data_path)
 excluded_locations <- exclude_data$locations
 
 
-if (get_target_data) {
+if (target_data) {
   # fetch some NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
@@ -125,7 +110,7 @@ if (get_target_data) {
   )
 }
 
-if (get_viz_data) {
+if (!target_data) {
   # fetch all NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
