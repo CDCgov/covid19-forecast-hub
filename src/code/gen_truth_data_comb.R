@@ -94,24 +94,23 @@ exclude_data <- jsonlite::fromJSON(exclude_data_path)
 excluded_locations <- exclude_data$locations
 
 
-# fetch all NHSN COVID-19 hospital admissions
-covid_data <- forecasttools::pull_nhsn(
-  api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
-  columns = c("totalconfc19newadm"),
-  start_date = first_full_weekending_date
-) |>
-  dplyr::rename(
-    value = totalconfc19newadm,
-    date = weekendingdate,
-    state = jurisdiction
-  ) |>
-  dplyr::mutate(
-    date = as.Date(date),
-    value = as.numeric(value),
-    state = stringr::str_replace(state, "USA", "US")
-  )
-
 if (get_target_data) {
+  # fetch all NHSN COVID-19 hospital admissions
+  covid_data <- forecasttools::pull_nhsn(
+    api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+    columns = c("totalconfc19newadm"),
+    start_date = first_full_weekending_date
+  ) |>
+    dplyr::rename(
+      value = totalconfc19newadm,
+      date = weekendingdate,
+      state = jurisdiction
+    ) |>
+    dplyr::mutate(
+      date = as.Date(date),
+      value = as.numeric(value),
+      state = stringr::str_replace(state, "USA", "US")
+    )
   loc_df <- readr::read_csv(
       "target-data/locations.csv", 
       show_col_types = FALSE)
@@ -127,6 +126,25 @@ if (get_target_data) {
 }
 
 if (get_viz_data) {
+  # fetch all NHSN COVID-19 hospital admissions
+  covid_data <- forecasttools::pull_nhsn(
+    api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+    columns = c("totalconfc19newadm"),
+  ) |>
+    dplyr::rename(
+      value = totalconfc19newadm,
+      date = weekendingdate,
+      state = jurisdiction
+    ) |>
+    dplyr::mutate(
+      date = as.Date(date),
+      value = as.numeric(value),
+      state = stringr::str_replace(
+        state, 
+        "USA", 
+        "US"
+      )
+    )
   inform_covid_truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state), 
