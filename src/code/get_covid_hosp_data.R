@@ -49,7 +49,7 @@ parser <- argparser::add_argument(
   "--get_viz_data", 
   type = "logical", 
   default = FALSE, 
-  help = "If TRUE, fetches inform data."
+  help = "If TRUE, fetches NHSN historical data."
 ) 
 parser <- argparser::add_argument(
   parser,
@@ -74,10 +74,10 @@ get_viz_data <- args$get_viz_data
 get_target_data <- args$get_target_data
 first_full_weekending_date <- args$first_full_weekending_date
 
-# ensure at least one of --get-inform-data 
+# ensure at least one of --get-viz-data 
 # or --get-target-data is used
 if (!get_viz_data && !get_target_data) {
-  stop("Error: At least one of --get-inform-data or --get-target-data must be specified.")
+  stop("Error: At least one of --get-viz-data or --get-target-data must be specified.")
 }
 
 # gather locations to exclude such that the 
