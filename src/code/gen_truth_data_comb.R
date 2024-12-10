@@ -27,37 +27,39 @@
 #' To get target COVID-19 hospital admissions data:
 #' Rscript gen_truth_data_comb.R --get-target-data --reference_date 2024-11-23 --base_hub_path ../../
 
-argparse::ArgumentParser(
-    description = "Fetch and process COVID-19 hospital admissions data.") |>
-  add_argument(
-    "--reference_date", 
-    type = "character", 
-    help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
-  ) |>
-  add_argument(
-    "--base_hub_path", 
-    type = "character", 
-    help = "Path to the COVID-19 forecast hub directory."
-  )
-  add_argument(
-    "--get-inform-data", 
-    type = "logical", 
-    default = FALSE, 
-    help = "If TRUE, fetches inform data."
-  ) |>
-  add_argument(
-    "--get-target-data", 
-    type = "logical", 
-    default = FALSE, 
-    help = "If TRUE, fetches target data."
-  )
-  parser <- argparser::add_argument(
-    parser,
-    "--first_full_weekending_date",
-    help = "Filter data by week ending date",
-    type = "character",
-    default = "2024-11-09"
-    )
+
+# set up command line argument parser
+parser <- argparse::ArgumentParser(
+  description = "Fetch and process COVID-19 hospital admissions data.") |>
+parser$add_argument(
+  "--reference_date", 
+  type = "character", 
+  help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
+) 
+parser$add_argument(
+  "--base_hub_path", 
+  type = "character", 
+  help = "Path to the COVID-19 forecast hub directory."
+)
+parser$add_argument(
+  "--get-inform-data", 
+  type = "logical", 
+  default = FALSE, 
+  help = "If TRUE, fetches inform data."
+) 
+parser$add_argument(
+  "--get-target-data", 
+  type = "logical", 
+  default = FALSE, 
+  help = "If TRUE, fetches target data."
+)
+parser$add_argument(
+  parser,
+  "--first_full_weekending_date",
+  help = "Filter data by week ending date",
+  type = "character",
+  default = "2024-11-09"
+)
 
 args <- parser$parse_args()
 reference_date <- args$reference_date
