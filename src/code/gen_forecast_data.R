@@ -150,7 +150,7 @@ output_folder_path <- fs::path(
   "weekly-summaries",
   ref_date
 )
-output_filename <- paste0(ref_date, "_all-forecasts.csv")
+output_filename <- paste0(ref_date, "_forecasts_data.csv")
 output_filepath <- fs::path(output_folder_path, output_filename)
 
 # determine if the output folder exists,
