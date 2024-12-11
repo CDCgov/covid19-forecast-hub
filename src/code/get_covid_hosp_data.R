@@ -156,7 +156,7 @@ if (!target_data) {
     base_hub_path, "weekly-summaries", reference_date
   )
   output_filename <- paste0(
-    reference_date, "_target_hospital_admissions_data.csv"
+    reference_date, "_covid_target_hospital_admissions_data.csv"
   )
   output_filepath <- fs::path(output_folder_path, output_filename)
   # determine if the output folder exists,

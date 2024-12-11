@@ -234,7 +234,7 @@ map_data <- ensemble_data |>
 output_folder_path <- fs::path(
   base_hub_path, "weekly-summaries", ref_date
 )
-output_filename <- paste0(ref_date, "_map_data.csv")
+output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(
   output_folder_path, output_filename
 )
