@@ -1,25 +1,26 @@
 #' This script fetches observed COVID-19 hospital
-#' admissions data for all regions (including US, DC, and Puerto Rico) 
+#' admissions data for all regions (including US, DC, and Puerto Rico)
 #' The data is sourced from the NHSN hospital respiratory
 #' data: (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 #'
-#' The resulting csv file contains the 
+#' The resulting csv file contains the
 #' following columns:
-#' - `week_ending_date`: week ending date of 
-#' observed data per row (Ex: 2024-11-16) 
-#' - `location`: two-digit FIPS code 
-#' associated with each state (Ex: 06) 
-#' - `location_name`: full state name 
+#' - `week_ending_date`: week ending date of
+#' observed data per row (Ex: 2024-11-16)
+#' - `location`: two-digit FIPS code
+#' associated with each state (Ex: 06)
+#' - `location_name`: full state name
 #' (including "US" for the US state)
-#' - `value`: the number of hospital 
+#' - `value`: the number of hospital
 #' admissions (integer)
-#' 
-#' To get historical dataset for visualization:
-#' Rscript gen_truth_data_comb.R --target_data FALSE --reference_date 2024-11-23 --base_hub_path ../../
-#' 
-#' To get target COVID-19 hospital admissions data:
-#' Rscript gen_truth_data_comb.R  --target_data TRUE --reference_date 2024-11-23 --base_hub_path ../../
-
+#'
+#' To get the historical dataset for visualization:
+#' Rscript gen_truth_data_comb.R --target_data FALSE \
+#'   --reference_date 2024-11-23 --base_hub_path ../../
+#'
+#' To get the target COVID-19 hospital admissions data:
+#' Rscript gen_truth_data_comb.R --target_data TRUE \
+#'   --reference_date 2024-11-23 --base_hub_path ../../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -27,22 +28,22 @@ parser <- argparser::arg_parser(
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date", 
-  type = "character", 
+  "--reference_date",
+  type = "character",
   help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
-) 
+)
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path", 
-  type = "character", 
+  "--base_hub_path",
+  type = "character",
   help = "Path to the COVID-19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--target_data", 
+  "--target_data",
   type = "logical",
   help = "If FALSE, fetches NHSN historical data. IF TRUE, gets target data."
-) 
+)
 parser <- argparser::add_argument(
   parser,
   "--first_full_weekending_date",
@@ -55,16 +56,17 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
-target_data  <- args$target_data 
+target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
 
-# gather locations to exclude such that the 
-# only territories are the 50 US states, DC, 
+# gather locations to exclude such that the
+# only territories are the 50 US states, DC,
 # and PR
 exclude_data_path <- fs::path(
-  base_hub_path, 
-  "auxiliary-data", 
-  "excluded_territories.json")
+  base_hub_path,
+  "auxiliary-data",
+  "excluded_territories.json"
+)
 if (!fs::file_exists(exclude_data_path)) {
   stop("Exclude locations file not found: ", exclude_data_path)
 }
@@ -90,8 +92,9 @@ if (target_data) {
       state = stringr::str_replace(state, "USA", "US")
     )
   loc_df <- readr::read_csv(
-      "target-data/locations.csv", 
-      show_col_types = FALSE)
+    "target-data/locations.csv",
+    show_col_types = FALSE
+  )
   formatted_data <- covid_data |>
     dplyr::left_join(loc_df, by = c("state" = "abbreviation")) |>
     dplyr::filter(!(location %in% excluded_locations)) |>
@@ -118,8 +121,8 @@ if (!target_data) {
       date = as.Date(date),
       value = as.numeric(value),
       state = stringr::str_replace(
-        state, 
-        "USA", 
+        state,
+        "USA",
         "US"
       )
     )
@@ -149,14 +152,16 @@ if (!target_data) {
       value
     )
   # output folder and file paths for Truth Data
-  output_folder_path <- fs::path(base_hub_path, "weekly-summaries", reference_date)
+  output_folder_path <- fs::path(
+    base_hub_path, "weekly-summaries", reference_date
+  )
   output_filename <- paste0(reference_date, "_truth-data.csv")
   output_filepath <- fs::path(output_folder_path, output_filename)
-  # determine if the output folder exists, 
+  # determine if the output folder exists,
   # create it if not
   fs::dir_create(output_folder_path)
   message("Directory is ready: ", output_folder_path)
-  # check if the file exists, and if not, 
+  # check if the file exists, and if not,
   # save to csv, else throw an error
   if (!fs::file_exists(output_filepath)) {
     readr::write_csv(truth_data, output_filepath)
