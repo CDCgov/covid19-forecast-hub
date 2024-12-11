@@ -43,26 +43,16 @@ current_forecasts <- hub_content |>
   ) |>
   hubData::collect_hub()
 
-list_model_current <- unique(current_forecasts$model_id)
-list_model_metadata <- hubData::load_model_metadata(
+list_model_id_current <- unique(current_forecasts$model_id)
+weekly_models <- hubData::load_model_metadata(
   hub_path,
-  model_ids = NULL
+  model_ids = list_model_id_current
 ) |>
-  dplyr::select(c("model_id", "designated_model")) |>
-  dplyr::distinct()
-
-eligible_models <- do.call(
-  rbind, lapply(list_model_current, function(model_id) {
-    metadata <- list_model_metadata[list_model_metadata$model_id == model_id, ]
-    data.frame(
-      Model = model_id,
-      Designated_Model = metadata$designated_model
-    )
-  })
-)
+  dplyr::distinct(.data$model_id, .data$designated_model) |>
+  dplyr::select(Model = "model_id", Designated_Model = "designated_model")
 
 write.csv(
-  eligible_models,
+  weekly_models,
   file.path(
     "auxiliary-data",
     paste0(
@@ -72,6 +62,7 @@ write.csv(
   row.names = FALSE
 )
 
+eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
 models <- eligible_models$Model
 # filter excluded locations
 exclude_territory_data <- jsonlite::fromJSON(
