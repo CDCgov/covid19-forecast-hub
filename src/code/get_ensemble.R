@@ -65,10 +65,16 @@ write.csv(
 eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
 models <- eligible_models$Model
 # filter excluded locations
-exclude_territory_data <- jsonlite::fromJSON(
-  "auxiliary-data/excluded_territories.json"
+exclude_territories_path <- fs::path(
+  "auxiliary-data",
+  "excluded_territories.toml"
 )
-excluded_locations <- exclude_territory_data$locations
+if (fs::file_exists(exclude_territories_path)) {
+  exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+  excluded_locations <- exclude_territories_toml$locations
+} else {
+  stop("TOML file not found: ", exclude_territories_path)
+}
 current_forecasts <- current_forecasts |>
   dplyr::filter(model_id %in% models, !(location %in% excluded_locations))
 
