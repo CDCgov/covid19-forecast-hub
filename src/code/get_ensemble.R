@@ -56,7 +56,7 @@ write.csv(
   file.path(
     "auxiliary-data",
     paste0(
-      as.character(reference_date), "-", "models-to-include-in-ensemble.csv"
+      as.character(reference_date), "-", "models-submitted-to-hub.csv"
     )
   ),
   row.names = FALSE
