@@ -8,7 +8,7 @@ on:
 jobs:
   update-target-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
