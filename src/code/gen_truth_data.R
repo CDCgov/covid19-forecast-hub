@@ -25,8 +25,6 @@
 #' Rscript gen_truth_data.R --reference_date 2024-11-23
 #' --base_hub_path ../../
 
-
-
 # set up command line argument parser
 parser <- argparse::ArgumentParser(
   description = "Save Truth Data as CSV."
