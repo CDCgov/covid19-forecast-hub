@@ -1,12 +1,5 @@
-#' Generate the Truth Data file containing 
-#' the most recent observed NHSN hospital 
-#' admissions data.
-#'
-#' This script fetches the most recent 
-#' observed COVID-19 hospital
-#' admissions data for all regions 
-#' (including US, DC, and Puerto Rico) 
-#' and processes it into the required format. 
+#' This script fetches observed COVID-19 hospital
+#' admissions data for all regions (including US, DC, and Puerto Rico) 
 #' The data is sourced from the NHSN hospital respiratory
 #' data: (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 #'
