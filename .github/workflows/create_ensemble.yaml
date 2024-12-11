@@ -39,7 +39,7 @@ jobs:
       run: |
         TODAY=$(date +'%Y-%m-%d')
         REF_DATE=$(date -d "$TODAY + 2 days" +'%Y-%m-%d') 
-        Rscript src/code/get_ensemble.R --reference-date "$REF_DATE"
+        Rscript src/get_ensemble.R --reference-date "$REF_DATE"
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
