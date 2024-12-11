@@ -8,7 +8,7 @@ on:
 jobs:
   update-target-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -30,13 +30,13 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "readr", "dplyr", "jsonlite", "remotes"))
+        install.packages(c("argparser", "fs", "readr", "dplyr", "jsonlite", "stringr", "remotes"))
         remotes::install_github('cdcgov/forecasttools')
       shell: Rscript {0}
     
     - name: get updated target data
       run: |
-        Rscript src/code/get_target_data.R
+        Rscript src/code/get_covid_hosp_data.R --target_data TRUE --base_hub_path "."
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
