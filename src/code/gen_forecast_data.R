@@ -141,7 +141,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.75_rounded,
     quantile_0.975_rounded,
     forecast_team = team_name,
-    forecast_fullnames = model_name
+    model_full_name = model_name
   )
 
 # output folder and file paths for All Forecasts
