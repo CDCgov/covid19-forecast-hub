@@ -43,36 +43,26 @@ current_forecasts <- hub_content |>
   ) |>
   hubData::collect_hub()
 
-yml_files <- list.files(paste0(hub_path, "/model-metadata"),
-  pattern = "\\.ya?ml$", full.names = TRUE
-)
-
-# Read model metadata and extract designated models
-is_model_designated <- function(yaml_file) {
-  yml_data <- yaml::yaml.load_file(yaml_file)
-  team_and_model <- glue::glue("{yml_data$team_abbr}-{yml_data$model_abbr}")
-  is_designated <- ifelse("designated_model" %in% names(yml_data),
-    as.logical(yml_data$designated_model),
-    FALSE
-  )
-  return(list(Model = team_and_model, Designated_Model = is_designated))
-}
-
-eligible_models <- purrr::map(yml_files, is_model_designated) |>
-  dplyr::bind_rows() |>
-  dplyr::filter(Designated_Model)
+list_model_id_current <- unique(current_forecasts$model_id)
+weekly_models <- hubData::load_model_metadata(
+  hub_path,
+  model_ids = list_model_id_current
+) |>
+  dplyr::distinct(.data$model_id, .data$designated_model) |>
+  dplyr::select(Model = "model_id", Designated_Model = "designated_model")
 
 write.csv(
-  eligible_models,
+  weekly_models,
   file.path(
     "auxiliary-data",
     paste0(
-      as.character(reference_date), "-", "models-to-include-in-ensemble.csv"
+      as.character(reference_date), "-", "models-submitted-to-hub.csv"
     )
   ),
   row.names = FALSE
 )
 
+eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
 models <- eligible_models$Model
 # filter excluded locations
 exclude_territory_data <- jsonlite::fromJSON(
