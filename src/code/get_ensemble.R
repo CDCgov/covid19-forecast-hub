@@ -83,7 +83,7 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 current_forecasts <- current_forecasts |>
-  dplyr::filter(model_id %in% models, !(location %in% excluded_locations))
+  dplyr::filter(model_id %in% models)
 
 # QUANTILE ENSEMBLE
 quantile_forecasts <- current_forecasts |>
