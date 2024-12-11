@@ -7,6 +7,12 @@ parser <- argparser::add_argument(
   parser, "--reference-date",
   help = "reference date in YYYY-MM-DD format"
 )
+parser <- argparser::add_argument(
+  parser,
+  "--base_hub_path",
+  type = "character",
+  help = "Path to the Covid19 forecast hub directory."
+)
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
@@ -66,6 +72,7 @@ eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
 models <- eligible_models$Model
 # filter excluded locations
 exclude_territories_path <- fs::path(
+  base_hub_path,
   "auxiliary-data",
   "excluded_territories.toml"
 )
