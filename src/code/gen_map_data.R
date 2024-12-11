@@ -206,11 +206,12 @@ map_data <- ensemble_data |>
     quantile_0.5_count_rounded = round(quantile_0.5_count),
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
-    reference_date_formatted = format(reference_date, "%B %d, %Y")
+    reference_date_formatted = format(reference_date, "%B %d, %Y"),
+    forecast_due_date = as.Date(ref_date) - 3,
+    forecast_due_date_formatted = format(forecast_due_date, "%B %d, %Y"),
   ) |>
   dplyr::select(
     location_name = location,
-    model,
     quantile_0.025_per100k,
     quantile_0.5_per100k,
     quantile_0.975_per100k,
@@ -226,8 +227,11 @@ map_data <- ensemble_data |>
     target,
     target_end_date,
     reference_date,
+    forecast_due_date,
     target_end_date_formatted,
-    reference_date_formatted
+    forecast_due_date_formatted,
+    reference_date_formatted,
+    model,
   )
 
 # output folder and file paths for Map Data

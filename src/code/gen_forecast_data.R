@@ -112,7 +112,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       dplyr::starts_with("quantile_"),
       round,
       .names = "{.col}_rounded"
-    )
+    ),
+    forecast_due_date = as.Date(ref_date) - 3,
   ) |>
   dplyr::left_join(
     dplyr::distinct(
@@ -141,6 +142,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.75_rounded,
     quantile_0.975_rounded,
     forecast_team = team_name,
+    forecast_due_date,
     model_full_name = model_name
   )
 
