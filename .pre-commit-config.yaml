@@ -1,7 +1,7 @@
 ################################################################################
 # OVERVIEW
 ################################################################################
-# Only check files in ./src/code
+# Only check files in ./src
 #
 # Links:
 #
@@ -17,17 +17,17 @@ repos:
     # attempts to load all TOML files to
     # verify syntax.
     -   id: check-toml
-        files: ^src/code/
+        files: ^src/
     # makes sure files end in a newline and
     # only a newline.
     -   id: end-of-file-fixer
-        files: ^src/code/
+        files: ^src/
     # replaces or checks mixed line ending.
     -   id: mixed-line-ending
-        files: ^src/code/
+        files: ^src/
     # trims trailing whitespace.
     -   id: trailing-whitespace
-        files: ^src/code/
+        files: ^src/
 ################################################################################
 # R
 ################################################################################
@@ -38,11 +38,11 @@ repos:
         args: [--style_pkg=styler, --style_fun=tidyverse_style,
                --cache-root=styler-perm]
     -   id: lintr
-        files: ^src/code/
+        files: ^src/
     -   id: parsable-R
-        files: ^src/code/
+        files: ^src/
     -   id: no-print-statement
-        files: ^src/code/
+        files: ^src/
     -   id: no-debug-statement
-        files: ^src/code/
+        files: ^src/
 ################################################################################
