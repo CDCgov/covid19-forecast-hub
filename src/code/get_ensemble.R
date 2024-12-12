@@ -7,6 +7,12 @@ parser <- argparser::add_argument(
   parser, "--reference-date",
   help = "reference date in YYYY-MM-DD format"
 )
+parser <- argparser::add_argument(
+  parser,
+  "--base_hub_path",
+  type = "character",
+  help = "Path to the Covid19 forecast hub directory."
+)
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
@@ -64,13 +70,8 @@ write.csv(
 
 eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
 models <- eligible_models$Model
-# filter excluded locations
-exclude_territory_data <- jsonlite::fromJSON(
-  "auxiliary-data/excluded_territories.json"
-)
-excluded_locations <- exclude_territory_data$locations
 current_forecasts <- current_forecasts |>
-  dplyr::filter(model_id %in% models, !(location %in% excluded_locations))
+  dplyr::filter(model_id %in% models)
 
 # QUANTILE ENSEMBLE
 quantile_forecasts <- current_forecasts |>
