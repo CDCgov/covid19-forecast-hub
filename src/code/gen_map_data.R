@@ -150,16 +150,23 @@ if (fs::file_exists(exclude_data_path_toml)) {
 }
 
 
+# save ensemble name (using value suggested by MB)
+model_name <- "CovidHub-ensemble"
+
 # process ensemble data into the required
 # format for Map file
 map_data <- ensemble_data |>
+  # filter out horizon 3 columns at behest
+  # of Inform+Flu Division
+  dplyr::filter(horizon != 3) |>
   # filter out excluded locations if the
   # ref date is the first week in season
   dplyr::filter(!(location %in% excluded_locations)) |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
-    value = as.numeric(value)
+    value = as.numeric(value),
+    model = model_name
   ) |>
   # convert location column codes to full
   # location names
@@ -185,8 +192,6 @@ map_data <- ensemble_data |>
   ) |>
   # add quantile columns for per-100k rates
   # and rounded values
-  # add quantile columns for per-100k rates
-  # and rounded values
   dplyr::mutate(
     quantile_0.025_per100k = value / as.numeric(population) * 100000,
     quantile_0.5_per100k = value / as.numeric(population) * 100000,
@@ -201,10 +206,12 @@ map_data <- ensemble_data |>
     quantile_0.5_count_rounded = round(quantile_0.5_count),
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
-    reference_date_formatted = format(reference_date, "%B %d, %Y")
+    reference_date_formatted = format(reference_date, "%B %d, %Y"),
+    forecast_due_date = as.Date(ref_date) - 3,
+    forecast_due_date_formatted = format(forecast_due_date, "%B %d, %Y"),
   ) |>
   dplyr::select(
-    location_name = location, # rename location col
+    location_name = location,
     quantile_0.025_per100k,
     quantile_0.5_per100k,
     quantile_0.975_per100k,
@@ -220,15 +227,18 @@ map_data <- ensemble_data |>
     target,
     target_end_date,
     reference_date,
+    forecast_due_date,
     target_end_date_formatted,
-    reference_date_formatted
+    forecast_due_date_formatted,
+    reference_date_formatted,
+    model,
   )
 
 # output folder and file paths for Map Data
 output_folder_path <- fs::path(
   base_hub_path, "weekly-summaries", ref_date
 )
-output_filename <- paste0(ref_date, "_map-data.csv")
+output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(
   output_folder_path, output_filename
 )

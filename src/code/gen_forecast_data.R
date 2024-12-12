@@ -94,6 +94,9 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "quantile_0.975" = 0.975
   )
 ) |>
+  # filter out horizon 3 columns at behest
+  # of Inform+Flu Division
+  dplyr::filter(horizon != 3) |>
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
@@ -109,7 +112,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       dplyr::starts_with("quantile_"),
       round,
       .names = "{.col}_rounded"
-    )
+    ),
+    forecast_due_date = as.Date(ref_date) - 3,
   ) |>
   dplyr::left_join(
     dplyr::distinct(
@@ -138,7 +142,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.75_rounded,
     quantile_0.975_rounded,
     forecast_team = team_name,
-    forecast_fullnames = model_name
+    forecast_due_date,
+    model_full_name = model_name
   )
 
 # output folder and file paths for All Forecasts
@@ -147,7 +152,7 @@ output_folder_path <- fs::path(
   "weekly-summaries",
   ref_date
 )
-output_filename <- paste0(ref_date, "_all-forecasts.csv")
+output_filename <- paste0(ref_date, "_covid_forecasts_data.csv")
 output_filepath <- fs::path(output_folder_path, output_filename)
 
 # determine if the output folder exists,
