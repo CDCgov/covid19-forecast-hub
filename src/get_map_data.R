@@ -43,8 +43,9 @@
 #' as a string (Ex: "November 23, 2024")
 #'
 #' To run:
-#' Rscript gen_map_data.R --reference_date 2024-11-23
-#' --base_hub_path ../../
+#' Rscript get_map_data.R --reference_date 2024-11-23
+#' --base_hub_path ../
+
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
