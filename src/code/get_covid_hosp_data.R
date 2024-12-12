@@ -62,16 +62,17 @@ first_full_weekending_date <- args$first_full_weekending_date
 # gather locations to exclude such that the
 # only territories are the 50 US states, DC,
 # and PR
-exclude_data_path <- fs::path(
+exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
-  "excluded_territories.json"
+  "excluded_territories.toml"
 )
-if (!fs::file_exists(exclude_data_path)) {
-  stop("Exclude locations file not found: ", exclude_data_path)
+if (fs::file_exists(exclude_territories_path)) {
+  exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+  excluded_locations <- exclude_territories_toml$locations
+} else {
+  stop("TOML file not found: ", exclude_territories_path)
 }
-exclude_data <- jsonlite::fromJSON(exclude_data_path)
-excluded_locations <- exclude_data$locations
 
 
 if (target_data) {
