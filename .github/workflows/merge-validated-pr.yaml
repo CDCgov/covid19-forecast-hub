@@ -11,8 +11,8 @@ on:
       - '!model-output/CovidHub-baseline/**'
       
 jobs:
-  validate-user-and-merge:
-    runs-on: ubuntu-latest
+  validate-user-and-approve:
+    runs-on: ubuntu-22.04
     permissions: 
       contents: write
       pull-requests: write
@@ -63,6 +63,8 @@ jobs:
       - name: Approve PR if changes made by authorized user
         run: |
           readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
+
+          is_authorized=false
           
           for line in "${lines_arr[@]}"; do
             read -r dir user_list <<< $line
@@ -72,6 +74,11 @@ jobs:
               if [[ "$file" == "$dir" ]]; then
                 is_authorized=false
 
+                if [[ "$user_array" == "NA" ]]; then
+                  echo "Changes found within `$dir/`, but no authorized users found for '$dir/'. Will not attempt auto-approval of changes. Consider adding one or more authorized users to allow auto-approval in the future."
+                  exit 0
+                fi                  
+
                 for user in "${user_array[@]}"; do
                   if [[ "${{ github.actor }}" == "$user" ]]; then
                     is_authorized=true
@@ -79,18 +86,22 @@ jobs:
                   fi
                 done
 
-                if [[ "$is_authorized" == true ]]; then
-                  gh pr review --approve "${{ github.event.pull_request.html_url }}"
-                  exit 0
-                else
+                if [[ "$is_authorized" != true ]]; then
                   echo "Error: Only following users are allowed to change files in '$dir/': ${user_array[*]}"
                   exit 1
-                fi
+                fi 
 
-              fi
-            done
+              fi # end if "$file" == "$dir"
+            done # end loop over files
             
-          done
+          done # end loop over models
+
+          # only approve PR if all changes were authorized.
+          if [[ "$is_authorized" == true ]]; then
+            gh pr review --approve "${{ github.event.pull_request.html_url }}"
+            exit 0
+          fi
+
         env:
           GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
 
