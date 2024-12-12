@@ -27,22 +27,24 @@
 
 
 # set up command line argument parser
-parser <- argparse::ArgumentParser(
-  description = "Save Truth Data as CSV."
+parser <- argparser::arg_parser(
+  "Save Forecast Data as CSV."
 )
-parser$add_argument(
+parser <- argparser::add_argument(
+  parser,
   "--reference_date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
-parser$add_argument(
+parser <- argparser::add_argument(
+  parser,
   "--base_hub_path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 
 # read CLAs; get reference date and paths
-args <- parser$parse_args()
+args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 
