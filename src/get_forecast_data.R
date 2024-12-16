@@ -22,8 +22,8 @@
 #' - `forecast_fullnames`: full model name
 #'
 #' To run:
-#' Rscript gen_forecast_data.R --reference_date 2024-11-23
-#' --base_hub_path ../../
+#' Rscript get_forecast_data.R --reference_date 2024-11-23
+#' --base_hub_path ../
 
 
 # set up command line argument parser

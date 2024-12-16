@@ -8,7 +8,7 @@ on:
 jobs:
   update-users-list:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
     - name: Get Token
       id: get_workflow_token
@@ -33,7 +33,7 @@ jobs:
     
     - name: generate users list
       run: |
-        Rscript src/code/get_authorized_users.R
+        Rscript src/get_authorized_users.R
 
     - name: Check for Changes
       id: check_diff

@@ -5,7 +5,8 @@ CovidHub-ensemble NA
 JHU_CSSE-CSSE_Ensemble Shawn-Tsui
 Metaculus-cp nikosbosse
 MOBS-GLEAM_COVID jessica-davis
+NEU_ISI-AdaptiveEnsemble sfiandrino
 OHT_JHU-nbxd atulchin, eklein-cddep
-UM-DeepOutbreak NA
+UM-DeepOutbreak potnissa
 UMass-ar6_pooled elray1
 UMass-gbqr elray1
