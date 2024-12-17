@@ -1,4 +1,4 @@
-# Inform Division Forecast Visualization Data
+# Forecast Visualization Data
 
 The following data
 
@@ -15,6 +15,7 @@ _Contains data from the ensemble COVID or flu forecast for all states (including
 
 
 * `location_name` (string): state name column. Includes US (Ex: Alabama)
+* `model` (string): the ensemble model name (Ex: CovidHub-ensemble)
 * `quantile_0.025_per100k` (numeric): 0.025 quantile forecast value as a rate per 100k (Ex: 1.12777351608532) 
 * `quantile_0.5_per100k` (numeric) 0.5 quantile forecast value as a rate per 100k 
 * `quantile_0.975_per100k` (numeric) 0.975 quantile forecast value as a rate per 100k 
@@ -33,12 +34,9 @@ _Contains data from the ensemble COVID or flu forecast for all states (including
 * `target_end_date_formatted` (string): target date for the forecast, prettily re-formatted as a string (Ex: “November 30, 2024”)
 * `reference_date_formatted` (string): date that the forecast was generated, prettily re-formatted as a string (Ex: “November 23, 2024”)
 
- 
-
 __Timeseries Component__ (`all_forecasts.csv`):
 
 _Contains all the available COVID or flu models submitted in a given week for all states (including US, DC and Puerto Rico)._
-
 
 * `location_name` (string): full state name for the forecast` (note: US is not spelled out) (Ex: Alabama, US) 
 * `abbreviation` (string): abbreviated state name (Ex: AL) 
@@ -61,7 +59,7 @@ _Contains all the available COVID or flu models submitted in a given week for al
 
 __Truth Data__ (`truth_data.csv`) 
 
-_Contains the most recent observed COVID or flu hospitalization data for all states (including US, DC and Puerto Rico)._
+_Contains the most recent observed COVID or flu hospitalization data for all states (including US, DC and Puerto Rico) but not including the remainder of the territories._
 
 
 * `week_ending_date` (date): week ending date of observed data per row (Ex: 2024-11-16) 
