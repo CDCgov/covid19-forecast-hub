@@ -15,12 +15,12 @@
 #' admissions (integer)
 #'
 #' To get the historical dataset for visualization:
-#' Rscript gen_truth_data_comb.R --target_data FALSE \
-#'   --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript get_covid_hosp_data.R --target_data FALSE \
+#'   --reference_date 2024-11-23 --base_hub_path ../
 #'
 #' To get the target COVID-19 hospital admissions data:
-#' Rscript gen_truth_data_comb.R --target_data TRUE \
-#'   --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript get_covid_hosp_data.R --target_data TRUE \
+#'   --reference_date 2024-11-23 --base_hub_path ../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -156,7 +156,9 @@ if (!target_data) {
   output_folder_path <- fs::path(
     base_hub_path, "weekly-summaries", reference_date
   )
-  output_filename <- paste0(reference_date, "_truth-data.csv")
+  output_filename <- paste0(
+    reference_date, "_covid_target_hospital_admissions_data.csv"
+  )
   output_filepath <- fs::path(output_folder_path, output_filename)
   # determine if the output folder exists,
   # create it if not
