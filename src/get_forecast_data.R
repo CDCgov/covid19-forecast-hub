@@ -22,8 +22,7 @@
 #' - `forecast_fullnames`: full model name
 #'
 #' To run:
-#' Rscript get_forecast_data.R --reference_date 2024-11-23
-#' --base_hub_path ../
+#' Rscript get_forecast_data.R --reference_date 2024-11-23 --base_hub_path ../
 
 
 # set up command line argument parser
@@ -94,9 +93,9 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "quantile_0.975" = 0.975
   )
 ) |>
-  # filter out horizon 3 columns at behest
-  # of Inform+Flu Division
-  dplyr::filter(horizon != 3) |>
+  # filter out horizon 3 and -1 columns at
+  # behest of Inform+Flu Division
+  dplyr::filter(horizon != 3, horizon != -1) |>
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
