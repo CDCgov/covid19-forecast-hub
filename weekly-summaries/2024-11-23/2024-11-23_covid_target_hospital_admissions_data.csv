@@ -193,11 +193,39 @@ week_ending_date,location,location_name,value
 2024-04-06,02,Alaska,6
 2024-04-13,02,Alaska,7
 2024-04-20,02,Alaska,2
+2024-04-27,02,Alaska,8
+2024-05-04,02,Alaska,2
+2024-05-11,02,Alaska,4
+2024-05-18,02,Alaska,5
+2024-05-25,02,Alaska,5
+2024-06-01,02,Alaska,9
+2024-06-08,02,Alaska,11
+2024-06-15,02,Alaska,15
+2024-06-22,02,Alaska,15
+2024-06-29,02,Alaska,7
+2024-07-06,02,Alaska,5
+2024-07-13,02,Alaska,13
+2024-07-20,02,Alaska,14
+2024-07-27,02,Alaska,22
+2024-08-03,02,Alaska,18
+2024-08-10,02,Alaska,17
+2024-08-17,02,Alaska,14
+2024-08-24,02,Alaska,22
+2024-08-31,02,Alaska,14
+2024-09-07,02,Alaska,13
+2024-09-14,02,Alaska,18
+2024-09-21,02,Alaska,5
+2024-09-28,02,Alaska,9
+2024-10-05,02,Alaska,3
+2024-10-12,02,Alaska,5
+2024-10-19,02,Alaska,5
+2024-10-26,02,Alaska,6
 2024-11-02,02,Alaska,9
 2024-11-09,02,Alaska,13
 2024-11-16,02,Alaska,10
 2024-11-23,02,Alaska,8
 2024-11-30,02,Alaska,5
+2024-12-07,02,Alaska,16
 2020-08-08,01,Alabama,1767
 2020-08-15,01,Alabama,1803
 2020-08-22,01,Alabama,1930
@@ -392,11 +420,39 @@ week_ending_date,location,location_name,value
 2024-04-06,01,Alabama,192
 2024-04-13,01,Alabama,158
 2024-04-20,01,Alabama,142
+2024-04-27,01,Alabama,99
+2024-05-04,01,Alabama,63
+2024-05-11,01,Alabama,38
+2024-05-18,01,Alabama,11
+2024-05-25,01,Alabama,14
+2024-06-01,01,Alabama,0
+2024-06-08,01,Alabama,2
+2024-06-15,01,Alabama,2
+2024-06-22,01,Alabama,2
+2024-06-29,01,Alabama,3
+2024-07-06,01,Alabama,8
+2024-07-13,01,Alabama,13
+2024-07-20,01,Alabama,7
+2024-07-27,01,Alabama,12
+2024-08-03,01,Alabama,17
+2024-08-10,01,Alabama,26
+2024-08-17,01,Alabama,14
+2024-08-24,01,Alabama,6
+2024-08-31,01,Alabama,2
+2024-09-07,01,Alabama,4
+2024-09-14,01,Alabama,6
+2024-09-21,01,Alabama,5
+2024-09-28,01,Alabama,3
+2024-10-05,01,Alabama,9
+2024-10-12,01,Alabama,22
+2024-10-19,01,Alabama,21
+2024-10-26,01,Alabama,27
 2024-11-02,01,Alabama,47
-2024-11-09,01,Alabama,112
-2024-11-16,01,Alabama,81
+2024-11-09,01,Alabama,115
+2024-11-16,01,Alabama,83
 2024-11-23,01,Alabama,71
 2024-11-30,01,Alabama,91
+2024-12-07,01,Alabama,97
 2020-08-08,05,Arkansas,449
 2020-08-15,05,Arkansas,412
 2020-08-22,05,Arkansas,425
@@ -591,11 +647,39 @@ week_ending_date,location,location_name,value
 2024-04-06,05,Arkansas,83
 2024-04-13,05,Arkansas,64
 2024-04-20,05,Arkansas,56
+2024-04-27,05,Arkansas,53
+2024-05-04,05,Arkansas,26
+2024-05-11,05,Arkansas,10
+2024-05-18,05,Arkansas,10
+2024-05-25,05,Arkansas,28
+2024-06-01,05,Arkansas,8
+2024-06-08,05,Arkansas,20
+2024-06-15,05,Arkansas,20
+2024-06-22,05,Arkansas,28
+2024-06-29,05,Arkansas,31
+2024-07-06,05,Arkansas,44
+2024-07-13,05,Arkansas,58
+2024-07-20,05,Arkansas,52
+2024-07-27,05,Arkansas,65
+2024-08-03,05,Arkansas,76
+2024-08-10,05,Arkansas,114
+2024-08-17,05,Arkansas,110
+2024-08-24,05,Arkansas,139
+2024-08-31,05,Arkansas,116
+2024-09-07,05,Arkansas,116
+2024-09-14,05,Arkansas,103
+2024-09-21,05,Arkansas,73
+2024-09-28,05,Arkansas,83
+2024-10-05,05,Arkansas,23
+2024-10-12,05,Arkansas,1
+2024-10-19,05,Arkansas,12
+2024-10-26,05,Arkansas,20
 2024-11-02,05,Arkansas,35
-2024-11-09,05,Arkansas,59
-2024-11-16,05,Arkansas,41
+2024-11-09,05,Arkansas,61
+2024-11-16,05,Arkansas,46
 2024-11-23,05,Arkansas,52
-2024-11-30,05,Arkansas,49
+2024-11-30,05,Arkansas,57
+2024-12-07,05,Arkansas,50
 2020-08-08,04,Arizona,1658
 2020-08-15,04,Arizona,1473
 2020-08-22,04,Arizona,1292
@@ -790,11 +874,39 @@ week_ending_date,location,location_name,value
 2024-04-06,04,Arizona,146
 2024-04-13,04,Arizona,143
 2024-04-20,04,Arizona,101
+2024-04-27,04,Arizona,95
+2024-05-04,04,Arizona,109
+2024-05-11,04,Arizona,91
+2024-05-18,04,Arizona,77
+2024-05-25,04,Arizona,93
+2024-06-01,04,Arizona,90
+2024-06-08,04,Arizona,106
+2024-06-15,04,Arizona,130
+2024-06-22,04,Arizona,149
+2024-06-29,04,Arizona,192
+2024-07-06,04,Arizona,177
+2024-07-13,04,Arizona,190
+2024-07-20,04,Arizona,178
+2024-07-27,04,Arizona,180
+2024-08-03,04,Arizona,167
+2024-08-10,04,Arizona,213
+2024-08-17,04,Arizona,158
+2024-08-24,04,Arizona,165
+2024-08-31,04,Arizona,165
+2024-09-07,04,Arizona,139
+2024-09-14,04,Arizona,160
+2024-09-21,04,Arizona,157
+2024-09-28,04,Arizona,152
+2024-10-05,04,Arizona,93
+2024-10-12,04,Arizona,17
+2024-10-19,04,Arizona,33
+2024-10-26,04,Arizona,419
 2024-11-02,04,Arizona,450
-2024-11-09,04,Arizona,505
-2024-11-16,04,Arizona,666
+2024-11-09,04,Arizona,515
+2024-11-16,04,Arizona,674
 2024-11-23,04,Arizona,778
-2024-11-30,04,Arizona,743
+2024-11-30,04,Arizona,744
+2024-12-07,04,Arizona,829
 2020-08-08,06,California,4836
 2020-08-15,06,California,4273
 2020-08-22,06,California,3498
@@ -989,11 +1101,39 @@ week_ending_date,location,location_name,value
 2024-04-06,06,California,822
 2024-04-13,06,California,818
 2024-04-20,06,California,736
-2024-11-02,06,California,515
-2024-11-09,06,California,609
-2024-11-16,06,California,650
+2024-04-27,06,California,724
+2024-05-04,06,California,555
+2024-05-11,06,California,438
+2024-05-18,06,California,486
+2024-05-25,06,California,505
+2024-06-01,06,California,557
+2024-06-08,06,California,606
+2024-06-15,06,California,754
+2024-06-22,06,California,905
+2024-06-29,06,California,1036
+2024-07-06,06,California,1372
+2024-07-13,06,California,1536
+2024-07-20,06,California,1710
+2024-07-27,06,California,1885
+2024-08-03,06,California,1913
+2024-08-10,06,California,2021
+2024-08-17,06,California,2051
+2024-08-24,06,California,2096
+2024-08-31,06,California,1722
+2024-09-07,06,California,1662
+2024-09-14,06,California,1448
+2024-09-21,06,California,1144
+2024-09-28,06,California,1065
+2024-10-05,06,California,722
+2024-10-12,06,California,301
+2024-10-19,06,California,537
+2024-10-26,06,California,523
+2024-11-02,06,California,517
+2024-11-09,06,California,615
+2024-11-16,06,California,663
 2024-11-23,06,California,632
-2024-11-30,06,California,670
+2024-11-30,06,California,675
+2024-12-07,06,California,662
 2020-08-08,08,Colorado,316
 2020-08-15,08,Colorado,256
 2020-08-22,08,Colorado,147
@@ -1188,11 +1328,39 @@ week_ending_date,location,location_name,value
 2024-04-06,08,Colorado,97
 2024-04-13,08,Colorado,84
 2024-04-20,08,Colorado,68
+2024-04-27,08,Colorado,82
+2024-05-04,08,Colorado,40
+2024-05-11,08,Colorado,18
+2024-05-18,08,Colorado,21
+2024-05-25,08,Colorado,26
+2024-06-01,08,Colorado,27
+2024-06-08,08,Colorado,19
+2024-06-15,08,Colorado,20
+2024-06-22,08,Colorado,20
+2024-06-29,08,Colorado,29
+2024-07-06,08,Colorado,23
+2024-07-13,08,Colorado,33
+2024-07-20,08,Colorado,26
+2024-07-27,08,Colorado,75
+2024-08-03,08,Colorado,66
+2024-08-10,08,Colorado,87
+2024-08-17,08,Colorado,58
+2024-08-24,08,Colorado,22
+2024-08-31,08,Colorado,25
+2024-09-07,08,Colorado,56
+2024-09-14,08,Colorado,44
+2024-09-21,08,Colorado,40
+2024-09-28,08,Colorado,37
+2024-10-05,08,Colorado,30
+2024-10-12,08,Colorado,85
+2024-10-19,08,Colorado,30
+2024-10-26,08,Colorado,45
 2024-11-02,08,Colorado,67
-2024-11-09,08,Colorado,143
-2024-11-16,08,Colorado,162
-2024-11-23,08,Colorado,132
-2024-11-30,08,Colorado,144
+2024-11-09,08,Colorado,145
+2024-11-16,08,Colorado,163
+2024-11-23,08,Colorado,150
+2024-11-30,08,Colorado,169
+2024-12-07,08,Colorado,180
 2020-08-08,09,Connecticut,101
 2020-08-15,09,Connecticut,51
 2020-08-22,09,Connecticut,77
@@ -1387,11 +1555,39 @@ week_ending_date,location,location_name,value
 2024-04-06,09,Connecticut,89
 2024-04-13,09,Connecticut,59
 2024-04-20,09,Connecticut,55
+2024-04-27,09,Connecticut,44
+2024-05-04,09,Connecticut,60
+2024-05-11,09,Connecticut,69
+2024-05-18,09,Connecticut,48
+2024-05-25,09,Connecticut,66
+2024-06-01,09,Connecticut,86
+2024-06-08,09,Connecticut,74
+2024-06-15,09,Connecticut,72
+2024-06-22,09,Connecticut,72
+2024-06-29,09,Connecticut,72
+2024-07-06,09,Connecticut,116
+2024-07-13,09,Connecticut,136
+2024-07-20,09,Connecticut,155
+2024-07-27,09,Connecticut,155
+2024-08-03,09,Connecticut,158
+2024-08-10,09,Connecticut,199
+2024-08-17,09,Connecticut,216
+2024-08-24,09,Connecticut,211
+2024-08-31,09,Connecticut,208
+2024-09-07,09,Connecticut,162
+2024-09-14,09,Connecticut,195
+2024-09-21,09,Connecticut,228
+2024-09-28,09,Connecticut,172
+2024-10-05,09,Connecticut,183
+2024-10-12,09,Connecticut,0
+2024-10-19,09,Connecticut,109
+2024-10-26,09,Connecticut,102
 2024-11-02,09,Connecticut,102
-2024-11-09,09,Connecticut,79
-2024-11-16,09,Connecticut,68
+2024-11-09,09,Connecticut,82
+2024-11-16,09,Connecticut,70
 2024-11-23,09,Connecticut,79
 2024-11-30,09,Connecticut,68
+2024-12-07,09,Connecticut,93
 2020-08-08,11,District of Columbia,102
 2020-08-15,11,District of Columbia,104
 2020-08-22,11,District of Columbia,89
@@ -1586,11 +1782,39 @@ week_ending_date,location,location_name,value
 2024-04-06,11,District of Columbia,18
 2024-04-13,11,District of Columbia,25
 2024-04-20,11,District of Columbia,14
+2024-04-27,11,District of Columbia,10
+2024-05-04,11,District of Columbia,12
+2024-05-11,11,District of Columbia,9
+2024-05-18,11,District of Columbia,8
+2024-05-25,11,District of Columbia,9
+2024-06-01,11,District of Columbia,5
+2024-06-08,11,District of Columbia,8
+2024-06-15,11,District of Columbia,11
+2024-06-22,11,District of Columbia,9
+2024-06-29,11,District of Columbia,16
+2024-07-06,11,District of Columbia,31
+2024-07-13,11,District of Columbia,56
+2024-07-20,11,District of Columbia,52
+2024-07-27,11,District of Columbia,48
+2024-08-03,11,District of Columbia,59
+2024-08-10,11,District of Columbia,44
+2024-08-17,11,District of Columbia,49
+2024-08-24,11,District of Columbia,38
+2024-08-31,11,District of Columbia,44
+2024-09-07,11,District of Columbia,35
+2024-09-14,11,District of Columbia,46
+2024-09-21,11,District of Columbia,31
+2024-09-28,11,District of Columbia,27
+2024-10-05,11,District of Columbia,15
+2024-10-12,11,District of Columbia,0
+2024-10-19,11,District of Columbia,0
+2024-10-26,11,District of Columbia,0
 2024-11-02,11,District of Columbia,5
-2024-11-09,11,District of Columbia,8
+2024-11-09,11,District of Columbia,11
 2024-11-16,11,District of Columbia,17
 2024-11-23,11,District of Columbia,24
-2024-11-30,11,District of Columbia,10
+2024-11-30,11,District of Columbia,11
+2024-12-07,11,District of Columbia,14
 2020-08-08,10,Delaware,7
 2020-08-15,10,Delaware,30
 2020-08-22,10,Delaware,47
@@ -1785,11 +2009,39 @@ week_ending_date,location,location_name,value
 2024-04-06,10,Delaware,25
 2024-04-13,10,Delaware,34
 2024-04-20,10,Delaware,20
+2024-04-27,10,Delaware,25
+2024-05-04,10,Delaware,26
+2024-05-11,10,Delaware,15
+2024-05-18,10,Delaware,17
+2024-05-25,10,Delaware,12
+2024-06-01,10,Delaware,12
+2024-06-08,10,Delaware,16
+2024-06-15,10,Delaware,14
+2024-06-22,10,Delaware,18
+2024-06-29,10,Delaware,21
+2024-07-06,10,Delaware,26
+2024-07-13,10,Delaware,41
+2024-07-20,10,Delaware,41
+2024-07-27,10,Delaware,53
+2024-08-03,10,Delaware,49
+2024-08-10,10,Delaware,62
+2024-08-17,10,Delaware,70
+2024-08-24,10,Delaware,58
+2024-08-31,10,Delaware,72
+2024-09-07,10,Delaware,57
+2024-09-14,10,Delaware,53
+2024-09-21,10,Delaware,58
+2024-09-28,10,Delaware,57
+2024-10-05,10,Delaware,59
+2024-10-12,10,Delaware,7
+2024-10-19,10,Delaware,13
+2024-10-26,10,Delaware,8
 2024-11-02,10,Delaware,10
-2024-11-09,10,Delaware,19
+2024-11-09,10,Delaware,20
 2024-11-16,10,Delaware,18
 2024-11-23,10,Delaware,20
 2024-11-30,10,Delaware,26
+2024-12-07,10,Delaware,24
 2020-08-08,12,Florida,6733
 2020-08-15,12,Florida,5817
 2020-08-22,12,Florida,5040
@@ -1984,11 +2236,39 @@ week_ending_date,location,location_name,value
 2024-04-06,12,Florida,577
 2024-04-13,12,Florida,473
 2024-04-20,12,Florida,420
-2024-11-02,12,Florida,122
-2024-11-09,12,Florida,401
-2024-11-16,12,Florida,318
-2024-11-23,12,Florida,253
-2024-11-30,12,Florida,218
+2024-04-27,12,Florida,428
+2024-05-04,12,Florida,312
+2024-05-11,12,Florida,161
+2024-05-18,12,Florida,196
+2024-05-25,12,Florida,202
+2024-06-01,12,Florida,252
+2024-06-08,12,Florida,283
+2024-06-15,12,Florida,325
+2024-06-22,12,Florida,487
+2024-06-29,12,Florida,561
+2024-07-06,12,Florida,717
+2024-07-13,12,Florida,830
+2024-07-20,12,Florida,999
+2024-07-27,12,Florida,994
+2024-08-03,12,Florida,950
+2024-08-10,12,Florida,826
+2024-08-17,12,Florida,762
+2024-08-24,12,Florida,588
+2024-08-31,12,Florida,516
+2024-09-07,12,Florida,526
+2024-09-14,12,Florida,422
+2024-09-21,12,Florida,357
+2024-09-28,12,Florida,283
+2024-10-05,12,Florida,240
+2024-10-12,12,Florida,12
+2024-10-19,12,Florida,146
+2024-10-26,12,Florida,99
+2024-11-02,12,Florida,129
+2024-11-09,12,Florida,419
+2024-11-16,12,Florida,332
+2024-11-23,12,Florida,257
+2024-11-30,12,Florida,257
+2024-12-07,12,Florida,266
 2020-08-08,13,Georgia,1316
 2020-08-15,13,Georgia,1548
 2020-08-22,13,Georgia,2427
@@ -2183,11 +2463,39 @@ week_ending_date,location,location_name,value
 2024-04-06,13,Georgia,312
 2024-04-13,13,Georgia,243
 2024-04-20,13,Georgia,209
+2024-04-27,13,Georgia,172
+2024-05-04,13,Georgia,117
+2024-05-11,13,Georgia,35
+2024-05-18,13,Georgia,31
+2024-05-25,13,Georgia,18
+2024-06-01,13,Georgia,21
+2024-06-08,13,Georgia,25
+2024-06-15,13,Georgia,18
+2024-06-22,13,Georgia,30
+2024-06-29,13,Georgia,42
+2024-07-06,13,Georgia,48
+2024-07-13,13,Georgia,69
+2024-07-20,13,Georgia,97
+2024-07-27,13,Georgia,122
+2024-08-03,13,Georgia,135
+2024-08-10,13,Georgia,148
+2024-08-17,13,Georgia,173
+2024-08-24,13,Georgia,192
+2024-08-31,13,Georgia,172
+2024-09-07,13,Georgia,107
+2024-09-14,13,Georgia,80
+2024-09-21,13,Georgia,57
+2024-09-28,13,Georgia,50
+2024-10-05,13,Georgia,53
+2024-10-12,13,Georgia,12
+2024-10-19,13,Georgia,31
+2024-10-26,13,Georgia,46
 2024-11-02,13,Georgia,52
-2024-11-09,13,Georgia,86
-2024-11-16,13,Georgia,79
+2024-11-09,13,Georgia,89
+2024-11-16,13,Georgia,80
 2024-11-23,13,Georgia,76
-2024-11-30,13,Georgia,82
+2024-11-30,13,Georgia,84
+2024-12-07,13,Georgia,104
 2020-08-08,15,Hawaii,218
 2020-08-15,15,Hawaii,268
 2020-08-22,15,Hawaii,918
@@ -2382,11 +2690,39 @@ week_ending_date,location,location_name,value
 2024-04-06,15,Hawaii,52
 2024-04-13,15,Hawaii,57
 2024-04-20,15,Hawaii,57
+2024-04-27,15,Hawaii,41
+2024-05-04,15,Hawaii,15
+2024-05-11,15,Hawaii,13
+2024-05-18,15,Hawaii,15
+2024-05-25,15,Hawaii,24
+2024-06-01,15,Hawaii,30
+2024-06-08,15,Hawaii,34
+2024-06-15,15,Hawaii,54
+2024-06-22,15,Hawaii,47
+2024-06-29,15,Hawaii,34
+2024-07-06,15,Hawaii,45
+2024-07-13,15,Hawaii,38
+2024-07-20,15,Hawaii,35
+2024-07-27,15,Hawaii,30
+2024-08-03,15,Hawaii,28
+2024-08-10,15,Hawaii,22
+2024-08-17,15,Hawaii,33
+2024-08-24,15,Hawaii,25
+2024-08-31,15,Hawaii,18
+2024-09-07,15,Hawaii,20
+2024-09-14,15,Hawaii,20
+2024-09-21,15,Hawaii,15
+2024-09-28,15,Hawaii,9
+2024-10-05,15,Hawaii,2
+2024-10-12,15,Hawaii,20
+2024-10-19,15,Hawaii,5
+2024-10-26,15,Hawaii,4
 2024-11-02,15,Hawaii,5
 2024-11-09,15,Hawaii,22
 2024-11-16,15,Hawaii,20
 2024-11-23,15,Hawaii,13
 2024-11-30,15,Hawaii,10
+2024-12-07,15,Hawaii,15
 2020-08-08,19,Iowa,366
 2020-08-15,19,Iowa,345
 2020-08-22,19,Iowa,329
@@ -2581,11 +2917,39 @@ week_ending_date,location,location_name,value
 2024-04-06,19,Iowa,42
 2024-04-13,19,Iowa,34
 2024-04-20,19,Iowa,29
+2024-04-27,19,Iowa,28
+2024-05-04,19,Iowa,11
+2024-05-11,19,Iowa,11
+2024-05-18,19,Iowa,8
+2024-05-25,19,Iowa,7
+2024-06-01,19,Iowa,8
+2024-06-08,19,Iowa,13
+2024-06-15,19,Iowa,20
+2024-06-22,19,Iowa,14
+2024-06-29,19,Iowa,18
+2024-07-06,19,Iowa,17
+2024-07-13,19,Iowa,32
+2024-07-20,19,Iowa,43
+2024-07-27,19,Iowa,54
+2024-08-03,19,Iowa,74
+2024-08-10,19,Iowa,66
+2024-08-17,19,Iowa,81
+2024-08-24,19,Iowa,116
+2024-08-31,19,Iowa,98
+2024-09-07,19,Iowa,106
+2024-09-14,19,Iowa,91
+2024-09-21,19,Iowa,109
+2024-09-28,19,Iowa,71
+2024-10-05,19,Iowa,89
+2024-10-12,19,Iowa,8
+2024-10-19,19,Iowa,30
+2024-10-26,19,Iowa,36
 2024-11-02,19,Iowa,43
-2024-11-09,19,Iowa,48
+2024-11-09,19,Iowa,49
 2024-11-16,19,Iowa,40
 2024-11-23,19,Iowa,52
-2024-11-30,19,Iowa,49
+2024-11-30,19,Iowa,52
+2024-12-07,19,Iowa,83
 2020-08-08,16,Idaho,145
 2020-08-15,16,Idaho,124
 2020-08-22,16,Idaho,147
@@ -2780,11 +3144,39 @@ week_ending_date,location,location_name,value
 2024-04-06,16,Idaho,34
 2024-04-13,16,Idaho,34
 2024-04-20,16,Idaho,29
+2024-04-27,16,Idaho,37
+2024-05-04,16,Idaho,22
+2024-05-11,16,Idaho,24
+2024-05-18,16,Idaho,15
+2024-05-25,16,Idaho,5
+2024-06-01,16,Idaho,12
+2024-06-08,16,Idaho,13
+2024-06-15,16,Idaho,11
+2024-06-22,16,Idaho,19
+2024-06-29,16,Idaho,12
+2024-07-06,16,Idaho,12
+2024-07-13,16,Idaho,15
+2024-07-20,16,Idaho,20
+2024-07-27,16,Idaho,14
+2024-08-03,16,Idaho,14
+2024-08-10,16,Idaho,15
+2024-08-17,16,Idaho,24
+2024-08-24,16,Idaho,18
+2024-08-31,16,Idaho,18
+2024-09-07,16,Idaho,19
+2024-09-14,16,Idaho,25
+2024-09-21,16,Idaho,17
+2024-09-28,16,Idaho,10
+2024-10-05,16,Idaho,6
+2024-10-12,16,Idaho,11
+2024-10-19,16,Idaho,9
+2024-10-26,16,Idaho,9
 2024-11-02,16,Idaho,18
-2024-11-09,16,Idaho,33
+2024-11-09,16,Idaho,35
 2024-11-16,16,Idaho,22
 2024-11-23,16,Idaho,21
-2024-11-30,16,Idaho,13
+2024-11-30,16,Idaho,16
+2024-12-07,16,Idaho,29
 2020-08-08,17,Illinois,633
 2020-08-15,17,Illinois,613
 2020-08-22,17,Illinois,737
@@ -2979,11 +3371,39 @@ week_ending_date,location,location_name,value
 2024-04-06,17,Illinois,322
 2024-04-13,17,Illinois,301
 2024-04-20,17,Illinois,229
+2024-04-27,17,Illinois,236
+2024-05-04,17,Illinois,124
+2024-05-11,17,Illinois,89
+2024-05-18,17,Illinois,77
+2024-05-25,17,Illinois,63
+2024-06-01,17,Illinois,75
+2024-06-08,17,Illinois,76
+2024-06-15,17,Illinois,99
+2024-06-22,17,Illinois,102
+2024-06-29,17,Illinois,118
+2024-07-06,17,Illinois,171
+2024-07-13,17,Illinois,187
+2024-07-20,17,Illinois,205
+2024-07-27,17,Illinois,259
+2024-08-03,17,Illinois,260
+2024-08-10,17,Illinois,302
+2024-08-17,17,Illinois,342
+2024-08-24,17,Illinois,366
+2024-08-31,17,Illinois,407
+2024-09-07,17,Illinois,368
+2024-09-14,17,Illinois,369
+2024-09-21,17,Illinois,293
+2024-09-28,17,Illinois,202
+2024-10-05,17,Illinois,182
+2024-10-12,17,Illinois,58
+2024-10-19,17,Illinois,31
+2024-10-26,17,Illinois,70
 2024-11-02,17,Illinois,117
-2024-11-09,17,Illinois,225
-2024-11-16,17,Illinois,198
-2024-11-23,17,Illinois,247
-2024-11-30,17,Illinois,265
+2024-11-09,17,Illinois,232
+2024-11-16,17,Illinois,202
+2024-11-23,17,Illinois,254
+2024-11-30,17,Illinois,269
+2024-12-07,17,Illinois,294
 2020-08-08,18,Indiana,407
 2020-08-15,18,Indiana,397
 2020-08-22,18,Indiana,527
@@ -3178,11 +3598,39 @@ week_ending_date,location,location_name,value
 2024-04-06,18,Indiana,156
 2024-04-13,18,Indiana,153
 2024-04-20,18,Indiana,139
+2024-04-27,18,Indiana,65
+2024-05-04,18,Indiana,49
+2024-05-11,18,Indiana,46
+2024-05-18,18,Indiana,25
+2024-05-25,18,Indiana,37
+2024-06-01,18,Indiana,28
+2024-06-08,18,Indiana,37
+2024-06-15,18,Indiana,49
+2024-06-22,18,Indiana,49
+2024-06-29,18,Indiana,37
+2024-07-06,18,Indiana,36
+2024-07-13,18,Indiana,64
+2024-07-20,18,Indiana,104
+2024-07-27,18,Indiana,125
+2024-08-03,18,Indiana,132
+2024-08-10,18,Indiana,158
+2024-08-17,18,Indiana,222
+2024-08-24,18,Indiana,233
+2024-08-31,18,Indiana,220
+2024-09-07,18,Indiana,209
+2024-09-14,18,Indiana,226
+2024-09-21,18,Indiana,162
+2024-09-28,18,Indiana,140
+2024-10-05,18,Indiana,116
+2024-10-12,18,Indiana,17
+2024-10-19,18,Indiana,22
+2024-10-26,18,Indiana,47
 2024-11-02,18,Indiana,98
-2024-11-09,18,Indiana,181
-2024-11-16,18,Indiana,143
+2024-11-09,18,Indiana,185
+2024-11-16,18,Indiana,145
 2024-11-23,18,Indiana,166
-2024-11-30,18,Indiana,152
+2024-11-30,18,Indiana,156
+2024-12-07,18,Indiana,253
 2020-08-08,20,Kansas,166
 2020-08-15,20,Kansas,167
 2020-08-22,20,Kansas,186
@@ -3377,11 +3825,39 @@ week_ending_date,location,location_name,value
 2024-04-06,20,Kansas,85
 2024-04-13,20,Kansas,66
 2024-04-20,20,Kansas,72
+2024-04-27,20,Kansas,58
+2024-05-04,20,Kansas,43
+2024-05-11,20,Kansas,23
+2024-05-18,20,Kansas,28
+2024-05-25,20,Kansas,9
+2024-06-01,20,Kansas,10
+2024-06-08,20,Kansas,9
+2024-06-15,20,Kansas,3
+2024-06-22,20,Kansas,4
+2024-06-29,20,Kansas,7
+2024-07-06,20,Kansas,8
+2024-07-13,20,Kansas,19
+2024-07-20,20,Kansas,14
+2024-07-27,20,Kansas,41
+2024-08-03,20,Kansas,37
+2024-08-10,20,Kansas,32
+2024-08-17,20,Kansas,36
+2024-08-24,20,Kansas,25
+2024-08-31,20,Kansas,27
+2024-09-07,20,Kansas,25
+2024-09-14,20,Kansas,28
+2024-09-21,20,Kansas,21
+2024-09-28,20,Kansas,19
+2024-10-05,20,Kansas,12
+2024-10-12,20,Kansas,2
+2024-10-19,20,Kansas,17
+2024-10-26,20,Kansas,23
 2024-11-02,20,Kansas,37
-2024-11-09,20,Kansas,61
+2024-11-09,20,Kansas,62
 2024-11-16,20,Kansas,45
 2024-11-23,20,Kansas,56
-2024-11-30,20,Kansas,44
+2024-11-30,20,Kansas,49
+2024-12-07,20,Kansas,70
 2020-08-08,21,Kentucky,1090
 2020-08-15,21,Kentucky,1566
 2020-08-22,21,Kentucky,1307
@@ -3576,11 +4052,39 @@ week_ending_date,location,location_name,value
 2024-04-06,21,Kentucky,124
 2024-04-13,21,Kentucky,123
 2024-04-20,21,Kentucky,69
+2024-04-27,21,Kentucky,74
+2024-05-04,21,Kentucky,58
+2024-05-11,21,Kentucky,32
+2024-05-18,21,Kentucky,29
+2024-05-25,21,Kentucky,25
+2024-06-01,21,Kentucky,14
+2024-06-08,21,Kentucky,12
+2024-06-15,21,Kentucky,23
+2024-06-22,21,Kentucky,17
+2024-06-29,21,Kentucky,10
+2024-07-06,21,Kentucky,12
+2024-07-13,21,Kentucky,25
+2024-07-20,21,Kentucky,23
+2024-07-27,21,Kentucky,26
+2024-08-03,21,Kentucky,43
+2024-08-10,21,Kentucky,43
+2024-08-17,21,Kentucky,65
+2024-08-24,21,Kentucky,67
+2024-08-31,21,Kentucky,72
+2024-09-07,21,Kentucky,74
+2024-09-14,21,Kentucky,40
+2024-09-21,21,Kentucky,38
+2024-09-28,21,Kentucky,23
+2024-10-05,21,Kentucky,21
+2024-10-12,21,Kentucky,3
+2024-10-19,21,Kentucky,34
+2024-10-26,21,Kentucky,46
 2024-11-02,21,Kentucky,82
-2024-11-09,21,Kentucky,124
-2024-11-16,21,Kentucky,94
+2024-11-09,21,Kentucky,126
+2024-11-16,21,Kentucky,97
 2024-11-23,21,Kentucky,95
-2024-11-30,21,Kentucky,84
+2024-11-30,21,Kentucky,91
+2024-12-07,21,Kentucky,120
 2020-08-08,22,Louisiana,1476
 2020-08-15,22,Louisiana,1342
 2020-08-22,22,Louisiana,1121
@@ -3775,11 +4279,39 @@ week_ending_date,location,location_name,value
 2024-04-06,22,Louisiana,118
 2024-04-13,22,Louisiana,86
 2024-04-20,22,Louisiana,78
+2024-04-27,22,Louisiana,55
+2024-05-04,22,Louisiana,24
+2024-05-11,22,Louisiana,17
+2024-05-18,22,Louisiana,18
+2024-05-25,22,Louisiana,15
+2024-06-01,22,Louisiana,23
+2024-06-08,22,Louisiana,28
+2024-06-15,22,Louisiana,37
+2024-06-22,22,Louisiana,35
+2024-06-29,22,Louisiana,45
+2024-07-06,22,Louisiana,85
+2024-07-13,22,Louisiana,107
+2024-07-20,22,Louisiana,101
+2024-07-27,22,Louisiana,142
+2024-08-03,22,Louisiana,136
+2024-08-10,22,Louisiana,156
+2024-08-17,22,Louisiana,166
+2024-08-24,22,Louisiana,162
+2024-08-31,22,Louisiana,118
+2024-09-07,22,Louisiana,110
+2024-09-14,22,Louisiana,84
+2024-09-21,22,Louisiana,77
+2024-09-28,22,Louisiana,50
+2024-10-05,22,Louisiana,43
+2024-10-12,22,Louisiana,1
+2024-10-19,22,Louisiana,24
+2024-10-26,22,Louisiana,42
 2024-11-02,22,Louisiana,64
 2024-11-09,22,Louisiana,76
-2024-11-16,22,Louisiana,66
+2024-11-16,22,Louisiana,68
 2024-11-23,22,Louisiana,69
 2024-11-30,22,Louisiana,64
+2024-12-07,22,Louisiana,76
 2020-08-08,25,Massachusetts,171
 2020-08-15,25,Massachusetts,142
 2020-08-22,25,Massachusetts,132
@@ -3974,11 +4506,39 @@ week_ending_date,location,location_name,value
 2024-04-06,25,Massachusetts,191
 2024-04-13,25,Massachusetts,162
 2024-04-20,25,Massachusetts,164
+2024-04-27,25,Massachusetts,133
+2024-05-04,25,Massachusetts,121
+2024-05-11,25,Massachusetts,55
+2024-05-18,25,Massachusetts,NA
+2024-05-25,25,Massachusetts,NA
+2024-06-01,25,Massachusetts,NA
+2024-06-08,25,Massachusetts,NA
+2024-06-15,25,Massachusetts,NA
+2024-06-22,25,Massachusetts,NA
+2024-06-29,25,Massachusetts,0
+2024-07-06,25,Massachusetts,3
+2024-07-13,25,Massachusetts,6
+2024-07-20,25,Massachusetts,2
+2024-07-27,25,Massachusetts,NA
+2024-08-03,25,Massachusetts,NA
+2024-08-10,25,Massachusetts,NA
+2024-08-17,25,Massachusetts,NA
+2024-08-24,25,Massachusetts,NA
+2024-08-31,25,Massachusetts,NA
+2024-09-07,25,Massachusetts,NA
+2024-09-14,25,Massachusetts,NA
+2024-09-21,25,Massachusetts,NA
+2024-09-28,25,Massachusetts,NA
+2024-10-05,25,Massachusetts,NA
+2024-10-12,25,Massachusetts,6
+2024-10-19,25,Massachusetts,7
+2024-10-26,25,Massachusetts,0
 2024-11-02,25,Massachusetts,34
 2024-11-09,25,Massachusetts,217
 2024-11-16,25,Massachusetts,295
 2024-11-23,25,Massachusetts,368
 2024-11-30,25,Massachusetts,368
+2024-12-07,25,Massachusetts,413
 2020-08-08,24,Maryland,387
 2020-08-15,24,Maryland,359
 2020-08-22,24,Maryland,352
@@ -4173,11 +4733,39 @@ week_ending_date,location,location_name,value
 2024-04-06,24,Maryland,115
 2024-04-13,24,Maryland,91
 2024-04-20,24,Maryland,81
+2024-04-27,24,Maryland,74
+2024-05-04,24,Maryland,42
+2024-05-11,24,Maryland,41
+2024-05-18,24,Maryland,31
+2024-05-25,24,Maryland,23
+2024-06-01,24,Maryland,29
+2024-06-08,24,Maryland,26
+2024-06-15,24,Maryland,17
+2024-06-22,24,Maryland,37
+2024-06-29,24,Maryland,53
+2024-07-06,24,Maryland,54
+2024-07-13,24,Maryland,51
+2024-07-20,24,Maryland,80
+2024-07-27,24,Maryland,72
+2024-08-03,24,Maryland,79
+2024-08-10,24,Maryland,100
+2024-08-17,24,Maryland,91
+2024-08-24,24,Maryland,106
+2024-08-31,24,Maryland,142
+2024-09-07,24,Maryland,100
+2024-09-14,24,Maryland,80
+2024-09-21,24,Maryland,70
+2024-09-28,24,Maryland,48
+2024-10-05,24,Maryland,41
+2024-10-12,24,Maryland,8
+2024-10-19,24,Maryland,17
+2024-10-26,24,Maryland,24
 2024-11-02,24,Maryland,58
 2024-11-09,24,Maryland,99
-2024-11-16,24,Maryland,66
+2024-11-16,24,Maryland,67
 2024-11-23,24,Maryland,86
 2024-11-30,24,Maryland,74
+2024-12-07,24,Maryland,70
 2020-08-08,23,Maine,11
 2020-08-15,23,Maine,6
 2020-08-22,23,Maine,10
@@ -4372,11 +4960,39 @@ week_ending_date,location,location_name,value
 2024-04-06,23,Maine,22
 2024-04-13,23,Maine,15
 2024-04-20,23,Maine,20
+2024-04-27,23,Maine,16
+2024-05-04,23,Maine,14
+2024-05-11,23,Maine,8
+2024-05-18,23,Maine,8
+2024-05-25,23,Maine,9
+2024-06-01,23,Maine,7
+2024-06-08,23,Maine,8
+2024-06-15,23,Maine,5
+2024-06-22,23,Maine,5
+2024-06-29,23,Maine,2
+2024-07-06,23,Maine,3
+2024-07-13,23,Maine,6
+2024-07-20,23,Maine,7
+2024-07-27,23,Maine,6
+2024-08-03,23,Maine,9
+2024-08-10,23,Maine,10
+2024-08-17,23,Maine,12
+2024-08-24,23,Maine,11
+2024-08-31,23,Maine,12
+2024-09-07,23,Maine,15
+2024-09-14,23,Maine,15
+2024-09-21,23,Maine,16
+2024-09-28,23,Maine,14
+2024-10-05,23,Maine,9
+2024-10-12,23,Maine,2
+2024-10-19,23,Maine,14
+2024-10-26,23,Maine,12
 2024-11-02,23,Maine,11
-2024-11-09,23,Maine,35
+2024-11-09,23,Maine,36
 2024-11-16,23,Maine,25
 2024-11-23,23,Maine,21
 2024-11-30,23,Maine,25
+2024-12-07,23,Maine,20
 2020-08-08,26,Michigan,242
 2020-08-15,26,Michigan,389
 2020-08-22,26,Michigan,378
@@ -4571,11 +5187,39 @@ week_ending_date,location,location_name,value
 2024-04-06,26,Michigan,265
 2024-04-13,26,Michigan,225
 2024-04-20,26,Michigan,194
+2024-04-27,26,Michigan,138
+2024-05-04,26,Michigan,132
+2024-05-11,26,Michigan,106
+2024-05-18,26,Michigan,82
+2024-05-25,26,Michigan,83
+2024-06-01,26,Michigan,89
+2024-06-08,26,Michigan,81
+2024-06-15,26,Michigan,88
+2024-06-22,26,Michigan,104
+2024-06-29,26,Michigan,99
+2024-07-06,26,Michigan,164
+2024-07-13,26,Michigan,171
+2024-07-20,26,Michigan,165
+2024-07-27,26,Michigan,209
+2024-08-03,26,Michigan,262
+2024-08-10,26,Michigan,255
+2024-08-17,26,Michigan,330
+2024-08-24,26,Michigan,375
+2024-08-31,26,Michigan,450
+2024-09-07,26,Michigan,399
+2024-09-14,26,Michigan,495
+2024-09-21,26,Michigan,466
+2024-09-28,26,Michigan,360
+2024-10-05,26,Michigan,335
+2024-10-12,26,Michigan,16
+2024-10-19,26,Michigan,40
+2024-10-26,26,Michigan,102
 2024-11-02,26,Michigan,167
-2024-11-09,26,Michigan,546
-2024-11-16,26,Michigan,600
-2024-11-23,26,Michigan,432
-2024-11-30,26,Michigan,482
+2024-11-09,26,Michigan,628
+2024-11-16,26,Michigan,650
+2024-11-23,26,Michigan,462
+2024-11-30,26,Michigan,592
+2024-12-07,26,Michigan,471
 2020-08-08,27,Minnesota,138
 2020-08-15,27,Minnesota,205
 2020-08-22,27,Minnesota,228
@@ -4770,11 +5414,39 @@ week_ending_date,location,location_name,value
 2024-04-06,27,Minnesota,95
 2024-04-13,27,Minnesota,87
 2024-04-20,27,Minnesota,61
+2024-04-27,27,Minnesota,59
+2024-05-04,27,Minnesota,28
+2024-05-11,27,Minnesota,1
+2024-05-18,27,Minnesota,NA
+2024-05-25,27,Minnesota,NA
+2024-06-01,27,Minnesota,NA
+2024-06-08,27,Minnesota,NA
+2024-06-15,27,Minnesota,NA
+2024-06-22,27,Minnesota,NA
+2024-06-29,27,Minnesota,1
+2024-07-06,27,Minnesota,3
+2024-07-13,27,Minnesota,2
+2024-07-20,27,Minnesota,2
+2024-07-27,27,Minnesota,NA
+2024-08-03,27,Minnesota,NA
+2024-08-10,27,Minnesota,NA
+2024-08-17,27,Minnesota,NA
+2024-08-24,27,Minnesota,NA
+2024-08-31,27,Minnesota,NA
+2024-09-07,27,Minnesota,1
+2024-09-14,27,Minnesota,0
+2024-09-21,27,Minnesota,NA
+2024-09-28,27,Minnesota,2
+2024-10-05,27,Minnesota,NA
+2024-10-12,27,Minnesota,0
+2024-10-19,27,Minnesota,53
+2024-10-26,27,Minnesota,37
 2024-11-02,27,Minnesota,208
-2024-11-09,27,Minnesota,202
-2024-11-16,27,Minnesota,189
+2024-11-09,27,Minnesota,203
+2024-11-16,27,Minnesota,193
 2024-11-23,27,Minnesota,225
 2024-11-30,27,Minnesota,183
+2024-12-07,27,Minnesota,267
 2020-08-08,29,Missouri,427
 2020-08-15,29,Missouri,515
 2020-08-22,29,Missouri,655
@@ -4969,11 +5641,39 @@ week_ending_date,location,location_name,value
 2024-04-06,29,Missouri,158
 2024-04-13,29,Missouri,144
 2024-04-20,29,Missouri,132
+2024-04-27,29,Missouri,115
+2024-05-04,29,Missouri,61
+2024-05-11,29,Missouri,31
+2024-05-18,29,Missouri,31
+2024-05-25,29,Missouri,28
+2024-06-01,29,Missouri,24
+2024-06-08,29,Missouri,22
+2024-06-15,29,Missouri,41
+2024-06-22,29,Missouri,33
+2024-06-29,29,Missouri,23
+2024-07-06,29,Missouri,38
+2024-07-13,29,Missouri,62
+2024-07-20,29,Missouri,62
+2024-07-27,29,Missouri,89
+2024-08-03,29,Missouri,103
+2024-08-10,29,Missouri,94
+2024-08-17,29,Missouri,89
+2024-08-24,29,Missouri,81
+2024-08-31,29,Missouri,122
+2024-09-07,29,Missouri,101
+2024-09-14,29,Missouri,110
+2024-09-21,29,Missouri,108
+2024-09-28,29,Missouri,69
+2024-10-05,29,Missouri,43
+2024-10-12,29,Missouri,9
+2024-10-19,29,Missouri,27
+2024-10-26,29,Missouri,25
 2024-11-02,29,Missouri,51
-2024-11-09,29,Missouri,150
-2024-11-16,29,Missouri,143
+2024-11-09,29,Missouri,153
+2024-11-16,29,Missouri,150
 2024-11-23,29,Missouri,175
-2024-11-30,29,Missouri,161
+2024-11-30,29,Missouri,166
+2024-12-07,29,Missouri,130
 2020-08-08,28,Mississippi,766
 2020-08-15,28,Mississippi,791
 2020-08-22,28,Mississippi,611
@@ -5168,11 +5868,39 @@ week_ending_date,location,location_name,value
 2024-04-06,28,Mississippi,54
 2024-04-13,28,Mississippi,42
 2024-04-20,28,Mississippi,37
+2024-04-27,28,Mississippi,33
+2024-05-04,28,Mississippi,12
+2024-05-11,28,Mississippi,8
+2024-05-18,28,Mississippi,9
+2024-05-25,28,Mississippi,10
+2024-06-01,28,Mississippi,2
+2024-06-08,28,Mississippi,10
+2024-06-15,28,Mississippi,8
+2024-06-22,28,Mississippi,4
+2024-06-29,28,Mississippi,13
+2024-07-06,28,Mississippi,23
+2024-07-13,28,Mississippi,36
+2024-07-20,28,Mississippi,35
+2024-07-27,28,Mississippi,46
+2024-08-03,28,Mississippi,56
+2024-08-10,28,Mississippi,62
+2024-08-17,28,Mississippi,71
+2024-08-24,28,Mississippi,80
+2024-08-31,28,Mississippi,71
+2024-09-07,28,Mississippi,50
+2024-09-14,28,Mississippi,40
+2024-09-21,28,Mississippi,45
+2024-09-28,28,Mississippi,17
+2024-10-05,28,Mississippi,16
+2024-10-12,28,Mississippi,0
+2024-10-19,28,Mississippi,7
+2024-10-26,28,Mississippi,5
 2024-11-02,28,Mississippi,22
-2024-11-09,28,Mississippi,37
+2024-11-09,28,Mississippi,38
 2024-11-16,28,Mississippi,37
 2024-11-23,28,Mississippi,50
 2024-11-30,28,Mississippi,33
+2024-12-07,28,Mississippi,53
 2020-08-08,30,Montana,88
 2020-08-15,30,Montana,94
 2020-08-22,30,Montana,95
@@ -5367,11 +6095,39 @@ week_ending_date,location,location_name,value
 2024-04-06,30,Montana,17
 2024-04-13,30,Montana,18
 2024-04-20,30,Montana,17
+2024-04-27,30,Montana,11
+2024-05-04,30,Montana,13
+2024-05-11,30,Montana,8
+2024-05-18,30,Montana,12
+2024-05-25,30,Montana,21
+2024-06-01,30,Montana,13
+2024-06-08,30,Montana,15
+2024-06-15,30,Montana,13
+2024-06-22,30,Montana,12
+2024-06-29,30,Montana,21
+2024-07-06,30,Montana,17
+2024-07-13,30,Montana,14
+2024-07-20,30,Montana,14
+2024-07-27,30,Montana,22
+2024-08-03,30,Montana,30
+2024-08-10,30,Montana,38
+2024-08-17,30,Montana,20
+2024-08-24,30,Montana,16
+2024-08-31,30,Montana,13
+2024-09-07,30,Montana,14
+2024-09-14,30,Montana,17
+2024-09-21,30,Montana,25
+2024-09-28,30,Montana,20
+2024-10-05,30,Montana,31
+2024-10-12,30,Montana,56
+2024-10-19,30,Montana,16
+2024-10-26,30,Montana,25
 2024-11-02,30,Montana,30
 2024-11-09,30,Montana,18
 2024-11-16,30,Montana,22
-2024-11-23,30,Montana,25
-2024-11-30,30,Montana,16
+2024-11-23,30,Montana,26
+2024-11-30,30,Montana,17
+2024-12-07,30,Montana,30
 2020-08-08,37,North Carolina,1008
 2020-08-15,37,North Carolina,782
 2020-08-22,37,North Carolina,1150
@@ -5566,11 +6322,39 @@ week_ending_date,location,location_name,value
 2024-04-06,37,North Carolina,273
 2024-04-13,37,North Carolina,217
 2024-04-20,37,North Carolina,179
-2024-11-02,37,North Carolina,120
-2024-11-09,37,North Carolina,192
-2024-11-16,37,North Carolina,177
+2024-04-27,37,North Carolina,148
+2024-05-04,37,North Carolina,52
+2024-05-11,37,North Carolina,2
+2024-05-18,37,North Carolina,1
+2024-05-25,37,North Carolina,0
+2024-06-01,37,North Carolina,0
+2024-06-08,37,North Carolina,2
+2024-06-15,37,North Carolina,1
+2024-06-22,37,North Carolina,1
+2024-06-29,37,North Carolina,2
+2024-07-06,37,North Carolina,10
+2024-07-13,37,North Carolina,8
+2024-07-20,37,North Carolina,8
+2024-07-27,37,North Carolina,1
+2024-08-03,37,North Carolina,5
+2024-08-10,37,North Carolina,3
+2024-08-17,37,North Carolina,7
+2024-08-24,37,North Carolina,6
+2024-08-31,37,North Carolina,5
+2024-09-07,37,North Carolina,6
+2024-09-14,37,North Carolina,4
+2024-09-21,37,North Carolina,4
+2024-09-28,37,North Carolina,2
+2024-10-05,37,North Carolina,1
+2024-10-12,37,North Carolina,37
+2024-10-19,37,North Carolina,36
+2024-10-26,37,North Carolina,96
+2024-11-02,37,North Carolina,130
+2024-11-09,37,North Carolina,200
+2024-11-16,37,North Carolina,188
 2024-11-23,37,North Carolina,157
-2024-11-30,37,North Carolina,145
+2024-11-30,37,North Carolina,147
+2024-12-07,37,North Carolina,169
 2020-08-08,38,North Dakota,96
 2020-08-15,38,North Dakota,87
 2020-08-22,38,North Dakota,71
@@ -5765,11 +6549,39 @@ week_ending_date,location,location_name,value
 2024-04-06,38,North Dakota,22
 2024-04-13,38,North Dakota,24
 2024-04-20,38,North Dakota,11
+2024-04-27,38,North Dakota,15
+2024-05-04,38,North Dakota,4
+2024-05-11,38,North Dakota,2
+2024-05-18,38,North Dakota,1
+2024-05-25,38,North Dakota,0
+2024-06-01,38,North Dakota,0
+2024-06-08,38,North Dakota,1
+2024-06-15,38,North Dakota,0
+2024-06-22,38,North Dakota,1
+2024-06-29,38,North Dakota,1
+2024-07-06,38,North Dakota,6
+2024-07-13,38,North Dakota,4
+2024-07-20,38,North Dakota,5
+2024-07-27,38,North Dakota,4
+2024-08-03,38,North Dakota,5
+2024-08-10,38,North Dakota,5
+2024-08-17,38,North Dakota,7
+2024-08-24,38,North Dakota,5
+2024-08-31,38,North Dakota,5
+2024-09-07,38,North Dakota,8
+2024-09-14,38,North Dakota,7
+2024-09-21,38,North Dakota,4
+2024-09-28,38,North Dakota,7
+2024-10-05,38,North Dakota,2
+2024-10-12,38,North Dakota,4
+2024-10-19,38,North Dakota,8
+2024-10-26,38,North Dakota,9
 2024-11-02,38,North Dakota,7
-2024-11-09,38,North Dakota,14
+2024-11-09,38,North Dakota,15
 2024-11-16,38,North Dakota,11
 2024-11-23,38,North Dakota,19
-2024-11-30,38,North Dakota,19
+2024-11-30,38,North Dakota,24
+2024-12-07,38,North Dakota,15
 2020-08-08,31,Nebraska,69
 2020-08-15,31,Nebraska,130
 2020-08-22,31,Nebraska,146
@@ -5964,11 +6776,39 @@ week_ending_date,location,location_name,value
 2024-04-06,31,Nebraska,30
 2024-04-13,31,Nebraska,34
 2024-04-20,31,Nebraska,33
+2024-04-27,31,Nebraska,26
+2024-05-04,31,Nebraska,22
+2024-05-11,31,Nebraska,7
+2024-05-18,31,Nebraska,3
+2024-05-25,31,Nebraska,4
+2024-06-01,31,Nebraska,1
+2024-06-08,31,Nebraska,4
+2024-06-15,31,Nebraska,7
+2024-06-22,31,Nebraska,9
+2024-06-29,31,Nebraska,9
+2024-07-06,31,Nebraska,8
+2024-07-13,31,Nebraska,10
+2024-07-20,31,Nebraska,8
+2024-07-27,31,Nebraska,16
+2024-08-03,31,Nebraska,15
+2024-08-10,31,Nebraska,14
+2024-08-17,31,Nebraska,28
+2024-08-24,31,Nebraska,34
+2024-08-31,31,Nebraska,24
+2024-09-07,31,Nebraska,24
+2024-09-14,31,Nebraska,21
+2024-09-21,31,Nebraska,27
+2024-09-28,31,Nebraska,15
+2024-10-05,31,Nebraska,13
+2024-10-12,31,Nebraska,4
+2024-10-19,31,Nebraska,10
+2024-10-26,31,Nebraska,17
 2024-11-02,31,Nebraska,19
 2024-11-09,31,Nebraska,32
-2024-11-16,31,Nebraska,37
+2024-11-16,31,Nebraska,39
 2024-11-23,31,Nebraska,36
 2024-11-30,31,Nebraska,41
+2024-12-07,31,Nebraska,73
 2020-08-08,33,New Hampshire,12
 2020-08-15,33,New Hampshire,10
 2020-08-22,33,New Hampshire,179
@@ -6163,11 +7003,39 @@ week_ending_date,location,location_name,value
 2024-04-06,33,New Hampshire,20
 2024-04-13,33,New Hampshire,23
 2024-04-20,33,New Hampshire,19
+2024-04-27,33,New Hampshire,24
+2024-05-04,33,New Hampshire,10
+2024-05-11,33,New Hampshire,7
+2024-05-18,33,New Hampshire,4
+2024-05-25,33,New Hampshire,3
+2024-06-01,33,New Hampshire,6
+2024-06-08,33,New Hampshire,4
+2024-06-15,33,New Hampshire,2
+2024-06-22,33,New Hampshire,4
+2024-06-29,33,New Hampshire,5
+2024-07-06,33,New Hampshire,10
+2024-07-13,33,New Hampshire,11
+2024-07-20,33,New Hampshire,8
+2024-07-27,33,New Hampshire,13
+2024-08-03,33,New Hampshire,26
+2024-08-10,33,New Hampshire,28
+2024-08-17,33,New Hampshire,19
+2024-08-24,33,New Hampshire,24
+2024-08-31,33,New Hampshire,29
+2024-09-07,33,New Hampshire,27
+2024-09-14,33,New Hampshire,30
+2024-09-21,33,New Hampshire,21
+2024-09-28,33,New Hampshire,32
+2024-10-05,33,New Hampshire,10
+2024-10-12,33,New Hampshire,7
+2024-10-19,33,New Hampshire,17
+2024-10-26,33,New Hampshire,20
 2024-11-02,33,New Hampshire,39
 2024-11-09,33,New Hampshire,55
 2024-11-16,33,New Hampshire,58
 2024-11-23,33,New Hampshire,20
 2024-11-30,33,New Hampshire,44
+2024-12-07,33,New Hampshire,59
 2020-08-08,34,New Jersey,180
 2020-08-15,34,New Jersey,177
 2020-08-22,34,New Jersey,260
@@ -6362,11 +7230,39 @@ week_ending_date,location,location_name,value
 2024-04-06,34,New Jersey,226
 2024-04-13,34,New Jersey,169
 2024-04-20,34,New Jersey,149
+2024-04-27,34,New Jersey,290
+2024-05-04,34,New Jersey,147
+2024-05-11,34,New Jersey,148
+2024-05-18,34,New Jersey,155
+2024-05-25,34,New Jersey,153
+2024-06-01,34,New Jersey,150
+2024-06-08,34,New Jersey,201
+2024-06-15,34,New Jersey,194
+2024-06-22,34,New Jersey,273
+2024-06-29,34,New Jersey,257
+2024-07-06,34,New Jersey,395
+2024-07-13,34,New Jersey,373
+2024-07-20,34,New Jersey,340
+2024-07-27,34,New Jersey,422
+2024-08-03,34,New Jersey,411
+2024-08-10,34,New Jersey,417
+2024-08-17,34,New Jersey,428
+2024-08-24,34,New Jersey,422
+2024-08-31,34,New Jersey,465
+2024-09-07,34,New Jersey,327
+2024-09-14,34,New Jersey,355
+2024-09-21,34,New Jersey,344
+2024-09-28,34,New Jersey,311
+2024-10-05,34,New Jersey,239
+2024-10-12,34,New Jersey,2
+2024-10-19,34,New Jersey,5
+2024-10-26,34,New Jersey,15
 2024-11-02,34,New Jersey,193
-2024-11-09,34,New Jersey,184
+2024-11-09,34,New Jersey,186
 2024-11-16,34,New Jersey,193
 2024-11-23,34,New Jersey,210
 2024-11-30,34,New Jersey,187
+2024-12-07,34,New Jersey,187
 2020-08-08,35,New Mexico,78
 2020-08-15,35,New Mexico,59
 2020-08-22,35,New Mexico,102
@@ -6561,11 +7457,39 @@ week_ending_date,location,location_name,value
 2024-04-06,35,New Mexico,30
 2024-04-13,35,New Mexico,31
 2024-04-20,35,New Mexico,24
+2024-04-27,35,New Mexico,34
+2024-05-04,35,New Mexico,33
+2024-05-11,35,New Mexico,24
+2024-05-18,35,New Mexico,20
+2024-05-25,35,New Mexico,35
+2024-06-01,35,New Mexico,31
+2024-06-08,35,New Mexico,4
+2024-06-15,35,New Mexico,5
+2024-06-22,35,New Mexico,5
+2024-06-29,35,New Mexico,5
+2024-07-06,35,New Mexico,8
+2024-07-13,35,New Mexico,10
+2024-07-20,35,New Mexico,10
+2024-07-27,35,New Mexico,8
+2024-08-03,35,New Mexico,13
+2024-08-10,35,New Mexico,7
+2024-08-17,35,New Mexico,7
+2024-08-24,35,New Mexico,17
+2024-08-31,35,New Mexico,7
+2024-09-07,35,New Mexico,14
+2024-09-14,35,New Mexico,9
+2024-09-21,35,New Mexico,2
+2024-09-28,35,New Mexico,4
+2024-10-05,35,New Mexico,2
+2024-10-12,35,New Mexico,12
+2024-10-19,35,New Mexico,17
+2024-10-26,35,New Mexico,25
 2024-11-02,35,New Mexico,18
-2024-11-09,35,New Mexico,89
-2024-11-16,35,New Mexico,78
+2024-11-09,35,New Mexico,91
+2024-11-16,35,New Mexico,81
 2024-11-23,35,New Mexico,116
-2024-11-30,35,New Mexico,115
+2024-11-30,35,New Mexico,122
+2024-12-07,35,New Mexico,117
 2020-08-08,32,Nevada,760
 2020-08-15,32,Nevada,577
 2020-08-22,32,Nevada,578
@@ -6760,11 +7684,39 @@ week_ending_date,location,location_name,value
 2024-04-06,32,Nevada,60
 2024-04-13,32,Nevada,45
 2024-04-20,32,Nevada,55
+2024-04-27,32,Nevada,61
+2024-05-04,32,Nevada,23
+2024-05-11,32,Nevada,2
+2024-05-18,32,Nevada,1
+2024-05-25,32,Nevada,1
+2024-06-01,32,Nevada,2
+2024-06-08,32,Nevada,0
+2024-06-15,32,Nevada,0
+2024-06-22,32,Nevada,1
+2024-06-29,32,Nevada,2
+2024-07-06,32,Nevada,7
+2024-07-13,32,Nevada,9
+2024-07-20,32,Nevada,4
+2024-07-27,32,Nevada,1
+2024-08-03,32,Nevada,1
+2024-08-10,32,Nevada,1
+2024-08-17,32,Nevada,1
+2024-08-24,32,Nevada,1
+2024-08-31,32,Nevada,0
+2024-09-07,32,Nevada,7
+2024-09-14,32,Nevada,7
+2024-09-21,32,Nevada,4
+2024-09-28,32,Nevada,3
+2024-10-05,32,Nevada,2
+2024-10-12,32,Nevada,0
+2024-10-19,32,Nevada,23
+2024-10-26,32,Nevada,20
 2024-11-02,32,Nevada,32
-2024-11-09,32,Nevada,43
-2024-11-16,32,Nevada,47
+2024-11-09,32,Nevada,47
+2024-11-16,32,Nevada,56
 2024-11-23,32,Nevada,31
 2024-11-30,32,Nevada,64
+2024-12-07,32,Nevada,38
 2020-08-08,36,New York,517
 2020-08-15,36,New York,493
 2020-08-22,36,New York,848
@@ -6959,11 +7911,39 @@ week_ending_date,location,location_name,value
 2024-04-06,36,New York,547
 2024-04-13,36,New York,527
 2024-04-20,36,New York,447
+2024-04-27,36,New York,428
+2024-05-04,36,New York,330
+2024-05-11,36,New York,230
+2024-05-18,36,New York,242
+2024-05-25,36,New York,265
+2024-06-01,36,New York,227
+2024-06-08,36,New York,216
+2024-06-15,36,New York,184
+2024-06-22,36,New York,222
+2024-06-29,36,New York,213
+2024-07-06,36,New York,267
+2024-07-13,36,New York,276
+2024-07-20,36,New York,276
+2024-07-27,36,New York,323
+2024-08-03,36,New York,372
+2024-08-10,36,New York,336
+2024-08-17,36,New York,339
+2024-08-24,36,New York,297
+2024-08-31,36,New York,301
+2024-09-07,36,New York,285
+2024-09-14,36,New York,265
+2024-09-21,36,New York,269
+2024-09-28,36,New York,247
+2024-10-05,36,New York,228
+2024-10-12,36,New York,60
+2024-10-19,36,New York,119
+2024-10-26,36,New York,102
 2024-11-02,36,New York,229
-2024-11-09,36,New York,417
-2024-11-16,36,New York,372
-2024-11-23,36,New York,402
-2024-11-30,36,New York,352
+2024-11-09,36,New York,423
+2024-11-16,36,New York,379
+2024-11-23,36,New York,405
+2024-11-30,36,New York,370
+2024-12-07,36,New York,437
 2020-08-08,39,Ohio,449
 2020-08-15,39,Ohio,573
 2020-08-22,39,Ohio,634
@@ -7158,11 +8138,39 @@ week_ending_date,location,location_name,value
 2024-04-06,39,Ohio,295
 2024-04-13,39,Ohio,269
 2024-04-20,39,Ohio,210
+2024-04-27,39,Ohio,186
+2024-05-04,39,Ohio,99
+2024-05-11,39,Ohio,35
+2024-05-18,39,Ohio,38
+2024-05-25,39,Ohio,35
+2024-06-01,39,Ohio,29
+2024-06-08,39,Ohio,52
+2024-06-15,39,Ohio,39
+2024-06-22,39,Ohio,57
+2024-06-29,39,Ohio,44
+2024-07-06,39,Ohio,79
+2024-07-13,39,Ohio,107
+2024-07-20,39,Ohio,133
+2024-07-27,39,Ohio,126
+2024-08-03,39,Ohio,151
+2024-08-10,39,Ohio,152
+2024-08-17,39,Ohio,145
+2024-08-24,39,Ohio,184
+2024-08-31,39,Ohio,199
+2024-09-07,39,Ohio,258
+2024-09-14,39,Ohio,295
+2024-09-21,39,Ohio,223
+2024-09-28,39,Ohio,148
+2024-10-05,39,Ohio,84
+2024-10-12,39,Ohio,19
+2024-10-19,39,Ohio,81
+2024-10-26,39,Ohio,128
 2024-11-02,39,Ohio,195
-2024-11-09,39,Ohio,393
-2024-11-16,39,Ohio,332
+2024-11-09,39,Ohio,399
+2024-11-16,39,Ohio,338
 2024-11-23,39,Ohio,322
-2024-11-30,39,Ohio,328
+2024-11-30,39,Ohio,331
+2024-12-07,39,Ohio,370
 2020-08-08,40,Oklahoma,352
 2020-08-15,40,Oklahoma,466
 2020-08-22,40,Oklahoma,549
@@ -7357,11 +8365,39 @@ week_ending_date,location,location_name,value
 2024-04-06,40,Oklahoma,97
 2024-04-13,40,Oklahoma,85
 2024-04-20,40,Oklahoma,77
+2024-04-27,40,Oklahoma,68
+2024-05-04,40,Oklahoma,38
+2024-05-11,40,Oklahoma,19
+2024-05-18,40,Oklahoma,28
+2024-05-25,40,Oklahoma,19
+2024-06-01,40,Oklahoma,17
+2024-06-08,40,Oklahoma,8
+2024-06-15,40,Oklahoma,12
+2024-06-22,40,Oklahoma,24
+2024-06-29,40,Oklahoma,26
+2024-07-06,40,Oklahoma,6
+2024-07-13,40,Oklahoma,16
+2024-07-20,40,Oklahoma,22
+2024-07-27,40,Oklahoma,23
+2024-08-03,40,Oklahoma,24
+2024-08-10,40,Oklahoma,22
+2024-08-17,40,Oklahoma,19
+2024-08-24,40,Oklahoma,39
+2024-08-31,40,Oklahoma,20
+2024-09-07,40,Oklahoma,22
+2024-09-14,40,Oklahoma,20
+2024-09-21,40,Oklahoma,12
+2024-09-28,40,Oklahoma,17
+2024-10-05,40,Oklahoma,9
+2024-10-12,40,Oklahoma,13
+2024-10-19,40,Oklahoma,7
+2024-10-26,40,Oklahoma,21
 2024-11-02,40,Oklahoma,27
-2024-11-09,40,Oklahoma,59
-2024-11-16,40,Oklahoma,71
+2024-11-09,40,Oklahoma,63
+2024-11-16,40,Oklahoma,73
 2024-11-23,40,Oklahoma,70
 2024-11-30,40,Oklahoma,97
+2024-12-07,40,Oklahoma,126
 2020-08-08,41,Oregon,89
 2020-08-15,41,Oregon,87
 2020-08-22,41,Oregon,109
@@ -7556,11 +8592,39 @@ week_ending_date,location,location_name,value
 2024-04-06,41,Oregon,80
 2024-04-13,41,Oregon,80
 2024-04-20,41,Oregon,63
+2024-04-27,41,Oregon,45
+2024-05-04,41,Oregon,39
+2024-05-11,41,Oregon,31
+2024-05-18,41,Oregon,37
+2024-05-25,41,Oregon,28
+2024-06-01,41,Oregon,41
+2024-06-08,41,Oregon,46
+2024-06-15,41,Oregon,59
+2024-06-22,41,Oregon,73
+2024-06-29,41,Oregon,78
+2024-07-06,41,Oregon,87
+2024-07-13,41,Oregon,99
+2024-07-20,41,Oregon,91
+2024-07-27,41,Oregon,141
+2024-08-03,41,Oregon,110
+2024-08-10,41,Oregon,97
+2024-08-17,41,Oregon,113
+2024-08-24,41,Oregon,105
+2024-08-31,41,Oregon,118
+2024-09-07,41,Oregon,104
+2024-09-14,41,Oregon,85
+2024-09-21,41,Oregon,96
+2024-09-28,41,Oregon,93
+2024-10-05,41,Oregon,72
+2024-10-12,41,Oregon,148
+2024-10-19,41,Oregon,57
+2024-10-26,41,Oregon,39
 2024-11-02,41,Oregon,50
-2024-11-09,41,Oregon,76
-2024-11-16,41,Oregon,71
+2024-11-09,41,Oregon,77
+2024-11-16,41,Oregon,73
 2024-11-23,41,Oregon,57
 2024-11-30,41,Oregon,43
+2024-12-07,41,Oregon,48
 2020-08-08,42,Pennsylvania,626
 2020-08-15,42,Pennsylvania,459
 2020-08-22,42,Pennsylvania,411
@@ -7755,11 +8819,39 @@ week_ending_date,location,location_name,value
 2024-04-06,42,Pennsylvania,359
 2024-04-13,42,Pennsylvania,325
 2024-04-20,42,Pennsylvania,259
+2024-04-27,42,Pennsylvania,177
+2024-05-04,42,Pennsylvania,172
+2024-05-11,42,Pennsylvania,164
+2024-05-18,42,Pennsylvania,140
+2024-05-25,42,Pennsylvania,129
+2024-06-01,42,Pennsylvania,119
+2024-06-08,42,Pennsylvania,126
+2024-06-15,42,Pennsylvania,134
+2024-06-22,42,Pennsylvania,114
+2024-06-29,42,Pennsylvania,126
+2024-07-06,42,Pennsylvania,219
+2024-07-13,42,Pennsylvania,213
+2024-07-20,42,Pennsylvania,308
+2024-07-27,42,Pennsylvania,421
+2024-08-03,42,Pennsylvania,453
+2024-08-10,42,Pennsylvania,532
+2024-08-17,42,Pennsylvania,554
+2024-08-24,42,Pennsylvania,655
+2024-08-31,42,Pennsylvania,654
+2024-09-07,42,Pennsylvania,734
+2024-09-14,42,Pennsylvania,658
+2024-09-21,42,Pennsylvania,675
+2024-09-28,42,Pennsylvania,685
+2024-10-05,42,Pennsylvania,466
+2024-10-12,42,Pennsylvania,15
+2024-10-19,42,Pennsylvania,25
+2024-10-26,42,Pennsylvania,101
 2024-11-02,42,Pennsylvania,426
-2024-11-09,42,Pennsylvania,892
-2024-11-16,42,Pennsylvania,1010
+2024-11-09,42,Pennsylvania,899
+2024-11-16,42,Pennsylvania,1018
 2024-11-23,42,Pennsylvania,1027
-2024-11-30,42,Pennsylvania,638
+2024-11-30,42,Pennsylvania,639
+2024-12-07,42,Pennsylvania,626
 2020-08-08,72,Puerto Rico,182
 2020-08-15,72,Puerto Rico,265
 2020-08-22,72,Puerto Rico,263
@@ -7954,11 +9046,39 @@ week_ending_date,location,location_name,value
 2024-04-06,72,Puerto Rico,41
 2024-04-13,72,Puerto Rico,30
 2024-04-20,72,Puerto Rico,39
+2024-04-27,72,Puerto Rico,48
+2024-05-04,72,Puerto Rico,60
+2024-05-11,72,Puerto Rico,40
+2024-05-18,72,Puerto Rico,3
+2024-05-25,72,Puerto Rico,10
+2024-06-01,72,Puerto Rico,8
+2024-06-08,72,Puerto Rico,19
+2024-06-15,72,Puerto Rico,24
+2024-06-22,72,Puerto Rico,30
+2024-06-29,72,Puerto Rico,26
+2024-07-06,72,Puerto Rico,58
+2024-07-13,72,Puerto Rico,35
+2024-07-20,72,Puerto Rico,22
+2024-07-27,72,Puerto Rico,13
+2024-08-03,72,Puerto Rico,8
+2024-08-10,72,Puerto Rico,21
+2024-08-17,72,Puerto Rico,9
+2024-08-24,72,Puerto Rico,4
+2024-08-31,72,Puerto Rico,6
+2024-09-07,72,Puerto Rico,7
+2024-09-14,72,Puerto Rico,6
+2024-09-21,72,Puerto Rico,1
+2024-09-28,72,Puerto Rico,4
+2024-10-05,72,Puerto Rico,4
+2024-10-12,72,Puerto Rico,1
+2024-10-19,72,Puerto Rico,1
+2024-10-26,72,Puerto Rico,2
 2024-11-02,72,Puerto Rico,9
 2024-11-09,72,Puerto Rico,9
-2024-11-16,72,Puerto Rico,18
+2024-11-16,72,Puerto Rico,25
 2024-11-23,72,Puerto Rico,24
 2024-11-30,72,Puerto Rico,78
+2024-12-07,72,Puerto Rico,103
 2020-08-08,44,Rhode Island,47
 2020-08-15,44,Rhode Island,58
 2020-08-22,44,Rhode Island,42
@@ -8153,11 +9273,39 @@ week_ending_date,location,location_name,value
 2024-04-06,44,Rhode Island,26
 2024-04-13,44,Rhode Island,23
 2024-04-20,44,Rhode Island,20
+2024-04-27,44,Rhode Island,18
+2024-05-04,44,Rhode Island,10
+2024-05-11,44,Rhode Island,9
+2024-05-18,44,Rhode Island,4
+2024-05-25,44,Rhode Island,7
+2024-06-01,44,Rhode Island,5
+2024-06-08,44,Rhode Island,15
+2024-06-15,44,Rhode Island,13
+2024-06-22,44,Rhode Island,11
+2024-06-29,44,Rhode Island,20
+2024-07-06,44,Rhode Island,9
+2024-07-13,44,Rhode Island,16
+2024-07-20,44,Rhode Island,30
+2024-07-27,44,Rhode Island,30
+2024-08-03,44,Rhode Island,30
+2024-08-10,44,Rhode Island,23
+2024-08-17,44,Rhode Island,44
+2024-08-24,44,Rhode Island,44
+2024-08-31,44,Rhode Island,39
+2024-09-07,44,Rhode Island,26
+2024-09-14,44,Rhode Island,39
+2024-09-21,44,Rhode Island,27
+2024-09-28,44,Rhode Island,23
+2024-10-05,44,Rhode Island,43
+2024-10-12,44,Rhode Island,2
+2024-10-19,44,Rhode Island,15
+2024-10-26,44,Rhode Island,7
 2024-11-02,44,Rhode Island,15
-2024-11-09,44,Rhode Island,28
-2024-11-16,44,Rhode Island,20
+2024-11-09,44,Rhode Island,29
+2024-11-16,44,Rhode Island,21
 2024-11-23,44,Rhode Island,30
 2024-11-30,44,Rhode Island,21
+2024-12-07,44,Rhode Island,40
 2020-08-08,45,South Carolina,943
 2020-08-15,45,South Carolina,645
 2020-08-22,45,South Carolina,631
@@ -8352,11 +9500,39 @@ week_ending_date,location,location_name,value
 2024-04-06,45,South Carolina,117
 2024-04-13,45,South Carolina,112
 2024-04-20,45,South Carolina,74
+2024-04-27,45,South Carolina,67
+2024-05-04,45,South Carolina,31
+2024-05-11,45,South Carolina,21
+2024-05-18,45,South Carolina,14
+2024-05-25,45,South Carolina,16
+2024-06-01,45,South Carolina,15
+2024-06-08,45,South Carolina,17
+2024-06-15,45,South Carolina,29
+2024-06-22,45,South Carolina,23
+2024-06-29,45,South Carolina,32
+2024-07-06,45,South Carolina,48
+2024-07-13,45,South Carolina,61
+2024-07-20,45,South Carolina,65
+2024-07-27,45,South Carolina,97
+2024-08-03,45,South Carolina,106
+2024-08-10,45,South Carolina,128
+2024-08-17,45,South Carolina,138
+2024-08-24,45,South Carolina,119
+2024-08-31,45,South Carolina,153
+2024-09-07,45,South Carolina,120
+2024-09-14,45,South Carolina,99
+2024-09-21,45,South Carolina,87
+2024-09-28,45,South Carolina,64
+2024-10-05,45,South Carolina,25
+2024-10-12,45,South Carolina,5
+2024-10-19,45,South Carolina,29
+2024-10-26,45,South Carolina,36
 2024-11-02,45,South Carolina,62
-2024-11-09,45,South Carolina,75
+2024-11-09,45,South Carolina,77
 2024-11-16,45,South Carolina,69
 2024-11-23,45,South Carolina,72
 2024-11-30,45,South Carolina,67
+2024-12-07,45,South Carolina,75
 2020-08-08,46,South Dakota,47
 2020-08-15,46,South Dakota,93
 2020-08-22,46,South Dakota,95
@@ -8551,11 +9727,39 @@ week_ending_date,location,location_name,value
 2024-04-06,46,South Dakota,22
 2024-04-13,46,South Dakota,30
 2024-04-20,46,South Dakota,17
+2024-04-27,46,South Dakota,16
+2024-05-04,46,South Dakota,8
+2024-05-11,46,South Dakota,1
+2024-05-18,46,South Dakota,0
+2024-05-25,46,South Dakota,1
+2024-06-01,46,South Dakota,8
+2024-06-08,46,South Dakota,5
+2024-06-15,46,South Dakota,5
+2024-06-22,46,South Dakota,2
+2024-06-29,46,South Dakota,1
+2024-07-06,46,South Dakota,4
+2024-07-13,46,South Dakota,7
+2024-07-20,46,South Dakota,10
+2024-07-27,46,South Dakota,5
+2024-08-03,46,South Dakota,4
+2024-08-10,46,South Dakota,5
+2024-08-17,46,South Dakota,6
+2024-08-24,46,South Dakota,5
+2024-08-31,46,South Dakota,6
+2024-09-07,46,South Dakota,11
+2024-09-14,46,South Dakota,9
+2024-09-21,46,South Dakota,12
+2024-09-28,46,South Dakota,2
+2024-10-05,46,South Dakota,4
+2024-10-12,46,South Dakota,2
+2024-10-19,46,South Dakota,5
+2024-10-26,46,South Dakota,7
 2024-11-02,46,South Dakota,7
 2024-11-09,46,South Dakota,30
-2024-11-16,46,South Dakota,35
+2024-11-16,46,South Dakota,36
 2024-11-23,46,South Dakota,31
 2024-11-30,46,South Dakota,19
+2024-12-07,46,South Dakota,23
 2020-08-08,47,Tennessee,1402
 2020-08-15,47,Tennessee,1331
 2020-08-22,47,Tennessee,1216
@@ -8750,11 +9954,39 @@ week_ending_date,location,location_name,value
 2024-04-06,47,Tennessee,191
 2024-04-13,47,Tennessee,136
 2024-04-20,47,Tennessee,152
+2024-04-27,47,Tennessee,99
+2024-05-04,47,Tennessee,71
+2024-05-11,47,Tennessee,23
+2024-05-18,47,Tennessee,21
+2024-05-25,47,Tennessee,14
+2024-06-01,47,Tennessee,18
+2024-06-08,47,Tennessee,16
+2024-06-15,47,Tennessee,30
+2024-06-22,47,Tennessee,21
+2024-06-29,47,Tennessee,34
+2024-07-06,47,Tennessee,39
+2024-07-13,47,Tennessee,70
+2024-07-20,47,Tennessee,88
+2024-07-27,47,Tennessee,78
+2024-08-03,47,Tennessee,73
+2024-08-10,47,Tennessee,108
+2024-08-17,47,Tennessee,89
+2024-08-24,47,Tennessee,47
+2024-08-31,47,Tennessee,71
+2024-09-07,47,Tennessee,33
+2024-09-14,47,Tennessee,12
+2024-09-21,47,Tennessee,22
+2024-09-28,47,Tennessee,10
+2024-10-05,47,Tennessee,27
+2024-10-12,47,Tennessee,102
+2024-10-19,47,Tennessee,22
+2024-10-26,47,Tennessee,32
 2024-11-02,47,Tennessee,101
-2024-11-09,47,Tennessee,113
-2024-11-16,47,Tennessee,148
+2024-11-09,47,Tennessee,121
+2024-11-16,47,Tennessee,159
 2024-11-23,47,Tennessee,98
-2024-11-30,47,Tennessee,141
+2024-11-30,47,Tennessee,143
+2024-12-07,47,Tennessee,130
 2020-08-08,48,Texas,6571
 2020-08-15,48,Texas,5840
 2020-08-22,48,Texas,5549
@@ -8949,11 +10181,39 @@ week_ending_date,location,location_name,value
 2024-04-06,48,Texas,828
 2024-04-13,48,Texas,777
 2024-04-20,48,Texas,735
+2024-04-27,48,Texas,643
+2024-05-04,48,Texas,274
+2024-05-11,48,Texas,8
+2024-05-18,48,Texas,2
+2024-05-25,48,Texas,8
+2024-06-01,48,Texas,3
+2024-06-08,48,Texas,7
+2024-06-15,48,Texas,6
+2024-06-22,48,Texas,2
+2024-06-29,48,Texas,12
+2024-07-06,48,Texas,36
+2024-07-13,48,Texas,17
+2024-07-20,48,Texas,51
+2024-07-27,48,Texas,9
+2024-08-03,48,Texas,46
+2024-08-10,48,Texas,9
+2024-08-17,48,Texas,16
+2024-08-24,48,Texas,7
+2024-08-31,48,Texas,5
+2024-09-07,48,Texas,9
+2024-09-14,48,Texas,5
+2024-09-21,48,Texas,5
+2024-09-28,48,Texas,11
+2024-10-05,48,Texas,15
+2024-10-12,48,Texas,619
+2024-10-19,48,Texas,89
+2024-10-26,48,Texas,102
 2024-11-02,48,Texas,173
-2024-11-09,48,Texas,341
-2024-11-16,48,Texas,228
+2024-11-09,48,Texas,347
+2024-11-16,48,Texas,231
 2024-11-23,48,Texas,257
-2024-11-30,48,Texas,278
+2024-11-30,48,Texas,282
+2024-12-07,48,Texas,362
 2020-08-08,US,US,39044
 2020-08-15,US,US,36630
 2020-08-22,US,US,36884
@@ -9148,11 +10408,39 @@ week_ending_date,location,location_name,value
 2024-04-06,US,US,8209
 2024-04-13,US,US,7286
 2024-04-20,US,US,6414
-2024-11-02,US,US,4617
-2024-11-09,US,US,7703
-2024-11-16,US,US,7585
-2024-11-23,US,US,7818
-2024-11-30,US,US,7368
+2024-04-27,US,US,5803
+2024-05-04,US,US,3842
+2024-05-11,US,US,2408
+2024-05-18,US,US,2231
+2024-05-25,US,US,2291
+2024-06-01,US,US,2358
+2024-06-08,US,US,2590
+2024-06-15,US,US,2943
+2024-06-22,US,US,3473
+2024-06-29,US,US,3848
+2024-07-06,US,US,5042
+2024-07-13,US,US,5669
+2024-07-20,US,US,6261
+2024-07-27,US,US,7047
+2024-08-03,US,US,7417
+2024-08-10,US,US,7767
+2024-08-17,US,US,7978
+2024-08-24,US,US,8008
+2024-08-31,US,US,7757
+2024-09-07,US,US,7327
+2024-09-14,US,US,6894
+2024-09-21,US,US,6184
+2024-09-28,US,US,5339
+2024-10-05,US,US,4197
+2024-10-12,US,US,1956
+2024-10-19,US,US,2064
+2024-10-26,US,US,2930
+2024-11-02,US,US,4636
+2024-11-09,US,US,7932
+2024-11-16,US,US,7791
+2024-11-23,US,US,7887
+2024-11-30,US,US,7648
+2024-12-07,US,US,8283
 2020-08-08,49,Utah,128
 2020-08-15,49,Utah,126
 2020-08-22,49,Utah,89
@@ -9347,11 +10635,39 @@ week_ending_date,location,location_name,value
 2024-04-06,49,Utah,59
 2024-04-13,49,Utah,46
 2024-04-20,49,Utah,57
+2024-04-27,49,Utah,36
+2024-05-04,49,Utah,22
+2024-05-11,49,Utah,26
+2024-05-18,49,Utah,28
+2024-05-25,49,Utah,27
+2024-06-01,49,Utah,23
+2024-06-08,49,Utah,34
+2024-06-15,49,Utah,42
+2024-06-22,49,Utah,32
+2024-06-29,49,Utah,42
+2024-07-06,49,Utah,53
+2024-07-13,49,Utah,60
+2024-07-20,49,Utah,56
+2024-07-27,49,Utah,63
+2024-08-03,49,Utah,77
+2024-08-10,49,Utah,80
+2024-08-17,49,Utah,73
+2024-08-24,49,Utah,87
+2024-08-31,49,Utah,101
+2024-09-07,49,Utah,106
+2024-09-14,49,Utah,84
+2024-09-21,49,Utah,99
+2024-09-28,49,Utah,60
+2024-10-05,49,Utah,58
+2024-10-12,49,Utah,1
+2024-10-19,49,Utah,2
+2024-10-26,49,Utah,30
 2024-11-02,49,Utah,44
-2024-11-09,49,Utah,41
-2024-11-16,49,Utah,46
-2024-11-23,49,Utah,59
-2024-11-30,49,Utah,55
+2024-11-09,49,Utah,43
+2024-11-16,49,Utah,47
+2024-11-23,49,Utah,64
+2024-11-30,49,Utah,57
+2024-12-07,49,Utah,61
 2020-08-08,51,Virginia,333
 2020-08-15,51,Virginia,421
 2020-08-22,51,Virginia,413
@@ -9546,11 +10862,39 @@ week_ending_date,location,location_name,value
 2024-04-06,51,Virginia,308
 2024-04-13,51,Virginia,302
 2024-04-20,51,Virginia,273
+2024-04-27,51,Virginia,245
+2024-05-04,51,Virginia,133
+2024-05-11,51,Virginia,41
+2024-05-18,51,Virginia,38
+2024-05-25,51,Virginia,33
+2024-06-01,51,Virginia,36
+2024-06-08,51,Virginia,41
+2024-06-15,51,Virginia,52
+2024-06-22,51,Virginia,46
+2024-06-29,51,Virginia,61
+2024-07-06,51,Virginia,86
+2024-07-13,51,Virginia,92
+2024-07-20,51,Virginia,91
+2024-07-27,51,Virginia,117
+2024-08-03,51,Virginia,168
+2024-08-10,51,Virginia,194
+2024-08-17,51,Virginia,217
+2024-08-24,51,Virginia,216
+2024-08-31,51,Virginia,242
+2024-09-07,51,Virginia,214
+2024-09-14,51,Virginia,195
+2024-09-21,51,Virginia,181
+2024-09-28,51,Virginia,128
+2024-10-05,51,Virginia,127
+2024-10-12,51,Virginia,114
+2024-10-19,51,Virginia,86
+2024-10-26,51,Virginia,124
 2024-11-02,51,Virginia,152
 2024-11-09,51,Virginia,126
-2024-11-16,51,Virginia,102
+2024-11-16,51,Virginia,104
 2024-11-23,51,Virginia,116
-2024-11-30,51,Virginia,98
+2024-11-30,51,Virginia,101
+2024-12-07,51,Virginia,117
 2020-08-08,50,Vermont,3
 2020-08-15,50,Vermont,5
 2020-08-22,50,Vermont,6
@@ -9745,11 +11089,39 @@ week_ending_date,location,location_name,value
 2024-04-06,50,Vermont,11
 2024-04-13,50,Vermont,9
 2024-04-20,50,Vermont,3
+2024-04-27,50,Vermont,3
+2024-05-04,50,Vermont,5
+2024-05-11,50,Vermont,2
+2024-05-18,50,Vermont,2
+2024-05-25,50,Vermont,3
+2024-06-01,50,Vermont,2
+2024-06-08,50,Vermont,2
+2024-06-15,50,Vermont,0
+2024-06-22,50,Vermont,0
+2024-06-29,50,Vermont,1
+2024-07-06,50,Vermont,0
+2024-07-13,50,Vermont,0
+2024-07-20,50,Vermont,1
+2024-07-27,50,Vermont,0
+2024-08-03,50,Vermont,0
+2024-08-10,50,Vermont,2
+2024-08-17,50,Vermont,4
+2024-08-24,50,Vermont,0
+2024-08-31,50,Vermont,1
+2024-09-07,50,Vermont,2
+2024-09-14,50,Vermont,1
+2024-09-21,50,Vermont,2
+2024-09-28,50,Vermont,2
+2024-10-05,50,Vermont,1
+2024-10-12,50,Vermont,0
+2024-10-19,50,Vermont,14
+2024-10-26,50,Vermont,6
 2024-11-02,50,Vermont,10
-2024-11-09,50,Vermont,19
-2024-11-16,50,Vermont,9
+2024-11-09,50,Vermont,21
+2024-11-16,50,Vermont,11
 2024-11-23,50,Vermont,21
 2024-11-30,50,Vermont,12
+2024-12-07,50,Vermont,12
 2020-08-08,53,Washington,192
 2020-08-15,53,Washington,190
 2020-08-22,53,Washington,165
@@ -9944,11 +11316,39 @@ week_ending_date,location,location_name,value
 2024-04-06,53,Washington,133
 2024-04-13,53,Washington,102
 2024-04-20,53,Washington,104
+2024-04-27,53,Washington,83
+2024-05-04,53,Washington,88
+2024-05-11,53,Washington,101
+2024-05-18,53,Washington,102
+2024-05-25,53,Washington,122
+2024-06-01,53,Washington,131
+2024-06-08,53,Washington,157
+2024-06-15,53,Washington,207
+2024-06-22,53,Washington,240
+2024-06-29,53,Washington,266
+2024-07-06,53,Washington,243
+2024-07-13,53,Washington,245
+2024-07-20,53,Washington,267
+2024-07-27,53,Washington,248
+2024-08-03,53,Washington,298
+2024-08-10,53,Washington,306
+2024-08-17,53,Washington,262
+2024-08-24,53,Washington,266
+2024-08-31,53,Washington,250
+2024-09-07,53,Washington,294
+2024-09-14,53,Washington,282
+2024-09-21,53,Washington,288
+2024-09-28,53,Washington,285
+2024-10-05,53,Washington,227
+2024-10-12,53,Washington,104
+2024-10-19,53,Washington,59
+2024-10-26,53,Washington,52
 2024-11-02,53,Washington,55
-2024-11-09,53,Washington,93
-2024-11-16,53,Washington,81
-2024-11-23,53,Washington,88
-2024-11-30,53,Washington,71
+2024-11-09,53,Washington,97
+2024-11-16,53,Washington,83
+2024-11-23,53,Washington,89
+2024-11-30,53,Washington,75
+2024-12-07,53,Washington,51
 2020-08-08,55,Wisconsin,673
 2020-08-15,55,Wisconsin,485
 2020-08-22,55,Wisconsin,447
@@ -10143,11 +11543,39 @@ week_ending_date,location,location_name,value
 2024-04-06,55,Wisconsin,164
 2024-04-13,55,Wisconsin,96
 2024-04-20,55,Wisconsin,126
+2024-04-27,55,Wisconsin,81
+2024-05-04,55,Wisconsin,57
+2024-05-11,55,Wisconsin,53
+2024-05-18,55,Wisconsin,45
+2024-05-25,55,Wisconsin,33
+2024-06-01,55,Wisconsin,39
+2024-06-08,55,Wisconsin,51
+2024-06-15,55,Wisconsin,45
+2024-06-22,55,Wisconsin,50
+2024-06-29,55,Wisconsin,72
+2024-07-06,55,Wisconsin,96
+2024-07-13,55,Wisconsin,96
+2024-07-20,55,Wisconsin,103
+2024-07-27,55,Wisconsin,123
+2024-08-03,55,Wisconsin,129
+2024-08-10,55,Wisconsin,148
+2024-08-17,55,Wisconsin,171
+2024-08-24,55,Wisconsin,190
+2024-08-31,55,Wisconsin,188
+2024-09-07,55,Wisconsin,181
+2024-09-14,55,Wisconsin,169
+2024-09-21,55,Wisconsin,140
+2024-09-28,55,Wisconsin,160
+2024-10-05,55,Wisconsin,132
+2024-10-12,55,Wisconsin,3
+2024-10-19,55,Wisconsin,41
+2024-10-26,55,Wisconsin,91
 2024-11-02,55,Wisconsin,104
-2024-11-09,55,Wisconsin,155
-2024-11-16,55,Wisconsin,147
+2024-11-09,55,Wisconsin,158
+2024-11-16,55,Wisconsin,149
 2024-11-23,55,Wisconsin,148
-2024-11-30,55,Wisconsin,127
+2024-11-30,55,Wisconsin,133
+2024-12-07,55,Wisconsin,181
 2020-08-08,54,West Virginia,96
 2020-08-15,54,West Virginia,74
 2020-08-22,54,West Virginia,93
@@ -10342,11 +11770,39 @@ week_ending_date,location,location_name,value
 2024-04-06,54,West Virginia,50
 2024-04-13,54,West Virginia,36
 2024-04-20,54,West Virginia,44
+2024-04-27,54,West Virginia,36
+2024-05-04,54,West Virginia,12
+2024-05-11,54,West Virginia,3
+2024-05-18,54,West Virginia,0
+2024-05-25,54,West Virginia,0
+2024-06-01,54,West Virginia,0
+2024-06-08,54,West Virginia,0
+2024-06-15,54,West Virginia,0
+2024-06-22,54,West Virginia,0
+2024-06-29,54,West Virginia,0
+2024-07-06,54,West Virginia,1
+2024-07-13,54,West Virginia,3
+2024-07-20,54,West Virginia,2
+2024-07-27,54,West Virginia,0
+2024-08-03,54,West Virginia,0
+2024-08-10,54,West Virginia,0
+2024-08-17,54,West Virginia,0
+2024-08-24,54,West Virginia,0
+2024-08-31,54,West Virginia,0
+2024-09-07,54,West Virginia,NA
+2024-09-14,54,West Virginia,NA
+2024-09-21,54,West Virginia,NA
+2024-09-28,54,West Virginia,NA
+2024-10-05,54,West Virginia,NA
+2024-10-12,54,West Virginia,0
+2024-10-19,54,West Virginia,4
+2024-10-26,54,West Virginia,5
 2024-11-02,54,West Virginia,40
-2024-11-09,54,West Virginia,60
-2024-11-16,54,West Virginia,59
+2024-11-09,54,West Virginia,62
+2024-11-16,54,West Virginia,64
 2024-11-23,54,West Virginia,150
 2024-11-30,54,West Virginia,151
+2024-12-07,54,West Virginia,88
 2020-08-08,56,Wyoming,121
 2020-08-15,56,Wyoming,50
 2020-08-22,56,Wyoming,37
@@ -10541,8 +11997,36 @@ week_ending_date,location,location_name,value
 2024-04-06,56,Wyoming,3
 2024-04-13,56,Wyoming,11
 2024-04-20,56,Wyoming,10
+2024-04-27,56,Wyoming,8
+2024-05-04,56,Wyoming,6
+2024-05-11,56,Wyoming,6
+2024-05-18,56,Wyoming,4
+2024-05-25,56,Wyoming,5
+2024-06-01,56,Wyoming,13
+2024-06-08,56,Wyoming,6
+2024-06-15,56,Wyoming,3
+2024-06-22,56,Wyoming,10
+2024-06-29,56,Wyoming,6
+2024-07-06,56,Wyoming,7
+2024-07-13,56,Wyoming,19
+2024-07-20,56,Wyoming,18
+2024-07-27,56,Wyoming,15
+2024-08-03,56,Wyoming,19
+2024-08-10,56,Wyoming,19
+2024-08-17,56,Wyoming,24
+2024-08-24,56,Wyoming,15
+2024-08-31,56,Wyoming,22
+2024-09-07,56,Wyoming,20
+2024-09-14,56,Wyoming,21
+2024-09-21,56,Wyoming,21
+2024-09-28,56,Wyoming,34
+2024-10-05,56,Wyoming,30
+2024-10-12,56,Wyoming,3
+2024-10-19,56,Wyoming,2
+2024-10-26,56,Wyoming,41
 2024-11-02,56,Wyoming,31
-2024-11-09,56,Wyoming,59
+2024-11-09,56,Wyoming,61
 2024-11-16,56,Wyoming,48
 2024-11-23,56,Wyoming,31
 2024-11-30,56,Wyoming,47
+2024-12-07,56,Wyoming,42
