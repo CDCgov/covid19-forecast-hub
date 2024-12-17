@@ -1,4 +1,4 @@
-# Inform Division Forecast Visualization Data
+# Forecast Visualization Data
 
 The following data
 
