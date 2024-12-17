@@ -44,7 +44,7 @@
 #'
 #' To run:
 #' Rscript get_map_data.R --reference_date 2024-11-23
-#' --base_hub_path ../
+#' --base_hub_path ../ --horizons_to_include 0 1 2
 
 
 # set up command line argument parser
@@ -63,11 +63,27 @@ parser <- argparser::add_argument(
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
+parser <- argparser::add_argument(
+  parser,
+  "--horizons_to_include",
+  nargs = "Inf",
+  help = "A list of horizons to include."
+)
 
 # read CLAs; get reference date and paths
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+horizons_to_include <- as.integer(args$horizons_to_include)
+
+# check for invalid horizon entries
+valid_horizons <- c(-1, 0, 1, 2, 3)
+invalid_horizons <- horizons_to_include[!sapply(
+  horizons_to_include, function(x) x %in% valid_horizons
+)]
+if (length(invalid_horizons) > 0) {
+  stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
+}
 
 # load the latest ensemble data from the
 # model-output folder
