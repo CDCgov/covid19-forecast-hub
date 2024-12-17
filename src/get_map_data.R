@@ -173,9 +173,8 @@ model_name <- "CovidHub-ensemble"
 # process ensemble data into the required
 # format for Map file
 map_data <- ensemble_data |>
-  # filter out horizon 3 columns at behest
-  # of Inform+Flu Division
-  dplyr::filter(horizon != 3) |>
+  # usually filter out horizon 3, -1
+  dplyr::filter(horizon %in% !!horizons_to_include) |>
   # filter out excluded locations if the
   # ref date is the first week in season
   dplyr::filter(!(location %in% excluded_locations)) |>
