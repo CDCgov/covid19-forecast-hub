@@ -8,6 +8,7 @@
 
 /renv/
 renv.lock
+.venv
 
 /test/
 
@@ -17,5 +18,3 @@ hub-config/README_files/
 /README_files/
 /DISCLAIMER_files/
 *.html
-
-/test
