@@ -30,7 +30,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML"))
+        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML", "tidyr"))
         remotes::install_github('cdcgov/forecasttools')
         remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
