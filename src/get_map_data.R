@@ -43,8 +43,9 @@
 #' as a string (Ex: "November 23, 2024")
 #'
 #' To run:
-#' Rscript gen_map_data.R --reference_date 2024-11-23
-#' --base_hub_path ../../
+#' Rscript get_map_data.R --reference_date 2024-11-23
+#' --base_hub_path ../ --horizons_to_include 0 1 2
+
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -62,11 +63,27 @@ parser <- argparser::add_argument(
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
+parser <- argparser::add_argument(
+  parser,
+  "--horizons_to_include",
+  nargs = "Inf",
+  help = "A list of horizons to include."
+)
 
 # read CLAs; get reference date and paths
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+horizons_to_include <- as.integer(args$horizons_to_include)
+
+# check for invalid horizon entries
+valid_horizons <- c(-1, 0, 1, 2, 3)
+invalid_horizons <- horizons_to_include[!sapply(
+  horizons_to_include, function(x) x %in% valid_horizons
+)]
+if (length(invalid_horizons) > 0) {
+  stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
+}
 
 # load the latest ensemble data from the
 # model-output folder
@@ -150,16 +167,22 @@ if (fs::file_exists(exclude_data_path_toml)) {
 }
 
 
+# save ensemble name (using value suggested by MB)
+model_name <- "CovidHub-ensemble"
+
 # process ensemble data into the required
 # format for Map file
 map_data <- ensemble_data |>
+  # usually filter out horizon 3, -1
+  dplyr::filter(horizon %in% !!horizons_to_include) |>
   # filter out excluded locations if the
   # ref date is the first week in season
   dplyr::filter(!(location %in% excluded_locations)) |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
-    value = as.numeric(value)
+    value = as.numeric(value),
+    model = model_name
   ) |>
   # convert location column codes to full
   # location names
@@ -185,8 +208,6 @@ map_data <- ensemble_data |>
   ) |>
   # add quantile columns for per-100k rates
   # and rounded values
-  # add quantile columns for per-100k rates
-  # and rounded values
   dplyr::mutate(
     quantile_0.025_per100k = value / as.numeric(population) * 100000,
     quantile_0.5_per100k = value / as.numeric(population) * 100000,
@@ -201,10 +222,12 @@ map_data <- ensemble_data |>
     quantile_0.5_count_rounded = round(quantile_0.5_count),
     quantile_0.975_count_rounded = round(quantile_0.975_count),
     target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
-    reference_date_formatted = format(reference_date, "%B %d, %Y")
+    reference_date_formatted = format(reference_date, "%B %d, %Y"),
+    forecast_due_date = as.Date(ref_date) - 3,
+    forecast_due_date_formatted = format(forecast_due_date, "%B %d, %Y"),
   ) |>
   dplyr::select(
-    location_name = location, # rename location col
+    location_name = location,
     quantile_0.025_per100k,
     quantile_0.5_per100k,
     quantile_0.975_per100k,
@@ -220,15 +243,18 @@ map_data <- ensemble_data |>
     target,
     target_end_date,
     reference_date,
+    forecast_due_date,
     target_end_date_formatted,
-    reference_date_formatted
+    forecast_due_date_formatted,
+    reference_date_formatted,
+    model,
   )
 
 # output folder and file paths for Map Data
 output_folder_path <- fs::path(
   base_hub_path, "weekly-summaries", ref_date
 )
-output_filename <- paste0(ref_date, "_map-data.csv")
+output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(
   output_folder_path, output_filename
 )

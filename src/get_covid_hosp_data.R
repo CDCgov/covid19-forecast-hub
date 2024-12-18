@@ -15,12 +15,12 @@
 #' admissions (integer)
 #'
 #' To get the historical dataset for visualization:
-#' Rscript gen_truth_data_comb.R --target_data FALSE \
-#'   --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript get_covid_hosp_data.R --target_data FALSE \
+#'   --reference_date 2024-11-23 --base_hub_path ../
 #'
 #' To get the target COVID-19 hospital admissions data:
-#' Rscript gen_truth_data_comb.R --target_data TRUE \
-#'   --reference_date 2024-11-23 --base_hub_path ../../
+#' Rscript get_covid_hosp_data.R --target_data TRUE \
+#'   --reference_date 2024-11-23 --base_hub_path ../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -62,16 +62,17 @@ first_full_weekending_date <- args$first_full_weekending_date
 # gather locations to exclude such that the
 # only territories are the 50 US states, DC,
 # and PR
-exclude_data_path <- fs::path(
+exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
-  "excluded_territories.json"
+  "excluded_territories.toml"
 )
-if (!fs::file_exists(exclude_data_path)) {
-  stop("Exclude locations file not found: ", exclude_data_path)
+if (fs::file_exists(exclude_territories_path)) {
+  exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+  excluded_locations <- exclude_territories_toml$locations
+} else {
+  stop("TOML file not found: ", exclude_territories_path)
 }
-exclude_data <- jsonlite::fromJSON(exclude_data_path)
-excluded_locations <- exclude_data$locations
 
 
 if (target_data) {
@@ -155,7 +156,9 @@ if (!target_data) {
   output_folder_path <- fs::path(
     base_hub_path, "weekly-summaries", reference_date
   )
-  output_filename <- paste0(reference_date, "_truth-data.csv")
+  output_filename <- paste0(
+    reference_date, "_covid_target_hospital_admissions_data.csv"
+  )
   output_filepath <- fs::path(output_folder_path, output_filename)
   # determine if the output folder exists,
   # create it if not
