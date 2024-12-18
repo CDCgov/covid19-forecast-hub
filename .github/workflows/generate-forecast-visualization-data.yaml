@@ -1,4 +1,4 @@
-name: Update target data
+name: Generate weekly visualization data
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     - cron: '00 16 * * 4'
     
 jobs:
-  update-target-data:
+  update-viz-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-22.04
     env:
@@ -35,7 +35,7 @@ jobs:
         remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
     
-    - name: get updated files
+    - name: generate data files
       run: |
         TODAY=$(date +'%Y-%m-%d')
         #REF_DATE=$(date -d "$TODAY + 2 days" +'%Y-%m-%d') #uncomment after generating the files in CI for the week
