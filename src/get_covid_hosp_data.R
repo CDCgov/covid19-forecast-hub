@@ -22,7 +22,7 @@
 #' Rscript get_covid_hosp_data.R --target_data TRUE \
 #'   --reference_date 2024-11-23 --base_hub_path ../
 
-# set up command line argument parser
+
 parser <- argparser::arg_parser(
   "Fetch and process COVID-19 hospital admissions data."
 )

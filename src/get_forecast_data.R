@@ -26,7 +26,6 @@
 #' --base_hub_path ../ --horizons_to_include 0 1 2
 
 
-# set up command line argument parser
 parser <- argparser::arg_parser(
   "Save Forecast Data as CSV."
 )
