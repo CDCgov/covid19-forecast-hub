@@ -37,8 +37,7 @@ jobs:
   
     - name: generate ensemble
       run: |
-        TODAY=$(date +'%Y-%m-%d')
-        REF_DATE=$(date -d "$TODAY + 2 days" +'%Y-%m-%d')
+        REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
         Rscript src/get_ensemble.R --reference-date "$REF_DATE" --base_hub_path "."
 
     - name: Commit changes

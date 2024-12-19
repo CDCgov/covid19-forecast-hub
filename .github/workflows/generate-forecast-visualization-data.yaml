@@ -30,14 +30,13 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML", "tidyr"))
+        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML", "tidyr", "lubridate"))
         remotes::install_github('cdcgov/forecasttools')
         remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
     
     - name: generate data files
       run: |
-        TODAY=$(date +'%Y-%m-%d')
         REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
         Rscript src/get_covid_hosp_data.R --reference_date "$REF_DATE" --base_hub_path "." --target_data FALSE
         Rscript src/get_forecast_data.R --reference_date "$REF_DATE" --base_hub_path "." --horizons_to_include 0 1 2
