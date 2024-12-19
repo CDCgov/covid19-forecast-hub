@@ -1,12 +1,12 @@
-name: Update target data
+name: Generate weekly visualization data
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 17 * * 3'
+    - cron: '00 16 * * 4'
     
 jobs:
-  update-target-data:
+  update-viz-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-22.04
     env:
@@ -30,34 +30,33 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML"))
+        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML", "tidyr"))
         remotes::install_github('cdcgov/forecasttools')
+        remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
     
-    - name: get updated target data
+    - name: generate data files
       run: |
-        Rscript src/get_covid_hosp_data.R --target_data TRUE --base_hub_path "."
+        TODAY=$(date +'%Y-%m-%d')
+        #REF_DATE=$(date -d "$TODAY + 2 days" +'%Y-%m-%d') #uncomment after generating the files in CI for the week
+        REF_DATE="2024-12-14"
+        Rscript src/get_covid_hosp_data.R --reference_date "$REF_DATE" --base_hub_path "." --target_data FALSE
+        Rscript src/get_forecast_data.R --reference_date "$REF_DATE" --base_hub_path "." --horizons_to_include 0 1 2
+        Rscript src/get_map_data.R --reference_date "$REF_DATE" --base_hub_path "." --horizons_to_include 0 1 2
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
 
-    - name: Check for Changes
-      id: check_diff
-      run: |
-        git diff --exit-code target-data/covid-hospital-admissions.csv || echo "changed=true" >> $GITHUB_ENV 
-
     - name: Commit changes
-      if: env.changed == 'true'
       uses: EndBug/add-and-commit@v9
       with: 
-        message: "Update target data"
+        message: "Update weekly data"
         default_author: github_actions
         push: true
-        new_branch: update-target-data
+        new_branch: add-viz-data
   
     - name: Create pull request
-      if: env.changed == 'true'
       run: |
-        gh pr create --base main --head update-target-data --title "Update target data" --body "This PR updates the covid-19 hospital admissions data based on the latest NHSN wednesday data release."
+        gh pr create --base main --head add-viz-data --title "Weekly foecast visualization data" --body "This PR adds weekly visualization data files to the repo."
       env:
         GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}

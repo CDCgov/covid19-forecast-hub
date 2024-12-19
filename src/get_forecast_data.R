@@ -22,8 +22,8 @@
 #' - `forecast_fullnames`: full model name
 #'
 #' To run:
-#' Rscript gen_forecast_data.R --reference_date 2024-11-23
-#' --base_hub_path ../../
+#' Rscript get_forecast_data.R --reference_date 2024-11-23
+#' --base_hub_path ../ --horizons_to_include 0 1 2
 
 
 # set up command line argument parser
@@ -42,11 +42,27 @@ parser <- argparser::add_argument(
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
+parser <- argparser::add_argument(
+  parser,
+  "--horizons_to_include",
+  nargs = "Inf",
+  help = "A list of horizons to include."
+)
 
 # read CLAs; get reference date and paths
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+horizons_to_include <- as.integer(args$horizons_to_include)
+
+# check for invalid horizon entries
+valid_horizons <- c(-1, 0, 1, 2, 3)
+invalid_horizons <- horizons_to_include[!sapply(
+  horizons_to_include, function(x) x %in% valid_horizons
+)]
+if (length(invalid_horizons) > 0) {
+  stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
+}
 
 # create model metadata path
 model_metadata <- hubData::load_model_metadata(
@@ -94,6 +110,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "quantile_0.975" = 0.975
   )
 ) |>
+  # usually filter out horizon 3, -1
+  dplyr::filter(horizon %in% !!horizons_to_include) |>
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
@@ -109,7 +127,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       dplyr::starts_with("quantile_"),
       round,
       .names = "{.col}_rounded"
-    )
+    ),
+    forecast_due_date = as.Date(ref_date) - 3,
   ) |>
   dplyr::left_join(
     dplyr::distinct(
@@ -138,7 +157,8 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     quantile_0.75_rounded,
     quantile_0.975_rounded,
     forecast_team = team_name,
-    forecast_fullnames = model_name
+    forecast_due_date,
+    model_full_name = model_name
   )
 
 # output folder and file paths for All Forecasts
@@ -147,7 +167,7 @@ output_folder_path <- fs::path(
   "weekly-summaries",
   ref_date
 )
-output_filename <- paste0(ref_date, "_all-forecasts.csv")
+output_filename <- paste0(ref_date, "_covid_forecasts_data.csv")
 output_filepath <- fs::path(output_folder_path, output_filename)
 
 # determine if the output folder exists,
