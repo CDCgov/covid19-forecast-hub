@@ -131,6 +131,14 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     forecast_due_date = as.Date(ref_date) - 3,
     location_sort_order = ifelse(location_name == "United States", 0, 1)
   ) |>
+  # long name "United States" to "US"
+  dplyr::mutate(
+    location_name = dplyr::if_else(
+      location_name == "United States",
+      "US",
+      location_name
+    )
+  ) |>
   dplyr::arrange(location_sort_order, location_name) |>
   dplyr::left_join(
     dplyr::distinct(
