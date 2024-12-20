@@ -202,7 +202,7 @@ map_data <- ensemble_data |>
     ),
     # sort locations alphabetically, except
     # for US
-    location_sort_order = ifelse(location == "United States", 0, 1)
+    location_sort_order = ifelse(location == "US", 0, 1)
   ) |>
   # add population data for later calculations
   dplyr::left_join(
