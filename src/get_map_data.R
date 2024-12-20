@@ -43,7 +43,7 @@
 #' as a string (Ex: "November 23, 2024")
 #'
 #' To run:
-#' Rscript get_map_data.R --reference_date 2024-11-23
+#' Rscript get_map_data.R --reference_date 2024-12-21
 #' --base_hub_path ../ --horizons_to_include 0 1 2
 
 
@@ -228,6 +228,7 @@ map_data <- ensemble_data |>
   ) |>
   dplyr::select(
     location_name = location,
+    horizon,
     quantile_0.025_per100k,
     quantile_0.5_per100k,
     quantile_0.975_per100k,
