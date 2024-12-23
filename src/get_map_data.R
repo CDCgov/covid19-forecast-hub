@@ -76,6 +76,7 @@ ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 horizons_to_include <- as.integer(args$horizons_to_include)
 
+
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
 invalid_horizons <- horizons_to_include[!sapply(
@@ -170,9 +171,20 @@ if (fs::file_exists(exclude_data_path_toml)) {
 # save ensemble name (using value suggested by MB)
 model_name <- "CovidHub-ensemble"
 
+
+
 # process ensemble data into the required
 # format for Map file
-map_data <- ensemble_data |>
+map_data <- forecasttools::pivot_hubverse_quantiles_wider(
+  hubverse_table = ensemble_data,
+  pivot_quantiles = c(
+    "quantile_0.025" = 0.025,
+    "quantile_0.25" = 0.25,
+    "quantile_0.5" = 0.5,
+    "quantile_0.75" = 0.75,
+    "quantile_0.975" = 0.975
+  )
+) |>
   # usually filter out horizon 3, -1
   dplyr::filter(horizon %in% !!horizons_to_include) |>
   # filter out excluded locations if the
@@ -181,7 +193,6 @@ map_data <- ensemble_data |>
   dplyr::mutate(
     reference_date = as.Date(reference_date),
     target_end_date = as.Date(target_end_date),
-    value = as.numeric(value),
     model = model_name
   ) |>
   # convert location column codes to full
@@ -199,8 +210,12 @@ map_data <- ensemble_data |>
       location == "United States",
       "US",
       location
-    )
+    ),
+    # sort locations alphabetically, except
+    # for US
+    location_sort_order = ifelse(location == "US", 0, 1)
   ) |>
+  dplyr::arrange(location_sort_order, location) |>
   # add population data for later calculations
   dplyr::left_join(
     pop_data,
@@ -209,12 +224,12 @@ map_data <- ensemble_data |>
   # add quantile columns for per-100k rates
   # and rounded values
   dplyr::mutate(
-    quantile_0.025_per100k = value / as.numeric(population) * 100000,
-    quantile_0.5_per100k = value / as.numeric(population) * 100000,
-    quantile_0.975_per100k = value / as.numeric(population) * 100000,
-    quantile_0.025_count = value,
-    quantile_0.5_count = value,
-    quantile_0.975_count = value,
+    quantile_0.025_per100k = quantile_0.025 / as.numeric(population) * 100000,
+    quantile_0.5_per100k = quantile_0.5 / as.numeric(population) * 100000,
+    quantile_0.975_per100k = quantile_0.975 / as.numeric(population) * 100000,
+    quantile_0.025_count = quantile_0.025,
+    quantile_0.5_count = quantile_0.5,
+    quantile_0.975_count = quantile_0.975,
     quantile_0.025_per100k_rounded = round(quantile_0.025_per100k, 2),
     quantile_0.5_per100k_rounded = round(quantile_0.5_per100k, 2),
     quantile_0.975_per100k_rounded = round(quantile_0.975_per100k, 2),
@@ -250,6 +265,7 @@ map_data <- ensemble_data |>
     reference_date_formatted,
     model,
   )
+
 
 # output folder and file paths for Map Data
 output_folder_path <- fs::path(
