@@ -76,6 +76,7 @@ ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
 horizons_to_include <- as.integer(args$horizons_to_include)
 
+
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
 invalid_horizons <- horizons_to_include[!sapply(
@@ -170,9 +171,11 @@ if (fs::file_exists(exclude_data_path_toml)) {
 # save ensemble name (using value suggested by MB)
 model_name <- "CovidHub-ensemble"
 
+
+
 # process ensemble data into the required
 # format for Map file
-map_data <- ensemble_data |>
+map_data <- map_data <- ensemble_data |>
   # usually filter out horizon 3, -1
   dplyr::filter(horizon %in% !!horizons_to_include) |>
   # filter out excluded locations if the
