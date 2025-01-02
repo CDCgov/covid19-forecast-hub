@@ -23,7 +23,7 @@ reference_date <- args$reference_date
 hub_path <- args$base_hub_path
 
 dir_path <- file.path(hub_path, "weekly-summaries", reference_date)
-ensemble_us_2weeks_ahead <- readr::read_csv(
+ensemble_us_2wk_ahead <- readr::read_csv(
   file.path(dir_path, paste0(reference_date, "_covid_map_data.csv")),
   show_col_types = FALSE
 ) |>
@@ -50,28 +50,37 @@ weekly_submissions <- hubData::load_model_metadata(
   )) |>
   dplyr::select(model_id, team_abbr, model_abbr, team_model_url)
 
+# generate variables used in the web text
+median_forecast_2wk_ahead <- ensemble_us_2wk_ahead$quantile_0.5_count_rounded
+l_95ci_forecast_2wk_ahead <- ensemble_us_2wk_ahead$quantile_0.025_count_rounded
+u_95ci_forecast_2wk_ahead <- ensemble_us_2wk_ahead$quantile_0.975_count_rounded
+weekly_num_teams <- length(unique(weekly_submissions$team_abbr))
+weekly_num_models <- length(unique(weekly_submissions$model_abbr))
+first_target_data_date <- format(
+  as.Date(min(target_data$week_ending_date)), "%B %d, %Y"
+)
+last_target_data_date <- format(
+  as.Date(max(target_data$week_ending_date)), "%B %d, %Y"
+)
+forecast_due_date <- ensemble_us_2wk_ahead$forecast_due_date_formatted
+target_end_date_2wk_ahead <- ensemble_us_2wk_ahead$target_end_date_formatted
 
 web_text <- glue::glue(
   "This week's ensemble predicts that the number of new weekly ",
-  "laboratory confirmed COVID-19 hospital admissions will ",
-  "be {ensemble_us_2weeks_ahead$quantile_0.5_count_rounded} nationally, ",
-  "with {ensemble_us_2weeks_ahead$quantile_0.025_count_rounded} to ",
-  "{ensemble_us_2weeks_ahead$quantile_0.975_count_rounded} laboratory ",
-  "confirmed COVID-19 hospital admissions likely reported in the week ",
-  "ending {ensemble_us_2weeks_ahead$target_end_date_formatted}.\n\n",
+  "laboratory confirmed COVID-19 hospital admissions will be ",
+  "{median_forecast_2wk_ahead} nationally, with {l_95ci_forecast_2wk_ahead} ",
+  "to {u_95ci_forecast_2wk_ahead} laboratory confirmed COVID-19 hospital ",
+  "admissions likely reported in the week ending ",
+  "{target_end_date_2wk_ahead}.\n\n",
   "Reported and forecasted new COVID-19 hospital admissions as of ",
-  "{ensemble_us_2weeks_ahead$forecast_due_date_formatted}. ",
-  "This week, {length(unique(weekly_submissions$team_abbr))} modeling ",
-  "groups contributed {length(unique(weekly_submissions$model_abbr))} ",
-  "forecasts that were eligible for inclusion in the ensemble ",
-  "forecasts for at least one jurisdiction.\n\n",
+  "{forecast_due_date}. This week, {weekly_num_teams} modeling groups ",
+  "contributed {weekly_num_models} forecasts that were eligible ",
+  "for inclusion in the ensemble forecasts for at least one jurisdiction.\n\n",
   "The figure shows the number of new laboratory-confirmed COVID-19 ",
   "hospital admissions reported in the United States each week from ",
-  "{format(as.Date(min(target_data$week_ending_date)), '%B %d, %Y')} ",
-  "through {format(as.Date(max(target_data$week_ending_date)), '%B %d, %Y')} ",
+  "{first_target_data_date} through {last_target_data_date} ",
   "and forecasted new COVID-19 hospital admissions per week for this week ",
-  "and the next 2 weeks through ",
-  "{ensemble_us_2weeks_ahead$target_end_date_formatted}.\n\n",
+  "and the next 2 weeks through {target_end_date_2wk_ahead}.\n\n",
   "Contributing teams and models:\n",
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
