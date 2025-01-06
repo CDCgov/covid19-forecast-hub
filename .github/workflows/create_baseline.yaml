@@ -36,8 +36,7 @@ jobs:
   
     - name: generate baseline
       run: |
-        TODAY=$(date +'%Y-%m-%d')
-        REF_DATE=$(date -d "$TODAY + 3 days" +'%Y-%m-%d') 
+        REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
         Rscript src/get_baseline.R --reference-date "$REF_DATE"
 
     - name: Commit changes
