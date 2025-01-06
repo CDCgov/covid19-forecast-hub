@@ -20,106 +20,102 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
+  "--scores_as_of",
+  type = "character",
+  help = "The date upon which scores were measured in YYYY-MM-DD format (ISO-8601)."
+)
+parser <- argparser::add_argument(
+  parser,
   "--base_hub_path",
   type = "character",
   help = "Path to the COVID-19 forecast hub directory."
 )
-parser <- argparser::add_argument(
-  parser,
-  "--model_to_exclude",
-  nargs = "Inf",
-  help = "Which models to exclude from the evaluation of submissions."
-)
+# TODO: operate in the same fashion as w/ TOML
+# (1) yes, continue to exclude by locations
+# (2) also, have possibility for exclusion by model
 
 # parse CLI arguments
 args <- argparser::parse_args(parser)
 base_hub_path <- args$base_hub_path
+scores_as_of_date <- args$scores_as_of
 reference_date <- args$reference_date
 models_to_exclude <- args$model_to_exclude
 
 # generate a table of scorable quantiles
 hub_table <- forecasttools::hub_to_scorable_quantiles(
-  hub_path = base_hub_path
+  hub_path = base_hub_path,
+  target_data_rel_path = fs::path("target-data", "covid-hospital-admissions.csv"),
 )
 
-# rilter out excluded models
-all_models <- unique(hub_table$model_id)
-if (!is.null(models_to_exclude)) {
-  models_to_evaluate <- setdiff(all_models, models_to_exclude)
-} else {
-  models_to_evaluate <- all_models
-}
-
-# get hub table output
-hub_table <- hub_table |>
-  dplyr::filter(model_id %in% models_to_evaluate)
-
-
-
-
-
-# load observed data
-observed_file_path <- fs::path(
-  base_hub_path,
-  "target-data",
-  "target-hospital-admissions.csv"
-)
-if (!file.exists(observed_file_path)) {
-  stop(paste(
-    "The observation data file does not exist at:",
-    observed_file_path
-  ))
-}
-observed_data <- readr::read_csv(observed_file_path)
-
-
-
-
-
-# create a scoringutils-ready table
-scorable_table <- forecasttools::quantile_table_to_scorable(
-  hubverse_quantile_table = hub_table,
-  observation_table = observed_data,
-  obs_value_column = "value",
-  obs_location_column = "location",
-  obs_date_column = "date"
-)
-
-
+# # TODO: change once TOML read exclusions
+# # get hub table output
+# hub_table <- hub_table |>
+#   dplyr::filter(model_id %in% models_to_evaluate)
+# # filter out excluded models
+# all_models <- unique(hub_table$model_id)
+# if (!is.null(models_to_exclude)) {
+#   models_to_evaluate <- setdiff(all_models, models_to_exclude)
+# } else {
+#   models_to_evaluate <- all_models
+# }
 
 # perform scoring
 scored_results <- scoringutils::score(
-  scorable_table,
-  metrics = scoringutils::get_metrics(scorable_table)
+  hub_table,
+  metrics = scoringutils::get_metrics(hub_table)
 )
 
-# save the scoring results
-output_path <- file.path(base_hub_path, "evaluation-results")
+# save the scoring results (this is an
+# unsummarized table)
+output_path <- fs::path(base_hub_path, "eval-output")
 dir.create(output_path, showWarnings = FALSE)
 scoring_output_file <- file.path(
   output_path,
-  paste0(reference_date, "-scored.csv")
+  paste0(scores_as_of_date, ".csv")
 )
 readr::write_csv(scored_results, scoring_output_file)
 
-# plot predictions vs observed data
-forecasttools::plot_pred_obs_by_forecast_date(
-  scorable_table = scorable_table,
-  horizons = c(0, 1, 2),
-  prediction_interval_width = 0.95,
-  forecast_date_col = "reference_date",
-  target_date_col = "target_end_date",
-  predicted_col = "predicted",
-  observed_col = "observed",
-  quantile_level_col = "quantile_level",
-  horizon_col = "horizon",
-  facet_columns = "model_id",
-  x_label = "Date",
-  y_label = "Target",
-  y_transform = "log10"
-)
+# https://github.com/CDCgov/pyrenew-hew/blob/main/pipelines/summarize_visualize_scores.R
+# in place of pyrenew-hew, we would do
+# COVID-Hub ensemble for this repository; we
+# want coverage for each sub-model of the
+# ensemble
 
-cat(
-  "Scoring and plotting complete. Results saved to:",
-  scoring_output_file, "\n"
-)
+# TODO: use summarizes scores; DHM advocates
+# replicate [coverage plots],
+
+
+
+# # plot predictions vs observed data
+# # TODO: not state by state and date? DHM
+# # suggests commenting out for now, them
+# # one page per (model, state);
+# # tidyr::crossing() would be used here
+# model_ids <- unique(hub_table$model_id)
+# model_scores <- purrr::map(
+#   model_ids,
+#   \(model) {
+#     hub_table |>
+#     dplyr::filter(model_id == !!model) |>
+#     forecasttools::plot_pred_obs_by_forecast_date(
+#       horizons = c(0, 1, 2),
+#       prediction_interval_width = 0.95,
+#       forecast_date_col = "reference_date",
+#       target_date_col = "target_end_date",
+#       predicted_col = "predicted",
+#       observed_col = "observed",
+#       quantile_level_col = "quantile_level",
+#       horizon_col = "horizon",
+#       x_label = "Date",
+#       y_label = "Target",
+#       y_transform = "log10")
+# })
+# forecasttools::plots_to_pdf(
+#   model_scores,
+#   save_path = fs::path(
+#     base_hub_path,
+#     "eval-output",
+#     paste0(
+#       scores_as_of_date,
+#       "-model-scores.pdf"))) |>
+#   suppressMessages()
