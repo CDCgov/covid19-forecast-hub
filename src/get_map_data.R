@@ -171,7 +171,7 @@ if (fs::file_exists(exclude_data_path_toml)) {
 # save ensemble name (using value suggested by MB)
 model_name <- "CovidHub-ensemble"
 
-
+# load PRISM denominators
 
 # process ensemble data into the required
 # format for Map file
