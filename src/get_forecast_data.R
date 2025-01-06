@@ -22,7 +22,7 @@
 #' - `forecast_fullnames`: full model name
 #'
 #' To run:
-#' Rscript get_forecast_data.R --reference_date 2024-11-23
+#' Rscript get_forecast_data.R --reference_date 2024-12-21
 #' --base_hub_path ../ --horizons_to_include 0 1 2
 
 
@@ -128,7 +128,17 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
       .names = "{.col}_rounded"
     ),
     forecast_due_date = as.Date(ref_date) - 3,
+    location_sort_order = ifelse(location_name == "United States", 0, 1)
   ) |>
+  # long name "United States" to "US"
+  dplyr::mutate(
+    location_name = dplyr::if_else(
+      location_name == "United States",
+      "US",
+      location_name
+    )
+  ) |>
+  dplyr::arrange(location_sort_order, location_name) |>
   dplyr::left_join(
     dplyr::distinct(
       model_metadata,
