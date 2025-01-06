@@ -76,7 +76,7 @@ with_horizons <- function(df) {
     dplyr::mutate(horizon = base::floor(base::as.numeric(.data$target_end_date - .data$reference_date) / 7)))
 }
 
-# define example functions for summarization and plotting
+# functions for summarization and plotting
 summarised_scoring_table <- function(quantile_scores,
                                      scale = "natural",
                                      baseline = "cdc_baseline",
