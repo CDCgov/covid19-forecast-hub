@@ -35,7 +35,6 @@ parser <- argparser::add_argument(
 # (2) also, have possibility for exclusion by model
 
 # parse cli arguments
-# parse cli arguments
 args <- argparser::parse_args(parser)
 base_hub_path <- args$base_hub_path
 scores_as_of_date <- args$scores_as_of
@@ -74,8 +73,7 @@ print(quantile_scores)
 
 with_horizons <- function(df) {
   return(df |>
-    dplyr::mutate(horizon = base::floor(base::as.numeric(.data$date -
-      .data$report_date) / 7)))
+    dplyr::mutate(horizon = base::floor(base::as.numeric(.data$target_end_date - .data$reference_date) / 7)))
 }
 
 # define example functions for summarization and plotting
@@ -84,8 +82,7 @@ summarised_scoring_table <- function(quantile_scores,
                                      baseline = "cdc_baseline",
                                      by = NULL) {
   filtered_scores <- quantile_scores |>
-    dplyr::filter(scale == !!scale) |>
-    with_horizons()
+    dplyr::filter(scale == !!scale)
 
   summarised_rel <- filtered_scores |>
     scoringutils::get_pairwise_comparisons(
@@ -93,15 +90,15 @@ summarised_scoring_table <- function(quantile_scores,
       by = by
     ) |>
     dplyr::filter(.data$compare_against == !!baseline) |>
-    dplyr::select(model,
+    dplyr::select(model_id,
       dplyr::all_of(by),
       relative_wis =
         "wis_scaled_relative_skill"
     )
 
   summarised <- filtered_scores |>
-    scoringutils::summarise_scores(by = c("model", by)) |>
-    dplyr::select(model,
+    scoringutils::summarise_scores(by = c("model_id", by)) |>
+    dplyr::select(model_id,
       dplyr::all_of(by),
       abs_wis = wis,
       mae = ae_median,
@@ -110,16 +107,16 @@ summarised_scoring_table <- function(quantile_scores,
       interval_coverage_95
     ) |>
     dplyr::inner_join(summarised_rel,
-      by = c("model", by)
+      by = c("model_id", by)
     )
   return(summarised)
 }
 
 
 plot_scores_by_date <- function(scores_by_date,
-                                date_column = "date",
+                                date_column = "reference_date",
                                 score_column = "relative_wis",
-                                model_column = "model",
+                                model_column = "model_id",
                                 plot_title = "Scores by model over time",
                                 xlabel = "Date",
                                 ylabel = "Relative WIS") {
@@ -155,9 +152,9 @@ plot_scores_by_date <- function(scores_by_date,
 }
 
 relative_wis_by_location <- function(summarised_scores,
-                                     model = "CovidHub-ensemble") {
+                                     model_id = "CovidHub-ensemble") {
   summarised_scores <- summarised_scores |>
-    dplyr::filter(.data$model == !!model)
+    dplyr::filter(.data$model_id == !!model_id)
 
   min_wis <- base::min(summarised_scores$relative_wis)
   max_wis <- base::max(summarised_scores$relative_wis)
@@ -178,7 +175,7 @@ relative_wis_by_location <- function(summarised_scores,
       ggplot2::aes(
         y = location,
         x = relative_wis,
-        group = model
+        group = model_id
       )
     ) +
     ggplot2::geom_point(
@@ -248,7 +245,7 @@ coverage_plots <- purrr::map(
     coverage_plot(
       summarised_scores,
       coverage_level = level,
-      date_column = "report_date"
+      date_column = "reference_date"
     )
   }
 )
@@ -262,9 +259,9 @@ forecasttools::plots_to_pdf(
 # generate and save relative wis by date plot
 rel_wis_by_date <- plot_scores_by_date(
   summarised_scores,
-  date_column = "report_date",
+  date_column = "reference_date",
   score_column = "relative_wis",
-  model_column = "model"
+  model_column = "model_id"
 )
 ggplot2::ggsave(
   fs::path(output_path, "relative_wis_by_date.pdf"),
@@ -278,7 +275,7 @@ ggplot2::ggsave(
 # generate and save relative wis by location and horizon plot
 rel_wis_by_location_horizon <- relative_wis_by_location(
   summarised_scores,
-  model = "CovidHub-ensemble"
+  model_id = "CovidHub-ensemble"
 )
 ggplot2::ggsave(
   fs::path(output_path, "relative_wis_by_location_horizon.pdf"),
