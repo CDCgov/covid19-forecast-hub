@@ -31,104 +31,95 @@ parser <- argparser::add_argument(
   help = "Which models to exclude from the evaluation of submissions."
 )
 
-
-
-# collect parsed CLI arguments
+# parse CLI arguments
 args <- argparser::parse_args(parser)
 base_hub_path <- args$base_hub_path
 reference_date <- args$reference_date
+models_to_exclude <- args$model_to_exclude
 
-# model_output_path <-
+# generate a table of scorable quantiles
+hub_table <- forecasttools::hub_to_scorable_quantiles(
+  hub_path = base_hub_path
+)
 
-hub_table <- forecasttools::hub_to_scorable_quantiles(base_hub_path)
-
-# get all model names (minus exclusions) to
-# consider
-
-# function for getting all forecast files
-# for a particular model directory
-read_forecast_data <- function(model_dir, reference_date) {
-  forecast_files <- list.files(
-    model_dir,
-    pattern = paste0(reference_date, ".*\\.csv"),
-    full.names = TRUE
-  )
-  forecasts <- purrr::map_dfr(forecast_files, readr::read_csv)
-  return(forecasts)
+# rilter out excluded models
+all_models <- unique(hub_table$model_id)
+if (!is.null(models_to_exclude)) {
+  models_to_evaluate <- setdiff(all_models, models_to_exclude)
+} else {
+  models_to_evaluate <- all_models
 }
 
+# get hub table output
+hub_table <- hub_table |>
+  dplyr::filter(model_id %in% models_to_evaluate)
 
-# function for getting target observation
-# data from target-data
-read_observation_data <- function(target_data_path) {
-  observed <- readr::read_csv(target_data_path) |>
-    dplyr::rename(target_end_date = date)
-  return(observed)
+
+
+
+
+# load observed data
+observed_file_path <- fs::path(
+  base_hub_path,
+  "target-data",
+  "target-hospital-admissions.csv"
+)
+if (!file.exists(observed_file_path)) {
+  stop(paste(
+    "The observation data file does not exist at:",
+    observed_file_path
+  ))
 }
+observed_data <- readr::read_csv(observed_file_path)
 
 
-# accumulate
-read_model_csvs <- function(model_dir) {
-  files <- list.files(
-    file.path(
-      base_path,
-      model_dir
-    ),
-    pattern = "*.csv", full.names = TRUE
-  )
-  df <- purrr::map_df(files, function(x) {
-    readr::read_csv(x, show_col_types = FALSE) %>%
-      mutate(model = model_dir)
-  })
-  return(df)
-}
 
 
-score_hubverse <- function(forecast,
-                           observed,
-                           horizons = c(0, 1, 2),
-                           transform = scoringutils::log_shift,
-                           append_transformed = FALSE,
-                           offset = 1,
-                           observed_value_column = "value",
-                           observed_location_column = "location",
-                           observed_date_column = "reference_date",
-                           ...) {
-  obs <- observed |>
-    dplyr::select(
-      location = .data[[observed_location_column]],
-      target_end_date = .data[[observed_date_column]],
-      observed = .data[[observed_value_column]]
-    )
-  to_score <- forecast |>
-    dplyr::filter(.data$horizon %in% !!horizons) |>
-    dplyr::inner_join(obs,
-      by = c(
-        "location",
-        "target_end_date"
-      )
-    ) |>
-    scoringutils::as_forecast_quantile(
-      predicted = "value",
-      observed = "observed",
-      quantile_level = "output_type_id"
-    ) |>
-    scoringutils::transform_forecasts(
-      fun = transform,
-      append = append_transformed,
-      offset = offset,
-      ...
-    )
-  interval_coverage_95 <- purrr::partial(
-    scoringutils::interval_coverage,
-    interval_range = 95
-  )
-  scored <- to_score |>
-    scoringutils::score(
-      metrics = c(
-        scoringutils::get_metrics(to_score),
-        interval_coverage_95 = interval_coverage_95
-      )
-    )
-  return(scored)
-}
+
+# create a scoringutils-ready table
+scorable_table <- forecasttools::quantile_table_to_scorable(
+  hubverse_quantile_table = hub_table,
+  observation_table = observed_data,
+  obs_value_column = "value",
+  obs_location_column = "location",
+  obs_date_column = "date"
+)
+
+
+
+# perform scoring
+scored_results <- scoringutils::score(
+  scorable_table,
+  metrics = scoringutils::get_metrics(scorable_table)
+)
+
+# save the scoring results
+output_path <- file.path(base_hub_path, "evaluation-results")
+dir.create(output_path, showWarnings = FALSE)
+scoring_output_file <- file.path(
+  output_path,
+  paste0(reference_date, "-scored.csv")
+)
+readr::write_csv(scored_results, scoring_output_file)
+
+# plot predictions vs observed data
+forecasttools::plot_pred_obs_by_forecast_date(
+  scorable_table = scorable_table,
+  horizons = c(0, 1, 2),
+  prediction_interval_width = 0.95,
+  forecast_date_col = "reference_date",
+  target_date_col = "target_end_date",
+  predicted_col = "predicted",
+  observed_col = "observed",
+  quantile_level_col = "quantile_level",
+  horizon_col = "horizon",
+  facet_columns = "model_id",
+  x_label = "Date",
+  y_label = "Target",
+  y_transform = "log10"
+)
+
+cat(
+  "Scoring and plotting complete. Results saved to:",
+  scoring_output_file, "\n"
+)
