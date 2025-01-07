@@ -1,4 +1,4 @@
-#' Generate the Map file containing ensemble
+#' Generate the Map data file containing ensemble
 #' forecast data.
 #'
 #' This script loads the latest ensemble
@@ -70,7 +70,6 @@ parser <- argparser::add_argument(
   help = "A list of horizons to include."
 )
 
-# read CLAs; get reference date and paths
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
@@ -131,7 +130,7 @@ if (length(missing_columns) > 0) {
 pop_data_path <- file.path(
   base_hub_path,
   "target-data",
-  "locations.csv"
+  "locations_with_2023_census_pop.csv"
 )
 pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
@@ -170,8 +169,6 @@ if (fs::file_exists(exclude_data_path_toml)) {
 
 # save ensemble name (using value suggested by MB)
 model_name <- "CovidHub-ensemble"
-
-# load PRISM denominators
 
 # process ensemble data into the required
 # format for Map file
@@ -216,13 +213,10 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
     location_sort_order = ifelse(location == "US", 0, 1)
   ) |>
   dplyr::arrange(location_sort_order, location) |>
-  # add population data for later calculations
   dplyr::left_join(
     pop_data,
     by = c("location" = "location_name")
   ) |>
-  # add quantile columns for per-100k rates
-  # and rounded values
   dplyr::mutate(
     quantile_0.025_per100k = quantile_0.025 / as.numeric(population) * 100000,
     quantile_0.5_per100k = quantile_0.5 / as.numeric(population) * 100000,
@@ -266,8 +260,6 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
     model,
   )
 
-
-# output folder and file paths for Map Data
 output_folder_path <- fs::path(
   base_hub_path, "weekly-summaries", ref_date
 )
