@@ -331,6 +331,7 @@ evaluate_and_save <- function(base_hub_path,
     summarised_by_loc_hor_date, location
   ) |> dplyr::pull(location)
   model_state_combinations <- tidyr::crossing(models, states)
+
   coverage_plots <- purrr::map2(
     model_state_combinations$models,
     model_state_combinations$states,
@@ -352,7 +353,7 @@ evaluate_and_save <- function(base_hub_path,
             date_column = "target_end_date"
           ) +
             ggplot2::ggtitle(
-              glue::glue("Model: {model} | State: {state}")
+              glue::glue("Model: {model}\nState: {state}")
             ))
         }
       )
@@ -400,7 +401,6 @@ evaluate_and_save <- function(base_hub_path,
     }
   )
   rel_wis_date_plots <- purrr::compact(rel_wis_date_plots)
-
   if (length(rel_wis_date_plots) > 0) {
     forecasttools::plots_to_pdf(
       rel_wis_date_plots,
@@ -438,7 +438,7 @@ evaluate_and_save <- function(base_hub_path,
       rel_wis_horizon_plots,
       fs::path(output_path, "relative_wis_by_model_horizon.pdf"),
       width = 8,
-      height = 4
+      height = 7
     )
   } else {
     message("No relative WIS by horizon plots to save.")
