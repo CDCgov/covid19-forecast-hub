@@ -271,6 +271,13 @@ evaluate_and_save <- function(base_hub_path,
     by = c("horizon", "location")
   )
 
+  summarised_by_loc_hor_date <- summarised_scoring_table(
+    scored_results,
+    scale = "log",
+    baseline = "CovidHub-baseline",
+    by = c("horizon", "location", "target_end_date")
+  )
+
   summary_save_path <- fs::path(output_path, "summary_scores.tsv")
   readr::write_tsv(summarised_scores, summary_save_path)
 
@@ -305,8 +312,6 @@ evaluate_and_save <- function(base_hub_path,
     height = 8
   )
 
-
-
   rel_wis_by_location_horizon <- relative_wis_by_location(
     summarised_by_location_horizon,
     model = "CovidHub-ensemble"
@@ -317,6 +322,54 @@ evaluate_and_save <- function(base_hub_path,
     height = 10,
     width = 8
   )
+
+
+  models <- dplyr::distinct(summarised_by_loc_hor_date, model) |> dplyr::pull(model)
+  states <- dplyr::distinct(summarised_by_loc_hor_date, location) |> dplyr::pull(location)
+  model_state_combinations <- tidyr::crossing(models, states)
+  model_state_plots <- purrr::map2(
+    model_state_combinations$models,
+    model_state_combinations$states,
+    \(model, state) {
+      filtered_data <- summarised_by_loc_hor_date |>
+        dplyr::filter(model == !!model, location == !!state)
+      if (nrow(filtered_data) == 0) {
+        warning(glue::glue("No data available for Model: {model}, State: {state}"))
+        return(NULL)
+      }
+      coverage_plots <- purrr::map(
+        c(0.5, 0.8, 0.9, 0.95),
+        \(level) {
+          coverage_plot(
+            filtered_data,
+            coverage_level = level,
+            date_column = "target_end_date"
+          )
+        }
+      )
+      if (length(coverage_plots) > 0) {
+        ggpubr::ggarrange(
+          plotlist = coverage_plots,
+          ncol = 1,
+          nrow = length(coverage_plots)
+        )
+      } else {
+        NULL
+      }
+    }
+  )
+  model_state_plots <- purrr::compact(model_state_plots)
+  if (length(model_state_plots) > 0) {
+    forecasttools::plots_to_pdf(
+      model_state_plots,
+      fs::path(output_path, "model_state_coverage_plots.pdf"),
+      width = 8,
+      height = 4 * length(c(0.5, 0.8, 0.9, 0.95))
+    )
+  } else {
+    message("No valid plots to save.")
+  }
+
   message(paste0(
     "Scoring and plotting complete. ",
     "Outputs saved to "
@@ -330,16 +383,16 @@ parser <-
     "to the COVID-19 Forecast Hub"
   )) |>
   argparser::add_argument(
-    "--scores-as-of",
+    "--scores_as_of",
     type = "character",
     default = lubridate::today(),
     help = "Date of the scoring run in YYYY-MM-DD format."
   ) |>
   argparser::add_argument(
-    "--base-hub-path",
+    "--base_hub_path",
     type = "character",
     default = ".",
-    help = "Path to the Hub root directory"
+    help = "Path to the Hub root directory."
   )
 
 args <- argparser::parse_args(parser)
