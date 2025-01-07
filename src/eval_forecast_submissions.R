@@ -275,7 +275,7 @@ evaluate_and_save <- function(base_hub_path,
     scored_results,
     scale = "log",
     baseline = "CovidHub-baseline",
-    by = c("horizon", "location", "target_end_date")
+    by = c("horizon", "location", "target_end_date", "reference_date")
   )
 
   summary_save_path <- fs::path(output_path, "summary_scores.tsv")
@@ -362,14 +362,15 @@ evaluate_and_save <- function(base_hub_path,
     message("No coverage plots to save.")
   }
 
-  rel_wis_date_plots <- purrr::map(
-    states,
-    \(state) {
-      filtered_data <- summarised_by_ref_date_horizon |>
-        dplyr::filter(location == !!state)
+  rel_wis_date_plots <- purrr::map2(
+    model_state_combinations$models,
+    model_state_combinations$states,
+    \(model, state) {
+      filtered_data <- summarised_by_loc_hor_date |>
+        dplyr::filter(model == !!model, location == !!state)
 
       if (nrow(filtered_data) == 0) {
-        warning(glue::glue("No data available for State: {state}"))
+        warning(glue::glue("No data available for Model: {model}, State: {state}"))
         return(NULL)
       }
 
@@ -379,46 +380,50 @@ evaluate_and_save <- function(base_hub_path,
         score_column = "relative_wis",
         model_column = "model"
       ) +
-        ggplot2::ggtitle(glue::glue("Relative WIS Across Dates - State: {state}")))
+        ggplot2::ggtitle(glue::glue("Relative WIS Across Dates\nModel: {model} | State: {state}")))
     }
   )
   rel_wis_date_plots <- purrr::compact(rel_wis_date_plots)
+
   if (length(rel_wis_date_plots) > 0) {
     forecasttools::plots_to_pdf(
       rel_wis_date_plots,
-      fs::path(output_path, "relative_wis_across_state_by_date.pdf"),
+      fs::path(output_path, "relative_wis_by_model_state_date.pdf"),
       width = 8,
       height = 4
     )
   } else {
-    message("No relative WIS date plots to save.")
+    message("No relative WIS by date plots to save.")
   }
 
   rel_wis_horizon_plots <- purrr::map(
-    states,
-    \(state) {
+    models,
+    \(model) {
       filtered_data <- summarised_by_location_horizon |>
-        dplyr::filter(location == !!state)
+        dplyr::filter(model == !!model)
 
       if (nrow(filtered_data) == 0) {
-        warning(glue::glue("No data available for State: {state}"))
+        warning(glue::glue("No data available for Model: {model}"))
         return(NULL)
       }
 
-      (relative_wis_by_location(filtered_data) +
-        ggplot2::ggtitle(glue::glue("Relative WIS by Horizon - State: {state}")))
+      (relative_wis_by_location(
+        filtered_data,
+        model = model
+      ) +
+        ggplot2::ggtitle(glue::glue("Relative WIS by Horizon\nModel: {model}")))
     }
   )
   rel_wis_horizon_plots <- purrr::compact(rel_wis_horizon_plots)
   if (length(rel_wis_horizon_plots) > 0) {
     forecasttools::plots_to_pdf(
       rel_wis_horizon_plots,
-      fs::path(output_path, "relative_wis_by_location_horizon.pdf"),
+      fs::path(output_path, "relative_wis_by_model_horizon.pdf"),
       width = 8,
       height = 4
     )
   } else {
-    message("No relative WIS horizon plots to save.")
+    message("No relative WIS by horizon plots to save.")
   }
 
   message(paste0(
