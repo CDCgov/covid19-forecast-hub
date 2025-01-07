@@ -9,57 +9,72 @@
 
 
 get_date_specific_exclusions <- function(base_hub_path) {
-    exclusions <- RcppTOML::parseTOML(fs::path("auxiliary-data",
-                                               "excluded_locations",
-                                               ext = "toml")) |>
-        tibble::enframe(name = "reference_date",
-                        value = "location") |>
-        dplyr::mutate(
-                   reference_date = lubridate::ymd(.data$reference_date)) |>
-        tidyr::unnest_longer("location")
+  exclusions <- RcppTOML::parseTOML(fs::path("auxiliary-data",
+    "excluded_locations",
+    ext = "toml"
+  )) |>
+    tibble::enframe(
+      name = "reference_date",
+      value = "location"
+    ) |>
+    dplyr::mutate(
+      reference_date = lubridate::ymd(.data$reference_date)
+    ) |>
+    tidyr::unnest_longer("location")
 
-    return(exclusions)
+  return(exclusions)
 }
 
 get_excluded_locs <- function(base_hub_path) {
-    ex_locs <- RcppTOML::parseTOML(fs::path("auxiliary-data",
-                                         "excluded_territories",
-                                         ext = "toml"))$locations
+  ex_locs <- RcppTOML::parseTOML(fs::path("auxiliary-data",
+    "excluded_territories",
+    ext = "toml"
+  ))$locations
 
-    return(ex_locs)
+  return(ex_locs)
 }
 
 
 get_hub_table <- function(base_hub_path) {
-    exclusions <- get_date_specific_exclusions(base_hub_path)
-    always_excluded_locs <- get_excluded_locs(base_hub_path)
-    target_data_rel_path <- fs::path("target-data",
-                                     "covid-hospital-admissions.csv")
-    hub_table <- forecasttools::hub_to_scorable_quantiles(
-                                    hub_path = base_hub_path,
-                                    target_data_rel_path =
-                                        target_data_rel_path) |>
-        dplyr::filter(.data$horizon >= 0,
-                      !.data$location %in% !!always_excluded_locs) |>
-        dplyr::anti_join(exclusions,
-                         by = c("reference_date", "location")) |>
-        dplyr::rename(model = "model_id") |>
-        dplyr::mutate(location = forecasttools::us_loc_code_to_abbr(
-                                                    .data$location))
+  exclusions <- get_date_specific_exclusions(base_hub_path)
+  always_excluded_locs <- get_excluded_locs(base_hub_path)
+  target_data_rel_path <- fs::path(
+    "target-data",
+    "covid-hospital-admissions.csv"
+  )
+  hub_table <- forecasttools::hub_to_scorable_quantiles(
+    hub_path = base_hub_path,
+    target_data_rel_path =
+      target_data_rel_path
+  ) |>
+    dplyr::filter(
+      .data$horizon >= 0,
+      !.data$location %in% !!always_excluded_locs
+    ) |>
+    dplyr::anti_join(exclusions,
+      by = c("reference_date", "location")
+    ) |>
+    dplyr::rename(model = "model_id") |>
+    dplyr::mutate(location = forecasttools::us_loc_code_to_abbr(
+      .data$location
+    ))
 
-    return(hub_table)
+  return(hub_table)
 }
 
 
 with_horizons <- function(df) {
-  return(df |>
-    dplyr::mutate(horizon = base::floor(base::as.numeric(.data$target_end_date - .data$reference_date) / 7)))
+  return(
+    dplyr::mutate(df, horizon = floor(
+      as.numeric(.data$target_end_date - .data$reference_date) / 7
+    ))
+  )
 }
 
-# functions for summarization and plotting
+
 summarised_scoring_table <- function(quantile_scores,
                                      scale = "natural",
-                                     baseline = "cdc_baseline",
+                                     baseline = "CovidHub-baseline",
                                      by = NULL) {
   filtered_scores <- quantile_scores |>
     dplyr::filter(scale == !!scale)
@@ -181,7 +196,7 @@ coverage_plot <- function(data,
                           coverage_level,
                           date_column = "date") {
   coverage_column <- glue::glue("interval_coverage_{100 * coverage_level}")
-  print(data)
+
   return(
     ggplot2::ggplot(
       data = data,
@@ -205,112 +220,130 @@ coverage_plot <- function(data,
   )
 }
 
+interval_coverage_80 <- purrr::partial(scoringutils::interval_coverage,
+  interval_range = 80
+)
+interval_coverage_95 <- purrr::partial(scoringutils::interval_coverage,
+  interval_range = 95
+)
+
 
 evaluate_and_save <- function(base_hub_path,
                               scores_as_of_date) {
-    base_hub_path <- fs::path(base_hub_path)
-    hub_table <- get_hub_table(base_hub_path)
-    scored_results <- hub_table |>
-        scoringutils::score(metrics = scoringutils::get_metrics(hub_table))
+  base_hub_path <- fs::path(base_hub_path)
+  hub_table <- get_hub_table(base_hub_path)
+  scored_results <- hub_table |>
+    scoringutils::score(metrics = c(
+      scoringutils::get_metrics(hub_table),
+      interval_coverage_80,
+      interval_coverage_95
+    ))
 
-    output_path <- fs::path(base_hub_path, "eval-output")
-    fs::dir_create(output_path)
-    scoring_output_file <- fs::path(output_path,
-                                    glue::glue("{scores_as_of_date}.csv"))
+  output_path <- fs::path(base_hub_path, "eval-output")
+  fs::dir_create(output_path)
+  scoring_output_file <- fs::path(
+    output_path,
+    glue::glue("{scores_as_of_date}.csv")
+  )
 
-    readr::write_csv(scored_results, scoring_output_file)
-    message("Raw scores written to ", scoring_output_file)
-    
-    summarised_scores <- summarised_scoring_table(
-        scored_results,
-        scale = "log",
-        baseline = "CovidHub-baseline"
-    )
+  readr::write_csv(scored_results, scoring_output_file)
+  message("Raw scores written to ", scoring_output_file)
 
-    summarised_by_ref_date_horizon <- summarised_scoring_table(
-        scored_results,
-        scale = "log",
-        baseline = "CovidHub-baseline",
-        by = c("horizon", "reference_date", "target_end_date")
-    )
+  summarised_scores <- summarised_scoring_table(
+    scored_results,
+    scale = "log",
+    baseline = "CovidHub-baseline"
+  )
 
-    summarised_by_location_horizon <- summarised_scoring_table(
-        scored_results,
-        scale = "log",
-        baseline = "CovidHub-baseline",
-        by = c("horizon", "location")
-    )
+  summarised_by_ref_date_horizon <- summarised_scoring_table(
+    scored_results,
+    scale = "log",
+    baseline = "CovidHub-baseline",
+    by = c("horizon", "reference_date", "target_end_date")
+  )
 
-    summary_save_path <- fs::path(output_path, "summary_scores.tsv")
-    readr::write_tsv(summarised_scores, summary_save_path)
+  summarised_by_location_horizon <- summarised_scoring_table(
+    scored_results,
+    scale = "log",
+    baseline = "CovidHub-baseline",
+    by = c("horizon", "location")
+  )
 
-    coverage_plots <- purrr::map(c(0.5, 0.9),
-                                 \(level) {
-                                     coverage_plot(
-                                         summarised_by_ref_date_horizon |>
-                                         dplyr::filter(model == "CovidHub-ensemble"),
-                                         coverage_level = level,
-                                         date_column = "target_end_date"
-                                     )
-                                 }
-                                 )
-    forecasttools::plots_to_pdf(
-                       coverage_plots,
-                       fs::path(output_path, "coverage_by_date_and_horizon.pdf"),
-                       width = 8,
-                       height = 4
-                   )
+  summary_save_path <- fs::path(output_path, "summary_scores.tsv")
+  readr::write_tsv(summarised_scores, summary_save_path)
 
-    rel_wis_by_date <- plot_scores_by_date(
-        summarised_by_ref_date_horizon,
-        date_column = "reference_date",
-        score_column = "relative_wis",
-        model_column = "model"
-    )
-    ggplot2::ggsave(
-                 fs::path(output_path, "relative_wis_by_date.pdf"),
-                 rel_wis_by_date,
-                 width = 10,
-                 height = 8
-             )
-    
+  coverage_plots <- purrr::map(
+    c(0.5, 0.8, 0.9, 0.95),
+    \(level) {
+      coverage_plot(
+        summarised_by_ref_date_horizon |>
+          dplyr::filter(model == "CovidHub-ensemble"),
+        coverage_level = level,
+        date_column = "target_end_date"
+      )
+    }
+  )
+  forecasttools::plots_to_pdf(
+    coverage_plots,
+    fs::path(output_path, "coverage_by_date_and_horizon.pdf"),
+    width = 8,
+    height = 4
+  )
+
+  rel_wis_by_date <- plot_scores_by_date(
+    summarised_by_ref_date_horizon,
+    date_column = "reference_date",
+    score_column = "relative_wis",
+    model_column = "model"
+  )
+  ggplot2::ggsave(
+    fs::path(output_path, "relative_wis_by_date.pdf"),
+    rel_wis_by_date,
+    width = 10,
+    height = 8
+  )
 
 
-    rel_wis_by_location_horizon <- relative_wis_by_location(
-        summarised_by_location_horizon,
-        model = "CovidHub-ensemble"
-    )
-    ggplot2::ggsave(
-                 fs::path(output_path, "relative_wis_by_location_horizon.pdf"),
-                 rel_wis_by_location_horizon,
-                 height = 10,
-                 width = 8
-             )
-    message(paste0("Scoring and plotting complete. ",
-                   "Outputs saved to "), output_path)
+
+  rel_wis_by_location_horizon <- relative_wis_by_location(
+    summarised_by_location_horizon,
+    model = "CovidHub-ensemble"
+  )
+  ggplot2::ggsave(
+    fs::path(output_path, "relative_wis_by_location_horizon.pdf"),
+    rel_wis_by_location_horizon,
+    height = 10,
+    width = 8
+  )
+  message(paste0(
+    "Scoring and plotting complete. ",
+    "Outputs saved to "
+  ), output_path)
 }
 
 
-parser <- argparser::arg_parser(
-  "Command line parser for evaluating model submissions to the COVID-Hub."
-)
-parser <- argparser::add_argument(
-  parser,
-  "--scores-as-of",
-  type = "character",
-  default = lubridate::today(),
-  help = "The date upon which scores were measured in YYYY-MM-DD format (ISO-8601)."
-)
-parser <- argparser::add_argument(
-  parser,
-  "--base-hub-path",
-  type = "character",
-  default = ".",
-  help = "Path to the COVID-19 forecast hub directory."
-)
+parser <-
+  argparser::arg_parser(paste0(
+    "Evaluate forecasts submitted ",
+    "to the COVID-19 Forecast Hub"
+  )) |>
+  argparser::add_argument(
+    "--scores-as-of",
+    type = "character",
+    default = lubridate::today(),
+    help = "Date of the scoring run in YYYY-MM-DD format."
+  ) |>
+  argparser::add_argument(
+    "--base-hub-path",
+    type = "character",
+    default = ".",
+    help = "Path to the Hub root directory"
+  )
 
 args <- argparser::parse_args(parser)
 base_hub_path <- args$base_hub_path
 scores_as_of_date <- args$scores_as_of
-evaluate_and_save(args$base_hub_path,
-                  args$scores_as_of)
+evaluate_and_save(
+  args$base_hub_path,
+  args$scores_as_of
+)
