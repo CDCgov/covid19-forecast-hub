@@ -98,7 +98,9 @@ summarised_scoring_table <- function(quantile_scores,
       abs_wis = "wis",
       mae = "ae_median",
       "interval_coverage_50",
-      "interval_coverage_90"
+      "interval_coverage_80",
+      "interval_coverage_90",
+      "interval_coverage_95"
     ) |>
     dplyr::inner_join(summarised_rel,
       by = c("model", by)
@@ -235,8 +237,8 @@ evaluate_and_save <- function(base_hub_path,
   scored_results <- hub_table |>
     scoringutils::score(metrics = c(
       scoringutils::get_metrics(hub_table),
-      interval_coverage_80,
-      interval_coverage_95
+      interval_coverage_80 = interval_coverage_80,
+      interval_coverage_95 = interval_coverage_95
     ))
 
   output_path <- fs::path(base_hub_path, "eval-output")
