@@ -324,8 +324,12 @@ evaluate_and_save <- function(base_hub_path,
   )
 
 
-  models <- dplyr::distinct(summarised_by_loc_hor_date, model) |> dplyr::pull(model)
-  states <- dplyr::distinct(summarised_by_loc_hor_date, location) |> dplyr::pull(location)
+  models <- dplyr::distinct(
+    summarised_by_loc_hor_date, model
+  ) |> dplyr::pull(model)
+  states <- dplyr::distinct(
+    summarised_by_loc_hor_date, location
+  ) |> dplyr::pull(location)
   model_state_combinations <- tidyr::crossing(models, states)
   coverage_plots <- purrr::map2(
     model_state_combinations$models,
@@ -334,7 +338,9 @@ evaluate_and_save <- function(base_hub_path,
       filtered_data <- summarised_by_loc_hor_date |>
         dplyr::filter(model == !!model, location == !!state)
       if (nrow(filtered_data) == 0) {
-        warning(glue::glue("No data available for Model: {model}, State: {state}"))
+        warning(
+          glue::glue("No data available for Model: {model}, State: {state}")
+        )
         return(NULL)
       }
       purrr::map(
@@ -345,7 +351,9 @@ evaluate_and_save <- function(base_hub_path,
             coverage_level = level,
             date_column = "target_end_date"
           ) +
-            ggplot2::ggtitle(glue::glue("Model: {model} | State: {state}")))
+            ggplot2::ggtitle(
+              glue::glue("Model: {model} | State: {state}")
+            ))
         }
       )
     }
@@ -370,7 +378,11 @@ evaluate_and_save <- function(base_hub_path,
         dplyr::filter(model == !!model, location == !!state)
 
       if (nrow(filtered_data) == 0) {
-        warning(glue::glue("No data available for Model: {model}, State: {state}"))
+        warning(
+          glue::glue(
+            "No data available for Model: {model}, State: {state}"
+          )
+        )
         return(NULL)
       }
 
@@ -380,7 +392,11 @@ evaluate_and_save <- function(base_hub_path,
         score_column = "relative_wis",
         model_column = "model"
       ) +
-        ggplot2::ggtitle(glue::glue("Relative WIS Across Dates\nModel: {model} | State: {state}")))
+        ggplot2::ggtitle(
+          glue::glue(
+            "Relative WIS Across Dates\nModel: {model} | State: {state}"
+          )
+        ))
     }
   )
   rel_wis_date_plots <- purrr::compact(rel_wis_date_plots)
@@ -411,7 +427,9 @@ evaluate_and_save <- function(base_hub_path,
         filtered_data,
         model = model
       ) +
-        ggplot2::ggtitle(glue::glue("Relative WIS by Horizon\nModel: {model}")))
+        ggplot2::ggtitle(
+          glue::glue("Relative WIS by Horizon\nModel: {model}")
+        ))
     }
   )
   rel_wis_horizon_plots <- purrr::compact(rel_wis_horizon_plots)
