@@ -301,7 +301,9 @@ evaluate_and_save <- function(base_hub_path,
   )
   forecasttools::plots_to_pdf(
     coverage_plots,
-    fs::path(output_path, "coverage_by_date_and_horizon.pdf"),
+    fs::path(output_path, glue::glue(
+      "{scores_as_of_date}_coverage_by_date_and_horizon.pdf"
+    )),
     width = 8,
     height = 4
   )
@@ -313,7 +315,9 @@ evaluate_and_save <- function(base_hub_path,
     model_column = "model"
   )
   ggplot2::ggsave(
-    fs::path(output_path, "relative_wis_by_date.pdf"),
+    fs::path(output_path, glue::glue(
+      "{scores_as_of_date}_relative_wis_by_date.pdf"
+    )),
     rel_wis_by_date,
     width = 10,
     height = 8
@@ -324,7 +328,9 @@ evaluate_and_save <- function(base_hub_path,
     model = "CovidHub-ensemble"
   )
   ggplot2::ggsave(
-    fs::path(output_path, "relative_wis_by_location_horizon.pdf"),
+    fs::path(output_path, glue::glue(
+      "{scores_as_of_date}_relative_wis_by_location_horizon.pdf"
+    )),
     rel_wis_by_location_horizon,
     height = 10,
     width = 8
@@ -358,7 +364,7 @@ evaluate_and_save <- function(base_hub_path,
             date_column = "target_end_date"
           ) +
             ggplot2::ggtitle(
-              glue::glue("Model: {model}")
+              glue::glue("Model: {model} (as of: {scores_as_of_date})")
             ))
         }
       )
@@ -370,7 +376,9 @@ evaluate_and_save <- function(base_hub_path,
   if (length(coverage_plots_ref_date_hor) > 0) {
     forecasttools::plots_to_pdf(
       coverage_plots_ref_date_hor,
-      fs::path(output_path, "model_coverage_by_date.pdf"),
+      fs::path(output_path, glue::glue(
+        "{scores_as_of_date}_model_coverage_by_date.pdf"
+      )),
       width = 8,
       height = 4
     )
@@ -400,7 +408,9 @@ evaluate_and_save <- function(base_hub_path,
             date_column = "target_end_date"
           ) +
             ggplot2::ggtitle(
-              glue::glue("Model: {model}\nState: {state}")
+              glue::glue(
+                "Model: {model} (as of: {scores_as_of_date})\nState: {state}"
+              )
             ))
         }
       )
@@ -412,7 +422,9 @@ evaluate_and_save <- function(base_hub_path,
   if (length(coverage_plots_by_state_model) > 0) {
     forecasttools::plots_to_pdf(
       coverage_plots_by_state_model,
-      fs::path(output_path, "model_coverage_by_state.pdf"),
+      fs::path(output_path, glue::glue(
+        "{scores_as_of_date}_model_coverage_by_state.pdf"
+      )),
       width = 8,
       height = 4
     )
@@ -444,7 +456,7 @@ evaluate_and_save <- function(base_hub_path,
       ) +
         ggplot2::ggtitle(
           glue::glue(
-            "Relative WIS Across Dates\nModel: {model} | State: {state}"
+            "Relative WIS Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
           )
         ))
     }
@@ -453,7 +465,9 @@ evaluate_and_save <- function(base_hub_path,
   if (length(rel_wis_date_plots) > 0) {
     forecasttools::plots_to_pdf(
       rel_wis_date_plots,
-      fs::path(output_path, "relative_wis_by_model_state_date.pdf"),
+      fs::path(output_path, glue::glue(
+        "{scores_as_of_date}_relative_wis_by_model_state_date.pdf"
+      )),
       width = 8,
       height = 4
     )
@@ -477,7 +491,9 @@ evaluate_and_save <- function(base_hub_path,
         model = model
       ) +
         ggplot2::ggtitle(
-          glue::glue("Relative WIS by Horizon\nModel: {model}")
+          glue::glue(
+            "Relative WIS by Horizon (as of: {scores_as_of_date})\nModel: {model}"
+          )
         ))
     }
   )
@@ -485,7 +501,9 @@ evaluate_and_save <- function(base_hub_path,
   if (length(rel_wis_horizon_plots) > 0) {
     forecasttools::plots_to_pdf(
       rel_wis_horizon_plots,
-      fs::path(output_path, "relative_wis_by_model_horizon.pdf"),
+      fs::path(output_path, glue::glue(
+        "{scores_as_of_date}_relative_wis_by_model_horizon.pdf"
+      )),
       width = 8,
       height = 7
     )
