@@ -264,6 +264,13 @@ evaluate_and_save <- function(base_hub_path,
     by = c("horizon", "reference_date", "target_end_date")
   )
 
+  summarised_by_loc_date_horizon <- summarised_scoring_table(
+    scored_results,
+    scale = "log",
+    baseline = "CovidHub-baseline",
+    by = c("horizon", "location", "target_end_date")
+  )
+
   summarised_by_location_horizon <- summarised_scoring_table(
     scored_results,
     scale = "log",
@@ -323,7 +330,6 @@ evaluate_and_save <- function(base_hub_path,
     width = 8
   )
 
-
   models <- dplyr::distinct(
     summarised_by_loc_hor_date, model
   ) |> dplyr::pull(model)
@@ -332,11 +338,52 @@ evaluate_and_save <- function(base_hub_path,
   ) |> dplyr::pull(location)
   model_state_combinations <- tidyr::crossing(models, states)
 
-  coverage_plots <- purrr::map2(
+  coverage_plots_ref_date_hor <- purrr::map(
+    model_state_combinations$models,
+    \(model) {
+      filtered_data <- summarised_by_ref_date_horizon |>
+        dplyr::filter(model == !!model)
+      if (nrow(filtered_data) == 0) {
+        warning(
+          glue::glue("No data available for Model: {model}.")
+        )
+        return(NULL)
+      }
+      purrr::map(
+        c(0.5, 0.8, 0.9, 0.95),
+        \(level) {
+          (coverage_plot(
+            filtered_data,
+            coverage_level = level,
+            date_column = "target_end_date"
+          ) +
+            ggplot2::ggtitle(
+              glue::glue("Model: {model}")
+            ))
+        }
+      )
+    }
+  )
+  coverage_plots_ref_date_hor <- purrr::compact(
+    coverage_plots_ref_date_hor
+  ) |> purrr::flatten()
+  if (length(coverage_plots_ref_date_hor) > 0) {
+    forecasttools::plots_to_pdf(
+      coverage_plots_ref_date_hor,
+      fs::path(output_path, "model_coverage_by_date.pdf"),
+      width = 8,
+      height = 4
+    )
+  } else {
+    message("No coverage plots to save.")
+  }
+
+
+  coverage_plots_by_state_model <- purrr::map2(
     model_state_combinations$models,
     model_state_combinations$states,
     \(model, state) {
-      filtered_data <- summarised_by_loc_hor_date |>
+      filtered_data <- summarised_by_loc_date_horizon |>
         dplyr::filter(model == !!model, location == !!state)
       if (nrow(filtered_data) == 0) {
         warning(
@@ -359,11 +406,13 @@ evaluate_and_save <- function(base_hub_path,
       )
     }
   )
-  coverage_plots <- purrr::compact(coverage_plots) |> purrr::flatten()
-  if (length(coverage_plots) > 0) {
+  coverage_plots_by_state_model <- purrr::compact(
+    coverage_plots_by_state_model
+  ) |> purrr::flatten()
+  if (length(coverage_plots_by_state_model) > 0) {
     forecasttools::plots_to_pdf(
-      coverage_plots,
-      fs::path(output_path, "coverage_by_state_date.pdf"),
+      coverage_plots_by_state_model,
+      fs::path(output_path, "model_coverage_by_state.pdf"),
       width = 8,
       height = 4
     )
