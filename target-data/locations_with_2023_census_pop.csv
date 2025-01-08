@@ -1,0 +1,58 @@
+abbreviation,location,location_name,population
+US,US,US,333849724
+AL,01,Alabama,5097361
+AK,02,Alaska,711711
+AZ,04,Arizona,7414046
+AR,05,Arkansas,3063976
+CA,06,California,38828183
+CO,08,Colorado,5843317
+CT,09,Connecticut,3612324
+DE,10,Delaware,1028442
+DC,11,District of Columbia,675779
+FL,12,Florida,22550792
+GA,13,Georgia,10972367
+HI,15,Hawaii,1394885
+ID,16,Idaho,1961207
+IL,17,Illinois,12532834
+IN,18,Indiana,6861130
+IA,19,Iowa,3206712
+KS,20,Kansas,2920111
+KY,21,Kentucky,4509410
+LA,22,Louisiana,4559054
+ME,23,Maine,1395065
+MD,24,Maryland,6149174
+MA,25,Massachusetts,6998033
+MI,26,Michigan,10035357
+MN,27,Minnesota,5737303
+MS,28,Mississippi,2927069
+MO,29,Missouri,6181402
+MT,30,Montana,1129482
+NE,31,Nebraska,1971915
+NV,32,Nevada,3182045
+NH,33,New Hampshire,1401507
+NJ,34,New Jersey,9283473
+NM,35,New Mexico,2100958
+NY,36,New York,19551916
+NC,37,North Carolina,10735800
+ND,38,North Dakota,776725
+OH,39,Ohio,11779411
+OK,40,Oklahoma,4035489
+OR,41,Oregon,4231939
+PA,42,Pennsylvania,12958943
+RI,44,Rhode Island,1092402
+SC,45,South Carolina,5335324
+SD,46,South Dakota,916006
+TN,47,Tennessee,7106807
+TX,48,Texas,30391114
+UT,49,Utah,3413293
+VT,50,Vermont,647315
+VA,51,Virginia,8615980
+WA,53,Washington,7764081
+WV,54,West Virginia,1769881
+WI,55,Wisconsin,5909578
+WY,56,Wyoming,581296
+AS,60,American Samoa,49710
+GU,66,Guam,153836
+MP,69,Northern Mariana Islands,47329
+PR,72,Puerto Rico,3285874
+VI,78,Virgin Islands,106405
