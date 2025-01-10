@@ -344,6 +344,8 @@ evaluate_and_save <- function(base_hub_path,
   ) |> dplyr::pull(location)
   model_state_combinations <- tidyr::crossing(models, states)
 
+  # full model coverage across states
+  # (date and horizon)
   coverage_plots_ref_date_hor <- purrr::map(
     model_state_combinations$models,
     \(model) {
@@ -386,7 +388,8 @@ evaluate_and_save <- function(base_hub_path,
     message("No coverage plots to save.")
   }
 
-
+  # full model coverage for each state
+  # (date and horizon)
   coverage_plots_by_state_model <- purrr::map2(
     model_state_combinations$models,
     model_state_combinations$states,
@@ -432,6 +435,8 @@ evaluate_and_save <- function(base_hub_path,
     message("No coverage plots to save.")
   }
 
+  # full model rel. WIS by horizon and date
+  # for each state
   rel_wis_date_plots <- purrr::map2(
     model_state_combinations$models,
     model_state_combinations$states,
@@ -456,7 +461,7 @@ evaluate_and_save <- function(base_hub_path,
       ) +
         ggplot2::ggtitle(
           glue::glue(
-            "Relative WIS Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
+            "Rel. WIS Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
           )
         ))
     }
@@ -475,6 +480,71 @@ evaluate_and_save <- function(base_hub_path,
     message("No relative WIS by date plots to save.")
   }
 
+  # relative WIS w/ baseline and ensemble only
+  rel_wis_by_date_ens_base <- plot_scores_by_date(
+    summarised_by_ref_date_horizon |>
+      dplyr::filter(
+        model == "CovidHub-ensemble" | model == "CovidHub-baseline"
+      ),
+    date_column = "reference_date",
+    score_column = "relative_wis",
+    model_column = "model"
+  )
+  ggplot2::ggsave(
+    fs::path(output_path, glue::glue(
+      "{scores_as_of_date}_relative_wis_by_date_ens_and_base.pdf"
+    )),
+    rel_wis_by_date_ens_base,
+    width = 10,
+    height = 8
+  )
+
+  # relative WIS w/ baseline and ensemble,
+  # and also two best (by mean rel. WIS) models
+  baseline_data_length <- summarised_by_ref_date_horizon |>
+    dplyr::filter(model == "CovidHub-baseline") |>
+    dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
+    dplyr::pull(data_length)
+  valid_models <- summarised_by_ref_date_horizon |>
+    dplyr::group_by(model) |>
+    dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
+    dplyr::filter(data_length == baseline_data_length) |>
+    dplyr::pull(model)
+  best_models <- summarised_by_ref_date_horizon |>
+    dplyr::filter(
+      model %in% valid_models & !model %in% c(
+        "CovidHub-ensemble", "CovidHub-baseline"
+      )
+    ) |>
+    dplyr::group_by(model) |>
+    dplyr::summarise(mean_relative_wis = mean(
+      relative_wis,
+      na.rm = TRUE
+    )) |>
+    dplyr::arrange(mean_relative_wis) |>
+    dplyr::slice_head(n = 2) |>
+    dplyr::pull(model)
+  models_to_include <- c(
+    best_models, "CovidHub-ensemble", "CovidHub-baseline"
+  )
+  filtered_models <- summarised_by_ref_date_horizon |>
+    dplyr::filter(model %in% models_to_include)
+  rel_wis_by_date_ens_base_best <- plot_scores_by_date(
+    filtered_models,
+    date_column = "reference_date",
+    score_column = "relative_wis",
+    model_column = "model"
+  )
+  ggplot2::ggsave(
+    fs::path(output_path, glue::glue(
+      "{scores_as_of_date}_relative_wis_by_date_ens_base_and_two_best.pdf"
+    )),
+    rel_wis_by_date_ens_base_best,
+    width = 10,
+    height = 8
+  )
+
+  # full model rel. WIS by horizon across states
   rel_wis_horizon_plots <- purrr::map(
     models,
     \(model) {
@@ -492,7 +562,7 @@ evaluate_and_save <- function(base_hub_path,
       ) +
         ggplot2::ggtitle(
           glue::glue(
-            "Relative WIS by Horizon (as of: {scores_as_of_date})\nModel: {model}"
+            "Rel. WIS by Horizon (as of: {scores_as_of_date})\nModel: {model}"
           )
         ))
     }
