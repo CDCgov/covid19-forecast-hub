@@ -39,7 +39,9 @@ contributing_teams <- readr::read_csv(
     reference_date, "-models-submitted-to-hub.csv"
   )),
   show_col_types = FALSE
-)
+) |>
+  dplyr::filter(Designated_Model)
+
 weekly_submissions <- hubData::load_model_metadata(
   hub_path,
   model_ids = contributing_teams$Model
