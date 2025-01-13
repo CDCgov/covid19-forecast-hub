@@ -1,9 +1,7 @@
 name: Update authorized users
 
 on:
-  pull_request_target:
-    types:
-      - closed
+  push:
     branches: 
       - main
     paths:
@@ -12,7 +10,7 @@ on:
     
 jobs:
   update-users-list:
-    if: ${{ github.repository_owner == 'CDCgov' &&  github.event.pull_request.merged == true }}
+    if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-22.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
