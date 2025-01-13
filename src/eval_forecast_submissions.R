@@ -344,106 +344,155 @@ evaluate_and_save <- function(base_hub_path,
   ) |> dplyr::pull(location)
   model_state_combinations <- tidyr::crossing(models, states)
 
-  # full model coverage across states
-  # (date and horizon)
-  coverage_plots_ref_date_hor <- purrr::map(
-    model_state_combinations$models,
-    \(model) {
-      filtered_data <- summarised_by_ref_date_horizon |>
-        dplyr::filter(model == !!model)
-      if (nrow(filtered_data) == 0) {
-        warning(
-          glue::glue("No data available for Model: {model}.")
-        )
-        return(NULL)
-      }
-      purrr::map(
-        c(0.5, 0.8, 0.9, 0.95),
-        \(level) {
-          (coverage_plot(
-            filtered_data,
-            coverage_level = level,
-            date_column = "target_end_date"
-          ) +
-            ggplot2::ggtitle(
-              glue::glue("Model: {model} (as of: {scores_as_of_date})")
-            ))
-        }
-      )
-    }
-  )
-  coverage_plots_ref_date_hor <- purrr::compact(
-    coverage_plots_ref_date_hor
-  ) |> purrr::flatten()
-  if (length(coverage_plots_ref_date_hor) > 0) {
-    forecasttools::plots_to_pdf(
-      coverage_plots_ref_date_hor,
-      fs::path(output_path, glue::glue(
-        "{scores_as_of_date}_model_coverage_by_date.pdf"
-      )),
-      width = 8,
-      height = 4
-    )
-  } else {
-    message("No coverage plots to save.")
-  }
+  ###########################################
 
-  # full model coverage for each state
-  # (date and horizon)
-  coverage_plots_by_state_model <- purrr::map2(
-    model_state_combinations$models,
-    model_state_combinations$states,
-    \(model, state) {
-      filtered_data <- summarised_by_loc_date_horizon |>
-        dplyr::filter(model == !!model, location == !!state)
-      if (nrow(filtered_data) == 0) {
-        warning(
-          glue::glue("No data available for Model: {model}, State: {state}")
-        )
-        return(NULL)
-      }
-      purrr::map(
-        c(0.5, 0.8, 0.9, 0.95),
-        \(level) {
-          (coverage_plot(
-            filtered_data,
-            coverage_level = level,
-            date_column = "target_end_date"
-          ) +
-            ggplot2::ggtitle(
-              glue::glue(
-                "Model: {model} (as of: {scores_as_of_date})\nState: {state}"
-              )
-            ))
-        }
-      )
-    }
-  )
-  coverage_plots_by_state_model <- purrr::compact(
-    coverage_plots_by_state_model
-  ) |> purrr::flatten()
-  if (length(coverage_plots_by_state_model) > 0) {
-    forecasttools::plots_to_pdf(
-      coverage_plots_by_state_model,
-      fs::path(output_path, glue::glue(
-        "{scores_as_of_date}_model_coverage_by_state.pdf"
-      )),
-      width = 8,
-      height = 4
-    )
-  } else {
-    message("No coverage plots to save.")
-  }
+  # # full model coverage across states
+  # # (date and horizon)
+  # coverage_plots_ref_date_hor <- purrr::map(
+  #   model_state_combinations$models,
+  #   \(model) {
+  #     filtered_data <- summarised_by_ref_date_horizon |>
+  #       dplyr::filter(model == !!model)
+  #     if (nrow(filtered_data) == 0) {
+  #       warning(
+  #         glue::glue("No data available for Model: {model}.")
+  #       )
+  #       return(NULL)
+  #     }
+  #     purrr::map(
+  #       c(0.5, 0.8, 0.9, 0.95),
+  #       \(level) {
+  #         (coverage_plot(
+  #           filtered_data,
+  #           coverage_level = level,
+  #           date_column = "target_end_date"
+  #         ) +
+  #           ggplot2::ggtitle(
+  #             glue::glue("Model: {model} (as of: {scores_as_of_date})")
+  #           ))
+  #       }
+  #     )
+  #   }
+  # )
+  # coverage_plots_ref_date_hor <- purrr::compact(
+  #   coverage_plots_ref_date_hor
+  # ) |> purrr::flatten()
+  # if (length(coverage_plots_ref_date_hor) > 0) {
+  #   forecasttools::plots_to_pdf(
+  #     coverage_plots_ref_date_hor,
+  #     fs::path(output_path, glue::glue(
+  #       "{scores_as_of_date}_model_coverage_by_date.pdf"
+  #     )),
+  #     width = 8,
+  #     height = 4
+  #   )
+  # } else {
+  #   message("No coverage plots to save.")
+  # }
 
-  # full model rel. WIS by horizon and date
-  # for each state
-  rel_wis_date_plots <- purrr::map2(
+  ###########################################
+
+  # # full model coverage for each state
+  # # (date and horizon)
+  # coverage_plots_by_state_model <- purrr::map2(
+  #   model_state_combinations$models,
+  #   model_state_combinations$states,
+  #   \(model, state) {
+  #     filtered_data <- summarised_by_loc_date_horizon |>
+  #       dplyr::filter(model == !!model, location == !!state)
+  #     if (nrow(filtered_data) == 0) {
+  #       warning(
+  #         glue::glue("No data available for Model: {model}, State: {state}")
+  #       )
+  #       return(NULL)
+  #     }
+  #     purrr::map(
+  #       c(0.5, 0.8, 0.9, 0.95),
+  #       \(level) {
+  #         (coverage_plot(
+  #           filtered_data,
+  #           coverage_level = level,
+  #           date_column = "target_end_date"
+  #         ) +
+  #           ggplot2::ggtitle(
+  #             glue::glue(
+  #               "Model: {model} (as of: {scores_as_of_date})\nState: {state}"
+  #             )
+  #           ))
+  #       }
+  #     )
+  #   }
+  # )
+  # coverage_plots_by_state_model <- purrr::compact(
+  #   coverage_plots_by_state_model
+  # ) |> purrr::flatten()
+  # if (length(coverage_plots_by_state_model) > 0) {
+  #   forecasttools::plots_to_pdf(
+  #     coverage_plots_by_state_model,
+  #     fs::path(output_path, glue::glue(
+  #       "{scores_as_of_date}_model_coverage_by_state.pdf"
+  #     )),
+  #     width = 8,
+  #     height = 4
+  #   )
+  # } else {
+  #   message("No coverage plots to save.")
+  # }
+
+  # # full model rel. WIS by horizon and date
+  # # for each state
+  # rel_wis_date_plots <- purrr::map2(
+  #   model_state_combinations$models,
+  #   model_state_combinations$states,
+  #   \(model, state) {
+  #     filtered_data <- summarised_by_loc_hor_date |>
+  #       dplyr::filter(model == !!model, location == !!state)
+  #     if (nrow(filtered_data) == 0) {
+  #       warning(
+  #         glue::glue(
+  #           "No data available for Model: {model}, State: {state}"
+  #         )
+  #       )
+  #       return(NULL)
+  #     }
+
+  #     (plot_scores_by_date(
+  #       filtered_data,
+  #       date_column = "reference_date",
+  #       score_column = "relative_wis",
+  #       model_column = "model"
+  #     ) +
+  #       ggplot2::ggtitle(
+  #         glue::glue(
+  #           "Rel. WIS Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
+  #         )
+  #       ))
+  #   }
+  # )
+  # rel_wis_date_plots <- purrr::compact(rel_wis_date_plots)
+  # if (length(rel_wis_date_plots) > 0) {
+  #   forecasttools::plots_to_pdf(
+  #     rel_wis_date_plots,
+  #     fs::path(output_path, glue::glue(
+  #       "{scores_as_of_date}_relative_wis_by_model_state_date.pdf"
+  #     )),
+  #     width = 8,
+  #     height = 4
+  #   )
+  # } else {
+  #   message("No relative WIS by date plots to save.")
+  # }
+
+  ###########################################
+
+  # full model rel. WIS (to ensemble) by 
+  # horizon and date for each state 
+  rel_wis_ens_date_plots <- purrr::map2(
     model_state_combinations$models,
     model_state_combinations$states,
     \(model, state) {
       filtered_data <- summarised_by_loc_hor_date |>
-        dplyr::filter(model == !!model, location == !!state)
-
+        dplyr::filter((model == !!model | model == "CovidHub-ensemble"), location == !!state)
       if (nrow(filtered_data) == 0) {
         warning(
           glue::glue(
@@ -452,7 +501,6 @@ evaluate_and_save <- function(base_hub_path,
         )
         return(NULL)
       }
-
       (plot_scores_by_date(
         filtered_data,
         date_column = "reference_date",
@@ -461,17 +509,17 @@ evaluate_and_save <- function(base_hub_path,
       ) +
         ggplot2::ggtitle(
           glue::glue(
-            "Rel. WIS Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
+            "Rel. WIS To Ens. Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
           )
         ))
     }
   )
-  rel_wis_date_plots <- purrr::compact(rel_wis_date_plots)
-  if (length(rel_wis_date_plots) > 0) {
+  rel_wis_ens_date_plots <- purrr::compact(rel_wis_ens_date_plots)
+  if (length(rel_wis_ens_date_plots) > 0) {
     forecasttools::plots_to_pdf(
-      rel_wis_date_plots,
+      rel_wis_ens_date_plots,
       fs::path(output_path, glue::glue(
-        "{scores_as_of_date}_relative_wis_by_model_state_date.pdf"
+        "{scores_as_of_date}_relative_wis_to_ens_by_model_state_date.pdf"
       )),
       width = 8,
       height = 4
@@ -480,106 +528,112 @@ evaluate_and_save <- function(base_hub_path,
     message("No relative WIS by date plots to save.")
   }
 
-  # relative WIS w/ baseline and ensemble only
-  rel_wis_by_date_ens_base <- plot_scores_by_date(
-    summarised_by_ref_date_horizon |>
-      dplyr::filter(
-        model == "CovidHub-ensemble" | model == "CovidHub-baseline"
-      ),
-    date_column = "reference_date",
-    score_column = "relative_wis",
-    model_column = "model"
-  )
-  ggplot2::ggsave(
-    fs::path(output_path, glue::glue(
-      "{scores_as_of_date}_relative_wis_by_date_ens_and_base.pdf"
-    )),
-    rel_wis_by_date_ens_base,
-    width = 10,
-    height = 8
-  )
+  ###########################################
 
-  # relative WIS w/ baseline and ensemble,
-  # and also two best (by mean rel. WIS) models
-  baseline_data_length <- summarised_by_ref_date_horizon |>
-    dplyr::filter(model == "CovidHub-baseline") |>
-    dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
-    dplyr::pull(data_length)
-  valid_models <- summarised_by_ref_date_horizon |>
-    dplyr::group_by(model) |>
-    dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
-    dplyr::filter(data_length == baseline_data_length) |>
-    dplyr::pull(model)
-  best_models <- summarised_by_ref_date_horizon |>
-    dplyr::filter(
-      model %in% valid_models & !model %in% c(
-        "CovidHub-ensemble", "CovidHub-baseline"
-      )
-    ) |>
-    dplyr::group_by(model) |>
-    dplyr::summarise(mean_relative_wis = mean(
-      relative_wis,
-      na.rm = TRUE
-    )) |>
-    dplyr::arrange(mean_relative_wis) |>
-    dplyr::slice_head(n = 2) |>
-    dplyr::pull(model)
-  models_to_include <- c(
-    best_models, "CovidHub-ensemble", "CovidHub-baseline"
-  )
-  filtered_models <- summarised_by_ref_date_horizon |>
-    dplyr::filter(model %in% models_to_include)
-  rel_wis_by_date_ens_base_best <- plot_scores_by_date(
-    filtered_models,
-    date_column = "reference_date",
-    score_column = "relative_wis",
-    model_column = "model"
-  )
-  ggplot2::ggsave(
-    fs::path(output_path, glue::glue(
-      "{scores_as_of_date}_relative_wis_by_date_ens_base_and_two_best.pdf"
-    )),
-    rel_wis_by_date_ens_base_best,
-    width = 10,
-    height = 8
-  )
+  # # relative WIS w/ baseline and ensemble only
+  # rel_wis_by_date_ens_base <- plot_scores_by_date(
+  #   summarised_by_ref_date_horizon |>
+  #     dplyr::filter(
+  #       model == "CovidHub-ensemble" | model == "CovidHub-baseline"
+  #     ),
+  #   date_column = "reference_date",
+  #   score_column = "relative_wis",
+  #   model_column = "model"
+  # )
+  # ggplot2::ggsave(
+  #   fs::path(output_path, glue::glue(
+  #     "{scores_as_of_date}_relative_wis_by_date_ens_and_base.pdf"
+  #   )),
+  #   rel_wis_by_date_ens_base,
+  #   width = 10,
+  #   height = 8
+  # )
 
-  # full model rel. WIS by horizon across states
-  rel_wis_horizon_plots <- purrr::map(
-    models,
-    \(model) {
-      filtered_data <- summarised_by_location_horizon |>
-        dplyr::filter(model == !!model)
+  ###########################################
 
-      if (nrow(filtered_data) == 0) {
-        warning(glue::glue("No data available for Model: {model}"))
-        return(NULL)
-      }
+  # # relative WIS w/ baseline and ensemble,
+  # # and also two best (by mean rel. WIS) models
+  # baseline_data_length <- summarised_by_ref_date_horizon |>
+  #   dplyr::filter(model == "CovidHub-baseline") |>
+  #   dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
+  #   dplyr::pull(data_length)
+  # valid_models <- summarised_by_ref_date_horizon |>
+  #   dplyr::group_by(model) |>
+  #   dplyr::summarise(data_length = sum(!is.na(relative_wis))) |>
+  #   dplyr::filter(data_length == baseline_data_length) |>
+  #   dplyr::pull(model)
+  # best_models <- summarised_by_ref_date_horizon |>
+  #   dplyr::filter(
+  #     model %in% valid_models & !model %in% c(
+  #       "CovidHub-ensemble", "CovidHub-baseline"
+  #     )
+  #   ) |>
+  #   dplyr::group_by(model) |>
+  #   dplyr::summarise(mean_relative_wis = mean(
+  #     relative_wis,
+  #     na.rm = TRUE
+  #   )) |>
+  #   dplyr::arrange(mean_relative_wis) |>
+  #   dplyr::slice_head(n = 2) |>
+  #   dplyr::pull(model)
+  # models_to_include <- c(
+  #   best_models, "CovidHub-ensemble", "CovidHub-baseline"
+  # )
+  # filtered_models <- summarised_by_ref_date_horizon |>
+  #   dplyr::filter(model %in% models_to_include)
+  # rel_wis_by_date_ens_base_best <- plot_scores_by_date(
+  #   filtered_models,
+  #   date_column = "reference_date",
+  #   score_column = "relative_wis",
+  #   model_column = "model"
+  # )
+  # ggplot2::ggsave(
+  #   fs::path(output_path, glue::glue(
+  #     "{scores_as_of_date}_relative_wis_by_date_ens_base_and_two_best.pdf"
+  #   )),
+  #   rel_wis_by_date_ens_base_best,
+  #   width = 10,
+  #   height = 8
+  # )
 
-      (relative_wis_by_location(
-        filtered_data,
-        model = model
-      ) +
-        ggplot2::ggtitle(
-          glue::glue(
-            "Rel. WIS by Horizon (as of: {scores_as_of_date})\nModel: {model}"
-          )
-        ))
-    }
-  )
-  rel_wis_horizon_plots <- purrr::compact(rel_wis_horizon_plots)
-  if (length(rel_wis_horizon_plots) > 0) {
-    forecasttools::plots_to_pdf(
-      rel_wis_horizon_plots,
-      fs::path(output_path, glue::glue(
-        "{scores_as_of_date}_relative_wis_by_model_horizon.pdf"
-      )),
-      width = 8,
-      height = 7
-    )
-  } else {
-    message("No relative WIS by horizon plots to save.")
-  }
+  ###########################################
+
+  # # full model rel. WIS by horizon across states
+  # rel_wis_horizon_plots <- purrr::map(
+  #   models,
+  #   \(model) {
+  #     filtered_data <- summarised_by_location_horizon |>
+  #       dplyr::filter(model == !!model)
+
+  #     if (nrow(filtered_data) == 0) {
+  #       warning(glue::glue("No data available for Model: {model}"))
+  #       return(NULL)
+  #     }
+
+  #     (relative_wis_by_location(
+  #       filtered_data,
+  #       model = model
+  #     ) +
+  #       ggplot2::ggtitle(
+  #         glue::glue(
+  #           "Rel. WIS by Horizon (as of: {scores_as_of_date})\nModel: {model}"
+  #         )
+  #       ))
+  #   }
+  # )
+  # rel_wis_horizon_plots <- purrr::compact(rel_wis_horizon_plots)
+  # if (length(rel_wis_horizon_plots) > 0) {
+  #   forecasttools::plots_to_pdf(
+  #     rel_wis_horizon_plots,
+  #     fs::path(output_path, glue::glue(
+  #       "{scores_as_of_date}_relative_wis_by_model_horizon.pdf"
+  #     )),
+  #     width = 8,
+  #     height = 7
+  #   )
+  # } else {
+  #   message("No relative WIS by horizon plots to save.")
+  # }
 
   message(paste0(
     "Scoring and plotting complete. ",
