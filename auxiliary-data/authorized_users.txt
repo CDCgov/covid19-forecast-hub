@@ -1,4 +1,5 @@
 CEPH-Rtrend_covid paulocv
+CFA_Pyrenew-Pyrenew_H_COVID dylanhmorris, damonbayer, sbidari
 CMU-TimeSeries dshemetov, dsweber2
 CovidHub-baseline NA
 CovidHub-ensemble NA
