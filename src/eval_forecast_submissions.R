@@ -485,48 +485,49 @@ evaluate_and_save <- function(base_hub_path,
 
   ###########################################
 
-  # full model rel. WIS (to ensemble) by 
-  # horizon and date for each state 
-  rel_wis_ens_date_plots <- purrr::map2(
-    model_state_combinations$models,
-    model_state_combinations$states,
-    \(model, state) {
-      filtered_data <- summarised_by_loc_hor_date |>
-        dplyr::filter((model == !!model | model == "CovidHub-ensemble"), location == !!state)
-      if (nrow(filtered_data) == 0) {
-        warning(
-          glue::glue(
-            "No data available for Model: {model}, State: {state}"
-          )
-        )
-        return(NULL)
-      }
-      (plot_scores_by_date(
-        filtered_data,
-        date_column = "reference_date",
-        score_column = "relative_wis",
-        model_column = "model"
-      ) +
-        ggplot2::ggtitle(
-          glue::glue(
-            "Rel. WIS To Ens. Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
-          )
-        ))
-    }
-  )
-  rel_wis_ens_date_plots <- purrr::compact(rel_wis_ens_date_plots)
-  if (length(rel_wis_ens_date_plots) > 0) {
-    forecasttools::plots_to_pdf(
-      rel_wis_ens_date_plots,
-      fs::path(output_path, glue::glue(
-        "{scores_as_of_date}_relative_wis_to_ens_by_model_state_date.pdf"
-      )),
-      width = 8,
-      height = 4
-    )
-  } else {
-    message("No relative WIS by date plots to save.")
-  }
+  # # full model rel. WIS (to ensemble) by 
+  # # horizon and date for each state 
+  # rel_wis_ens_date_plots <- purrr::map2(
+  #   model_state_combinations$models,
+  #   model_state_combinations$states,
+  #   # filter out ensemble in model combinations, maybe?
+  #   \(model, state) {
+  #     filtered_data <- summarised_by_loc_hor_date |>
+  #       dplyr::filter((model == !!model | model == "CovidHub-ensemble"), location == !!state)
+  #     if (nrow(filtered_data) == 0) {
+  #       warning(
+  #         glue::glue(
+  #           "No data available for Model: {model}, State: {state}"
+  #         )
+  #       )
+  #       return(NULL)
+  #     }
+  #     (plot_scores_by_date(
+  #       filtered_data,
+  #       date_column = "reference_date",
+  #       score_column = "relative_wis",
+  #       model_column = "model"
+  #     ) +
+  #       ggplot2::ggtitle(
+  #         glue::glue(
+  #           "Rel. WIS To Ens. Across Dates (as of: {scores_as_of_date})\nModel: {model} | State: {state}"
+  #         )
+  #       ))
+  #   }
+  # )
+  # rel_wis_ens_date_plots <- purrr::compact(rel_wis_ens_date_plots)
+  # if (length(rel_wis_ens_date_plots) > 0) {
+  #   forecasttools::plots_to_pdf(
+  #     rel_wis_ens_date_plots,
+  #     fs::path(output_path, glue::glue(
+  #       "{scores_as_of_date}_relative_wis_to_ens_by_model_state_date.pdf"
+  #     )),
+  #     width = 8,
+  #     height = 4
+  #   )
+  # } else {
+  #   message("No relative WIS by date plots to save.")
+  # }
 
   ###########################################
 
