@@ -52,6 +52,14 @@ weekly_submissions <- hubData::load_model_metadata(
   )) |>
   dplyr::select(model_id, team_abbr, model_abbr, team_model_url)
 
+percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
+  api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+  columns = c("totalconfc19newadmperchosprepabove80pct"),
+  start_date = "2024-11-09"
+) |>
+  dplyr::filter(weekendingdate == as.Date(reference_date) - 7) |>
+  dplyr::filter(totalconfc19newadmperchosprepabove80pct == 0)
+
 # generate variables used in the web text
 median_forecast_2wk_ahead <- signif(ensemble_us_2wk_ahead$quantile_0.5_count, 2)
 lower_95ci_forecast_2wk_ahead <- signif(
@@ -87,6 +95,12 @@ web_text <- glue::glue(
   "{first_target_data_date} through {last_target_data_date} and forecasted ",
   "new COVID-19 hospital admissions per week for this week and the next ",
   "2 weeks through {target_end_date_2wk_ahead}.\n\n",
+  "The following jurisdictions had <80% of hospitals reporting for ",
+  "the most recent week: ",
+  "{paste(percent_hosp_reporting_below80$jurisdiction, collapse = ', ')}. ",
+  "Lower reporting rates could impact forecast validity. Percent ",
+  "of hospitals reporting is calculated based on the number of active ",
+  "hospitals reporting complete data to NHSN for a given reporting week.\n\n",
   "Contributing teams and models:\n",
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
