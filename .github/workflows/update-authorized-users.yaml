@@ -2,8 +2,13 @@ name: Update authorized users
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '30 21 * * 3'
+  push:
+    branches: 
+      - main
+    paths:
+      - 'model-metadata/*.yaml'
+      - 'model-metadata/*.yml'
+
     
 jobs:
   update-users-list:
@@ -16,7 +21,7 @@ jobs:
       with:
         application_id: ${{ vars.GH_APP_ID }}
         application_private_key: ${{ secrets.GH_APP_KEY }}
-
+        
     - name: Checkout code
       uses: actions/checkout@v4
 
