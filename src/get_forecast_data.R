@@ -23,7 +23,7 @@
 #'
 #' To run:
 #' Rscript src/get_forecast_data.R --reference_date 2024-12-21
-#' --base_hub_path "." --hub_report_path "path/to/covidhub-reports"
+#' --base_hub_path "." --hub_reports_path "path/to/covidhub-reports"
 #' --horizons_to_include 0 1 2
 
 
@@ -45,7 +45,7 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
-  "--hub_report_path",
+  "--hub_reports_path",
   type = "character",
   help = "path to COVIDhub reports directory"
 )
@@ -60,7 +60,7 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
-hub_report_path <- args$hub_report_path
+hub_reports_path <- args$hub_reports_path
 horizons_to_include <- as.integer(args$horizons_to_include)
 
 # check for invalid horizon entries
@@ -181,7 +181,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
 
 # output folder and file paths for All Forecasts
 output_folder_path <- fs::path(
-  hub_report_path,
+  hub_reports_path,
   "weekly-summaries",
   ref_date
 )
