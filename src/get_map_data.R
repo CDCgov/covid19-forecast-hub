@@ -65,6 +65,12 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
+  "--hub_reports_path",
+  type = "character",
+  help = "path to COVIDhub reports directory"
+)
+parser <- argparser::add_argument(
+  parser,
   "--horizons_to_include",
   nargs = "Inf",
   help = "A list of horizons to include."
@@ -73,6 +79,7 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+hub_reports_path <- args$hub_reports_path
 horizons_to_include <- as.integer(args$horizons_to_include)
 
 
@@ -261,7 +268,7 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   )
 
 output_folder_path <- fs::path(
-  base_hub_path, "weekly-summaries", ref_date
+  hub_reports_path, "weekly-summaries", ref_date
 )
 output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(

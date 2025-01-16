@@ -17,28 +17,37 @@ parser <- argparser::add_argument(
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
+parser <- argparser::add_argument(
+  parser,
+  "--hub_reports_path",
+  type = "character",
+  help = "path to COVIDhub reports directory"
+)
 
 args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
-hub_path <- args$base_hub_path
+base_hub_path <- args$base_hub_path
+hub_reports_path <- args$hub_reports_path
 
-dir_path <- file.path(hub_path, "weekly-summaries", reference_date)
+weekly_data_path <- file.path(
+  hub_reports_path, "weekly-summaries", reference_date
+)
 
 ensemble_us_2wk_ahead <- readr::read_csv(
-  file.path(dir_path, paste0(reference_date, "_covid_map_data.csv")),
+  file.path(weekly_data_path, paste0(reference_date, "_covid_map_data.csv")),
   show_col_types = FALSE
 ) |>
   dplyr::filter(horizon == 2, location_name == "US")
 
 target_data <- readr::read_csv(
-  file.path(dir_path, paste0(
+  file.path(weekly_data_path, paste0(
     reference_date, "_covid_target_hospital_admissions_data.csv"
   )),
   show_col_types = FALSE
 )
 
 contributing_teams <- readr::read_csv(
-  file.path(hub_path, "auxiliary-data", paste0(
+  file.path(base_hub_path, "auxiliary-data", paste0(
     reference_date, "-models-submitted-to-hub.csv"
   )),
   show_col_types = FALSE
@@ -46,7 +55,7 @@ contributing_teams <- readr::read_csv(
   dplyr::filter(Designated_Model)
 
 weekly_submissions <- hubData::load_model_metadata(
-  hub_path,
+  base_hub_path,
   model_ids = contributing_teams$Model
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model, .keep_all = TRUE) |>
@@ -146,4 +155,6 @@ web_text <- glue::glue(
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
 
-writeLines(web_text, file.path(dir_path, paste0(reference_date, "_webtext.md")))
+writeLines(
+  web_text, file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
+)
