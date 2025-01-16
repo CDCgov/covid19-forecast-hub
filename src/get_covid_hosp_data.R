@@ -40,6 +40,12 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
+  "--hub_reports_path",
+  type = "character",
+  help = "path to COVIDhub reports directory"
+)
+parser <- argparser::add_argument(
+  parser,
   "--target_data",
   type = "logical",
   help = "If FALSE, fetches NHSN historical data. IF TRUE, gets target data."
@@ -56,6 +62,7 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
 
@@ -154,7 +161,7 @@ if (!target_data) {
     )
   # output folder and file paths for Truth Data
   output_folder_path <- fs::path(
-    base_hub_path, "weekly-summaries", reference_date
+    hub_reports_path, "weekly-summaries", reference_date
   )
   output_filename <- paste0(
     reference_date, "_covid_target_hospital_admissions_data.csv"
