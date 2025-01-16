@@ -7,19 +7,19 @@ parser <- argparser::arg_parser(
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--hub_reports_path",
+  "--hub-reports-path",
   type = "character",
   help = "path to COVIDhub reports directory"
 )
@@ -66,6 +66,19 @@ weekly_submissions <- hubData::load_model_metadata(
 
 # Generate flag for less than 80 percent of hospitals reporting
 desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
+
+exclude_territories_path <- fs::path(
+  base_hub_path,
+  "auxiliary-data",
+  "excluded_territories.toml"
+)
+if (fs::file_exists(exclude_territories_path)) {
+  exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+  excluded_locations <- exclude_territories_toml$locations
+} else {
+  stop("TOML file not found: ", exclude_territories_path)
+}
+
 percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadmperchosprepabove80pct"),
@@ -75,8 +88,16 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
     weekendingdate = as.Date(weekendingdate),
     report_above_80_lgl = as.logical(
       as.numeric(totalconfc19newadmperchosprepabove80pct)
+    ),
+    jurisdiction = stringr::str_replace(jurisdiction, "USA", "US"),
+    location = forecasttools::us_loc_abbr_to_code(jurisdiction),
+    location_name = forecasttools::location_lookup(
+      jurisdiction,
+      location_input_format = "abbr",
+      location_output_format = "long_name"
     )
   ) |>
+  dplyr::filter(!(location %in% excluded_locations)) |>
   dplyr::group_by(jurisdiction) |>
   dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
   dplyr::ungroup()
@@ -90,7 +111,7 @@ if (nrow(jurisdiction_w_latency) > 0) {
     The reference date is {reference_date}, we expect data at least
     through {desired_weekendingdate}. However, {nrow(jurisdiction_w_latency)}
     location{?s} did not have reporting through that date:
-    {jurisdiction_w_latency$jurisdiction}.
+    {jurisdiction_w_latency$location_name}.
   ")
 }
 
@@ -101,12 +122,23 @@ latest_reporting_below80 <- percent_hosp_reporting_below80 |>
   )
 
 reporting_rate_flag <- if (
-  length(latest_reporting_below80$jurisdiction) > 0
+  length(latest_reporting_below80$location_name) > 0
 ) {
+  location_list <- if (length(latest_reporting_below80$location_name) == 1) {
+    latest_reporting_below80$location_name
+  } else if (length(latest_reporting_below80$location_name) == 2) {
+    paste(latest_reporting_below80$location_name, collapse = " and ")
+  } else {
+    paste(
+      paste(head(latest_reporting_below80$location_name, -1), collapse = ", "),
+      "and",
+      tail(latest_reporting_below80$location_name, 1)
+    )
+  }
+
   glue::glue(
     "The following jurisdictions had <80% of hospitals reporting for ",
-    "the most recent week: ",
-    "{paste(latest_reporting_below80$jurisdiction, collapse = ', ')}. ",
+    "the most recent week: {location_list}. ",
     "Lower reporting rates could impact forecast validity. Percent ",
     "of hospitals reporting is calculated based on the number of active ",
     "hospitals reporting complete data to NHSN for a given reporting week.\n\n"
