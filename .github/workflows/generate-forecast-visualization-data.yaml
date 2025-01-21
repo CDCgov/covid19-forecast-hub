@@ -1,9 +1,12 @@
-name: Generate weekly visualization data
+name: Send a dispatch to covidhub-reports
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '00 16 * * 4'
+  push:
+    branches: 
+      - main
+    paths:
+      - 'model-output/CovidHub-ensemble/*'
     
 jobs:
   update-visualization-data:
@@ -19,43 +22,9 @@ jobs:
           application_id: ${{ vars.GH_APP_ID }}
           application_private_key: ${{ secrets.GH_APP_KEY }}
 
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup R
-        uses: r-lib/actions/setup-r@v2
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
         with:
-          install-r: false
-          use-public-rspm: true
-
-      - name: Install dependencies
-        run: |
-          install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML", "tidyr", "lubridate", "glue"))
-          remotes::install_github('cdcgov/forecasttools')
-          remotes::install_github("hubverse-org/hubData")
-        shell: Rscript {0}
-
-      - name: Generate data files
-        run: |
-          REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-          Rscript src/get_covid_hosp_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --target-data FALSE
-          Rscript src/get_forecast_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --horizons-to-include 0 1 2
-          Rscript src/get_map_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --horizons-to-include 0 1 2
-          Rscript src/get_webtext.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "."
-        env:
-          NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
-          NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with: 
-          message: "Update weekly data and web text"
-          default_author: github_actions
-          push: true
-          new_branch: add-viz-data
-
-      - name: Create pull request
-        run: |
-          gh pr create --base main --head add-viz-data --title "Weekly forecast visualization data" --body "This PR adds weekly visualization data files to the repo."
-        env:
-          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+          token: ${{ steps.get_workflow_token.outputs.token }}
+          repository: CDCgov/covidhub-reports
+          event-type: ensemble-added
