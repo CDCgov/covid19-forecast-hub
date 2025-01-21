@@ -15,12 +15,12 @@
 #' admissions (integer)
 #'
 #' To get the historical dataset for visualization:
-#' Rscript get_covid_hosp_data.R --target_data FALSE \
-#'   --reference_date 2024-11-23 --base_hub_path ../
+#' Rscript get_covid_hosp_data.R --target-data FALSE \
+#'   --reference-date 2024-11-23 --base-hub-path ../
 #'
 #' To get the target COVID-19 hospital admissions data:
-#' Rscript get_covid_hosp_data.R --target_data TRUE \
-#'   --reference_date 2024-11-23 --base_hub_path ../
+#' Rscript get_covid_hosp_data.R --target-data TRUE \
+#'   --reference-date 2024-11-23 --base-hub-path ../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -28,31 +28,31 @@ parser <- argparser::arg_parser(
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the COVID-19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--hub_reports_path",
+  "--hub-reports-path",
   type = "character",
   help = "path to COVIDhub reports directory"
 )
 parser <- argparser::add_argument(
   parser,
-  "--target_data",
+  "--target-data",
   type = "logical",
   help = "If FALSE, fetches NHSN historical data. IF TRUE, gets target data."
 )
 parser <- argparser::add_argument(
   parser,
-  "--first_full_weekending_date",
+  "--first-full-weekending-date",
   help = "Filter data by week ending date",
   type = "character",
   default = "2024-11-09"
@@ -99,14 +99,10 @@ if (target_data) {
       value = as.numeric(value),
       state = stringr::str_replace(state, "USA", "US")
     )
-  loc_df <- readr::read_csv(
-    "target-data/locations.csv",
-    show_col_types = FALSE
-  )
+
   formatted_data <- covid_data |>
-    dplyr::left_join(loc_df, by = c("state" = "abbreviation")) |>
-    dplyr::filter(!(location %in% excluded_locations)) |>
-    dplyr::select(date, state, value, location)
+    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
+    dplyr::filter(!(location %in% excluded_locations))
   output_dirpath <- "target-data/"
   readr::write_csv(
     formatted_data,

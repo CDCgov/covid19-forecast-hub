@@ -1,6 +1,6 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
-#' Rscript src/get_webtext.R --reference_date "2024-12-28" --base_hub_path "."
+#' Rscript src/get_webtext.R --reference-date "2024-12-28" --base-hub-path "."
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
@@ -47,7 +47,7 @@ target_data <- readr::read_csv(
 )
 
 contributing_teams <- readr::read_csv(
-  file.path(base_hub_path, "auxiliary-data", paste0(
+  file.path(base_hub_path, "auxiliary-data", "weekly-model-submissions", paste0(
     reference_date, "-models-submitted-to-hub.csv"
   )),
   show_col_types = FALSE
