@@ -60,7 +60,7 @@ weekly_models <- hubData::load_model_metadata(
 write.csv(
   weekly_models,
   file.path(
-    "auxiliary-data",
+    "auxiliary-data", "weekly-model-submissions",
     paste0(
       as.character(reference_date), "-", "models-submitted-to-hub.csv"
     )
