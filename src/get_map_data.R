@@ -136,7 +136,7 @@ if (length(missing_columns) > 0) {
 # population data, add later to forecasttools
 pop_data_path <- file.path(
   base_hub_path,
-  "target-data",
+  "auxiliary-data",
   "locations_with_2023_census_pop.csv"
 )
 pop_data <- readr::read_csv(pop_data_path)
