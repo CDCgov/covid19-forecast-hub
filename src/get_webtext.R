@@ -47,7 +47,7 @@ target_data <- readr::read_csv(
 )
 
 contributing_teams <- readr::read_csv(
-  file.path(base_hub_path, "auxiliary-data", paste0(
+  file.path(base_hub_path, "auxiliary-data", "weekly-model-submissions", paste0(
     reference_date, "-models-submitted-to-hub.csv"
   )),
   show_col_types = FALSE

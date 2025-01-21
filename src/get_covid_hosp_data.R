@@ -99,14 +99,10 @@ if (target_data) {
       value = as.numeric(value),
       state = stringr::str_replace(state, "USA", "US")
     )
-  loc_df <- readr::read_csv(
-    "target-data/locations.csv",
-    show_col_types = FALSE
-  )
+
   formatted_data <- covid_data |>
-    dplyr::left_join(loc_df, by = c("state" = "abbreviation")) |>
-    dplyr::filter(!(location %in% excluded_locations)) |>
-    dplyr::select(date, state, value, location)
+    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
+    dplyr::filter(!(location %in% excluded_locations))
   output_dirpath <- "target-data/"
   readr::write_csv(
     formatted_data,
