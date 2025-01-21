@@ -38,10 +38,10 @@ jobs:
       - name: Generate data files
         run: |
           REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-          Rscript src/get_covid_hosp_data.R --reference_date "$REF_DATE" --base_hub_path "." --hub_reports_path "." --target_data FALSE
-          Rscript src/get_forecast_data.R --reference_date "$REF_DATE" --base_hub_path "." --hub_reports_path "." --horizons_to_include 0 1 2
-          Rscript src/get_map_data.R --reference_date "$REF_DATE" --base_hub_path "." --hub_reports_path "." --horizons_to_include 0 1 2
-          Rscript src/get_webtext.R --reference_date "$REF_DATE" --base_hub_path "." --hub_reports_path "."
+          Rscript src/get_covid_hosp_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --target-data FALSE
+          Rscript src/get_forecast_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --horizons-to-include 0 1 2
+          Rscript src/get_map_data.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "." --horizons-to-include 0 1 2
+          Rscript src/get_webtext.R --reference-date "$REF_DATE" --base-hub-path "." --hub-reports-path "."
         env:
           NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
           NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}

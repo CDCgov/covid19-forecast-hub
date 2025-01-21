@@ -43,8 +43,8 @@
 #' as a string (Ex: "November 23, 2024")
 #'
 #' To run:
-#' Rscript get_map_data.R --reference_date 2024-12-21
-#' --base_hub_path ../ --horizons_to_include 0 1 2
+#' Rscript get_map_data.R --reference-date 2024-12-21
+#' --base-hub-path ../ --horizons-to-include 0 1 2
 
 
 # set up command line argument parser
@@ -53,25 +53,25 @@ parser <- argparser::arg_parser(
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--hub_reports_path",
+  "--hub-reports-path",
   type = "character",
   help = "path to COVIDhub reports directory"
 )
 parser <- argparser::add_argument(
   parser,
-  "--horizons_to_include",
+  "--horizons-to-include",
   nargs = "Inf",
   help = "A list of horizons to include."
 )

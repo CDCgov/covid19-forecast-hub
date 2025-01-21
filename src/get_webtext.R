@@ -1,25 +1,25 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
-#' Rscript src/get_webtext.R --reference_date "2024-12-28" --base_hub_path "."
+#' Rscript src/get_webtext.R --reference-date "2024-12-28" --base-hub-path "."
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--hub_reports_path",
+  "--hub-reports-path",
   type = "character",
   help = "path to COVIDhub reports directory"
 )
