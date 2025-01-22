@@ -66,6 +66,16 @@ weekly_submissions <- hubData::load_model_metadata(
 
 # Generate flag for less than 80 percent of hospitals reporting
 desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
+
+exclude_territories_path <- fs::path(
+  base_hub_path,
+  "auxiliary-data",
+  "excluded_territories.toml"
+)
+stopifnot(fs::file_exists(exclude_territories_path))
+exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+excluded_locations <- exclude_territories_toml$locations
+
 percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadmperchosprepabove80pct"),
@@ -75,8 +85,16 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
     weekendingdate = as.Date(weekendingdate),
     report_above_80_lgl = as.logical(
       as.numeric(totalconfc19newadmperchosprepabove80pct)
+    ),
+    jurisdiction = stringr::str_replace(jurisdiction, "USA", "US"),
+    location = forecasttools::us_loc_abbr_to_code(jurisdiction),
+    location_name = forecasttools::location_lookup(
+      jurisdiction,
+      location_input_format = "abbr",
+      location_output_format = "long_name"
     )
   ) |>
+  dplyr::filter(!(location %in% !!excluded_locations)) |>
   dplyr::group_by(jurisdiction) |>
   dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
   dplyr::ungroup()
@@ -90,7 +108,7 @@ if (nrow(jurisdiction_w_latency) > 0) {
     The reference date is {reference_date}, we expect data at least
     through {desired_weekendingdate}. However, {nrow(jurisdiction_w_latency)}
     location{?s} did not have reporting through that date:
-    {jurisdiction_w_latency$jurisdiction}.
+    {jurisdiction_w_latency$location_name}.
   ")
 }
 
@@ -101,12 +119,20 @@ latest_reporting_below80 <- percent_hosp_reporting_below80 |>
   )
 
 reporting_rate_flag <- if (
-  length(latest_reporting_below80$jurisdiction) > 0
+  length(latest_reporting_below80$location_name) > 0
 ) {
+  location_list <- if (length(latest_reporting_below80$location_name) < 3) {
+    glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
+  } else {
+    glue::glue_collapse(
+      latest_reporting_below80$location_name,
+      sep = ", ", last = ", and "
+    )
+  }
+
   glue::glue(
     "The following jurisdictions had <80% of hospitals reporting for ",
-    "the most recent week: ",
-    "{paste(latest_reporting_below80$jurisdiction, collapse = ', ')}. ",
+    "the most recent week: {location_list}. ",
     "Lower reporting rates could impact forecast validity. Percent ",
     "of hospitals reporting is calculated based on the number of active ",
     "hospitals reporting complete data to NHSN for a given reporting week.\n\n"
@@ -150,7 +176,7 @@ web_text <- glue::glue(
   "{first_target_data_date} through {last_target_data_date} and forecasted ",
   "new COVID-19 hospital admissions per week for this week and the next ",
   "2 weeks through {target_end_date_2wk_ahead}.\n\n",
-  "{reporting_rate_flag}",
+  "{reporting_rate_flag}\n",
   "Contributing teams and models:\n",
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
