@@ -94,7 +94,7 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
       location_output_format = "long_name"
     )
   ) |>
-  dplyr::filter(!(location %in% excluded_locations)) |>
+  dplyr::filter(!(location %in% !!excluded_locations)) |>
   dplyr::group_by(jurisdiction) |>
   dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
   dplyr::ungroup()
@@ -121,14 +121,12 @@ latest_reporting_below80 <- percent_hosp_reporting_below80 |>
 reporting_rate_flag <- if (
   length(latest_reporting_below80$location_name) > 0
 ) {
-  location_list <- if (length(latest_reporting_below80$location_name) == 1) {
-    latest_reporting_below80$location_name
-  } else if (length(latest_reporting_below80$location_name) == 2) {
+  location_list <- if (length(latest_reporting_below80$location_name) < 3) {
     glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
   } else {
     glue::glue_collapse(
       latest_reporting_below80$location_name,
-      sep = ", ", last = " and "
+      sep = ", ", last = ", and "
     )
   }
 
