@@ -176,7 +176,7 @@ web_text <- glue::glue(
   "{first_target_data_date} through {last_target_data_date} and forecasted ",
   "new COVID-19 hospital admissions per week for this week and the next ",
   "2 weeks through {target_end_date_2wk_ahead}.\n\n",
-  "{reporting_rate_flag}",
+  "{reporting_rate_flag}\n",
   "Contributing teams and models:\n",
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
