@@ -72,12 +72,9 @@ exclude_territories_path <- fs::path(
   "auxiliary-data",
   "excluded_territories.toml"
 )
-if (fs::file_exists(exclude_territories_path)) {
-  exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
-  excluded_locations <- exclude_territories_toml$locations
-} else {
-  stop("TOML file not found: ", exclude_territories_path)
-}
+stopifnot(fs::file_exists(exclude_territories_path))
+exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+excluded_locations <- exclude_territories_toml$locations
 
 percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
@@ -127,12 +124,11 @@ reporting_rate_flag <- if (
   location_list <- if (length(latest_reporting_below80$location_name) == 1) {
     latest_reporting_below80$location_name
   } else if (length(latest_reporting_below80$location_name) == 2) {
-    paste(latest_reporting_below80$location_name, collapse = " and ")
+    glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
   } else {
-    paste(
-      paste(head(latest_reporting_below80$location_name, -1), collapse = ", "),
-      "and",
-      tail(latest_reporting_below80$location_name, 1)
+    glue::glue_collapse(
+      latest_reporting_below80$location_name,
+      sep = ", ", last = " and "
     )
   }
 
