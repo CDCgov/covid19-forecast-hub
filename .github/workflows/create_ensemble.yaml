@@ -1,8 +1,8 @@
 name: "CovidHub-ensemble"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "00 15 * * 4"
+  # schedule:
+  #   - cron: "00 15 * * 4"
 
 jobs:
   generate-covidhub-ensemble:
@@ -31,14 +31,14 @@ jobs:
 
     - name: Install dependencies
       run: |
-        install.packages(c("hubEnsembles", "dplyr", "lubridate", "purrr", "yaml", "argparser", "remotes"))
+        install.packages(c("fs", "hubEnsembles", "dplyr", "lubridate", "purrr", "yaml", "argparser", "remotes"))
         remotes::install_github("hubverse-org/hubData")
       shell: Rscript {0}
   
     - name: generate ensemble
       run: |
         REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-        Rscript src/get_ensemble.R --reference-date "$REF_DATE" --base_hub_path "."
+        Rscript src/get_ensemble.R --reference-date "$REF_DATE" --base-hub-path "."
 
     - name: Commit changes
       uses: EndBug/add-and-commit@v9
