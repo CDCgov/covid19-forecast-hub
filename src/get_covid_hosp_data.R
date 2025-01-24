@@ -85,7 +85,8 @@ if (fs::file_exists(exclude_territories_path)) {
 if (target_data) {
   # fetch some NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
-    api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+    # https://data.cdc.gov/resource/mpgq-jmmr.json
+    api_endpoint = "https://data.cdc.gov/resource/ua7e-t2fy.json",
     columns = c("totalconfc19newadm"),
     start_date = first_full_weekending_date
   ) |>
