@@ -16,11 +16,11 @@
 #'
 #' To get the historical dataset for visualization:
 #' Rscript get_covid_hosp_data.R --target-data FALSE \
-#'   --reference-date 2024-11-23 --base-hub-path ../
+#'   --reference-date YYYY-MM-DD --base-hub-path ../
 #'
 #' To get the target COVID-19 hospital admissions data:
 #' Rscript get_covid_hosp_data.R --target-data TRUE \
-#'   --reference-date 2024-11-23 --base-hub-path ../
+#'   --reference-date YYYY-MM-DD --base-hub-path ../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
