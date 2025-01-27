@@ -98,7 +98,9 @@ if (target_data) {
       date = as.Date(date),
       value = as.numeric(value),
       state = stringr::str_replace(state, "USA", "US")
-    )
+    ) |>
+    dplyr::filter(!stringr::str_detect(state, "Region"))
+
 
   formatted_data <- covid_data |>
     dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
@@ -129,7 +131,8 @@ if (!target_data) {
         "USA",
         "US"
       )
-    )
+    ) |>
+    dplyr::filter(!stringr::str_detect(state, "Region"))
   truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state),
