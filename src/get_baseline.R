@@ -7,9 +7,16 @@ parser <- argparser::add_argument(
   parser, "--reference-date",
   help = "reference date in YYYY-MM-DD format"
 )
+parser <- argparser::add_argument(
+  parser,
+  "--base-hub-path",
+  type = "character",
+  help = "Path to the Covid19 forecast hub directory."
+)
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
+base_hub_path <- args$base_hub_path
 
 dow_supplied <- lubridate::wday(reference_date,
   week_start = 7,
@@ -140,9 +147,9 @@ preds_formatted <- preds |>
     output_type, output_type_id, value
   )
 
-output_dirpath <- file.path("model-output", "CovidHub-baseline")
-if (!dir.exists(output_dirpath)) {
-  dir.create(output_dirpath, recursive = TRUE)
+output_dirpath <- fs::path(base_hub_path, "model-output", "CovidHub-baseline")
+if (!fs::dir_exists(output_dirpath)) {
+  fs::dir_create(output_dirpath, recursive = TRUE)
 }
 
 readr::write_csv(

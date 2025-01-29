@@ -1,41 +1,53 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
-#' Rscript src/get_webtext.R --reference_date "2024-12-28" --base_hub_path "."
+#' Rscript src/get_webtext.R --reference-date "2024-12-28" --base-hub-path "."
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
+)
+parser <- argparser::add_argument(
+  parser,
+  "--hub-reports-path",
+  type = "character",
+  help = "path to COVIDhub reports directory"
 )
 
 args <- argparser::parse_args(parser)
 reference_date <- args$reference_date
-hub_path <- args$base_hub_path
+base_hub_path <- args$base_hub_path
+hub_reports_path <- args$hub_reports_path
 
-dir_path <- file.path(hub_path, "weekly-summaries", reference_date)
+weekly_data_path <- file.path(
+  hub_reports_path, "weekly-summaries", reference_date
+)
+
 ensemble_us_2wk_ahead <- readr::read_csv(
-  file.path(dir_path, paste0(reference_date, "_covid_map_data.csv")),
+  file.path(weekly_data_path, paste0(reference_date, "_covid_map_data.csv")),
   show_col_types = FALSE
 ) |>
   dplyr::filter(horizon == 2, location_name == "US")
+
 target_data <- readr::read_csv(
-  file.path(dir_path, paste0(
+  file.path(weekly_data_path, paste0(
     reference_date, "_covid_target_hospital_admissions_data.csv"
   )),
   show_col_types = FALSE
 )
+
 contributing_teams <- readr::read_csv(
-  file.path(hub_path, "auxiliary-data", paste0(
+  file.path(base_hub_path, "auxiliary-data", "weekly-model-submissions", paste0(
     reference_date, "-models-submitted-to-hub.csv"
   )),
   show_col_types = FALSE
@@ -43,7 +55,7 @@ contributing_teams <- readr::read_csv(
   dplyr::filter(Designated_Model)
 
 weekly_submissions <- hubData::load_model_metadata(
-  hub_path,
+  base_hub_path,
   model_ids = contributing_teams$Model
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model, .keep_all = TRUE) |>
@@ -51,6 +63,83 @@ weekly_submissions <- hubData::load_model_metadata(
     "[{team_name} (Model: {model_abbr})]({website_url})"
   )) |>
   dplyr::select(model_id, team_abbr, model_abbr, team_model_url)
+
+# Generate flag for less than 80 percent of hospitals reporting
+desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
+
+exclude_territories_path <- fs::path(
+  base_hub_path,
+  "auxiliary-data",
+  "excluded_territories.toml"
+)
+stopifnot(fs::file_exists(exclude_territories_path))
+exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
+excluded_locations <- exclude_territories_toml$locations
+
+percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
+  api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
+  columns = c("totalconfc19newadmperchosprepabove80pct"),
+  start_date = "2024-11-09"
+) |>
+  dplyr::mutate(
+    weekendingdate = as.Date(weekendingdate),
+    report_above_80_lgl = as.logical(
+      as.numeric(totalconfc19newadmperchosprepabove80pct)
+    ),
+    jurisdiction = stringr::str_replace(jurisdiction, "USA", "US"),
+    location = forecasttools::us_loc_abbr_to_code(jurisdiction),
+    location_name = forecasttools::location_lookup(
+      jurisdiction,
+      location_input_format = "abbr",
+      location_output_format = "long_name"
+    )
+  ) |>
+  dplyr::filter(!(location %in% !!excluded_locations)) |>
+  dplyr::group_by(jurisdiction) |>
+  dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
+  dplyr::ungroup()
+
+jurisdiction_w_latency <- percent_hosp_reporting_below80 |>
+  dplyr::filter(max_weekendingdate < desired_weekendingdate)
+
+if (nrow(jurisdiction_w_latency) > 0) {
+  cli::cli_warn("
+    Some locations have missing reported data for the most recent week.
+    The reference date is {reference_date}, we expect data at least
+    through {desired_weekendingdate}. However, {nrow(jurisdiction_w_latency)}
+    location{?s} did not have reporting through that date:
+    {jurisdiction_w_latency$location_name}.
+  ")
+}
+
+latest_reporting_below80 <- percent_hosp_reporting_below80 |>
+  dplyr::filter(
+    weekendingdate == max(weekendingdate),
+    !report_above_80_lgl
+  )
+
+reporting_rate_flag <- if (
+  length(latest_reporting_below80$location_name) > 0
+) {
+  location_list <- if (length(latest_reporting_below80$location_name) < 3) {
+    glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
+  } else {
+    glue::glue_collapse(
+      latest_reporting_below80$location_name,
+      sep = ", ", last = ", and "
+    )
+  }
+
+  glue::glue(
+    "The following jurisdictions had <80% of hospitals reporting for ",
+    "the most recent week: {location_list}. ",
+    "Lower reporting rates could impact forecast validity. Percent ",
+    "of hospitals reporting is calculated based on the number of active ",
+    "hospitals reporting complete data to NHSN for a given reporting week.\n\n"
+  )
+} else {
+  ""
+}
 
 # generate variables used in the web text
 median_forecast_2wk_ahead <- signif(ensemble_us_2wk_ahead$quantile_0.5_count, 2)
@@ -87,10 +176,11 @@ web_text <- glue::glue(
   "{first_target_data_date} through {last_target_data_date} and forecasted ",
   "new COVID-19 hospital admissions per week for this week and the next ",
   "2 weeks through {target_end_date_2wk_ahead}.\n\n",
+  "{reporting_rate_flag}\n",
   "Contributing teams and models:\n",
   "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
 )
 
-
-
-writeLines(web_text, file.path(dir_path, paste0(reference_date, "_webtext.md")))
+writeLines(
+  web_text, file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
+)

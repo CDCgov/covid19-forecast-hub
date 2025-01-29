@@ -43,8 +43,8 @@
 #' as a string (Ex: "November 23, 2024")
 #'
 #' To run:
-#' Rscript get_map_data.R --reference_date 2024-12-21
-#' --base_hub_path ../ --horizons_to_include 0 1 2
+#' Rscript get_map_data.R --reference-date 2024-12-21
+#' --base-hub-path ../ --horizons-to-include 0 1 2
 
 
 # set up command line argument parser
@@ -53,19 +53,25 @@ parser <- argparser::arg_parser(
 )
 parser <- argparser::add_argument(
   parser,
-  "--reference_date",
+  "--reference-date",
   type = "character",
   help = "The reference date for the forecast in YYYY-MM-DD format (ISO-8601)"
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
-  "--horizons_to_include",
+  "--hub-reports-path",
+  type = "character",
+  help = "path to COVIDhub reports directory"
+)
+parser <- argparser::add_argument(
+  parser,
+  "--horizons-to-include",
   nargs = "Inf",
   help = "A list of horizons to include."
 )
@@ -73,6 +79,7 @@ parser <- argparser::add_argument(
 args <- argparser::parse_args(parser)
 ref_date <- args$reference_date
 base_hub_path <- args$base_hub_path
+hub_reports_path <- args$hub_reports_path
 horizons_to_include <- as.integer(args$horizons_to_include)
 
 
@@ -129,7 +136,7 @@ if (length(missing_columns) > 0) {
 # population data, add later to forecasttools
 pop_data_path <- file.path(
   base_hub_path,
-  "target-data",
+  "auxiliary-data",
   "locations_with_2023_census_pop.csv"
 )
 pop_data <- readr::read_csv(pop_data_path)
@@ -261,7 +268,7 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   )
 
 output_folder_path <- fs::path(
-  base_hub_path, "weekly-summaries", ref_date
+  hub_reports_path, "weekly-summaries", ref_date
 )
 output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(
