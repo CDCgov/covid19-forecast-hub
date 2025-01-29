@@ -9,13 +9,14 @@ parser <- argparser::add_argument(
 )
 parser <- argparser::add_argument(
   parser,
-  "--base_hub_path",
+  "--base-hub-path",
   type = "character",
   help = "Path to the Covid19 forecast hub directory."
 )
 
 args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
+base_hub_path <- args$base_hub_path
 
 dow_supplied <- lubridate::wday(reference_date,
   week_start = 7,
@@ -30,18 +31,17 @@ if (dow_supplied != 7) {
   ))
 }
 
-hub_path <- "."
 task_id_cols <- c(
   "reference_date", "location", "horizon",
   "target", "target_end_date"
 )
-output_dirpath <- file.path("model-output", "CovidHub-ensemble")
-if (!dir.exists(output_dirpath)) {
-  dir.create(output_dirpath, recursive = TRUE)
+output_dirpath <- fs::path(base_hub_path, "model-output", "CovidHub-ensemble")
+if (!fs::dir_exists(output_dirpath)) {
+  fs::dir_create(output_dirpath, recursive = TRUE)
 }
 
 # Get current forecasts from the hub, excluding baseline and ensembles
-hub_content <- hubData::connect_hub(hub_path)
+hub_content <- hubData::connect_hub(base_hub_path)
 current_forecasts <- hub_content |>
   dplyr::filter(
     reference_date == !!reference_date,
@@ -51,7 +51,7 @@ current_forecasts <- hub_content |>
 
 list_model_id_current <- unique(current_forecasts$model_id)
 weekly_models <- hubData::load_model_metadata(
-  hub_path,
+  base_hub_path,
   model_ids = list_model_id_current
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model) |>
@@ -60,7 +60,7 @@ weekly_models <- hubData::load_model_metadata(
 write.csv(
   weekly_models,
   file.path(
-    "auxiliary-data",
+    "auxiliary-data", "weekly-model-submissions",
     paste0(
       as.character(reference_date), "-", "models-submitted-to-hub.csv"
     )
