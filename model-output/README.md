@@ -168,7 +168,7 @@ This should be a Saturday, the last date of the forecast target's US CDC epiweek
 
 ### `location`
 
-Values in the `location` column must be one of the "locations" in this [file](../target-data/locations.csv) which includes 2-digit numeric FIPS codes for U.S. states,  territories, and districts, as well as the "US" as a two-character code for national forecasts. 
+Values in the `location` column must be one of the "locations" in this [file](../auxiliary-data/locations.csv) which includes 2-digit numeric FIPS codes for U.S. states,  territories, and districts, as well as the "US" as a two-character code for national forecasts. 
 
 
 ### `output_type`
