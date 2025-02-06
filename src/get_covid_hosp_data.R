@@ -16,11 +16,11 @@
 #'
 #' To get the historical dataset for visualization:
 #' Rscript get_covid_hosp_data.R --target-data FALSE \
-#'   --reference-date 2024-11-23 --base-hub-path ../
+#'   --reference-date YYYY-MM-DD --base-hub-path ../
 #'
 #' To get the target COVID-19 hospital admissions data:
 #' Rscript get_covid_hosp_data.R --target-data TRUE \
-#'   --reference-date 2024-11-23 --base-hub-path ../
+#'   --reference-date YYYY-MM-DD --base-hub-path ../
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -98,7 +98,9 @@ if (target_data) {
       date = as.Date(date),
       value = as.numeric(value),
       state = stringr::str_replace(state, "USA", "US")
-    )
+    ) |>
+    dplyr::filter(!stringr::str_detect(state, "Region"))
+
 
   formatted_data <- covid_data |>
     dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
@@ -129,7 +131,8 @@ if (!target_data) {
         "USA",
         "US"
       )
-    )
+    ) |>
+    dplyr::filter(!stringr::str_detect(state, "Region"))
   truth_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state),
