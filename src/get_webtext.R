@@ -1,6 +1,7 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
-#' Rscript src/get_webtext.R --reference-date "2024-12-28" --base-hub-path "."
+#' Rscript src/get_webtext.R --reference-date "2025-02-22" --base-hub-path "."
+#'  --hub-reports-path "../covidhub-reports"
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
@@ -33,11 +34,11 @@ weekly_data_path <- file.path(
   hub_reports_path, "weekly-summaries", reference_date
 )
 
-ensemble_us_2wk_ahead <- readr::read_csv(
+ensemble_us_1wk_ahead <- readr::read_csv(
   file.path(weekly_data_path, paste0(reference_date, "_covid_map_data.csv")),
   show_col_types = FALSE
 ) |>
-  dplyr::filter(horizon == 2, location_name == "US")
+  dplyr::filter(horizon == 1, location_name == "US")
 
 target_data <- readr::read_csv(
   file.path(weekly_data_path, paste0(
@@ -142,12 +143,12 @@ reporting_rate_flag <- if (
 }
 
 # generate variables used in the web text
-median_forecast_2wk_ahead <- signif(ensemble_us_2wk_ahead$quantile_0.5_count, 2)
-lower_95ci_forecast_2wk_ahead <- signif(
-  ensemble_us_2wk_ahead$quantile_0.025_count, 2
+median_forecast_1wk_ahead <- round(ensemble_us_1wk_ahead$quantile_0.5_count, -2)
+lower_95ci_forecast_1wk_ahead <- round(
+  ensemble_us_1wk_ahead$quantile_0.025_count, -2
 )
-upper_95ci_forecast_2wk_ahead <- signif(
-  ensemble_us_2wk_ahead$quantile_0.975_count, 2
+upper_95ci_forecast_1wk_ahead <- round(
+  ensemble_us_1wk_ahead$quantile_0.975_count, -2
 )
 weekly_num_teams <- length(unique(weekly_submissions$team_abbr))
 weekly_num_models <- length(unique(weekly_submissions$model_abbr))
@@ -157,16 +158,28 @@ first_target_data_date <- format(
 last_target_data_date <- format(
   as.Date(max(target_data$week_ending_date)), "%B %d, %Y"
 )
-forecast_due_date <- ensemble_us_2wk_ahead$forecast_due_date_formatted
-target_end_date_2wk_ahead <- ensemble_us_2wk_ahead$target_end_date_formatted
+forecast_due_date <- ensemble_us_1wk_ahead$forecast_due_date_formatted
+target_end_date_1wk_ahead <- ensemble_us_1wk_ahead$target_end_date_formatted
+target_end_date_2wk_ahead <- format(
+  ensemble_us_1wk_ahead$target_end_date + lubridate::weeks(1), "%B %d, %Y"
+)
+
+last_reported_target_data <- target_data |>
+  dplyr::filter(week_ending_date == max(week_ending_date), location == "US") |>
+  dplyr::mutate(week_end_date_formatted = format(week_ending_date, "%B %d, %Y"))
+
+last_reported_admissions <- round(last_reported_target_data$value, -2)
 
 web_text <- glue::glue(
-  "This week's ensemble predicts that the number of new weekly laboratory ",
-  "confirmed COVID-19 hospital admissions will be approximately ",
-  "{median_forecast_2wk_ahead} nationally, with ",
-  "{lower_95ci_forecast_2wk_ahead} to {upper_95ci_forecast_2wk_ahead} ",
+  "The CovidHub ensemble's one-week-ahead forecast predicts that the number ",
+  "of new weekly laboratory-confirmed COVID-19 hospital admissions will be ",
+  "approximately {median_forecast_1wk_ahead} nationally, with ",
+  "{lower_95ci_forecast_1wk_ahead} to {upper_95ci_forecast_1wk_ahead} ",
   "laboratory confirmed COVID-19 hospital admissions likely reported in the ",
-  "week ending {target_end_date_2wk_ahead}.\n\n",
+  "week ending {target_end_date_1wk_ahead}. This is compared to the ",
+  "{last_reported_admissions} admissions reported for the week ",
+  "ending {last_reported_target_data$week_end_date_formatted}, the most ",
+  "recent week of reporting from U.S. hospitals. \n\n",
   "Reported and forecasted new COVID-19 hospital admissions as of ",
   "{forecast_due_date}. This week, {weekly_num_teams} modeling groups ",
   "contributed {weekly_num_models} forecasts that were eligible for inclusion ",
