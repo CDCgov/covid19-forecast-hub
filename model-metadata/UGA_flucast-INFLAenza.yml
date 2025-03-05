@@ -31,4 +31,9 @@ website_url: https://thefoxlab.wordpress.com/
 ensemble_of_models: false
 ensemble_of_hub_models: false
 team_funding: CSTE/CDC award NU38OT000297 
+designated_github_users:
+  [
+    "MayaSal"
+  ]
+
 
