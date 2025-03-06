@@ -179,7 +179,7 @@ web_text <- glue::glue(
   "week ending {target_end_date_1wk_ahead}. This is compared to the ",
   "{last_reported_admissions} admissions reported for the week ",
   "ending {last_reported_target_data$week_end_date_formatted}, the most ",
-  "recent week of reporting from U.S. hospitals. \n\n",
+  "recent week of reporting from U.S. hospitals.\n\n",
   "Reported and forecasted new COVID-19 hospital admissions as of ",
   "{forecast_due_date}. This week, {weekly_num_teams} modeling groups ",
   "contributed {weekly_num_models} forecasts that were eligible for inclusion ",
