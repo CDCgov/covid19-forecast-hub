@@ -39,7 +39,7 @@ model_contributors: [
 license: "CC-BY-4.0"
 designated_model: true
 methods: "Renewal model using the Pyrenew-HEW framework fit jointly to two epidemiological signals: hospital admissions and emergency department visits."
-data_inputs: "Epiweekly incident COVID-19 hospital admissions from NHSN HRD via data.cdc.gov. Daily incidence emergency department visits via the National Syndromic Surveillance Program (NSSP)."
+data_inputs: "Epiweekly incident COVID-19 hospital admissions from NHSN HRD via data.cdc.gov. Daily incident COVID-19 emergency department visits via the National Syndromic Surveillance Program (NSSP)."
 methods_long: "Renewal model fit to two signals and used to forecast the target (NHSN HRD) signal."
 website_url: "https://github.com/cdcgov/pyrenew-hew"
 repo_url: "https://github.com/cdcgov/pyrenew-hew"
