@@ -37,9 +37,9 @@ jobs:
           path: 'model-output'
           dir_names: 'True'
 
-      - name: check if ensemble
+      - name: check if only the covidhub-ensemble is modified
         run: |   
-          if echo "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" | grep -q "CovidHub-ensemble"; then
+          if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" == "CovidHub-ensemble" ]; then
             { echo "model=ensemble" | tee -a $GITHUB_ENV; }
           else
             { echo "model=other" | tee -a $GITHUB_ENV; }
