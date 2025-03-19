@@ -34,5 +34,5 @@ methods: "Ensemble of 3 LightGBM quantile regression models with lagged target a
 methods_long: "This model is an ensemble of three individual forecasting models, each utilizing LightGBM quantile regression. Each component model incorporates feature engineering, including temporal features and lagged values of the target variable (COVID-19 hospital admissions). The ensemble combines the quantile predictions from the three models." 
 ensemble_of_models: true
 ensemble_of_hub_models: false
-model_version: 1.0
+model_version: "1.0"
 designated_github_users: ["zshamsi2"]
