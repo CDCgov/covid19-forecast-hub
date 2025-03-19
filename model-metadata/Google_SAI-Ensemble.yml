@@ -29,8 +29,7 @@ model_contributors:
 license: CC-BY-4.0 
 designated_model: true 
 data_inputs: 
-  - COVID-19 Hospital Admissions data (NHSN)
-  - Population data 
+  "COVID-19 Hospital Admissions data (NHSN) and Population data"
 methods: "Ensemble of 3 LightGBM quantile regression models with lagged target and time features."
 methods_long: "This model is an ensemble of three individual forecasting models, each utilizing LightGBM quantile regression. Each component model incorporates feature engineering, including temporal features and lagged values of the target variable (COVID-19 hospital admissions). The ensemble combines the quantile predictions from the three models." 
 ensemble_of_models: true
