@@ -2,7 +2,7 @@ name: "CovidHub-ensemble"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 15 * * 4"
+    - cron: "00 14 * * 4"
 
 jobs:
   generate-covidhub-ensemble:

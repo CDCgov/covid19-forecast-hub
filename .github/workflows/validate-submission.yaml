@@ -29,23 +29,31 @@ jobs:
           packages: |
             any::hubValidations
             any::sessioninfo
+          
+      - name: Get model output changes
+        id: get_changed_files_in_model_output
+        uses: step-security/changed-files@v45
+        with:
+          path: model-output
+          dir_names: "true"
+
+      - name: check output dirs modified
+        run: |   
+          if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" == "CovidHub-ensemble" ]; then
+            { echo "model=ensemble" | tee -a $GITHUB_ENV; }
+          else
+            { echo "model=other" | tee -a $GITHUB_ENV; }
+          fi
 
       - name: Run validations
         env:
           PR_NUMBER: ${{ github.event.number }}
         run: |
           library("hubValidations")
-          library("hubUtils")
-          tasks <- hubUtils::read_config(".", "tasks")
-          rounds <- hubUtils::get_round_ids(tasks)
-          current <- rounds[which.min(abs(Sys.Date() - as.Date(rounds)))]
-          slug <- "CovidHub-ensemble"
-          ensemble <- file.path("model-output", slug,
-            paste0(current, "-", slug, ".csv"))
           v <- hubValidations::validate_pr(
               gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
               pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = file.exists(ensemble)
+              skip_submit_window_check = Sys.getenv("model") == "ensemble"
           )
           hubValidations::check_for_errors(v, verbose = TRUE)
         shell: Rscript {0}
