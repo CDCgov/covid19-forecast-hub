@@ -1,7 +1,7 @@
 team_name: Google Science AI
 team_abbr: Google-SAI
-model_name: Google Science AI Ensemble Model
-model_abbr: Google-SAI-Ensemble
+model_name: Ensemble Model
+model_abbr: Ensemble
 model_contributors:
   - name: Zahra Shamsi
     affiliation: Google
