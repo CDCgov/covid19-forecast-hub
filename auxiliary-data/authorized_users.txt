@@ -1,10 +1,12 @@
 CEPH-Rtrend_covid paulocv
 CFA_Pyrenew-Pyrenew_H_COVID dylanhmorris, damonbayer, sbidari
 CFA_Pyrenew-Pyrenew_HE_COVID dylanhmorris, damonbayer, sbidari
+CFA_Pyrenew-Pyrenew_HW_COVID dylanhmorris, damonbayer, sbidari
 CMU-climate_baseline dshemetov, dsweber2
 CMU-TimeSeries dshemetov, dsweber2
 CovidHub-baseline NA
 CovidHub-ensemble NA
+Google_SAI-Ensemble zshamsi2
 JHU_CSSE-CSSE_Ensemble Shawn-Tsui
 Metaculus-cp nikosbosse
 MOBS-GLEAM_COVID jessica-davis
