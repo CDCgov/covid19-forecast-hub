@@ -6,6 +6,7 @@ CMU-climate_baseline dshemetov, dsweber2
 CMU-TimeSeries dshemetov, dsweber2
 CovidHub-baseline NA
 CovidHub-ensemble NA
+Google_SAI-Ensemble zshamsi2
 JHU_CSSE-CSSE_Ensemble Shawn-Tsui
 Metaculus-cp nikosbosse
 MOBS-GLEAM_COVID jessica-davis
