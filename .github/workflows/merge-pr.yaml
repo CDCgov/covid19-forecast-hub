@@ -1,0 +1,69 @@
+name: Merge valid PRs
+
+on:
+  workflow_run:
+    workflows: ["Validate PRs"]
+    types:
+      - completed
+
+jobs:
+  approve-and-merge-pr:
+    runs-on: ubuntu-22.04
+    if: github.event.workflow_run.conclusion == 'success'
+    permissions: 
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v4
+        with:
+          application_id: ${{ vars.GH_APP_ID }}
+          application_private_key: ${{ secrets.GH_APP_KEY }}
+
+      - name: Set PR Number
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_TARGET_REPO: ${{ github.repository }}
+          PR_BRANCH: |-
+            ${{
+              (github.event.workflow_run.head_repository.owner.login != github.event.workflow_run.repository.owner.login)
+                && format('{0}:{1}', github.event.workflow_run.head_repository.owner.login, github.event.workflow_run.head_branch)
+                || github.event.workflow_run.head_branch
+            }}
+        run: |
+          PR_NUMBER=$(gh pr view --repo "${PR_TARGET_REPO}" "${PR_BRANCH}" \
+            --json number \
+            --jq '.number')
+          echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
+          echo "PR number from workflow_run event: ${PR_NUMBER}"
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Download validation artifact
+        uses: actions/download-artifact@v4
+        with: 
+          name: validation_status
+          path: artifacts_dir
+          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          repository: ${{ github.repository }}
+          run-id: ${{ github.event.workflow_run.id }}
+      
+      - name: approve PR 
+        run: |  
+          STATUS=$(cat "artifacts_dir/status" | tr -d '[:space:]')
+          if [ "$STATUS" != "success" ]; then
+            echo "Validation status mismatch: $STATUS"
+            exit 1
+          fi
+          gh pr review --approve $PR_NUMBER
+        env:
+          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+
+
+      - name: Merge for approved PRs
+        run: gh pr merge --auto --squash $PR_NUMBER
+        env:
+          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
