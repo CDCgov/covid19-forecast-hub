@@ -296,7 +296,19 @@ Every  Thursday morning, we will generate a  CovidHub ensemble hospital admissio
 
 ## Policy on late or updated submissions 
 
-In order to ensure that forecasting is done in real-time, all forecasts are required to be submitted to this repository by 11 PM ET on Wednesdays each week. We do not accept late forecasts.
+In order to ensure that forecasting is done in real-time, all forecasts are required to be submitted to this repository by 11 PM ET on Wednesdays each week. 
+
+### Pre-deadline updates
+Teams may submit updates or corrections until the forecast submission deadline.
+
+### Post-deadline corrections
+After the weekly hub ensemble is generated (scheduled for Thursdays at 10 AM US/Eastern Time), no further changes can be made to weekly forecasts. Between the submission deadline and ensemble generation, teams may ask to revise a forecast to correct a technical errors (e.g. accidentally submitting a wrong version of a file). We will consider these requests on a case-by-case basis. Teams should not use this correction mechanism as a way to extend the submission deadline; regular requests to revise a forecast after the submission deadline from the same team may be denied.
+
+### Retrospective baseline models
+Teams wishing to contribute a non-designated baseline model to the Hub may request that that retrospective "forecasts" from that baseline model be added to the Hub. We will consider and potentially approve such requests for inclusion in the Hub provided that:
+
+- The model is non-designated
+- Its status as a retrospective baseline is declared prominently in the model metadata
 
 ## Evaluation criteria
 Forecasts will be evaluated using a variety of metrics, including the weighted interval score (WIS).
