@@ -54,12 +54,12 @@ All email addresses provided will be added to an email distribution list through
 
 ### `license`
 
-One of the following [accepted licenses] by inputting `license: <license code>` with one of the following codes. The license you pick will govern future use of the forecast data you contribute to the Hub.
+One of the following [accepted licenses](https://github.com/CDCgov/covid19-forecast-hub/blob/37f4ffdd57c0dc2d8372b674728304e37a46212f/hub-config/model-metadata-schema.json#L69-L75) by inputting `license: <license code>` with one of the following codes. The license you pick will govern future use of the forecast data you contribute to the Hub.
 
  - `CC-BY-4.0`: [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.en)
  - `CC0-1.0`: [CC0 1.0 Universal (public domain declaration)](https://creativecommons.org/publicdomain/zero/1.0/deed.en)
  - `CC-BY_SA-4.0`: [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/deed.en)
- - `PPDL`: 
+ - `PPDL`: [Public Domain Dedication and License](https://opendatacommons.org/licenses/pddl/summary/)
  - `ODC-by`: [Open Data Commons Attribution License](https://opendatacommons.org/licenses/by/1-0/)
  - `ODbL`: [Open Data Commons Open Database License](https://opendatacommons.org/licenses/odbl/)
  - `OGL-3.0`: [UK National Archives Open Government License 3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) 
