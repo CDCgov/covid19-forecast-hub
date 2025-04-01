@@ -40,8 +40,9 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v4
-
-
+            
+      # workflow_run.id identifies the artifact associated with 
+      # the specific validation run that triggered this workflow
       - name: Download validation artifact
         uses: actions/download-artifact@v4
         with: 
