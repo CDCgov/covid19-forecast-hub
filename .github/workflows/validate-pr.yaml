@@ -1,4 +1,4 @@
-name: Merge valid PRs
+name: Validate PRs
 
 on:
   workflow_dispatch:
@@ -11,19 +11,12 @@ on:
       - '!model-output/CovidHub-baseline/**'
 
 jobs:
-  validate-user-and-approve:
+  validate-and-save-status:
     runs-on: ubuntu-22.04
     permissions: 
-      contents: write
-      pull-requests: write
+      contents: read
+      pull-requests: read
     steps:
-      - name: Get Token
-        id: get_workflow_token
-        uses: peter-murray/workflow-application-token-action@v4
-        with:
-          application_id: ${{ vars.GH_APP_ID }}
-          application_private_key: ${{ secrets.GH_APP_KEY }}
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -60,7 +53,7 @@ jobs:
             fi
           done
 
-      - name: Approve PR if changes made by authorized user
+      - name: check and save approval status
         run: |
           readarray -t lines_arr <<< "${{ steps.read_authorized_user.outputs.content }}"
           is_authorized=false
@@ -90,15 +83,14 @@ jobs:
             done # end loop over files
             
           done # end loop over models
-          # only approve PR if all changes were authorized.
+
           if [[ "$is_authorized" == true ]]; then
-            gh pr review --approve "${{ github.event.pull_request.html_url }}"
+            echo "success" > status
             exit 0
           fi
-        env:
-          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
 
-      - name: Enable auto-merge for approved PRs
-        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
-        env:
-          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+      - name: upload validation status
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation_status
+          path: status
