@@ -7,9 +7,10 @@ on:
       - main
     paths:
       - 'target-data/*'
+      - 'model-output/CovidHub-ensemble/*'
     
 jobs:
-  update-visualization-data:
+  update-webpage-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-22.04
     env:
@@ -19,12 +20,12 @@ jobs:
         id: get_workflow_token
         uses: peter-murray/workflow-application-token-action@v4
         with:
-          application_id: ${{ vars.GH_APP_ID }}
-          application_private_key: ${{ secrets.GH_APP_KEY }}
+          application_id: ${{ vars.ENT_GH_APP_ID }}
+          application_private_key: ${{ secrets.ENT_GH_APP_KEY }}
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.get_workflow_token.outputs.token }}
           repository: cdcent/covidhub-internal-reports
-          event-type: target-data-ready
+          event-type: data-update
