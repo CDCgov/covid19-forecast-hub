@@ -8,19 +8,18 @@ on:
     paths:
       - 'model-metadata/*.yaml'
       - 'model-metadata/*.yml'
-
     
 jobs:
   update-users-list:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-22.04
     steps:
-    - name: Get Token
-      id: get_workflow_token
-      uses: peter-murray/workflow-application-token-action@v4
+    - name: Generate Installation Token
+      id: get_token
+      uses: actions/create-github-app-token@v1
       with:
-        application_id: ${{ vars.GH_APP_ID }}
-        application_private_key: ${{ secrets.GH_APP_KEY }}
+        app-id: ${{ vars.GH_APP_ID }}
+        private-key: ${{ secrets.GH_APP_KEY }}
         
     - name: Checkout code
       uses: actions/checkout@v4
@@ -59,4 +58,4 @@ jobs:
       run: |
         gh pr create --base main --head update-authorized-users --title "Update authorized users" --body "This PR updates the authorized users list based on the latest metadata."
       env:
-        GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        GH_TOKEN: ${{ steps.get_token.outputs.token }}
