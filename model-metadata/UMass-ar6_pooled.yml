@@ -24,5 +24,6 @@ ensemble_of_hub_models: false
 designated_github_users:
   [
     "elray1",
-    "matthewcornell"
+    "matthewcornell",
+    "lshandross"
   ]
