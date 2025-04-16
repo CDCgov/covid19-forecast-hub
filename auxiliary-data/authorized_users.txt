@@ -14,5 +14,5 @@ NEU_ISI-AdaptiveEnsemble sfiandrino
 OHT_JHU-nbxd atulchin, eklein-cddep
 UGA_flucast-INFLAenza MayaSal
 UM-DeepOutbreak potnissa
-UMass-ar6_pooled elray1, matthewcornell
-UMass-gbqr elray1
+UMass-ar6_pooled elray1, matthewcornell, lshandross
+UMass-gbqr elray1, lshandross
