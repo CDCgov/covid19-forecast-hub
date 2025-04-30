@@ -1,7 +1,7 @@
 team_name: "Center for Forecasting and Outbreak Analytics (CFA/CDC) Pyrenew team"
 team_abbr: "CFA_Pyrenew"
 model_name: "Pyrenew_Hospital_Admissions_ED_Visits_Wastewater_COVID"
-model_abbr: "Pyrenew_HEW_COVID"
+model_abbr: "PyrenewHEW_COVID"
 model_version: "0.1.0"
 model_contributors: [
   {
