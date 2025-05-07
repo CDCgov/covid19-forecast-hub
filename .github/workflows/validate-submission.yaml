@@ -26,7 +26,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
-            github::hubverse-org/hubValidations
+            github::hubverse-org/hubValidations@v0.11.0
             any::sessioninfo
           
       - name: Get model output changes
