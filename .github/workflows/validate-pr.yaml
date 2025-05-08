@@ -50,11 +50,17 @@ jobs:
             fi
           done
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: check and save approval status
         run: |
-          bash src/check_authorized_users.sh \
+          python .github/scripts/check_users_authorized.py \
             "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" \
-            "${{ github.actor }}"
+            "${{ github.actor }}" \
+            "auxiliary-data/authorized_users.txt"
 
       - name: upload validation status
         uses: actions/upload-artifact@v4
