@@ -66,6 +66,6 @@ for dir in ${CHANGED_DIRS[@]}; do
 done
 
 if [[ $user_authorized == true ]]; then
-	echo "Success: changes in '$dir' authorized for user '$ACTOR'."
+	echo "Success: changes authorized for user '$ACTOR'."
 	echo "success" >status
 fi
