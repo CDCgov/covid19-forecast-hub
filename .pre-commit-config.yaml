@@ -1,48 +1,48 @@
 ################################################################################
 # OVERVIEW
-################################################################################
 # Only check files in ./src
 #
 # Links:
-#
 # Pre-commit: https://pre-commit.com/
 # Supported hooks: https://github.com/pre-commit/pre-commit-hooks
 repos:
 ################################################################################
 # GENERAL
 ################################################################################
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-    # attempts to load all TOML files to
-    # verify syntax.
-    -   id: check-toml
+      - id: check-toml
         files: ^src/
-    # makes sure files end in a newline and
-    # only a newline.
-    -   id: end-of-file-fixer
+      - id: end-of-file-fixer
         files: ^src/
-    # replaces or checks mixed line ending.
-    -   id: mixed-line-ending
+      - id: mixed-line-ending
         files: ^src/
-    # trims trailing whitespace.
-    -   id: trailing-whitespace
+      - id: trailing-whitespace
         files: ^src/
-################################################################################
-# R
-################################################################################
--   repo: https://github.com/lorenzwalthert/precommit
+      - id: check-yaml
+        files: ^src/
+  ##############################################################################
+  # R-specific hooks
+  ##############################################################################
+  - repo: https://github.com/lorenzwalthert/precommit
     rev: v0.4.3.9003
     hooks:
-    -   id: style-files
-        args: [--style_pkg=styler, --style_fun=tidyverse_style,
-               --cache-root=styler-perm]
-    -   id: lintr
-        files: ^src/
-    -   id: parsable-R
-        files: ^src/
-    -   id: no-print-statement
-        files: ^src/
-    -   id: no-debug-statement
-        files: ^src/
-################################################################################
+      - id: style-files
+        args: [
+          --style_pkg=styler,
+          --style_fun=tidyverse_style,
+          --cache-root=styler-perm
+        ]
+        files: \.R$|\.Rmd$ 
+      - id: lintr
+        files: \.R$|\.Rmd$
+      - id: parsable-R
+        files: \.R$|\.Rmd$
+  ##############################################################################
+  # Shell (Bash) hooks
+  ##############################################################################
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.11.0-1
+    hooks:
+      - id: shfmt
