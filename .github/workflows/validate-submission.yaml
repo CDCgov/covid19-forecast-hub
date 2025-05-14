@@ -18,6 +18,7 @@ jobs:
         with:
           install-r: false
           use-public-rspm: true
+          extra-repositories: 'https://hubverse-org.r-universe.dev'
 
       - name: Update R
         run: |
@@ -25,8 +26,9 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          pak-version: "devel"
           packages: |
-            github::hubverse-org/hubValidations@v0.11.0
+            any::hubValidations
             any::sessioninfo
           
       - name: Get model output changes
