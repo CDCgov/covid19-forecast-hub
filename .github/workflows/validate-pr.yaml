@@ -24,7 +24,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          repository: CDCgov/covid19-forecast-hub
 
       - name: Get model output changes
         id: get_changed_files_in_model_output
