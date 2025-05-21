@@ -54,10 +54,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      
-      - name: List all files recursively
-        run: ls -R
-          
+
       - name: check and save approval status
         run: |
           python .github/scripts/check_users_authorized.py \
