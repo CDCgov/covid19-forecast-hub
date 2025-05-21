@@ -14,6 +14,6 @@ MOBS-GLEAM_COVID jessica-davis
 NEU_ISI-AdaptiveEnsemble sfiandrino
 OHT_JHU-nbxd atulchin, eklein-cddep
 UGA_flucast-INFLAenza MayaSal
-UM-DeepOutbreak potnissa
+UM-DeepOutbreak potnissa, RRemixx
 UMass-ar6_pooled elray1, matthewcornell, lshandross
 UMass-gbqr elray1, lshandross
