@@ -16,12 +16,14 @@ parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
+  default = ".",
   help = "Path to the Covid19 forecast hub directory."
 )
 parser <- argparser::add_argument(
   parser,
   "--hub-reports-path",
   type = "character",
+  default = "../covidhub-reports",
   help = "path to COVIDhub reports directory"
 )
 
@@ -48,22 +50,26 @@ target_data <- readr::read_csv(
 )
 
 contributing_teams <- readr::read_csv(
-  file.path(base_hub_path, "auxiliary-data", "weekly-model-submissions", paste0(
-    reference_date, "-models-submitted-to-hub.csv"
-  )),
+  file.path(
+    weekly_data_path, paste0(reference_date, "_covid_forecasts_data.csv")
+  ),
   show_col_types = FALSE
 ) |>
-  dplyr::filter(Designated_Model)
+  dplyr::filter(model != "CovidHub-ensemble") |>
+  dplyr::pull(model) |>
+  unique()
 
-weekly_submissions <- hubData::load_model_metadata(
+wkly_submissions <- hubData::load_model_metadata(
   base_hub_path,
-  model_ids = contributing_teams$Model
+  model_ids = contributing_teams
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model, .keep_all = TRUE) |>
   dplyr::mutate(team_model_url = glue::glue(
     "[{team_name} (Model: {model_abbr})]({website_url})"
   )) |>
-  dplyr::select(model_id, team_abbr, model_abbr, team_model_url)
+  dplyr::select(
+    model_id, team_abbr, model_abbr, team_model_url, designated_model
+  )
 
 # Generate flag for less than 80 percent of hospitals reporting
 desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
@@ -150,8 +156,14 @@ lower_95ci_forecast_1wk_ahead <- round(
 upper_95ci_forecast_1wk_ahead <- round(
   ensemble_us_1wk_ahead$quantile_0.975_count, -2
 )
-weekly_num_teams <- length(unique(weekly_submissions$team_abbr))
-weekly_num_models <- length(unique(weekly_submissions$model_abbr))
+
+designated <- wkly_submissions[wkly_submissions$designated_model, ]
+not_designated <- wkly_submissions[!wkly_submissions$designated_model, ]
+weekly_num_teams <- length(unique(designated$team_abbr))
+weekly_num_models <- length(unique(designated$model_abbr))
+model_incl_in_hub_ensemble <- designated$team_model_url
+model_not_incl_in_hub_ensemble <- not_designated$team_model_url
+
 first_target_data_date <- format(
   as.Date(min(target_data$week_ending_date)), "%B %d, %Y"
 )
@@ -190,8 +202,11 @@ web_text <- glue::glue(
   "new COVID-19 hospital admissions per week for this week and the next ",
   "2 weeks through {target_end_date_2wk_ahead}.\n\n",
   "{reporting_rate_flag}\n",
-  "Contributing teams and models:\n",
-  "{paste(weekly_submissions$team_model_url, collapse = '\n')}"
+  "Contributing teams and models:\n\n",
+  "Models included in the CovidHub ensemble:\n",
+  "{paste(model_incl_in_hub_ensemble, collapse = '\n')}\n\n",
+  "Models not included in the CovidHub ensemble:\n",
+  "{paste(model_not_incl_in_hub_ensemble, collapse = '\n')}"
 )
 
 writeLines(
