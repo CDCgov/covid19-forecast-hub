@@ -148,14 +148,31 @@ reporting_rate_flag <- if (
   ""
 }
 
+format_statistical_values <- function(median, pi_lower, pi_upper) {
+  half_width <- abs(pi_upper - pi_lower) / 2
+  place_value <- 10^floor(log10(half_width))
+  round_to_place <- function(num) {
+    round(num / place_value) * place_value
+  }
+
+  c(
+    median = round_to_place(median),
+    lower = round_to_place(pi_lower),
+    upper = round_to_place(pi_upper)
+  )
+}
+
 # generate variables used in the web text
-median_forecast_1wk_ahead <- round(ensemble_us_1wk_ahead$quantile_0.5_count, -2)
-lower_95ci_forecast_1wk_ahead <- round(
-  ensemble_us_1wk_ahead$quantile_0.025_count, -2
-)
-upper_95ci_forecast_1wk_ahead <- round(
-  ensemble_us_1wk_ahead$quantile_0.975_count, -2
-)
+forecast_1wk_ahead <-
+  format_statistical_values(
+    ensemble_us_1wk_ahead$quantile_0.5_count,
+    ensemble_us_1wk_ahead$quantile_0.025_count,
+    ensemble_us_1wk_ahead$quantile_0.975_count
+  )
+
+median_forecast_1wk_ahead <- forecast_1wk_ahead["median"]
+lower_95ci_forecast_1wk_ahead <- forecast_1wk_ahead["lower"]
+upper_95ci_forecast_1wk_ahead <- forecast_1wk_ahead["upper"]
 
 designated <- wkly_submissions[wkly_submissions$designated_model, ]
 not_designated <- wkly_submissions[!wkly_submissions$designated_model, ]
