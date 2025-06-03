@@ -150,15 +150,11 @@ reporting_rate_flag <- if (
 
 format_statistical_values <- function(median, pi_lower, pi_upper) {
   half_width <- abs(pi_upper - pi_lower) / 2
-  place_value <- 10^floor(log10(half_width))
-  round_to_place <- function(num) {
-    round(num / place_value) * place_value
-  }
-
+  place_value <- floor(log10(half_width))
   c(
-    median = round_to_place(median),
-    lower = round_to_place(pi_lower),
-    upper = round_to_place(pi_upper)
+    median = round(median, digits = -place_value),
+    lower = round(pi_lower, digits = -place_value),
+    upper = round(pi_upper, digits = -place_value)
   )
 }
 
