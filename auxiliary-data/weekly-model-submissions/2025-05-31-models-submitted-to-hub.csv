@@ -1,0 +1,17 @@
+"Model","Designated_Model"
+"CEPH-Rtrend_covid",TRUE
+"CFA_Pyrenew-PyrenewHEW_COVID",FALSE
+"CFA_Pyrenew-Pyrenew_HE_COVID",TRUE
+"CFA_Pyrenew-Pyrenew_HW_COVID",FALSE
+"CFA_Pyrenew-Pyrenew_H_COVID",FALSE
+"CMU-TimeSeries",TRUE
+"CMU-climate_baseline",FALSE
+"Google_SAI-Ensemble",TRUE
+"JHU_CSSE-CSSE_Ensemble",TRUE
+"MOBS-GLEAM_COVID",TRUE
+"NEU_ISI-AdaptiveEnsemble",TRUE
+"OHT_JHU-nbxd",TRUE
+"UGA_flucast-INFLAenza",TRUE
+"UM-DeepOutbreak",TRUE
+"UMass-ar6_pooled",TRUE
+"UMass-gbqr",TRUE
