@@ -10,7 +10,7 @@ CovidHub-ensemble NA
 Google_SAI-Ensemble zshamsi2
 JHU_CSSE-CSSE_Ensemble Shawn-Tsui
 Metaculus-cp nikosbosse
-MOBS-GLEAM_COVID jessica-davis
+MOBS-GLEAM_COVID jessica-davis, clarabay
 NEU_ISI-AdaptiveEnsemble sfiandrino
 OHT_JHU-nbxd atulchin, eklein-cddep
 UGA_flucast-INFLAenza MayaSal
