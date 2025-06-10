@@ -1,10 +1,10 @@
-#' This script fetches observed COVID-19 hospital
-#' admissions data for all regions (including US, DC, and Puerto Rico)
-#' The data is sourced from the NHSN hospital respiratory
-#' data: (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+#' Fetches observed hospital admissions with confirmed
+#' COVID-19, formatted as a hubverse time-series, for
+#' supported Federal Information Processing (FIPS) regions,
+#' except for those which we exclude. This data is sourced
+#' from the CDC's National Healthcare Safety Network (NHSN).
 #'
-#' The resulting csv file contains the
-#' following columns:
+#' The`time-series.csv` file has the following columns:
 #' - `week_ending_date`: week ending date of
 #' observed data per row (Ex: 2024-11-16)
 #' - `location`: two-digit FIPS code
@@ -24,7 +24,7 @@
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
-  "Fetch and process COVID-19 hospital admissions data."
+  "Save NHSN COVID-19 hospital admissions as hubverse time series."
 )
 parser <- argparser::add_argument(
   parser,
