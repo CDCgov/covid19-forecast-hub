@@ -81,9 +81,8 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 
-# sequence for hubverse time-series formatted output
 if (target_data) {
-  # fetch some NHSN COVID-19 hospital admissions
+  # sequence for hubverse time-series formatted output
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
@@ -114,10 +113,8 @@ if (target_data) {
   )
 }
 
-
-# sequence for non-hubverse-formatted output
 if (!target_data) {
-  # fetch all NHSN COVID-19 hospital admissions
+  # sequence to get NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
