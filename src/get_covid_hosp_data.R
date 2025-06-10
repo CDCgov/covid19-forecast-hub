@@ -37,7 +37,8 @@ parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
-  help = "Path to the COVID-19 forecast hub directory (usually root)."
+  help = "Path to the COVID-19 forecast hub directory (default: current working directory)."
+  default = "."
 )
 parser <- argparser::add_argument(
   parser,
