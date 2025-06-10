@@ -20,7 +20,7 @@
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 #'
 #' To get data as hubverse time-series formatted:
-#' Rscript get_covid_hosp_data.R --target-data TRUE \
+#' Rscript ./src/get_covid_hosp_data.R --target-data TRUE \
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 
 # set up command line argument parser
@@ -37,7 +37,7 @@ parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
-  help = "Path to the COVID-19 forecast hub directory (default: current working directory)."
+  help = "Path to the COVID-19 forecast hub directory (default: cwd).",
   default = "."
 )
 parser <- argparser::add_argument(
@@ -67,7 +67,7 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
-today <- Sys.Date()
+today <- lubridate::today()
 
 # only gather states of the USA, DC, and Puerto Rico (PR)
 exclude_territories_path <- fs::path(
