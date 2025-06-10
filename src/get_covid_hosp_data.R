@@ -25,7 +25,7 @@
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
-  "Save NHSN COVID-19 hospital admissions as hubverse time series."
+  "Fetch and save COVID-19 hospital admissions data."
 )
 parser <- argparser::add_argument(
   parser,
@@ -37,7 +37,8 @@ parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
-  help = "Path to the COVID-19 forecast hub directory (usually root)."
+  help = "Path to the COVID-19 forecast hub directory (default: current working directory)."
+  default = "."
 )
 parser <- argparser::add_argument(
   parser,
