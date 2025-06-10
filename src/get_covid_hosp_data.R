@@ -16,12 +16,12 @@
 #'
 #' To get non-hubverse-formatted:
 #' with confirmed COVID-19:
-#' Rscript get_covid_hosp_data.R --target-data FALSE \
-#'   --reference-date YYYY-MM-DD --base-hub-path ../
+#' Rscript ./src/get_covid_hosp_data.R --target-data FALSE \
+#'   --reference-date YYYY-MM-DD --base-hub-path .
 #'
 #' To get hubverse formatted:
 #' Rscript get_covid_hosp_data.R --target-data TRUE \
-#'   --reference-date YYYY-MM-DD --base-hub-path ../
+#'   --reference-date YYYY-MM-DD --base-hub-path .
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
@@ -106,7 +106,7 @@ if (target_data) {
       as_of = today
     ) |>
     dplyr::filter(!(location %in% excluded_locations))
-  output_dirpath <- "target-data/"
+  output_dirpath <- "target-data"
   readr::write_csv(
     formatted_data,
     file.path(output_dirpath, "time-series.csv")
