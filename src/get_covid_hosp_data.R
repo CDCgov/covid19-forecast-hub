@@ -14,11 +14,12 @@
 #' - `value`: the number of hospital
 #' admissions (integer)
 #'
-#' To get the historical dataset for visualization:
+#' To get non-hubverse-formatted:
+#' with confirmed COVID-19:
 #' Rscript get_covid_hosp_data.R --target-data FALSE \
 #'   --reference-date YYYY-MM-DD --base-hub-path ../
 #'
-#' To get the target COVID-19 hospital admissions data:
+#' To get hubverse formatted:
 #' Rscript get_covid_hosp_data.R --target-data TRUE \
 #'   --reference-date YYYY-MM-DD --base-hub-path ../
 
@@ -30,19 +31,19 @@ parser <- argparser::add_argument(
   parser,
   "--reference-date",
   type = "character",
-  help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
+  help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)."
 )
 parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
-  help = "Path to the COVID-19 forecast hub directory."
+  help = "Path to the COVID-19 forecast hub directory (usually root)."
 )
 parser <- argparser::add_argument(
   parser,
   "--hub-reports-path",
   type = "character",
-  help = "path to COVIDhub reports directory"
+  help = "Path to COVID Hub reports directory."
 )
 parser <- argparser::add_argument(
   parser,
@@ -53,7 +54,7 @@ parser <- argparser::add_argument(
 parser <- argparser::add_argument(
   parser,
   "--first-full-weekending-date",
-  help = "Filter data by week ending date",
+  help = "Filter data by week ending date.",
   type = "character",
   default = "2024-11-09"
 )
@@ -66,9 +67,7 @@ hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
 
-# gather locations to exclude such that the
-# only territories are the 50 US states, DC,
-# and PR
+# only gather states of the USA, DC, and Puerto Rico (PR)
 exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
@@ -81,7 +80,7 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 
-
+# sequence for hubverse time-series formatted output
 if (target_data) {
   # fetch some NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
@@ -100,18 +99,18 @@ if (target_data) {
       state = stringr::str_replace(state, "USA", "US")
     ) |>
     dplyr::filter(!stringr::str_detect(state, "Region"))
-
-
   formatted_data <- covid_data |>
     dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
     dplyr::filter(!(location %in% excluded_locations))
   output_dirpath <- "target-data/"
   readr::write_csv(
     formatted_data,
-    file.path(output_dirpath, "covid-hospital-admissions.csv")
+    file.path(output_dirpath, "time-series.csv")
   )
 }
 
+
+# sequence for non-hubverse-formatted output
 if (!target_data) {
   # fetch all NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
