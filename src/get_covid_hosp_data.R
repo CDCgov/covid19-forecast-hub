@@ -103,7 +103,8 @@ if (target_data) {
   formatted_data <- covid_data |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state),
-      as_of = today
+      as_of = today,
+      target = "wk inc covid hosp"
     ) |>
     dplyr::filter(!(location %in% excluded_locations))
   output_dirpath <- "target-data"
