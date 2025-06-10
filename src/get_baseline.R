@@ -34,7 +34,7 @@ if (dow_supplied != 7) {
 desired_max_time_value <- reference_date - 7L
 
 target_tbl <- readr::read_csv(
-  "target-data/covid-hospital-admissions.csv",
+  "target-data/time-series.csv",
   col_types = readr::cols_only(
     date = readr::col_date(format = ""),
     location = readr::col_character(),

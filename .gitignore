@@ -20,3 +20,6 @@ hub-config/README_files/
 *.html
 
 *.pdf
+
+eval-output
+.vscode/

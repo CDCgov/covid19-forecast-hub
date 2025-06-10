@@ -36,7 +36,7 @@ Teams can submit nowcasts or forecasts for these targets for the following tempo
 
 ### Target data source
 As noted above, the source of this target data (epiweekly total admissions) will be NHSN; see the [NHSN Hospital Respiratory Reporting](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html) page for data details. This dataset will also serve as the source of "truth data" for retrospective forecast evaluation.
-We also include a CSV file with latest values of incident covid-19 hospitalizations in the [target-data directory](target-data/covid-hospital-admissions.csv).
+We also include a CSV file with latest values of incident covid-19 hospitalizations in the [target-data directory](target-data/time-series.csv).
 
 ### Epiweeks
 
