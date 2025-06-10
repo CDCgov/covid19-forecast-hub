@@ -47,7 +47,7 @@ jobs:
     - name: Check for Changes
       id: check_diff
       run: |
-        git diff --exit-code target-data/covid-hospital-admissions.csv || echo "changed=true" >> $GITHUB_ENV 
+        git diff --exit-code target-data/time-series.csv || echo "changed=true" >> $GITHUB_ENV 
 
     - name: Commit changes
       if: env.changed == 'true'
