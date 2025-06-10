@@ -66,6 +66,7 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
+today <- Sys.Date()
 
 # only gather states of the USA, DC, and Puerto Rico (PR)
 exclude_territories_path <- fs::path(
@@ -89,18 +90,21 @@ if (target_data) {
     start_date = first_full_weekending_date
   ) |>
     dplyr::rename(
-      value = totalconfc19newadm,
+      observation = totalconfc19newadm,
       date = weekendingdate,
       state = jurisdiction
     ) |>
     dplyr::mutate(
       date = as.Date(date),
-      value = as.numeric(value),
+      observation = as.numeric(observation),
       state = stringr::str_replace(state, "USA", "US")
     ) |>
     dplyr::filter(!stringr::str_detect(state, "Region"))
   formatted_data <- covid_data |>
-    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
+    dplyr::mutate(
+      location = forecasttools::us_loc_abbr_to_code(state),
+      as_of = today
+    ) |>
     dplyr::filter(!(location %in% excluded_locations))
   output_dirpath <- "target-data/"
   readr::write_csv(
