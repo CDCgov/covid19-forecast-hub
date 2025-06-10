@@ -19,7 +19,7 @@
 #' Rscript ./src/get_covid_hosp_data.R --target-data FALSE \
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 #'
-#' To get data as hubverse time-series formatted:
+#' To get hubverse time-series formatted data:
 #' Rscript ./src/get_covid_hosp_data.R --target-data TRUE \
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 

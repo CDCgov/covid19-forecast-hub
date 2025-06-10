@@ -22,3 +22,4 @@ hub-config/README_files/
 *.pdf
 
 eval-output
+.vscode/
