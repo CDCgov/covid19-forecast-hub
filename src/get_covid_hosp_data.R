@@ -25,7 +25,7 @@
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
-  "Save NHSN COVID-19 hospital admissions as hubverse time series."
+  "Fetch and save COVID-19 hospital admissions data."
 )
 parser <- argparser::add_argument(
   parser,
