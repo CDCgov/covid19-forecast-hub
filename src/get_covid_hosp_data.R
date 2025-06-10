@@ -14,12 +14,12 @@
 #' - `value`: the number of hospital
 #' admissions (integer)
 #'
-#' To get non-hubverse-formatted:
+#' To get COVID-19 hospitalization data for visualization:
 #' with confirmed COVID-19:
 #' Rscript ./src/get_covid_hosp_data.R --target-data FALSE \
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 #'
-#' To get hubverse formatted:
+#' To get data as hubverse time-series formatted:
 #' Rscript get_covid_hosp_data.R --target-data TRUE \
 #'   --reference-date YYYY-MM-DD --base-hub-path .
 
