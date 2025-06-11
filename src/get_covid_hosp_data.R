@@ -1,10 +1,10 @@
-#' This script fetches observed COVID-19 hospital
-#' admissions data for all regions (including US, DC, and Puerto Rico)
-#' The data is sourced from the NHSN hospital respiratory
-#' data: (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+#' Fetches observed hospital admissions with confirmed
+#' COVID-19, formatted as a hubverse time-series, for
+#' supported Federal Information Processing (FIPS) regions,
+#' except for those which we exclude. This data is sourced
+#' from the CDC's National Healthcare Safety Network (NHSN).
 #'
-#' The resulting csv file contains the
-#' following columns:
+#' The`time-series.csv` file has the following columns:
 #' - `week_ending_date`: week ending date of
 #' observed data per row (Ex: 2024-11-16)
 #' - `location`: two-digit FIPS code
@@ -14,35 +14,37 @@
 #' - `value`: the number of hospital
 #' admissions (integer)
 #'
-#' To get the historical dataset for visualization:
-#' Rscript get_covid_hosp_data.R --target-data FALSE \
-#'   --reference-date YYYY-MM-DD --base-hub-path ../
+#' To get COVID-19 hospitalization data for visualization:
+#' with confirmed COVID-19:
+#' Rscript ./src/get_covid_hosp_data.R --target-data FALSE \
+#'   --reference-date YYYY-MM-DD --base-hub-path .
 #'
-#' To get the target COVID-19 hospital admissions data:
-#' Rscript get_covid_hosp_data.R --target-data TRUE \
-#'   --reference-date YYYY-MM-DD --base-hub-path ../
+#' To get hubverse time-series formatted data:
+#' Rscript ./src/get_covid_hosp_data.R --target-data TRUE \
+#'   --reference-date YYYY-MM-DD --base-hub-path .
 
 # set up command line argument parser
 parser <- argparser::arg_parser(
-  "Fetch and process COVID-19 hospital admissions data."
+  "Fetch and save COVID-19 hospital admissions data."
 )
 parser <- argparser::add_argument(
   parser,
   "--reference-date",
   type = "character",
-  help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)"
+  help = "The forecasting reference date in YYYY-MM-DD format (ISO-8601)."
 )
 parser <- argparser::add_argument(
   parser,
   "--base-hub-path",
   type = "character",
-  help = "Path to the COVID-19 forecast hub directory."
+  help = "Path to the COVID-19 forecast hub directory (default: cwd).",
+  default = "."
 )
 parser <- argparser::add_argument(
   parser,
   "--hub-reports-path",
   type = "character",
-  help = "path to COVIDhub reports directory"
+  help = "Path to COVID Hub reports directory."
 )
 parser <- argparser::add_argument(
   parser,
@@ -53,7 +55,7 @@ parser <- argparser::add_argument(
 parser <- argparser::add_argument(
   parser,
   "--first-full-weekending-date",
-  help = "Filter data by week ending date",
+  help = "Filter data by week ending date.",
   type = "character",
   default = "2024-11-09"
 )
@@ -65,10 +67,9 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
+today <- lubridate::today()
 
-# gather locations to exclude such that the
-# only territories are the 50 US states, DC,
-# and PR
+# only gather states of the USA, DC, and Puerto Rico (PR)
 exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
@@ -81,39 +82,40 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 
-
 if (target_data) {
-  # fetch some NHSN COVID-19 hospital admissions
+  # sequence for hubverse time-series formatted output
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
     start_date = first_full_weekending_date
   ) |>
     dplyr::rename(
-      value = totalconfc19newadm,
+      observation = totalconfc19newadm,
       date = weekendingdate,
       state = jurisdiction
     ) |>
     dplyr::mutate(
       date = as.Date(date),
-      value = as.numeric(value),
+      observation = as.numeric(observation),
       state = stringr::str_replace(state, "USA", "US")
     ) |>
     dplyr::filter(!stringr::str_detect(state, "Region"))
-
-
   formatted_data <- covid_data |>
-    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
+    dplyr::mutate(
+      location = forecasttools::us_loc_abbr_to_code(state),
+      as_of = today,
+      target = "wk inc covid hosp"
+    ) |>
     dplyr::filter(!(location %in% excluded_locations))
-  output_dirpath <- "target-data/"
+  output_dirpath <- "target-data"
   readr::write_csv(
     formatted_data,
-    file.path(output_dirpath, "covid-hospital-admissions.csv")
+    file.path(output_dirpath, "time-series.csv")
   )
 }
 
 if (!target_data) {
-  # fetch all NHSN COVID-19 hospital admissions
+  # sequence to get NHSN COVID-19 hospital admissions
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
