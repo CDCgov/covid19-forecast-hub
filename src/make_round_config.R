@@ -108,7 +108,9 @@ parser <- argparser::add_argument(
 parser <- argparser::add_argument(
   parser,
   "--ref-date",
-  default = forecasttools::ceiling_mmwr_epiweek(lubridate::today()),
+  default = as.character(
+    forecasttools::ceiling_mmwr_epiweek(lubridate::today())
+  ),
   help = "Reference date in YYYY-MM-DD format. Defaults to the next Saturday."
 )
 parser <- argparser::add_argument(
@@ -135,7 +137,7 @@ parser <- argparser::add_argument(
 
 args <- argparser::parse_args(parser)
 hub_path <- args$hub_path
-reference_date <- as.Date(args$ref_date)
+reference_date <- as.Date(args$ref_date, format = "%Y-%m-%d")
 horizon_range <- args$horizon_range
 location <- args$location
 
