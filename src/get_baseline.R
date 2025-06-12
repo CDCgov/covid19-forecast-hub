@@ -34,21 +34,25 @@ if (dow_supplied != 7) {
 desired_max_time_value <- reference_date - 7L
 
 target_tbl <- readr::read_csv(
-  "target-data/covid-hospital-admissions.csv",
+  "target-data/time-series.csv",
   col_types = readr::cols_only(
     date = readr::col_date(format = ""),
     location = readr::col_character(),
     state = readr::col_character(),
-    value = readr::col_double()
+    observation = readr::col_double(),
+    target = readr::col_character()
   )
 )
 target_start_date <- min(target_tbl$date)
 
 target_epi_df <- target_tbl |>
+  dplyr::filter(
+    target == "wk inc covid hosp"
+  ) |>
   dplyr::transmute(
     geo_value = state,
     time_value = .data$date,
-    weekly_count = .data$value
+    weekly_count = .data$observation
   ) |>
   epiprocess::as_epi_df()
 
