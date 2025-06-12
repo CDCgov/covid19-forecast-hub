@@ -17,11 +17,6 @@
 # and push the results.
 #
 #
-# Links:
-#
-# Air GitHub Page: https://github.com/posit-dev/air
-# Air Configuration: https://posit-dev.github.io/air/configuration.html
-# Air Actions: https://posit-dev.github.io/air/integration-github-actions.html
 ###############################################################################
 on:
   push:
