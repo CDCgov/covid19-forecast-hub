@@ -3,10 +3,6 @@
 ###############################################################################
 # The following is a workflow derived from
 # https://github.com/posit-dev/setup-air/blob/main/examples/format-check.yaml
-# that suggests edits for the air R-code formatter (see air.toml) for more
-# information. The author installed air on mac via:
-# curl -LsSf https://github.com/posit-dev/air/releases/
-# latest/download/air-installer.sh | sh
 #
 # Description:
 #
