@@ -30,7 +30,11 @@ create_new_round <- function(hub_path, ref_date, horizon_range, location) {
   )
 
   task_ids <- hubAdmin::create_task_ids(
-    origin_date, location, horizon, target_end_date, target
+    origin_date,
+    location,
+    horizon,
+    target_end_date,
+    target
   )
 
   quantile_out_type <- hubAdmin::create_output_type_quantile(
@@ -75,10 +79,12 @@ create_new_round <- function(hub_path, ref_date, horizon_range, location) {
   model_task_hosp_admissions <- hubAdmin::create_model_task(
     task_ids = task_ids,
     output_type = hubAdmin::create_output_type(
-      quantile_out_type, sample_out_type
+      quantile_out_type,
+      sample_out_type
     ),
     target_metadata = hubAdmin::create_target_metadata(
-      target_metadata_admissions, target_metadata_ed_visits
+      target_metadata_admissions,
+      target_metadata_ed_visits
     )
   )
 
@@ -125,11 +131,59 @@ parser <- argparser::add_argument(
   "--location",
   type = "character",
   default = c(
-    "US", "01", "02", "04", "05", "06", "08", "09", "10", "11", "12", "13",
-    "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
-    "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
-    "39", "40", "41", "42", "44", "45", "46", "47", "48", "49", "50", "51",
-    "53", "54", "55", "56", "72"
+    "US",
+    "01",
+    "02",
+    "04",
+    "05",
+    "06",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "53",
+    "54",
+    "55",
+    "56",
+    "72"
   ),
   help = "Location codes for forecasting jurisdiction.
     (default: 50 states, DC, US)."
@@ -159,7 +213,9 @@ if (!file.exists(tasks_config_path)) {
 hubAdmin::write_config(new_task_config, hub_path = hub_path, overwrite = TRUE)
 
 valid_task_config <- hubAdmin::validate_config(
-  hub_path = hub_path, config = c("tasks"), schema_version = "from_config"
+  hub_path = hub_path,
+  config = c("tasks"),
+  schema_version = "from_config"
 )
 if (isFALSE(valid_task_config)) {
   cli::cli_alert_danger("Generated task config (tasks.json) is invalid")
