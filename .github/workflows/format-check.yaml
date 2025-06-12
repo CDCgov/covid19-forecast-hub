@@ -11,8 +11,6 @@
 # reformatted. When this happens, reformat locally using air format . or
 # the Air: Format Workspace Folder command in VS Code or Positron, and commit
 # and push the results.
-#
-#
 ###############################################################################
 on:
   push:
