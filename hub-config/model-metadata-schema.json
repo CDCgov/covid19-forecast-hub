@@ -12,7 +12,7 @@
             "description": "Abbreviated name of the team submitting the model",
             "type": "string",
             "pattern": "^[a-zA-Z0-9_+]+$",
-            "maxLength": 16
+            "maxLength": 21
         },
         "model_name": {
             "description": "The name of the model",
@@ -22,7 +22,7 @@
             "description": "Abbreviated name of the model",
             "type": "string",
             "pattern": "^[a-zA-Z0-9_+]+$",
-            "maxLength": 16
+            "maxLength": 21
         },
         "model_version": {
             "description": "Identifier of the version of the model",
