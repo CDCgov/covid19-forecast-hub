@@ -16,8 +16,6 @@
 # the Air: Format Workspace Folder command in VS Code or Positron, and commit
 # and push the results.
 #
-# Note: The author believes that it's simpler to batch fixes w/ locally
-# with the checker rather than many small commits w/ the suggester.
 #
 # Links:
 #
