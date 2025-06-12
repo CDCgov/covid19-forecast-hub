@@ -162,10 +162,13 @@ if (!target_data) {
     )
   # output folder and file paths for Truth Data
   output_folder_path <- fs::path(
-    hub_reports_path, "weekly-summaries", reference_date
+    hub_reports_path,
+    "weekly-summaries",
+    reference_date
   )
   output_filename <- paste0(
-    reference_date, "_covid_target_hospital_admissions_data.csv"
+    reference_date,
+    "_covid_target_hospital_admissions_data.csv"
   )
   output_filepath <- fs::path(output_folder_path, output_filename)
   # determine if the output folder exists,

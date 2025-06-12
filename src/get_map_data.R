@@ -46,7 +46,6 @@
 #' Rscript get_map_data.R --reference-date 2024-12-21
 #' --base-hub-path ../ --horizons-to-include 0 1 2
 
-
 # set up command line argument parser
 parser <- argparser::arg_parser(
   "Save Map Data as CSV."
@@ -85,9 +84,12 @@ horizons_to_include <- as.integer(args$horizons_to_include)
 
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
-invalid_horizons <- horizons_to_include[!sapply(
-  horizons_to_include, function(x) x %in% valid_horizons
-)]
+invalid_horizons <- horizons_to_include[
+  !sapply(
+    horizons_to_include,
+    function(x) x %in% valid_horizons
+  )
+]
 if (length(invalid_horizons) > 0) {
   stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
 }
@@ -142,7 +144,8 @@ pop_data_path <- file.path(
 pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(
-  pop_required_columns, colnames(pop_data)
+  pop_required_columns,
+  colnames(pop_data)
 )
 if (length(missing_pop_columns) > 0) {
   stop(
@@ -268,11 +271,14 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   )
 
 output_folder_path <- fs::path(
-  hub_reports_path, "weekly-summaries", ref_date
+  hub_reports_path,
+  "weekly-summaries",
+  ref_date
 )
 output_filename <- paste0(ref_date, "_covid_map_data.csv")
 output_filepath <- fs::path(
-  output_folder_path, output_filename
+  output_folder_path,
+  output_filename
 )
 
 # determine if the output folder exists,

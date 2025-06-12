@@ -4,7 +4,8 @@ parser <- argparser::arg_parser(
   "Create a hub ensemble model for covid-19 hospital admissions"
 )
 parser <- argparser::add_argument(
-  parser, "--reference-date",
+  parser,
+  "--reference-date",
   help = "reference date in YYYY-MM-DD format"
 )
 parser <- argparser::add_argument(
@@ -18,22 +19,24 @@ args <- argparser::parse_args(parser)
 reference_date <- as.Date(args$reference_date)
 base_hub_path <- args$base_hub_path
 
-dow_supplied <- lubridate::wday(reference_date,
-  week_start = 7,
-  label = FALSE
-)
+dow_supplied <- lubridate::wday(reference_date, week_start = 7, label = FALSE)
 if (dow_supplied != 7) {
-  cli::cli_abort(message = paste0(
-    "Expected `reference_date` to be a Saturday, day number 7 ",
-    "of the week, given the `week_start` value of Sunday. ",
-    "Got {reference_date}, which is day number ",
-    "{dow_supplied} of the week."
-  ))
+  cli::cli_abort(
+    message = paste0(
+      "Expected `reference_date` to be a Saturday, day number 7 ",
+      "of the week, given the `week_start` value of Sunday. ",
+      "Got {reference_date}, which is day number ",
+      "{dow_supplied} of the week."
+    )
+  )
 }
 
 task_id_cols <- c(
-  "reference_date", "location", "horizon",
-  "target", "target_end_date"
+  "reference_date",
+  "location",
+  "horizon",
+  "target",
+  "target_end_date"
 )
 output_dirpath <- fs::path(base_hub_path, "model-output", "CovidHub-ensemble")
 if (!fs::dir_exists(output_dirpath)) {
@@ -60,9 +63,12 @@ weekly_models <- hubData::load_model_metadata(
 write.csv(
   weekly_models,
   file.path(
-    "auxiliary-data", "weekly-model-submissions",
+    "auxiliary-data",
+    "weekly-model-submissions",
     paste0(
-      as.character(reference_date), "-", "models-submitted-to-hub.csv"
+      as.character(reference_date),
+      "-",
+      "models-submitted-to-hub.csv"
     )
   ),
   row.names = FALSE

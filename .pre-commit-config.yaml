@@ -24,14 +24,7 @@ repos:
 # R-specific hooks
   - repo: https://github.com/lorenzwalthert/precommit
     rev: v0.4.3.9003
-    hooks:
-      - id: style-files
-        args: [
-          --style_pkg=styler,
-          --style_fun=tidyverse_style,
-          --cache-root=styler-perm
-        ]
-        files: \.R$|\.Rmd$ 
+    hooks: 
       - id: lintr
         files: \.R$|\.Rmd$
       - id: parsable-R
