@@ -19,13 +19,13 @@ The following metadata fields are mandatory.
 The full name of your team. Must be fewer than 50 characters.
 
 ### `team_abbr`
-An abbreviated (<16 character) name for your team.
+An abbreviated (<21 character) name for your team.
 
 ### `model_name`
 The full name of your model. Must be fewer than 50 characters.
 
 ### `model_abbr`
-An abbreviated (<16 character) name for your model.
+An abbreviated (<21 character) name for your model.
 
 ### `model_contributors`
 
