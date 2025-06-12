@@ -143,19 +143,21 @@ location <- args$location
 
 round <- create_new_round(hub_path, reference_date, horizon_range, location)
 
-existing_task_config <- try(
-  hubUtils::read_config(hub_path, config = c("tasks"))
-)
-if (inherits(existing_task_config, "try-error")) {
+tasks_config_path <- fs::path(hub_path, "hub-config", "tasks.json")
+
+if (!file.exists(tasks_config_path)) {
   cli::cli_alert_info(
     "Existing config not found, creating a new {.file tasks.json}"
   )
   new_task_config <- hubAdmin::create_config(hubAdmin::create_rounds(round))
 } else {
   cli::cli_alert_info("Existing config found, adding a new round")
+  existing_task_config <- hubUtils::read_config(hub_path, config = c("tasks"))
   new_task_config <- hubAdmin::append_round(existing_task_config, round)
 }
+
 hubAdmin::write_config(new_task_config, hub_path = hub_path, overwrite = TRUE)
+
 valid_task_config <- hubAdmin::validate_config(
   hub_path = hub_path, config = c("tasks"), schema_version = "from_config"
 )
