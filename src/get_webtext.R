@@ -33,7 +33,9 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 
 weekly_data_path <- file.path(
-  hub_reports_path, "weekly-summaries", reference_date
+  hub_reports_path,
+  "weekly-summaries",
+  reference_date
 )
 
 ensemble_us_1wk_ahead <- readr::read_csv(
@@ -43,15 +45,20 @@ ensemble_us_1wk_ahead <- readr::read_csv(
   dplyr::filter(horizon == 1, location_name == "US")
 
 target_data <- readr::read_csv(
-  file.path(weekly_data_path, paste0(
-    reference_date, "_covid_target_hospital_admissions_data.csv"
-  )),
+  file.path(
+    weekly_data_path,
+    paste0(
+      reference_date,
+      "_covid_target_hospital_admissions_data.csv"
+    )
+  ),
   show_col_types = FALSE
 )
 
 contributing_teams <- readr::read_csv(
   file.path(
-    weekly_data_path, paste0(reference_date, "_covid_forecasts_data.csv")
+    weekly_data_path,
+    paste0(reference_date, "_covid_forecasts_data.csv")
   ),
   show_col_types = FALSE
 ) |>
@@ -64,11 +71,17 @@ wkly_submissions <- hubData::load_model_metadata(
   model_ids = contributing_teams
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model, .keep_all = TRUE) |>
-  dplyr::mutate(team_model_url = glue::glue(
-    "[{team_name} (Model: {model_abbr})]({website_url})"
-  )) |>
+  dplyr::mutate(
+    team_model_url = glue::glue(
+      "[{team_name} (Model: {model_abbr})]({website_url})"
+    )
+  ) |>
   dplyr::select(
-    model_id, team_abbr, model_abbr, team_model_url, designated_model
+    model_id,
+    team_abbr,
+    model_abbr,
+    team_model_url,
+    designated_model
   )
 
 # Generate flag for less than 80 percent of hospitals reporting
@@ -110,13 +123,15 @@ jurisdiction_w_latency <- percent_hosp_reporting_below80 |>
   dplyr::filter(max_weekendingdate < desired_weekendingdate)
 
 if (nrow(jurisdiction_w_latency) > 0) {
-  cli::cli_warn("
+  cli::cli_warn(
+    "
     Some locations have missing reported data for the most recent week.
     The reference date is {reference_date}, we expect data at least
     through {desired_weekendingdate}. However, {nrow(jurisdiction_w_latency)}
     location{?s} did not have reporting through that date:
     {jurisdiction_w_latency$location_name}.
-  ")
+  "
+  )
 }
 
 latest_reporting_below80 <- percent_hosp_reporting_below80 |>
@@ -125,15 +140,14 @@ latest_reporting_below80 <- percent_hosp_reporting_below80 |>
     !report_above_80_lgl
   )
 
-reporting_rate_flag <- if (
-  length(latest_reporting_below80$location_name) > 0
-) {
+reporting_rate_flag <- if (length(latest_reporting_below80$location_name) > 0) {
   location_list <- if (length(latest_reporting_below80$location_name) < 3) {
     glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
   } else {
     glue::glue_collapse(
       latest_reporting_below80$location_name,
-      sep = ", ", last = ", and "
+      sep = ", ",
+      last = ", and "
     )
   }
 
@@ -178,15 +192,18 @@ model_incl_in_hub_ensemble <- designated$team_model_url
 model_not_incl_in_hub_ensemble <- not_designated$team_model_url
 
 first_target_data_date <- format(
-  as.Date(min(target_data$week_ending_date)), "%B %d, %Y"
+  as.Date(min(target_data$week_ending_date)),
+  "%B %d, %Y"
 )
 last_target_data_date <- format(
-  as.Date(max(target_data$week_ending_date)), "%B %d, %Y"
+  as.Date(max(target_data$week_ending_date)),
+  "%B %d, %Y"
 )
 forecast_due_date <- ensemble_us_1wk_ahead$forecast_due_date_formatted
 target_end_date_1wk_ahead <- ensemble_us_1wk_ahead$target_end_date_formatted
 target_end_date_2wk_ahead <- format(
-  ensemble_us_1wk_ahead$target_end_date + lubridate::weeks(1), "%B %d, %Y"
+  ensemble_us_1wk_ahead$target_end_date + lubridate::weeks(1),
+  "%B %d, %Y"
 )
 
 last_reported_target_data <- target_data |>
@@ -223,5 +240,6 @@ web_text <- glue::glue(
 )
 
 writeLines(
-  web_text, file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
+  web_text,
+  file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
 )
