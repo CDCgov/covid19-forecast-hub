@@ -85,7 +85,7 @@ repos:
     -   id: parsable-R
         files: \.R$|\.Rmd$
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9003
+    rev: v0.4.3.9009
     hooks: 
     -   id: lintr
         files: \.R$|\.Rmd$
@@ -102,7 +102,7 @@ repos:
 # PYTHON
 ###############################################################################
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.8
+    rev: v0.11.13
     hooks:
     # "currently, the Ruff formatter does not sort imports.
     # In order to both sort imports and format, call
