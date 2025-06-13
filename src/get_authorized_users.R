@@ -21,11 +21,11 @@ extract_metadata <- function(file) {
     NA
   )
 
-  list(
+  return(list(
     team_abbr = team_abbr,
     model_abbr = model_abbr,
     designated_github_users = designated_user
-  )
+  ))
 }
 
 metadata_list <- purrr::map(yml_files, extract_metadata)

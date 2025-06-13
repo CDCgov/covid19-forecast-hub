@@ -12,25 +12,14 @@
 # CONTINUOUS INTEGRATION
 ###############################################################################
 ci:
-    # custom commit message for PR autofixes
     autofix_commit_msg: |
         [pre-commit.ci] auto fixes from pre-commit.com hooks
         for more information, see https://pre-commit.ci
-    # whether to autofix pull requests. when disabled, comment / label
-    # "pre-commit.ci autofix" in a pull request to manually trigger
-    # auto-fixing.
     autofix_prs: true
-    # branch to send autoupdate PRs to; by default, pre-commit.ci will update
-    # the default branch of the repository.
     autoupdate_branch: ""
-    # custom commit message for autoupdate PRs.
     autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
-    # control when the autoupdate runs, possible values: 'weekly',
-    # 'monthly', 'quarterly'.
     autoupdate_schedule: weekly
-    # a list of hook ids to skip only in pre-commit.ci;
     skip: []
-    #  whether to recursively check out submodules
     submodules: false
 ###############################################################################
 # GENERAL
@@ -39,35 +28,18 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-    # attempts to load all yaml files to
-    # verify syntax.
     -   id: check-yaml
-        # allow yaml files which use the
-        # multi-document syntax
         args: ["--allow-multiple-documents"]
         files: ^src/
-    # attempts to load all TOML files to
-    # verify syntax.
     -   id: check-toml
         files: ^src/
-    # makes sure files end in a newline and
-    # only a newline.
     -   id: end-of-file-fixer
         files: ^src/
-    # replaces or checks mixed line ending.
     -   id: mixed-line-ending
         files: ^src/
-    # checks that all your JSON files are pretty.
-    # "Pretty" here means that keys are sorted
-    # and indented.
     -   id: pretty-format-json
-        # automatically format json files;
-        # when autofixing, retain the original
-        # key ordering (instead of sorting
-        # the keys)
         args: ["--autofix", "--no-sort-keys"]
         files: ^src/
-    # trims trailing whitespace.
     -   id: trailing-whitespace
         files: ^src/
 ###############################################################################
@@ -76,12 +48,8 @@ repos:
 -   repo: https://github.com/lorenzwalthert/precommit
     rev: v0.4.3.9009
     hooks:
-    #  a hook to run lintr::lint() to check that R files are lint free.
     -   id: lintr
         files: \.R$|\.Rmd$
-    # checks if your .R and .Rmd files are “valid” R code by checking if
-    # running parse() on them (or their knitr::purl()ed output for .Rmd)
-    # returns an error. This hook does not modify files.
     -   id: parsable-R
         files: \.R$|\.Rmd$
 ###############################################################################
@@ -97,9 +65,6 @@ repos:
 -   repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.13
     hooks:
-    # "currently, the Ruff formatter does not sort imports.
-    # In order to both sort imports and format, call
-    # the Ruff linter and then the formatter:"
     -   id: ruff
         args: ["check", "--select", "I", "--fix"]
         files: '\.py$'
