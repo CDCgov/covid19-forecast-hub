@@ -84,13 +84,6 @@ repos:
     # returns an error. This hook does not modify files.
     -   id: parsable-R
         files: \.R$|\.Rmd$
--   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9009
-    hooks: 
-    -   id: lintr
-        files: \.R$|\.Rmd$
-    -   id: parsable-R
-        files: \.R$|\.Rmd$
 ###############################################################################
 # BASH SHELL
 ###############################################################################

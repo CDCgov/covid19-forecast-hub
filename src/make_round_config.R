@@ -99,7 +99,7 @@ create_new_round <- function(hub_path, ref_date, horizon_range, location) {
     )
   )
 
-  return(round)
+  round
 }
 
 
