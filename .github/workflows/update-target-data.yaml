@@ -33,13 +33,13 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML"))
+        install.packages(c("argparser", "fs", "readr", "nanoparquet", "dplyr", "remotes", "RcppTOML"))
         remotes::install_github('cdcgov/forecasttools')
       shell: Rscript {0}
     
     - name: get updated target data
       run: |
-        Rscript src/get_covid_hosp_data.R --target-data TRUE --base-hub-path "."
+        Rscript src/get_target_data.R --target-data TRUE --base-hub-path "."
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
