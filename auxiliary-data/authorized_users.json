@@ -1,78 +1,78 @@
 [
-    {
-        "model": "CEPH-Rtrend_covid",
-        "authorized_github_users": ["paulocv"]
-    },
-    {
-        "model": "CFA_Pyrenew-Pyrenew_H_COVID",
-        "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
-    },
-    {
-        "model": "CFA_Pyrenew-Pyrenew_HE_COVID",
-        "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
-    },
-    {
-        "model": "CFA_Pyrenew-Pyrenew_HW_COVID",
-        "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
-    },
-    {
-        "model": "CFA_Pyrenew-PyrenewHEW_COVID",
-        "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
-    },
-    {
-        "model": "CMU-climate_baseline",
-        "authorized_github_users": ["dshemetov", "dsweber2"]
-    },
-    {
-        "model": "CMU-TimeSeries",
-        "authorized_github_users": ["dshemetov", "dsweber2"]
-    },
-    {
-        "model": "CovidHub-baseline",
-        "authorized_github_users": [""]
-    },
-    {
-        "model": "CovidHub-ensemble",
-        "authorized_github_users": [""]
-    },
-    {
-        "model": "Google_SAI-Ensemble",
-        "authorized_github_users": ["zshamsi2"]
-    },
-    {
-        "model": "JHU_CSSE-CSSE_Ensemble",
-        "authorized_github_users": ["Shawn-Tsui"]
-    },
-    {
-        "model": "Metaculus-cp",
-        "authorized_github_users": ["nikosbosse"]
-    },
-    {
-        "model": "MOBS-GLEAM_COVID",
-        "authorized_github_users": ["jessica-davis", "clarabay"]
-    },
-    {
-        "model": "NEU_ISI-AdaptiveEnsemble",
-        "authorized_github_users": ["sfiandrino"]
-    },
-    {
-        "model": "OHT_JHU-nbxd",
-        "authorized_github_users": ["atulchin", "eklein-cddep"]
-    },
-    {
-        "model": "UGA_flucast-INFLAenza",
-        "authorized_github_users": ["MayaSal"]
-    },
-    {
-        "model": "UM-DeepOutbreak",
-        "authorized_github_users": ["potnissa", "RRemixx"]
-    },
-    {
-        "model": "UMass-ar6_pooled",
-        "authorized_github_users": ["elray1", "matthewcornell", "lshandross"]
-    },
-    {
-        "model": "UMass-gbqr",
-        "authorized_github_users": ["elray1", "lshandross"]
-    }
+  {
+    "model": ["CEPH-Rtrend_covid"],
+    "authorized_github_users": ["paulocv"]
+  },
+  {
+    "model": ["CFA_Pyrenew-Pyrenew_H_COVID"],
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+  },
+  {
+    "model": ["CFA_Pyrenew-Pyrenew_HE_COVID"],
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+  },
+  {
+    "model": ["CFA_Pyrenew-Pyrenew_HW_COVID"],
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+  },
+  {
+    "model": ["CFA_Pyrenew-PyrenewHEW_COVID"],
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+  },
+  {
+    "model": ["CMU-climate_baseline"],
+    "authorized_github_users": ["dshemetov", "dsweber2"]
+  },
+  {
+    "model": ["CMU-TimeSeries"],
+    "authorized_github_users": ["dshemetov", "dsweber2"]
+  },
+  {
+    "model": ["CovidHub-baseline"],
+    "authorized_github_users": [null]
+  },
+  {
+    "model": ["CovidHub-ensemble"],
+    "authorized_github_users": [null]
+  },
+  {
+    "model": ["Google_SAI-Ensemble"],
+    "authorized_github_users": ["zshamsi2"]
+  },
+  {
+    "model": ["JHU_CSSE-CSSE_Ensemble"],
+    "authorized_github_users": ["Shawn-Tsui"]
+  },
+  {
+    "model": ["Metaculus-cp"],
+    "authorized_github_users": ["nikosbosse"]
+  },
+  {
+    "model": ["MOBS-GLEAM_COVID"],
+    "authorized_github_users": ["jessica-davis", "clarabay"]
+  },
+  {
+    "model": ["NEU_ISI-AdaptiveEnsemble"],
+    "authorized_github_users": ["sfiandrino"]
+  },
+  {
+    "model": ["OHT_JHU-nbxd"],
+    "authorized_github_users": ["atulchin", "eklein-cddep"]
+  },
+  {
+    "model": ["UGA_flucast-INFLAenza"],
+    "authorized_github_users": ["MayaSal"]
+  },
+  {
+    "model": ["UM-DeepOutbreak"],
+    "authorized_github_users": ["potnissa", "RRemixx"]
+  },
+  {
+    "model": ["UMass-ar6_pooled"],
+    "authorized_github_users": ["elray1", "matthewcornell", "lshandross"]
+  },
+  {
+    "model": ["UMass-gbqr"],
+    "authorized_github_users": ["elray1", "lshandross"]
+  }
 ]
