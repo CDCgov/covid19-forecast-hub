@@ -1,4 +1,11 @@
-create_new_round <- function(hub_path, ref_date, horizon_range, location) {
+create_new_round <- function(
+  hub_path,
+  ref_date,
+  horizon_range,
+  location,
+  schema_version
+) {
+  options(hubAdmin.schema_version = schema_version)
   origin_date <- hubAdmin::create_task_id(
     "reference_date",
     required = NULL,
@@ -104,7 +111,13 @@ create_new_round <- function(hub_path, ref_date, horizon_range, location) {
 
 
 parser <- argparser::arg_parser("Create a new round config for the COVIDhub")
-
+parser <- argparser::add_argument(
+  parser,
+  "--schema-version",
+  help = "Character string specifying the json schema version.",
+  type = "character",
+  default = "v5.0.0"
+)
 parser <- argparser::add_argument(
   parser,
   "--hub-path",
@@ -114,6 +127,7 @@ parser <- argparser::add_argument(
 parser <- argparser::add_argument(
   parser,
   "--ref-date",
+  type = "character",
   default = as.character(
     forecasttools::ceiling_mmwr_epiweek(lubridate::today())
   ),
@@ -194,8 +208,15 @@ hub_path <- args$hub_path
 reference_date <- as.Date(args$ref_date, format = "%Y-%m-%d")
 horizon_range <- args$horizon_range
 location <- args$location
+schema_version <- args$schema_version
 
-round <- create_new_round(hub_path, reference_date, horizon_range, location)
+round <- create_new_round(
+  hub_path,
+  reference_date,
+  horizon_range,
+  location,
+  schema_version
+)
 
 tasks_config_path <- fs::path(hub_path, "hub-config", "tasks.json")
 
