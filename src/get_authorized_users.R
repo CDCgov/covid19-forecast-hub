@@ -41,18 +41,19 @@ data_df <- do.call(rbind, lapply(metadata, as.data.frame))
 
 colnames(data_df) <- c("team_name", "model_name", "designated_users")
 
+
 json_list <- purrr::pmap(
   data_df,
   function(team_name, model_name, designated_users) {
     users <- if (is.na(designated_users)) {
       NA
     } else {
-      strsplit(designated_users, "\\s*,\\s*")[[1]]
+      I(strsplit(designated_users, "\\s*,\\s*")[[1]])
     }
-    list(
+    return(list(
       model = paste(team_name, model_name, sep = "-"),
       authorized_github_users = users
-    )
+    ))
   }
 )
 
@@ -60,5 +61,5 @@ jsonlite::write_json(
   json_list,
   path = file.path(output_path, "authorized_users.json"),
   pretty = TRUE,
-  auto_unbox = FALSE
+  auto_unbox = TRUE
 )
