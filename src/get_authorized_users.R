@@ -1,15 +1,19 @@
 hub_path <- "."
 output_path <- "auxiliary-data/"
 
-yml_files <- list.files(file.path(hub_path, "model-metadata"),
-  pattern = "\\.ya?ml$", full.names = TRUE
+yml_files <- list.files(
+  file.path(hub_path, "model-metadata"),
+  pattern = "\\.ya?ml$",
+  full.names = TRUE
 )
 
 extract_metadata <- function(file) {
   yml_data <- yaml::yaml.load_file(file)
   team_abbr <- ifelse("team_abbr" %in% names(yml_data), yml_data$team_abbr, NA)
   model_abbr <- ifelse(
-    "model_abbr" %in% names(yml_data), yml_data$model_abbr, NA
+    "model_abbr" %in% names(yml_data),
+    yml_data$model_abbr,
+    NA
   )
   designated_user <- ifelse(
     "designated_github_users" %in% names(yml_data),

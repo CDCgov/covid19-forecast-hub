@@ -67,7 +67,6 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 target_data <- args$target_data
 first_full_weekending_date <- args$first_full_weekending_date
-today <- lubridate::today()
 
 # only gather states of the USA, DC, and Puerto Rico (PR)
 exclude_territories_path <- fs::path(
@@ -83,12 +82,31 @@ if (fs::file_exists(exclude_territories_path)) {
 }
 
 if (target_data) {
-  # sequence for hubverse time-series formatted output
+  output_dirpath <- "target-data"
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
     start_date = first_full_weekending_date
-  ) |>
+  )
+  covid_data_historical <- covid_data |>
+    dplyr::rename(
+      value = totalconfc19newadm,
+      date = weekendingdate,
+      state = jurisdiction
+    ) |>
+    dplyr::mutate(
+      date = as.Date(date),
+      value = as.numeric(value),
+      state = stringr::str_replace(state, "USA", "US")
+    ) |>
+    dplyr::filter(!stringr::str_detect(state, "Region")) |>
+    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
+    dplyr::filter(!(location %in% excluded_locations)) |>
+    readr::write_csv(
+      file.path(output_dirpath, "covid-hospital-admissions.csv")
+    )
+
+  covid_data_hubverse <- covid_data |>
     dplyr::rename(
       observation = totalconfc19newadm,
       date = weekendingdate,
@@ -99,19 +117,16 @@ if (target_data) {
       observation = as.numeric(observation),
       state = stringr::str_replace(state, "USA", "US")
     ) |>
-    dplyr::filter(!stringr::str_detect(state, "Region"))
-  formatted_data <- covid_data |>
+    dplyr::filter(!stringr::str_detect(state, "Region")) |>
     dplyr::mutate(
       location = forecasttools::us_loc_abbr_to_code(state),
-      as_of = today,
+      as_of = lubridate::today(),
       target = "wk inc covid hosp"
     ) |>
-    dplyr::filter(!(location %in% excluded_locations))
-  output_dirpath <- "target-data"
-  readr::write_csv(
-    formatted_data,
-    file.path(output_dirpath, "time-series.csv")
-  )
+    dplyr::filter(!(location %in% excluded_locations)) |>
+    readr::write_csv(
+      file.path(output_dirpath, "time-series.csv")
+    )
 }
 
 if (!target_data) {
@@ -162,10 +177,13 @@ if (!target_data) {
     )
   # output folder and file paths for Truth Data
   output_folder_path <- fs::path(
-    hub_reports_path, "weekly-summaries", reference_date
+    hub_reports_path,
+    "weekly-summaries",
+    reference_date
   )
   output_filename <- paste0(
-    reference_date, "_covid_target_hospital_admissions_data.csv"
+    reference_date,
+    "_covid_target_hospital_admissions_data.csv"
   )
   output_filepath <- fs::path(output_folder_path, output_filename)
   # determine if the output folder exists,
