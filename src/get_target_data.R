@@ -61,7 +61,7 @@ get_truth_data <- function(
   fs::dir_create(output_folder_path)
   message("Directory is ready: ", output_folder_path)
   if (!fs::file_exists(output_filepath)) {
-    readr::write_csv(truth_data, output_filepath)
+    readr::write_csv(covid_data, output_filepath)
     message("File saved as: ", output_filepath)
   } else {
     stop("File already exists: ", output_filepath)
