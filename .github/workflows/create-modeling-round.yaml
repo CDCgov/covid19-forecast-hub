@@ -12,6 +12,8 @@ permissions:
 jobs:
   create-modeling-round:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Generate Installation Token
         id: get_token
