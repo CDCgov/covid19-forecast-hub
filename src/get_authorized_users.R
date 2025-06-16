@@ -11,49 +11,48 @@ yml_files <- list.files(
 
 extract_metadata <- function(file) {
   yml_data <- yaml::yaml.load_file(file)
-  team_abbr <- ifelse(
-    "team_abbr" %in% names(yml_data),
-    yml_data$team_abbr,
+  team_abbr <- if ("team_abbr" %in% names(yml_data)) {
+    yml_data$team_abbr
+  } else {
     NA_character_
-  )
-  model_abbr <- ifelse(
-    "model_abbr" %in% names(yml_data),
-    yml_data$model_abbr,
+  }
+  model_abbr <- if ("model_abbr" %in% names(yml_data)) {
+    yml_data$model_abbr
+  } else {
+    NA_character_
+  }
+  designated_users <- if ("designated_github_users" %in% names(yml_data)) {
+    yml_data$designated_github_users
+  } else {
     NA
-  )
-  designated_user <- ifelse(
-    "designated_github_users" %in% names(yml_data),
-    paste(yml_data$designated_github_users, collapse = ", "),
-    NA
-  )
+  }
 
   return(list(
     team_abbr = team_abbr,
     model_abbr = model_abbr,
-    designated_github_users = designated_user
+    designated_github_users = designated_users
   ))
 }
 
-
 dir.create(output_path, showWarnings = FALSE, recursive = TRUE)
+
 metadata <- purrr::map(yml_files, extract_metadata)
-data_df <- do.call(rbind, lapply(metadata, as.data.frame))
+
+data_df <- tibble::as_tibble(purrr::transpose(metadata))
 
 colnames(data_df) <- c("team_name", "model_name", "designated_users")
 
+data_df$designated_users <- purrr::map(data_df$designated_users, function(x) {
+  if (is.null(x) || all(is.na(x))) NA else I(x)
+})
 
 json_list <- purrr::pmap(
   data_df,
   function(team_name, model_name, designated_users) {
-    users <- if (is.na(designated_users)) {
-      NA
-    } else {
-      I(strsplit(designated_users, "\\s*,\\s*")[[1]])
-    }
-    return(list(
+    list(
       model = paste(team_name, model_name, sep = "-"),
-      authorized_github_users = users
-    ))
+      authorized_github_users = designated_users
+    )
   }
 )
 
