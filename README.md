@@ -7,7 +7,7 @@ This repository is designed to collect forecast data for the COVID-19 Forecast H
 If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
 
 
-## Nowcasts and Forecasts of Confirmed Covid 19 Hospitalizations 
+## Nowcasts and Forecasts of Confirmed COVID-19 Hospital Admissions 
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
 The weekly total COVID-19 admissions counts can be found in the`totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data] (HRD) dataset (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
@@ -17,13 +17,13 @@ NHSN provides a preliminary release of each week's HRD data on Wednesdays [`here
 ## Nowcasts and Forecasts of Covid-19 Emergency Department Visits
 Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilistic nowcasts and forecasts of the percent of emergency department visits due to COVID-19. This new target represents COVID-19 as a percent of emergency department (ED) visits, aggregated by epiweek (Sunday-Saturday) and jurisdiction (states, DC, United States). The numerator is the number of visits with a discharge diagnosis of COVID-19, and the denominator is total visits. This target is optional for any submitted location and forecast horizon.
 
-The weekly percent COVID-19 can be found in the`percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [NSSP Emergency Department Visits - COVID-19, Flu, RSV, Sub-state] dataset. To obtain state-level data, we filter the dataset to include only the rows where the `county` column equal to `All`. 
+The weekly percent COVID-19 can be found in the`percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [Emergency Department Visits - COVID-19, Flu, RSV, Sub-state](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) dataset. To obtain state-level data, we filter the dataset to include only the rows where the `county` column equal to `All`. 
 
-The Wednesday release of this dataset will be available around mid-July on data.cdc.gov. Until then, we will update the dataset every Wednesday in the [auxiliary-data](auxiliary-data/nssp-raw-data/latest.csv) directory of our GitHub repository.
-The Wednesdays' data update contains the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example the most recent data available on the 06/11/2025 release will be for the week ending 06/07/2025.
+The Wednesday release of this dataset will be available around mid-July on data.cdc.gov. Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.csv`](auxiliary-data/nssp-raw-data/latest.csv).
+These Wednesday data update contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
 
 ## Dates and Deadlines 
-The Challenge Period is tentatively scheduled to begin with the epiweek of Sunday, November 17, 2024 with the first Forecast Due Date of November 20, 2024.
+The Challenge Period is rolling.
 
 Participants will be asked to submit nowcasts and forecasts by 11PM USA Eastern Time each Wednesday (the "Forecast Due Date"). If it becomes necessary to change the Forecast Due Date or time deadline, CovidHub will notify participants at least one week in advance. 
 
