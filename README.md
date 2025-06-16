@@ -1,13 +1,26 @@
 # COVID-19 Forecast Hub
-This repository is designed to collect forecast data for the COVID-19 Forecast Hub run by the US CDC. The project collects forecast for the weekly new hospitalizations due to COVID-19. If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
+This repository is designed to collect forecast data for the COVID-19 Forecast Hub run by the US CDC. The project collects forecast for two datasets:
+
+   1. weekly new hospitalizations due to COVID-19, and
+   2. weekly incident percentage of emergency department visits due to COVID-19 (optional, beginning June 18, 2025).
+
+If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
 
 
 ## Nowcasts and Forecasts of Confirmed Covid 19 Hospitalizations 
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
-These weekly total COVID-19 admissions counts can be found in the`totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data] (HRD) dataset (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+The weekly total COVID-19 admissions counts can be found in the`totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data] (HRD) dataset (https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
 NHSN provides a preliminary release of each week's HRD data on Wednesdays [`here`](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data). Official weekly data is released on Fridays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy/about_data). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+
+## Nowcasts and Forecasts of Covid-19 Emergency Department Visits
+Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilistic nowcasts and forecasts of the percent of emergency department visits due to COVID-19. This new target represents COVID-19 as a percent of emergency department (ED) visits, aggregated by epiweek (Sunday-Saturday) and jurisdiction (states, DC, United States). The numerator is the number of visits with a discharge diagnosis of COVID-19, and the denominator is total visits. This target is optional for any submitted location and forecast horizon.
+
+The weekly percent COVID-19 can be found in the`percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [NSSP Emergency Department Visits - COVID-19, Flu, RSV, Sub-state] dataset. To obtain state-level data, we filter the dataset to include only the rows where the `county` column equal to `All`. 
+
+The Wednesday release of this dataset will be available around mid-July on data.cdc.gov. Until then, we will update the dataset every Wednesday in the [auxiliary-data](auxiliary-data/nssp-raw-data/latest.csv) directory of our GitHub repository.
+The Wednesdays' data update contains the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example the most recent data available on the 06/11/2025 release will be for the week ending 06/07/2025.
 
 ## Dates and Deadlines 
 The Challenge Period is tentatively scheduled to begin with the epiweek of Sunday, November 17, 2024 with the first Forecast Due Date of November 20, 2024.
@@ -18,13 +31,15 @@ Weekly submissions (including file names) will be specified in terms of a "refer
 
 ## Prediction Targets and Horizons
 
-Participating teams will be able to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) predictions for two targets.
+Participating teams will be able to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) predictions for following targets.
 
 ### Targets 
-   1. Quantile predictions for epiweekly total laboratory-confirmed COVID-19 hospital admissions. This target is mandatory for any submitted location and forecast horizon.
-   2. Individual forecast trajectories for epiweekly total laboratory-confirmed COVID-19 hospitalizations over time (i.e sampled trajectories). This target is optional for any submitted location.
+   1. Quantile predictions for epiweekly total laboratory-confirmed COVID-19 hospital admissions. 
+   2. Individual forecast trajectories for epiweekly total laboratory-confirmed COVID-19 hospitalizations over time (i.e sampled trajectories). 
+   3. Quantile predictions for epiweekly percent of emergency department visits due to COVID-19. 
+   4. Individual forecast trajectories for epiweekly percent of emergency department visits due to COVID-19 over time (i.e sampled trajectories). 
 
-Teams are encouraged but not required to submit forecasts for all weekly horizons or for all locations. 
+Targets 2, 3 and 4 are optional for any submitted location whereas target 1 (quantile predictions for epiweekly COVID-19 hospital admissions) is mandatory for any submitted location and forecast horizon. Teams are encouraged but not required to submit forecasts for all weekly horizons or for all locations. 
 
 ### Horizons 
 
@@ -33,10 +48,6 @@ Teams can submit nowcasts or forecasts for these targets for the following tempo
 - `horizon = -1`: the epiweek preceding the reference date
 - `horizon = 0`: the current epiweek
 - `horizon = 1, 2, 3`: each of the three upcoming epiweeks
-
-### Target data source
-As noted above, the source of this target data (epiweekly total admissions) will be NHSN; see the [NHSN Hospital Respiratory Reporting](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html) page for data details. This dataset will also serve as the source of "truth data" for retrospective forecast evaluation.
-We also include a CSV file with latest values of incident covid-19 hospitalizations in the [target-data directory](target-data/time-series.csv).
 
 ### Epiweeks
 

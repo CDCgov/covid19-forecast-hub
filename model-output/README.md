@@ -41,12 +41,10 @@ uptake) may change over time.
 
 ## Target Data 
 
-This project treats laboratory-confirmed COVID-19 hospital admissions data reported through CDC's NHSN (National Health Safety Network) system as the target ("gold standard") data for forecasting. The specific forecasting target is epiweekly total incident hospital admissions.
+This project treats laboratory-confirmed COVID-19 hospital admissions data, and percent of emergency department visits due to COVID-19 as the target ("gold standard") data for forecasting. The specific forecasting targets are epiweekly total incident hospital admissions and epiweekly percent of emergency department visits due to COVID-19.
+These data are reported through CDC's NHSN (National Health Safety Network) and NSSP (National Syndromic Surveillance Program) systems
 
-Details on data schemas and endpoints will be updated as information becomes available. 
-
-NHSN's [Hospital Respiratory Reporting](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html) page contains a useful overview of the dataset.
-
+Further information on the data can be found at the NHSN's [Hospital Respiratory Reporting](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html) page and NSSP's [Emergency Department Visit Trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) page.
 
 
 ## Forecast submission formatting 
@@ -144,9 +142,10 @@ This is the date from which all forecasts should be considered. This date is the
 
 ### `target`
 
-Values in the `target` column must be a character (string) and be the following specific target:
+Values in the `target` column must be a character (string) and be either one or both of the following specific target:
 
 -   `wk inc covid hosp`
+-   `wk inc covid prop ed visits`
 
 
 ### `horizon`
