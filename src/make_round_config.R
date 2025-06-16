@@ -1,5 +1,10 @@
 create_new_round <- function(
-    hub_path, ref_date, horizon_range, location, schema_version) {
+  hub_path,
+  ref_date,
+  horizon_range,
+  location,
+  schema_version
+) {
   options(hubAdmin.schema_version = schema_version)
   origin_date <- hubAdmin::create_task_id(
     "reference_date",
@@ -205,7 +210,13 @@ horizon_range <- args$horizon_range
 location <- args$location
 schema_version <- args$schema_version
 
-round <- create_new_round(hub_path, reference_date, horizon_range, location, schema_version)
+round <- create_new_round(
+  hub_path,
+  reference_date,
+  horizon_range,
+  location,
+  schema_version
+)
 
 tasks_config_path <- fs::path(hub_path, "hub-config", "tasks.json")
 
