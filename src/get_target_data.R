@@ -139,7 +139,11 @@ get_target_data <- function(
       location = stringr::str_sub(fips, 1, 2)
     ) |>
     dplyr::mutate(
-      state = forecasttools::us_loc_code_to_abbr(location),
+      state = ifelse(
+        location == "00",
+        "US",
+        forecasttools::us_loc_code_to_abbr(location)
+      ),
       as_of = today,
       target = "wk inc covid prop ed visits"
     ) |>
