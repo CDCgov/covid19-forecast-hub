@@ -1,3 +1,5 @@
+# Run via: Rscript ./src/get_authorized_users.R
+
 hub_path <- "."
 output_path <- "auxiliary-data/"
 
@@ -9,7 +11,11 @@ yml_files <- list.files(
 
 extract_metadata <- function(file) {
   yml_data <- yaml::yaml.load_file(file)
-  team_abbr <- ifelse("team_abbr" %in% names(yml_data), yml_data$team_abbr, NA)
+  team_abbr <- ifelse(
+    "team_abbr" %in% names(yml_data),
+    yml_data$team_abbr,
+    NA_character_
+  )
   model_abbr <- ifelse(
     "model_abbr" %in% names(yml_data),
     yml_data$model_abbr,
@@ -28,12 +34,32 @@ extract_metadata <- function(file) {
   ))
 }
 
-metadata_list <- purrr::map(yml_files, extract_metadata)
-data_df <- do.call(rbind, lapply(metadata_list, as.data.frame))
+
+dir.create(output_path, showWarnings = FALSE, recursive = TRUE)
+metadata <- purrr::map(yml_files, extract_metadata)
+data_df <- do.call(rbind, lapply(metadata, as.data.frame))
+
 colnames(data_df) <- c("team_name", "model_name", "designated_users")
 
-output <- glue::glue(
-  "{data_df$team_name}-{data_df$model_name} {data_df$designated_users}"
+
+json_list <- purrr::pmap(
+  data_df,
+  function(team_name, model_name, designated_users) {
+    users <- if (is.na(designated_users)) {
+      NA
+    } else {
+      I(strsplit(designated_users, "\\s*,\\s*")[[1]])
+    }
+    return(list(
+      model = paste(team_name, model_name, sep = "-"),
+      authorized_github_users = users
+    ))
+  }
 )
 
-writeLines(output, file.path(output_path, "authorized_users.txt"))
+jsonlite::write_json(
+  json_list,
+  path = file.path(output_path, "authorized_users.json"),
+  pretty = TRUE,
+  auto_unbox = TRUE
+)

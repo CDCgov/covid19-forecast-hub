@@ -60,7 +60,7 @@ jobs:
           python .github/scripts/check_users_authorized.py \
             "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" \
             "${{ github.actor }}" \
-            "auxiliary-data/authorized_users.txt"
+            "auxiliary-data/authorized_users.json"
 
       - name: upload validation status
         uses: actions/upload-artifact@v4
