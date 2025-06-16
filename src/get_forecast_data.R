@@ -26,7 +26,6 @@
 #' --base-hub-path "." --hub-reports-path "path/to/covidhub-reports"
 #' --horizons-to-include 0 1 2
 
-
 # set up command line argument parser
 parser <- argparser::arg_parser(
   "Save Forecast Data as CSV."
@@ -65,9 +64,12 @@ horizons_to_include <- as.integer(args$horizons_to_include)
 
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
-invalid_horizons <- horizons_to_include[!sapply(
-  horizons_to_include, function(x) x %in% valid_horizons
-)]
+invalid_horizons <- horizons_to_include[
+  !sapply(
+    horizons_to_include,
+    function(x) x %in% valid_horizons
+  )
+]
 if (length(invalid_horizons) > 0) {
   stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
 }
