@@ -172,7 +172,7 @@ preds_hosp <- make_baseline_forecast(
 
 preds_ed <- make_baseline_forecast(
   target_name = "wk inc covid prop ed visits",
-  target_label = "ED Visits",
+  target_label = "Proportion ED Visits",
   reference_date = reference_date,
   desired_max_time_value = desired_max_time_value,
   target_start_date = target_start_date
