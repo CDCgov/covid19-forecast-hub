@@ -129,21 +129,13 @@ get_target_data <- function(
 
   hubverse_format_nssp_data <- raw_nssp_data |>
     dplyr::filter(county == "All") |>
-    dplyr::rename(
-      observation = percent_visits_covid,
-      date = week_end
+    dplyr::mutate(
+      date = as.Date(week_end),
+      observation = as.numeric(percent_visits_covid) / 100,
+      location = ifelse(fips == "00000", "US", stringr::str_sub(fips, 1, 2))
     ) |>
     dplyr::mutate(
-      date = as.Date(date),
-      observation = as.numeric(observation),
-      location = stringr::str_sub(fips, 1, 2)
-    ) |>
-    dplyr::mutate(
-      state = ifelse(
-        location == "00",
-        "US",
-        forecasttools::us_loc_code_to_abbr(location)
-      ),
+      state = forecasttools::us_loc_code_to_abbr(location),
       as_of = today,
       target = "wk inc covid prop ed visits"
     ) |>
