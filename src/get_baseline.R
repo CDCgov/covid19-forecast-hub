@@ -32,16 +32,12 @@ if (dow_supplied != 7) {
   )
 }
 
-target_tbl <- readr::read_csv(
-  "target-data/time-series.csv",
-  col_types = readr::cols_only(
-    date = readr::col_date(format = ""),
-    location = readr::col_character(),
-    state = readr::col_character(),
-    observation = readr::col_double(),
-    target = readr::col_character()
-  )
-)
+target_tbl <- nanoparquet::read_parquet(
+  "target-data/time-series.parquet",
+  columns = c("date", "location", "state", "observation", "target")
+) |>
+  dplyr::select(date, location, state, observation, target) |>
+  dplyr::mutate(date = as.Date(date))
 
 target_start_date <- min(target_tbl$date)
 
@@ -175,7 +171,7 @@ preds_hosp <- make_baseline_forecast(
 )
 
 preds_ed <- make_baseline_forecast(
-  target_name = "prop ed visits",
+  target_name = "wk inc covid prop ed visits",
   target_label = "ED Visits",
   reference_date = reference_date,
   desired_max_time_value = desired_max_time_value,
