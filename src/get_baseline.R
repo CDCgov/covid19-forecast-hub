@@ -41,11 +41,12 @@ check_data_latency <- function(epi_df, desired_max_time_value, target_label) {
 }
 
 make_baseline_forecast <- function(
-    target_timeseries_path,
-    target_name,
-    target_label,
-    reference_date,
-    desired_max_time_value) {
+  target_timeseries_path,
+  target_name,
+  target_label,
+  reference_date,
+  desired_max_time_value
+) {
   epi_df <- nanoparquet::read_parquet(target_timeseries_path) |>
     dplyr::filter(target == target_name) |>
     dplyr::filter(
