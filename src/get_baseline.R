@@ -1,66 +1,8 @@
 library(epipredict)
 
-parser <- argparser::arg_parser(
-  "Create a flat baseline model for covid-19 hospital admissions"
-)
-parser <- argparser::add_argument(
-  parser,
-  "--reference-date",
-  help = "reference date in YYYY-MM-DD format"
-)
-parser <- argparser::add_argument(
-  parser,
-  "--base-hub-path",
-  type = "character",
-  help = "Path to the Covid19 forecast hub directory."
-)
-
-args <- argparser::parse_args(parser)
-reference_date <- as.Date(args$reference_date)
-base_hub_path <- args$base_hub_path
-
-desired_max_time_value <- reference_date - 7L
-dow_supplied <- lubridate::wday(reference_date, week_start = 7, label = FALSE)
-if (dow_supplied != 7) {
-  cli::cli_abort(
-    message = paste0(
-      "Expected `reference_date` to be a Saturday, day number 7 ",
-      "of the week, given the `week_start` value of Sunday. ",
-      "Got {reference_date}, which is day number ",
-      "{dow_supplied} of the week."
-    )
-  )
-}
-
-target_tbl <- nanoparquet::read_parquet(
-  "target-data/time-series.parquet",
-  columns = c("date", "location", "state", "observation", "target")
-) |>
-  dplyr::select(date, location, state, observation, target) |>
-  dplyr::mutate(date = as.Date(date))
-
-target_start_date <- min(target_tbl$date)
-
-
-make_baseline_forecast <- function(
-  target_name,
-  target_label,
-  reference_date,
-  desired_max_time_value,
-  target_start_date
-) {
-  # filter from time series down to selected target
-  epi_df <- target_tbl |>
-    dplyr::filter(target == target_name) |>
-    dplyr::transmute(
-      geo_value = state,
-      time_value = .data$date,
-      weekly_count = .data$observation
-    ) |>
-    epiprocess::as_epi_df()
-
+check_data_latency <- function(epi_df, desired_max_time_value, target_label) {
   excess_latency_tbl <- epi_df |>
-    tidyr::drop_na(weekly_count) |>
+    tidyr::drop_na(observation) |>
     dplyr::group_by(geo_value) |>
     dplyr::summarize(max_time_value = max(time_value), .groups = "drop") |>
     dplyr::mutate(
@@ -96,6 +38,27 @@ make_baseline_forecast <- function(
       )
     )
   }
+}
+
+make_baseline_forecast <- function(
+    target_timeseries_path,
+    target_name,
+    target_label,
+    reference_date,
+    desired_max_time_value) {
+  epi_df <- nanoparquet::read_parquet(target_timeseries_path) |>
+    dplyr::filter(target == target_name) |>
+    dplyr::filter(
+      as_of == max(as_of)
+    ) |>
+    dplyr::rename(
+      geo_value = state,
+      time_value = date
+    ) |>
+    dplyr::select(-c("as_of", "location", "target")) |>
+    epiprocess::as_epi_df()
+
+  check_data_latency(epi_df, desired_max_time_value, target_label)
 
   rng_seed <- as.integer((59460707 + as.numeric(reference_date)) %% 2e9)
   preds <- withr::with_rng_version(
@@ -104,10 +67,9 @@ make_baseline_forecast <- function(
       fcst <- epipredict::cdc_baseline_forecaster(
         epi_df |>
           dplyr::filter(
-            time_value >= target_start_date &
-              time_value <= desired_max_time_value
+            time_value <= desired_max_time_value
           ),
-        "weekly_count",
+        "observation",
         epipredict::cdc_baseline_args_list(aheads = 1:4, nsims = 1e5)
       )
       # advance forecast_date by a week due to data latency and
@@ -120,29 +82,37 @@ make_baseline_forecast <- function(
         # prepare -1 horizon predictions
         dplyr::bind_rows(
           epi_df |>
-            tidyr::drop_na(weekly_count) |>
+            tidyr::drop_na(observation) |>
             dplyr::slice_max(time_value) |>
             dplyr::transmute(
               forecast_date = reference_date,
               target_date = reference_date - 7L,
               ahead = -1L,
               geo_value,
-              .pred = weekly_count,
-              # get quantiles
-              .pred_distn = epipredict::dist_quantiles(
-                values = purrr::map(
-                  weekly_count,
-                  rep,
-                  length(epipredict::cdc_baseline_args_list()$q_levels)
+              .pred = observation,
+              .pred_distn = hardhat::quantile_pred(
+                values = matrix(
+                  rep(
+                    observation,
+                    each = length(
+                      epipredict::cdc_baseline_args_list()$quantile_levels
+                    )
+                  ),
+                  nrow = length(observation),
+                  ncol = length(
+                    epipredict::cdc_baseline_args_list()$quantile_levels
+                  ),
+                  byrow = TRUE
                 ),
-                q_levels = epipredict::cdc_baseline_args_list()$q_levels
+                quantile_levels =
+                  epipredict::cdc_baseline_args_list()$quantile_levels
               )
             )
         )
     })
   )
 
-  preds |>
+  preds_formatted <- preds |>
     epipredict::flusight_hub_formatter(
       target = target_name,
       output_type = "quantile"
@@ -159,26 +129,62 @@ make_baseline_forecast <- function(
       output_type_id,
       value
     )
-  return(preds)
+  return(preds_formatted)
 }
 
+parser <- argparser::arg_parser(
+  "Create a flat baseline model for covid-19 hospital admissions"
+)
+parser <- argparser::add_argument(
+  parser,
+  "--reference-date",
+  help = "reference date in YYYY-MM-DD format"
+)
+parser <- argparser::add_argument(
+  parser,
+  "--base-hub-path",
+  type = "character",
+  help = "Path to the Covid19 forecast hub directory."
+)
+
+args <- argparser::parse_args(parser)
+reference_date <- as.Date(args$reference_date)
+base_hub_path <- args$base_hub_path
+
+desired_max_time_value <- reference_date - 7L
+dow_supplied <- lubridate::wday(reference_date, week_start = 7, label = FALSE)
+if (dow_supplied != 7) {
+  cli::cli_abort(
+    message = paste0(
+      "Expected `reference_date` to be a Saturday, day number 7 ",
+      "of the week, given the `week_start` value of Sunday. ",
+      "Got {reference_date}, which is day number ",
+      "{dow_supplied} of the week."
+    )
+  )
+}
+
+target_timeseries_path <- fs::path(
+  base_hub_path,
+  "target-data",
+  "time-series.parquet"
+)
+
 preds_hosp <- make_baseline_forecast(
+  target_timeseries_path = target_timeseries_path,
   target_name = "wk inc covid hosp",
   target_label = "Hospital Admissions",
   reference_date = reference_date,
-  desired_max_time_value = desired_max_time_value,
-  target_start_date = target_start_date
+  desired_max_time_value = desired_max_time_value
 )
 
 preds_ed <- make_baseline_forecast(
+  target_timeseries_path = target_timeseries_path,
   target_name = "wk inc covid prop ed visits",
   target_label = "Proportion ED Visits",
   reference_date = reference_date,
-  desired_max_time_value = desired_max_time_value,
-  target_start_date = target_start_date
+  desired_max_time_value = desired_max_time_value
 )
-
-preds_formatted <- dplyr::bind_rows(preds_hosp, preds_ed)
 
 output_dirpath <- fs::path(base_hub_path, "model-output", "CovidHub-baseline")
 if (!fs::dir_exists(output_dirpath)) {
@@ -186,8 +192,8 @@ if (!fs::dir_exists(output_dirpath)) {
 }
 
 readr::write_csv(
-  preds_formatted,
-  file.path(
+  dplyr::bind_rows(preds_hosp, preds_ed),
+  fs::path(
     output_dirpath,
     paste0(as.character(reference_date), "-CovidHub-baseline.csv")
   )
