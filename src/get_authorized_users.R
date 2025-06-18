@@ -2,7 +2,7 @@
 
 hub_path <- "."
 output_path <- fs::path(hub_path, "auxiliary-data")
-metadata_dir   <- fs::path(hub_path, "model-metadata")
+metadata_dir <- fs::path(hub_path, "model-metadata")
 
 fs::dir_create(output_path)
 
