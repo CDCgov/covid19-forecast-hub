@@ -104,8 +104,7 @@ make_baseline_forecast <- function(
                   ),
                   byrow = TRUE
                 ),
-                quantile_levels =
-                  epipredict::cdc_baseline_args_list()$quantile_levels
+                quantile_levels = cdc_baseline_args_list()$quantile_levels
               )
             )
         )
