@@ -1,10 +1,14 @@
 # Run via: Rscript ./src/get_authorized_users.R
 
 hub_path <- "."
-output_path <- "auxiliary-data/"
+output_path <- fs::path(hub_path, "auxiliary-data")
+metadata_dir   <- fs::path(hub_path, "model-metadata")
+
+fs::dir_create(output_path)
+
 
 yml_files <- list.files(
-  file.path(hub_path, "model-metadata"),
+  metadata_dir,
   pattern = "\\.ya?ml$",
   full.names = TRUE
 )
@@ -34,8 +38,6 @@ extract_metadata <- function(file) {
   ))
 }
 
-dir.create(output_path, showWarnings = FALSE, recursive = TRUE)
-
 metadata <- purrr::map(yml_files, extract_metadata)
 
 data_df <- tibble::as_tibble(purrr::transpose(metadata))
@@ -51,11 +53,7 @@ json_list <- purrr::pmap(
   function(team_name, model_name, designated_users) {
     list(
       model = paste(team_name, model_name, sep = "-"),
-      authorized_github_users = if (is.na(designated_users)) {
-        NA
-      } else {
-        designated_users
-      }
+      authorized_github_users = designated_users
     )
   }
 )

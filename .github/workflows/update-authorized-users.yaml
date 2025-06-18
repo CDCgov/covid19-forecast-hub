@@ -32,7 +32,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("yaml", "purrr", "glue", "jsonlite"))
+        install.packages(c("yaml", "purrr", "glue", "jsonlite", "fs", "tibble"))
       shell: Rscript {0}
     
     - name: generate users list
