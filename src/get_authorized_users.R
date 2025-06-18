@@ -21,9 +21,9 @@ extract_metadata <- function(file) {
   } else {
     NA_character_
   }
-      designated_users <- ifelse(
-        "designated_github_users" %in% names(yml_data),
-    paste(yml_data$designated_github_users, collapse = " "),
+  designated_users <- if ("designated_github_users" %in% names(yml_data)) {
+    yml_data$designated_github_users
+  } else {
     NA
   }
 
@@ -51,7 +51,11 @@ json_list <- purrr::pmap(
   function(team_name, model_name, designated_users) {
     list(
       model = paste(team_name, model_name, sep = "-"),
-      authorized_github_users =  if (is.na(designated_users)) NA else designated_users
+      authorized_github_users = if (is.na(designated_users)) {
+        NA
+      } else {
+        designated_users
+      }
     )
   }
 )
