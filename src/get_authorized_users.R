@@ -6,57 +6,26 @@ metadata_dir <- fs::path(hub_path, "model-metadata")
 
 fs::dir_create(output_path)
 
-
 yml_files <- list.files(
   metadata_dir,
   pattern = "\\.ya?ml$",
   full.names = TRUE
 )
 
-extract_metadata <- function(file) {
-  yml_data <- yaml::yaml.load_file(file)
-  team_abbr <- ifelse(
-    "team_abbr" %in% names(yml_data),
-    yml_data$team_abbr,
-    NA_character_
-  )
-  model_abbr <- ifelse(
-    "model_abbr" %in% names(yml_data),
-    yml_data$model_abbr,
-    NA_character_
-  )
-  designated_users <- ifelse(
-    "designated_github_users" %in% names(yml_data),
-    yml_data$designated_github_users,
+json_list <- purrr::map(yml_files, function(file) {
+  y <- yaml::read_yaml(file)
+  team <- if (!is.null(y$team_abbr)) y$team_abbr else NA_character_
+  model <- if (!is.null(y$model_abbr)) y$model_abbr else NA_character_
+  designated_users <- if (!is.null(y$designated_github_users)) {
+    I(y$designated_github_users)
+  } else {
     NA
-  )
-
-  return(list(
-    team_abbr = team_abbr,
-    model_abbr = model_abbr,
-    designated_github_users = designated_users
-  ))
-}
-
-metadata <- purrr::map(yml_files, extract_metadata)
-
-data_df <- tibble::as_tibble(purrr::transpose(metadata))
-
-colnames(data_df) <- c("team_name", "model_name", "designated_users")
-
-data_df$designated_users <- purrr::map(data_df$designated_users, function(x) {
-  if (is.null(x) || all(is.na(x))) NA else I(x)
-})
-
-json_list <- purrr::pmap(
-  data_df,
-  function(team_name, model_name, designated_users) {
-    list(
-      model = paste(team_name, model_name, sep = "-"),
-      authorized_github_users = designated_users
-    )
   }
-)
+  list(
+    model = paste(team, model, sep = "-"),
+    authorized_github_users = designated_users
+  )
+})
 
 jsonlite::write_json(
   json_list,
