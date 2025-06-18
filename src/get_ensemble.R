@@ -81,7 +81,10 @@ current_forecasts <- current_forecasts |>
 
 # QUANTILE ENSEMBLE
 quantile_forecasts <- current_forecasts |>
-  dplyr::filter(output_type == "quantile") |>
+  dplyr::filter(
+    output_type == "quantile",
+    target == "wk inc covid hosp"
+  ) |>
   # ensure quantiles are handled accurately even with leading/trailing zeros
   dplyr::mutate(output_type_id = as.factor(as.numeric(output_type_id)))
 
