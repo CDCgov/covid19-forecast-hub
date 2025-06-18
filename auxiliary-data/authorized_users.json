@@ -4,6 +4,10 @@
     "authorized_github_users": ["paulocv"]
   },
   {
+    "model": "CFA_Pyrenew-Pyrenew_E_COVID",
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+  },
+  {
     "model": "CFA_Pyrenew-Pyrenew_H_COVID",
     "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
   },
