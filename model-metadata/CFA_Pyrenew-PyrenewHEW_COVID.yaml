@@ -40,7 +40,7 @@ license: "CC-BY-4.0"
 designated_model: false
 methods: "Renewal model using the Pyrenew-HEW framework fit jointly to three epidemiological signals: hospital admissions, emergency department visits and wastewater virus genome concentrations."
 data_inputs: "Epiweekly incident COVID-19 hospital admissions from NHSN HRD via data.cdc.gov.  Daily incident COVID-19 emergency department visits via the National Syndromic Surveillance Program (NSSP). Wastewater virus genome concentration measurements via the National Wastewater Surveillance System (NWSS)."
-methods_long: "Renewal model fit to three signals and used to forecast the target (NHSN HRD) signal."
+methods_long: "Renewal model fit to three signals and used to forecast the targets: NHSN hospital admissions counts and NSSP proportion ed visits signal."
 website_url: "https://github.com/cdcgov/pyrenew-hew"
 repo_url: "https://github.com/cdcgov/pyrenew-hew"
 ensemble_of_models: false
