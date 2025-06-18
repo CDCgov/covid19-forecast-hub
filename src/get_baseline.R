@@ -1,6 +1,11 @@
 library(epipredict)
 
-check_data_latency <- function(epi_df, desired_max_time_value, target_label) {
+check_data_latency <- function(
+  epi_df,
+  reference_date,
+  desired_max_time_value,
+  target_label
+) {
   excess_latency_tbl <- epi_df |>
     tidyr::drop_na(observation) |>
     dplyr::group_by(geo_value) |>
@@ -59,7 +64,12 @@ make_baseline_forecast <- function(
     dplyr::select(-c("as_of", "location", "target")) |>
     epiprocess::as_epi_df()
 
-  check_data_latency(epi_df, desired_max_time_value, target_label)
+  check_data_latency(
+    epi_df,
+    reference_date,
+    desired_max_time_value,
+    target_label
+  )
 
   rng_seed <- as.integer((59460707 + as.numeric(reference_date)) %% 2e9)
   preds <- withr::with_rng_version(
@@ -105,7 +115,7 @@ make_baseline_forecast <- function(
                   ),
                   byrow = TRUE
                 ),
-                quantile_levels = cdc_baseline_args_list()$quantile_levels
+                quantile_levels = epipredict::cdc_baseline_args_list()$quantile_levels # nolint
               )
             )
         )
