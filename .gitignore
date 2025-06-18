@@ -12,11 +12,11 @@ renv.lock
 
 /test/
 
-model-metadata/README_files/
-model-output/README_files/
-hub-config/README_files/
-/README_files/
+**/README_files/
 /DISCLAIMER_files/
 *.html
 
 *.pdf
+
+eval-output
+.vscode/
