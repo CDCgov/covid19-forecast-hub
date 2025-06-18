@@ -84,24 +84,6 @@ get_target_data <- function(
     start_date = first_full_weekending_date
   )
 
-  historical_format_nhsn_data <- raw_nhsn_data |>
-    dplyr::rename(
-      value = totalconfc19newadm,
-      date = weekendingdate,
-      state = jurisdiction
-    ) |>
-    dplyr::mutate(
-      date = as.Date(date),
-      value = as.numeric(value),
-      state = stringr::str_replace(state, "USA", "US")
-    ) |>
-    dplyr::filter(!stringr::str_detect(state, "Region")) |>
-    dplyr::mutate(location = forecasttools::us_loc_abbr_to_code(state)) |>
-    dplyr::filter(!(location %in% excluded_locations)) |>
-    readr::write_csv(
-      fs::path(output_dirpath, "covid-hospital-admissions.csv")
-    )
-
   output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
   hubverse_format_nhsn_data <- raw_nhsn_data |>
     dplyr::rename(
@@ -121,6 +103,15 @@ get_target_data <- function(
       target = "wk inc covid hosp"
     ) |>
     dplyr::filter(!(location %in% excluded_locations))
+
+  hubverse_format_nhsn_data |>
+    dplyr::rename(
+      value = observation
+    ) |>
+    dplyr::select(-c(as_of, target)) |>
+    readr::write_csv(
+      fs::path(output_dirpath, "covid-hospital-admissions.csv")
+    )
 
   raw_nssp_data <- readr::read_csv(
     fs::path(base_hub_path, "auxiliary-data", "nssp-raw-data", "latest.csv"),
