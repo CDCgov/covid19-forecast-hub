@@ -15,21 +15,21 @@ yml_files <- list.files(
 
 extract_metadata <- function(file) {
   yml_data <- yaml::yaml.load_file(file)
-  team_abbr <- if ("team_abbr" %in% names(yml_data)) {
-    yml_data$team_abbr
-  } else {
+  team_abbr <- ifelse(
+    "team_abbr" %in% names(yml_data),
+    yml_data$team_abbr,
     NA_character_
-  }
-  model_abbr <- if ("model_abbr" %in% names(yml_data)) {
-    yml_data$model_abbr
-  } else {
+  )
+  model_abbr <- ifelse(
+    "model_abbr" %in% names(yml_data),
+    yml_data$model_abbr,
     NA_character_
-  }
-  designated_users <- if ("designated_github_users" %in% names(yml_data)) {
-    yml_data$designated_github_users
-  } else {
+  )
+  designated_users <- ifelse(
+    "designated_github_users" %in% names(yml_data),
+    yml_data$designated_github_users,
     NA
-  }
+  )
 
   return(list(
     team_abbr = team_abbr,
