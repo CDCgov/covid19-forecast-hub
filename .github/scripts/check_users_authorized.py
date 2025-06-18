@@ -1,18 +1,22 @@
 import argparse
+import json
 import sys
 from pathlib import Path
 
 
 def get_authorized_dirs_and_users(authorized_users_path: Path) -> dict:
-    with open(authorized_users_path, "r") as f:
-        dir_users_map = {
-            line.split(maxsplit=1)[0].strip(): line.split(maxsplit=1)[1]
-            .strip()
-            .split(", ")
-            for line in f
-            if line.strip()
+    if authorized_users_path.suffix.lower() != ".json":
+        return {}
+    try:
+        with open(authorized_users_path, "r") as f:
+            auth_data = json.load(f)
+        return {
+            entry["model"]: entry["authorized_github_users"]
+            for entry in auth_data
         }
-    return dir_users_map
+    except Exception as e:
+        print(f"Error reading JSON: {e}")
+        return {}
 
 
 def main(
@@ -22,6 +26,10 @@ def main(
 ) -> None:
     dir_users_map = get_authorized_dirs_and_users(authorized_users_path)
 
+    if not dir_users_map:
+        print(f"Error: could not load user data from {authorized_users_path}")
+        sys.exit(1)
+
     for dir in changed_dirs:
         # verify changed directory is in the authorized list
         if dir not in dir_users_map:
@@ -30,7 +38,7 @@ def main(
 
         # verify the user is authorized to modify the changed directories
         user_list = dir_users_map[dir]
-        if user_list == ["NA"]:
+        if user_list is None:
             print(
                 f"Error: Changes found in '{dir}/', but no authorized users listed."
             )

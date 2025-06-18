@@ -32,7 +32,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("yaml", "purrr", "glue"))
+        install.packages(c("yaml", "purrr", "glue", "jsonlite"))
       shell: Rscript {0}
     
     - name: generate users list
@@ -42,7 +42,7 @@ jobs:
     - name: Check for Changes
       id: check_diff
       run: |
-        git diff --exit-code auxiliary-data/authorized_users.txt || { echo "changed=true" | tee -a $GITHUB_ENV; }
+        git diff --exit-code auxiliary-data/authorized_users.json || { echo "changed=true" | tee -a $GITHUB_ENV; }
 
     - name: Commit changes
       if: env.changed == 'true'
