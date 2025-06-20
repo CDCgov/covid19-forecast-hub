@@ -98,11 +98,13 @@ if (fs::file_exists(exclude_data_path_toml)) {
     current_forecasts <- hub_content |>
       dplyr::filter(reference_date == as.Date(!!ref_date)) |>
       dplyr::filter(!(location %in% excluded_locations)) |>
+      dplyr::filter(target == "wk inc covid hosp") |>
       hubData::collect_hub()
   } else {
     message("No exclusions for reference date: ", ref_date)
     current_forecasts <- hub_content |>
       dplyr::filter(reference_date == as.Date(!!ref_date)) |>
+      dplyr::filter(target == "wk inc covid hosp") |>
       hubData::collect_hub()
   }
 } else {
