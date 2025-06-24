@@ -127,60 +127,55 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
-    location_name = forecasttools::location_lookup(
-      location,
-      location_input_format = "hub",
-      location_output_format = "long_name"
-    ),
-    abbreviation = forecasttools::us_loc_code_to_abbr(location),
+    location_name = forecasttools::us_location_recode(.data$location, "hub", "name"),
+    abbreviation = forecasttools::us_location_recode(.data$location, "hub", "abbr"),
     # round the quantiles to nearest integer
     # for rounded versions
     dplyr::across(
-      dplyr::starts_with("quantile_"),
+      tidyselect::starts_with("quantile_"),
       round,
       .names = "{.col}_rounded"
     ),
-    forecast_due_date = as.Date(ref_date) - 3,
-    location_sort_order = ifelse(location_name == "United States", 0, 1)
+    forecast_due_date = as.Date(!!ref_date) - 3,
+    location_sort_order = ifelse(.data$location_name == "United States", 0, 1)
   ) |>
   # long name "United States" to "US"
   dplyr::mutate(
-    location_name = dplyr::if_else(
-      location_name == "United States",
-      "US",
-      location_name
+    location_name = dplyr::case_match(
+      .data$location_name,
+      "United States" ~ "US",
+      .default = .data$location_name
     )
   ) |>
-  dplyr::arrange(location_sort_order, location_name) |>
+  dplyr::arrange(.data$location_sort_order, .data$location_name) |>
   dplyr::left_join(
     dplyr::distinct(
       model_metadata,
-      model_id,
+      .data$model_id,
       .keep_all = TRUE
     ), # duplicate model_ids
-    model_metadata,
     by = "model_id"
   ) |>
   dplyr::select(
-    location_name,
-    abbreviation,
-    horizon,
-    forecast_date = reference_date,
-    target_end_date,
-    model = model_id,
-    quantile_0.025,
-    quantile_0.25,
-    quantile_0.5,
-    quantile_0.75,
-    quantile_0.975,
-    quantile_0.025_rounded,
-    quantile_0.25_rounded,
-    quantile_0.5_rounded,
-    quantile_0.75_rounded,
-    quantile_0.975_rounded,
-    forecast_team = team_name,
-    forecast_due_date,
-    model_full_name = model_name
+    "location_name",
+    "abbreviation",
+    "horizon",
+    forecast_date = "reference_date",
+    "target_end_date",
+    "model = model_id",
+    "quantile_0.025",
+    "quantile_0.25",
+    "quantile_0.5",
+    "quantile_0.75",
+    "quantile_0.975",
+    "quantile_0.025_rounded",
+    "quantile_0.25_rounded",
+    "quantile_0.5_rounded",
+    "quantile_0.75_rounded",
+    "quantile_0.975_rounded",
+    forecast_team = "team_name",
+    "forecast_due_date",
+    model_full_name = "model_name"
   )
 
 # output folder and file paths for All Forecasts
