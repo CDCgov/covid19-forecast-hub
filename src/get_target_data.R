@@ -32,7 +32,7 @@ get_truth_data <- function(
       )
     ) |>
     # exclude certain territories
-    dplyr::filter(!(location %in% !!excluded_locations)) |>
+    dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
     # long name "United States" to "US"
     dplyr::mutate(
       location_name = dplyr::if_else(
