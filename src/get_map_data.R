@@ -206,7 +206,10 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # location names
   dplyr::mutate(
     location = forecasttools::us_location_recode(
-      .data$location, "hub", "name")
+      .data$location,
+      "hub",
+      "name"
+    )
   ) |>
   # long name "United States" to "US"
   dplyr::mutate(

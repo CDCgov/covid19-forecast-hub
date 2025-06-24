@@ -127,8 +127,16 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
-    location_name = forecasttools::us_location_recode(.data$location, "hub", "name"),
-    abbreviation = forecasttools::us_location_recode(.data$location, "hub", "abbr"),
+    location_name = forecasttools::us_location_recode(
+      .data$location,
+      "hub",
+      "name"
+    ),
+    abbreviation = forecasttools::us_location_recode(
+      .data$location,
+      "hub",
+      "abbr"
+    ),
     # round the quantiles to nearest integer
     # for rounded versions
     dplyr::across(

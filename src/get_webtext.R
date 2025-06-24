@@ -107,9 +107,21 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
     report_above_80_lgl = as.logical(
       as.numeric(.data$totalconfc19newadmperchosprepabove80pct)
     ),
-    jurisdiction = dplyr::case_match(.data$jurisdiction, "USA" ~ "US", .default = .data$jurisdiction),
-    location = forecasttools::us_location_recode(.data$jurisdiction, "abbr", "code"),
-    location_name = forecasttools::us_location_recode(.data$jurisdiction, "abbr", "name")
+    jurisdiction = dplyr::case_match(
+      .data$jurisdiction,
+      "USA" ~ "US",
+      .default = .data$jurisdiction
+    ),
+    location = forecasttools::us_location_recode(
+      .data$jurisdiction,
+      "abbr",
+      "code"
+    ),
+    location_name = forecasttools::us_location_recode(
+      .data$jurisdiction,
+      "abbr",
+      "name"
+    )
   ) |>
   dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
   dplyr::group_by(.data$jurisdiction) |>

@@ -25,7 +25,11 @@ get_truth_data <- function(
     dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
       location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
-      location_name = forecasttools::us_location_recode(.data$state, "abbr", "name")
+      location_name = forecasttools::us_location_recode(
+        .data$state,
+        "abbr",
+        "name"
+      )
     ) |>
     # exclude certain territories
     dplyr::filter(!(location %in% !!excluded_locations)) |>
@@ -110,7 +114,13 @@ get_target_data <- function(
     )
 
   raw_nssp_data <- readr::read_csv(
-    fs::path(base_hub_path, "auxiliary-data", "nssp-raw-data", "latest", ext = "csv"),
+    fs::path(
+      base_hub_path,
+      "auxiliary-data",
+      "nssp-raw-data",
+      "latest",
+      ext = "csv"
+    ),
     show_col_types = FALSE
   )
 
@@ -119,7 +129,11 @@ get_target_data <- function(
     dplyr::mutate(
       date = as.Date(.data$week_end),
       observation = as.numeric(.data$percent_visits_covid) / 100,
-      location = ifelse(.data$fips == "00000", "US", stringr::str_sub(.data$fips, 1, 2))
+      location = ifelse(
+        .data$fips == "00000",
+        "US",
+        stringr::str_sub(.data$fips, 1, 2)
+      )
     ) |>
     dplyr::mutate(
       state = forecasttools::us_location_recode(.data$location, "code", "abbr"),
