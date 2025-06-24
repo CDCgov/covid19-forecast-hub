@@ -198,9 +198,9 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # ref date is the first week in season
   dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
   dplyr::mutate(
-    reference_date = as.Date(!!reference_date),
-    target_end_date = as.Date(!!target_end_date),
-    model = !!model_name
+    reference_date = as.Date(.data$reference_date),
+    target_end_date = as.Date(.data$target_end_date),
+    model = .data$model_name
   ) |>
   # convert location column codes to full
   # location names
