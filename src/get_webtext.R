@@ -90,7 +90,8 @@ desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
 exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
-  "excluded_territories.toml"
+  "excluded_territories",
+  ext = "toml"
 )
 stopifnot(fs::file_exists(exclude_territories_path))
 exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
@@ -102,25 +103,21 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   start_date = "2024-11-09"
 ) |>
   dplyr::mutate(
-    weekendingdate = as.Date(weekendingdate),
+    weekendingdate = as.Date(.data$weekendingdate),
     report_above_80_lgl = as.logical(
-      as.numeric(totalconfc19newadmperchosprepabove80pct)
+      as.numeric(.data$totalconfc19newadmperchosprepabove80pct)
     ),
-    jurisdiction = stringr::str_replace(jurisdiction, "USA", "US"),
-    location = forecasttools::us_loc_abbr_to_code(jurisdiction),
-    location_name = forecasttools::location_lookup(
-      jurisdiction,
-      location_input_format = "abbr",
-      location_output_format = "long_name"
-    )
+    jurisdiction = dplyr::case_match(.data$jurisdiction, "USA" ~ "US", .default = .data$jurisdiction),
+    location = forecasttools::us_location_recode(.data$jurisdiction, "abbr", "code"),
+    location_name = forecasttools::us_location_recode(.data$jurisdiction, "abbr", "name")
   ) |>
-  dplyr::filter(!(location %in% !!excluded_locations)) |>
-  dplyr::group_by(jurisdiction) |>
-  dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
+  dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
+  dplyr::group_by(.data$jurisdiction) |>
+  dplyr::mutate(max_weekendingdate = max(.data$weekendingdate)) |>
   dplyr::ungroup()
 
 jurisdiction_w_latency <- percent_hosp_reporting_below80 |>
-  dplyr::filter(max_weekendingdate < desired_weekendingdate)
+  dplyr::filter(.data$max_weekendingdate < !!desired_weekendingdate)
 
 if (nrow(jurisdiction_w_latency) > 0) {
   cli::cli_warn(
@@ -136,8 +133,8 @@ if (nrow(jurisdiction_w_latency) > 0) {
 
 latest_reporting_below80 <- percent_hosp_reporting_below80 |>
   dplyr::filter(
-    weekendingdate == max(weekendingdate),
-    !report_above_80_lgl
+    .data$weekendingdate == max(.data$weekendingdate),
+    !.data$report_above_80_lgl
   )
 
 reporting_rate_flag <- if (length(latest_reporting_below80$location_name) > 0) {
@@ -164,11 +161,11 @@ reporting_rate_flag <- if (length(latest_reporting_below80$location_name) > 0) {
 
 format_statistical_values <- function(median, pi_lower, pi_upper) {
   half_width <- abs(pi_upper - pi_lower) / 2
-  place_value <- floor(log10(half_width))
+  digits <- -floor(log10(half_width))
   c(
-    median = round(median, digits = -place_value),
-    lower = round(pi_lower, digits = -place_value),
-    upper = round(pi_upper, digits = -place_value)
+    median = round(median, digits = digits),
+    lower = round(pi_lower, digits = digits),
+    upper = round(pi_upper, digits = digits)
   )
 }
 
