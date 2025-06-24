@@ -170,7 +170,7 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
     "horizon",
     forecast_date = "reference_date",
     "target_end_date",
-    "model = model_id",
+    model = "model_id",
     "quantile_0.025",
     "quantile_0.25",
     "quantile_0.5",
