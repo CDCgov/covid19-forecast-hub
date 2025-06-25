@@ -136,7 +136,8 @@ get_target_data <- function(
       )
     ) |>
     dplyr::mutate(
-      state = forecasttools::us_location_recode(.data$location, "code", "abbr"),
+      state = forecasttools::us_location_recode(.data$geography, "name", "abbr"),
+      location = forecasttools::us_location_recode(.data$geography, "name", "code"),
       as_of = !!today,
       target = "wk inc covid prop ed visits"
     ) |>
