@@ -52,7 +52,7 @@ as_of_max <-
   ))
 ```
 
-Find any tine where `as_of` was not a Wednesday or the difference
+Find any time where `as_of` was not a Wednesday or the difference
 between `as_of` and `max_date` was not 4 days:
 
 ``` r
@@ -116,7 +116,7 @@ as_of_max_fixed <-
   ))
 ```
 
-Find any tine where `as_of` was not a Wednesday or the difference
+Find any time where `as_of` was not a Wednesday or the difference
 between `as_of` and `max_date` was not 4 days:
 
 ``` r
