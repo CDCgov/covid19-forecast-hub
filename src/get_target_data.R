@@ -35,10 +35,10 @@ get_truth_data <- function(
     dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
     # long name "United States" to "US"
     dplyr::mutate(
-      location_name = dplyr::if_else(
-        .data$location_name == "United States",
-        "US",
-        .data$location_name
+      location_name = dplyr::case_match(
+        .data$location_name,
+        "United States" ~ "US",
+        .default = .data$location_name
       )
     ) |>
     dplyr::select(
@@ -131,8 +131,16 @@ get_target_data <- function(
       observation = as.numeric(.data$percent_visits_covid) / 100,
     ) |>
     dplyr::mutate(
-      state = forecasttools::us_location_recode(.data$geography, "name", "abbr"),
-      location = forecasttools::us_location_recode(.data$geography, "name", "code"),
+      state = forecasttools::us_location_recode(
+        .data$geography,
+        "name",
+        "abbr"
+      ),
+      location = forecasttools::us_location_recode(
+        .data$geography,
+        "name",
+        "code"
+      ),
       as_of = !!today,
       target = "wk inc covid prop ed visits"
     ) |>
