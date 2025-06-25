@@ -38,7 +38,7 @@ as_of_max |> filter(date_diff != 4 | as_of_wday != "Wed")
 
 We should remove all the other dates.
 
-`2024-11-22` and `2024-11-18` will be reeoved becasue we have `as_of` `2024-11-20`:
+`2024-11-22` and `2024-11-18` will be removed becasue we have `as_of` `2024-11-20`:
 
 ```{r}
 as_of_max |> filter(as_of <= "2024-11-22")

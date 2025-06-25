@@ -72,7 +72,7 @@ holidays.
 
 We should remove all the other dates.
 
-`2024-11-22` and `2024-11-18` will be reeoved becasue we have `as_of`
+`2024-11-22` and `2024-11-18` will be removed becasue we have `as_of`
 `2024-11-20`:
 
 ``` r
