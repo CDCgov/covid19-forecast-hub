@@ -9,43 +9,43 @@ get_truth_data <- function(
     columns = c("totalconfc19newadm"),
   ) |>
     dplyr::rename(
-      value = totalconfc19newadm,
-      date = weekendingdate,
-      state = jurisdiction
+      value = "totalconfc19newadm",
+      date = "weekendingdate",
+      state = "jurisdiction"
     ) |>
     dplyr::mutate(
-      date = as.Date(date),
-      value = as.numeric(value),
+      date = as.Date(.data$date),
+      value = as.numeric(.data$value),
       state = stringr::str_replace(
-        state,
+        .data$state,
         "USA",
         "US"
       )
     ) |>
-    dplyr::filter(!stringr::str_detect(state, "Region")) |>
+    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
-      location = forecasttools::us_loc_abbr_to_code(state),
-      location_name = forecasttools::location_lookup(
-        location,
-        location_input_format = "hub",
-        location_output_format = "long_name"
+      location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
+      location_name = forecasttools::us_location_recode(
+        .data$state,
+        "abbr",
+        "name"
       )
     ) |>
     # exclude certain territories
-    dplyr::filter(!(location %in% excluded_locations)) |>
+    dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
     # long name "United States" to "US"
     dplyr::mutate(
-      location_name = dplyr::if_else(
-        location_name == "United States",
-        "US",
-        location_name
+      location_name = dplyr::case_match(
+        .data$location_name,
+        "United States" ~ "US",
+        .default = .data$location_name
       )
     ) |>
     dplyr::select(
-      week_ending_date = date,
-      location,
-      location_name,
-      value
+      week_ending_date = "date",
+      "location",
+      "location_name",
+      "value"
     )
   # output folder and file paths for Truth Data
   output_folder_path <- fs::path(
@@ -55,9 +55,9 @@ get_truth_data <- function(
   )
   output_filename <- paste0(
     reference_date,
-    "_covid_target_hospital_admissions_data.csv"
+    "_covid_target_hospital_admissions_data"
   )
-  output_filepath <- fs::path(output_folder_path, output_filename)
+  output_filepath <- fs::path(output_folder_path, output_filename, ext = "csv")
   fs::dir_create(output_folder_path)
   message("Directory is ready: ", output_folder_path)
   if (!fs::file_exists(output_filepath)) {
@@ -87,61 +87,75 @@ get_target_data <- function(
   output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
   hubverse_format_nhsn_data <- raw_nhsn_data |>
     dplyr::rename(
-      observation = totalconfc19newadm,
-      date = weekendingdate,
-      state = jurisdiction
+      observation = "totalconfc19newadm",
+      date = "weekendingdate",
+      state = "jurisdiction"
     ) |>
     dplyr::mutate(
-      date = as.Date(date),
-      observation = as.numeric(observation),
-      state = stringr::str_replace(state, "USA", "US")
+      date = as.Date(.data$date),
+      observation = as.numeric(.data$observation),
+      state = stringr::str_replace(.data$state, "USA", "US")
     ) |>
-    dplyr::filter(!stringr::str_detect(state, "Region")) |>
+    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
-      location = forecasttools::us_loc_abbr_to_code(state),
-      as_of = today,
+      location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
+      as_of = !!today,
       target = "wk inc covid hosp"
     ) |>
-    dplyr::filter(!(location %in% excluded_locations))
+    dplyr::filter(!(location %in% !!excluded_locations))
 
   hubverse_format_nhsn_data |>
     dplyr::rename(
       value = observation
     ) |>
-    dplyr::select(-c(as_of, target)) |>
+    dplyr::select(-c("as_of", "target")) |>
     readr::write_csv(
       fs::path(output_dirpath, "covid-hospital-admissions.csv")
     )
 
   raw_nssp_data <- readr::read_csv(
-    fs::path(base_hub_path, "auxiliary-data", "nssp-raw-data", "latest.csv"),
+    fs::path(
+      base_hub_path,
+      "auxiliary-data",
+      "nssp-raw-data",
+      "latest",
+      ext = "csv"
+    ),
     show_col_types = FALSE
   )
 
   hubverse_format_nssp_data <- raw_nssp_data |>
     dplyr::filter(county == "All") |>
     dplyr::mutate(
-      date = as.Date(week_end),
-      observation = as.numeric(percent_visits_covid) / 100,
-      location = ifelse(fips == "00000", "US", stringr::str_sub(fips, 1, 2))
+      date = as.Date(.data$week_end),
+      observation = as.numeric(.data$percent_visits_covid) / 100,
     ) |>
     dplyr::mutate(
-      state = forecasttools::us_loc_code_to_abbr(location),
-      as_of = today,
+      state = forecasttools::us_location_recode(
+        .data$geography,
+        "name",
+        "abbr"
+      ),
+      location = forecasttools::us_location_recode(
+        .data$geography,
+        "name",
+        "code"
+      ),
+      as_of = !!today,
       target = "wk inc covid prop ed visits"
     ) |>
     dplyr::select(
-      date,
-      state,
-      observation,
-      location,
-      as_of,
-      target
+      "date",
+      "state",
+      "observation",
+      "location",
+      "as_of",
+      "target"
     )
 
-  nanoparquet::read_parquet(output_file) |>
+  forecasttools::read_tabular_file(output_file) |>
     dplyr::bind_rows(hubverse_format_nhsn_data, hubverse_format_nssp_data) |>
-    nanoparquet::write_parquet(output_file)
+    forecasttools::write_tabular_file(output_file)
 }
 
 
