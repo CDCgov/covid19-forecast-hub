@@ -129,11 +129,6 @@ get_target_data <- function(
     dplyr::mutate(
       date = as.Date(.data$week_end),
       observation = as.numeric(.data$percent_visits_covid) / 100,
-      location = ifelse(
-        .data$fips == "00000",
-        "US",
-        stringr::str_sub(.data$fips, 1, 2)
-      )
     ) |>
     dplyr::mutate(
       state = forecasttools::us_location_recode(.data$geography, "name", "abbr"),
