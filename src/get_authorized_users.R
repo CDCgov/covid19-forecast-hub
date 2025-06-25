@@ -12,7 +12,7 @@ yml_files <- list.files(
   full.names = TRUE
 )
 
-json_list <- purrr::map(yml_files, function(file) {
+json_list <- purrr::map(yml_files, \(file) {
   y <- yaml::read_yaml(file)
   team <- if (!is.null(y$team_abbr)) y$team_abbr else NA_character_
   model <- if (!is.null(y$model_abbr)) y$model_abbr else NA_character_
