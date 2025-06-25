@@ -1,0 +1,85 @@
+---
+title: "Covidhub archive cleanup"
+format: 
+   gfm:
+     df-print: kable
+---
+
+```{r}
+library(fs)
+library(tidyverse)
+library(arrow)
+
+ts_path <- path("target-data", "time-series", ext = "parquet")
+hub_dat <- read_parquet(ts_path)
+```
+
+## Investigation
+```{r}
+as_of_max <-
+  hub_dat |>
+  group_by(as_of) |>
+  summarize(max_date = max(date)) |>
+  mutate(date_diff = as_of - max_date) |>
+  mutate(across(
+    where(is.Date),
+    \(x) lubridate::wday(x, label = TRUE),
+    .names = "{.col}_wday"
+  ))
+```
+
+Find any tine where `as_of` was not a Wednesday or the difference between `as_of` and `max_date` was not 4 days:
+```{r}
+as_of_max |> filter(date_diff != 4 | as_of_wday != "Wed")
+```
+
+
+`as_of` `2024-12-26` and `2025-01-02` are fine because they are holidays.
+
+We should remove all the other dates.
+
+`2024-11-22` and `2024-11-18` will be reeoved becasue we have `as_of` `2024-11-20`:
+
+```{r}
+as_of_max |> filter(as_of <= "2024-11-22")
+```
+
+
+`as_of` `2025-01-27` will be removed because there was no update `2025-01-22` and we did not accept forecasts on that date:
+
+
+```{r}
+as_of_max |> filter("2025-01-20" <= as_of, as_of <= "2025-01-27")
+```
+
+
+## Fix
+```{r}
+hub_dat_fixed <- hub_dat |>
+  filter(!(as_of %in% c("2024-11-18", "2024-11-22", "2025-01-27")))
+```
+
+
+```{r}
+as_of_max_fixed <-
+  hub_dat_fixed |>
+  group_by(as_of) |>
+  summarize(max_date = max(date)) |>
+  mutate(date_diff = as_of - max_date) |>
+  mutate(across(
+    where(is.Date),
+    \(x) lubridate::wday(x, label = TRUE),
+    .names = "{.col}_wday"
+  ))
+```
+
+Find any tine where `as_of` was not a Wednesday or the difference between `as_of` and `max_date` was not 4 days:
+```{r}
+as_of_max_fixed |> filter(date_diff != 4 | as_of_wday != "Wed")
+```
+
+Looks good.
+
+```{r}
+write_parquet(hub_dat_fixed, ts_path)
+```
