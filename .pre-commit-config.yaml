@@ -46,7 +46,7 @@ repos:
 # R
 ###############################################################################
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9011
+    rev: v0.4.3.9012
     hooks:
     -   id: lintr
         files: \.R$|\.Rmd$
@@ -63,7 +63,7 @@ repos:
 # PYTHON
 ###############################################################################
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.1
+    rev: v0.12.2
     hooks:
     -   id: ruff
         args: ["check", "--select", "I", "--fix"]
