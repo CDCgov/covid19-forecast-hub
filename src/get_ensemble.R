@@ -44,21 +44,24 @@ if (!fs::dir_exists(output_dirpath)) {
 }
 
 # Get current forecasts from the hub, excluding baseline and ensembles
-hub_content <- hubData::connect_hub(base_hub_path)
-current_forecasts <- hub_content |>
+current_forecasts <- hubData::connect_hub(base_hub_path) |>
   dplyr::filter(
     reference_date == !!reference_date,
     !str_detect(model_id, "CovidHub")
   ) |>
   hubData::collect_hub()
 
-list_model_id_current <- unique(current_forecasts$model_id)
 weekly_models <- hubData::load_model_metadata(
   base_hub_path,
-  model_ids = list_model_id_current
+  model_ids = unique(current_forecasts$model_id)
 ) |>
-  dplyr::distinct(.data$model_id, .data$designated_model) |>
-  dplyr::select(Model = "model_id", Designated_Model = "designated_model")
+  dplyr::select(model_id, designated_model) |>
+  dplyr::distinct() |>
+  dplyr::right_join(
+    (current_forecasts |> dplyr::select(model_id, target) |> dplyr::distinct()),
+    by = "model_id"
+  ) |>
+  dplyr::arrange(target)
 
 write.csv(
   weekly_models,
@@ -74,8 +77,9 @@ write.csv(
   row.names = FALSE
 )
 
-eligible_models <- weekly_models |> dplyr::filter(.data$Designated_Model)
-models <- eligible_models$Model
+eligible_models <- weekly_models |>
+  dplyr::filter(.data$designated_model, .data$target == "wk inc covid hosp")
+models <- eligible_models$model_id
 current_forecasts <- current_forecasts |>
   dplyr::filter(model_id %in% models)
 
