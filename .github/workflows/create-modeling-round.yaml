@@ -1,8 +1,8 @@
 name: Create new modeling round
 
 on:
-  schedule:
-    - cron: "0 10 * * 1"  # Monday mornings
+  # schedule:
+  #  - cron: "0 10 * * 1"  # Monday mornings
   workflow_dispatch:
 
 permissions:
@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   create-modeling-round:
+    if: false  # this disables the job
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -40,7 +41,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libcurl4-openssl-dev
-        
+
       - name: Install dependencies
         run: |
           install.packages(c("lubridate", "argparser", "remotes", "cli", "hubUtils"))
@@ -54,12 +55,12 @@ jobs:
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
-        with: 
+        with:
           message: "Add a new modeling round"
           default_author: github_actions
           push: true
           new_branch: add-round
-    
+
       - name: Create pull request
         id: create_pr
         run: |
