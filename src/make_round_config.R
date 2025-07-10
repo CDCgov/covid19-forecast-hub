@@ -14,7 +14,8 @@ get_reference_dates <- function(start_date, end_date, weekday = "Saturday") {
 }
 
 get_target_dates <- function(ref_dates, horizon_range) {
-  # Calculate target dates by adding the horizon range (in weeks) to each reference date
+  # Calculate target dates by adding the horizon range (in weeks) to each
+  # reference date
   outer(ref_dates, horizon_range * 7, `+`) |>
     unique() |>
     sort()
@@ -234,7 +235,7 @@ parser <- argparser::add_argument(
     "11", "01",
     sep = "-"
   ),
-  help = "Season start date in YYYY-MM-DD format. Defaults to 1st November of current season."
+  help = "Season start date in YYYY-MM-DD format. Defaults to 1st November of current season." # nolint
 )
 
 parser <- argparser::add_argument(
@@ -250,7 +251,7 @@ parser <- argparser::add_argument(
     "09", "30",
     sep = "-"
   ),
-  help = "Season end date in YYYY-MM-DD format. Defaults to 30th September of current season."
+  help = "Season end date in YYYY-MM-DD format. Defaults to 30th September of current season." # nolint
 )
 
 parser <- argparser::add_argument(
@@ -266,7 +267,7 @@ parser <- argparser::add_argument(
   "--overwrite",
   type = "logical",
   default = FALSE,
-  help = "Whether to overwrite an existing config file or append new rounds to it. Defaults to FALSE."
+  help = "Whether to overwrite an existing config file or append new rounds to it. Defaults to FALSE." # nolint
 )
 
 args <- argparser::parse_args(parser)
@@ -294,13 +295,19 @@ tasks_config_path <- fs::path(hub_path, "hub-config", "tasks.json")
 if (overwrite || !file.exists(tasks_config_path)) {
   new_task_config <- hubAdmin::create_config(hubAdmin::create_rounds(round))
   if (overwrite && file.exists(tasks_config_path)) {
-    cli::cli_alert_info("Overwriting existing {.file tasks.json} with new config")
+    cli::cli_alert_info(
+      "Overwriting existing {.file tasks.json} with new config"
+    )
   }
   if (!file.exists(tasks_config_path)) {
-    cli::cli_alert_info("Creating new {.file tasks.json} with new round")
+    cli::cli_alert_info(
+      "Creating new {.file tasks.json} with new round"
+    )
   }
 } else {
-  cli::cli_alert_info("Existing config found, adding a new round")
+  cli::cli_alert_info(
+    "Existing config found, adding a new round"
+  )
   existing_task_config <- hubUtils::read_config(hub_path, config = c("tasks"))
   new_task_config <- hubAdmin::append_round(existing_task_config, round)
 }
