@@ -1,9 +1,9 @@
 get_reference_dates <- function(start_date, end_date, weekday = "Saturday") {
-
   start_date <- as.Date(start_date)
   # Find the first occurrence of the specified weekday on or after start_date
   start_date <- lubridate::ceiling_date(
-    start_date, unit = "week",
+    start_date,
+    unit = "week",
     week_start = weekday
   )
 
@@ -15,18 +15,19 @@ get_reference_dates <- function(start_date, end_date, weekday = "Saturday") {
 
 get_target_dates <- function(ref_dates, horizon_range) {
   # Calculate target dates by adding the horizon range (in weeks) to each reference date
-  outer(ref_dates, horizon_range * 7, `+`) |> unique() |> sort()
+  outer(ref_dates, horizon_range * 7, `+`) |>
+    unique() |>
+    sort()
 }
 
 create_new_round <- function(
-  hub_path,
-  horizon_range,
-  location,
-  start_date,
-  end_date,
-  weekday = "Saturday",
-  schema_version = hubUtils::get_version_hub(hub_path)
-) {
+    hub_path,
+    horizon_range,
+    location,
+    start_date,
+    end_date,
+    weekday = "Saturday",
+    schema_version = hubUtils::get_version_hub(hub_path)) {
   options(hubAdmin.schema_version = schema_version)
 
   ref_dates <- get_reference_dates(start_date, end_date, weekday)
@@ -225,10 +226,13 @@ parser <- argparser::add_argument(
   "--start-date",
   type = "character",
   default = paste(
-    if (lubridate::month(Sys.Date()) > 9L) {lubridate::year(Sys.Date())} else {
+    if (lubridate::month(Sys.Date()) > 9L) {
+      lubridate::year(Sys.Date())
+    } else {
       lubridate::year(Sys.Date()) - 1L
     },
-    "11", "01", sep = "-"
+    "11", "01",
+    sep = "-"
   ),
   help = "Season start date in YYYY-MM-DD format. Defaults to 1st November of current season."
 )
@@ -238,10 +242,13 @@ parser <- argparser::add_argument(
   "--end-date",
   type = "character",
   default = paste(
-    if (lubridate::month(Sys.Date()) > 9L) {lubridate::year(Sys.Date()) + 1} else {
+    if (lubridate::month(Sys.Date()) > 9L) {
+      lubridate::year(Sys.Date()) + 1
+    } else {
       lubridate::year(Sys.Date())
     },
-    "09", "30", sep = "-"
+    "09", "30",
+    sep = "-"
   ),
   help = "Season end date in YYYY-MM-DD format. Defaults to 30th September of current season."
 )
