@@ -20,3 +20,4 @@ renv.lock
 
 eval-output
 .vscode/
+!.vscode/settings.json
