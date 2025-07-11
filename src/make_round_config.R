@@ -22,13 +22,14 @@ get_target_dates <- function(ref_dates, horizon_range) {
 }
 
 create_new_round <- function(
-    hub_path,
-    horizon_range,
-    location,
-    start_date,
-    end_date,
-    weekday = "Saturday",
-    schema_version = hubUtils::get_version_hub(hub_path)) {
+  hub_path,
+  horizon_range,
+  location,
+  start_date,
+  end_date,
+  weekday = "Saturday",
+  schema_version = hubUtils::get_version_hub(hub_path)
+) {
   options(hubAdmin.schema_version = schema_version)
 
   ref_dates <- get_reference_dates(start_date, end_date, weekday)
@@ -232,7 +233,8 @@ parser <- argparser::add_argument(
     } else {
       lubridate::year(Sys.Date()) - 1L
     },
-    "11", "01",
+    "11",
+    "01",
     sep = "-"
   ),
   help = "Season start date in YYYY-MM-DD format. Defaults to 1st November of current season." # nolint
@@ -248,7 +250,8 @@ parser <- argparser::add_argument(
     } else {
       lubridate::year(Sys.Date())
     },
-    "09", "30",
+    "09",
+    "30",
     sep = "-"
   ),
   help = "Season end date in YYYY-MM-DD format. Defaults to 30th September of current season." # nolint
