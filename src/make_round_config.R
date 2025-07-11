@@ -1,15 +1,44 @@
+get_reference_dates <- function(start_date, end_date, weekday = "Saturday") {
+  start_date <- as.Date(start_date)
+  # Find the first occurrence of the specified weekday on or after start_date
+  start_date <- lubridate::ceiling_date(
+    start_date,
+    unit = "week",
+    week_start = weekday
+  )
+
+  end_date <- as.Date(end_date)
+
+  # Generate a sequence of weeks
+  seq.Date(from = start_date, to = end_date, by = "1 week")
+}
+
+get_target_dates <- function(ref_dates, horizon_range) {
+  # Calculate target dates by adding the horizon range (in weeks) to each
+  # reference date
+  outer(ref_dates, horizon_range * 7, `+`) |>
+    unique() |>
+    sort()
+}
+
 create_new_round <- function(
   hub_path,
-  ref_date,
   horizon_range,
   location,
-  schema_version
+  start_date,
+  end_date,
+  weekday = "Saturday",
+  schema_version = hubUtils::get_version_hub(hub_path)
 ) {
   options(hubAdmin.schema_version = schema_version)
+
+  ref_dates <- get_reference_dates(start_date, end_date, weekday)
+  target_dates <- get_target_dates(ref_dates, horizon_range)
+
   origin_date <- hubAdmin::create_task_id(
     "reference_date",
     required = NULL,
-    optional = as.character(ref_date)
+    optional = as.character(ref_dates)
   )
 
   location <- hubAdmin::create_task_id(
@@ -27,7 +56,7 @@ create_new_round <- function(
   target_end_date <- hubAdmin::create_task_id(
     "target_end_date",
     required = NULL,
-    optional = as.character(ref_date + 7 * horizon_range)
+    optional = as.character(target_dates)
   )
 
   target <- hubAdmin::create_task_id(
@@ -124,15 +153,7 @@ parser <- argparser::add_argument(
   help = "Path to the Covid19 forecast hub directory.",
   default = "."
 )
-parser <- argparser::add_argument(
-  parser,
-  "--ref-date",
-  type = "character",
-  default = as.character(
-    forecasttools::ceiling_mmwr_epiweek(lubridate::today())
-  ),
-  help = "Reference date in YYYY-MM-DD format. Defaults to the next Saturday."
-)
+
 parser <- argparser::add_argument(
   parser,
   "--horizon-range",
@@ -202,31 +223,94 @@ parser <- argparser::add_argument(
   help = "Location codes for forecasting jurisdiction.
     (default: 50 states, DC, US)."
 )
+parser <- argparser::add_argument(
+  parser,
+  "--start-date",
+  type = "character",
+  default = paste(
+    if (lubridate::month(Sys.Date()) > 9L) {
+      lubridate::year(Sys.Date())
+    } else {
+      lubridate::year(Sys.Date()) - 1L
+    },
+    "11",
+    "01",
+    sep = "-"
+  ),
+  help = "Season start date in YYYY-MM-DD format. Defaults to 1st November of current season." # nolint
+)
+
+parser <- argparser::add_argument(
+  parser,
+  "--end-date",
+  type = "character",
+  default = paste(
+    if (lubridate::month(Sys.Date()) > 9L) {
+      lubridate::year(Sys.Date()) + 1
+    } else {
+      lubridate::year(Sys.Date())
+    },
+    "09",
+    "30",
+    sep = "-"
+  ),
+  help = "Season end date in YYYY-MM-DD format. Defaults to 30th September of current season." # nolint
+)
+
+parser <- argparser::add_argument(
+  parser,
+  "--weekday",
+  type = "character",
+  default = "Saturday",
+  help = "Reference date weekday. Defaults to Saturday."
+)
+
+parser <- argparser::add_argument(
+  parser,
+  "--overwrite",
+  type = "logical",
+  default = FALSE,
+  help = "Whether to overwrite an existing config file or append new rounds to it. Defaults to FALSE." # nolint
+)
 
 args <- argparser::parse_args(parser)
 hub_path <- args$hub_path
-reference_date <- as.Date(args$ref_date, format = "%Y-%m-%d")
+start_date <- args$start_date
+end_date <- args$end_date
+weekday <- args$weekday
 horizon_range <- args$horizon_range
 location <- args$location
 schema_version <- args$schema_version
+overwrite <- args$overwrite
 
 round <- create_new_round(
   hub_path,
-  reference_date,
   horizon_range,
   location,
+  start_date,
+  end_date,
+  weekday,
   schema_version
 )
 
 tasks_config_path <- fs::path(hub_path, "hub-config", "tasks.json")
 
-if (!file.exists(tasks_config_path)) {
-  cli::cli_alert_info(
-    "Existing config not found, creating a new {.file tasks.json}"
-  )
+if (overwrite || !file.exists(tasks_config_path)) {
   new_task_config <- hubAdmin::create_config(hubAdmin::create_rounds(round))
+  if (overwrite && file.exists(tasks_config_path)) {
+    cli::cli_alert_info(
+      "Overwriting existing {.file tasks.json} with new config"
+    )
+  }
+  if (!file.exists(tasks_config_path)) {
+    cli::cli_alert_info(
+      "Creating new {.file tasks.json} with new round"
+    )
+  }
 } else {
-  cli::cli_alert_info("Existing config found, adding a new round")
+  cli::cli_alert_info(
+    "Existing config found, adding a new round"
+  )
   existing_task_config <- hubUtils::read_config(hub_path, config = c("tasks"))
   new_task_config <- hubAdmin::append_round(existing_task_config, round)
 }
