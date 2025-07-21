@@ -56,14 +56,14 @@ repos:
 # BASH SHELL
 ###############################################################################
 -   repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-1
+    rev: v3.12.0-2
     hooks:
     -   id: shfmt
 ###############################################################################
 # PYTHON
 ###############################################################################
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.12.3
+    rev: v0.12.4
     hooks:
     -   id: ruff
         args: ["check", "--select", "I", "--fix"]
