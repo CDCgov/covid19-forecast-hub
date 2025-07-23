@@ -1,4 +1,96 @@
 output_type,output_type_id,value,reference_date,target,horizon,target_end_date,location
+quantile,0.01,879.99,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.025,910,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.05,929.9499999999999,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.1,954.9000000000001,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.15,974.8499999999999,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.2,987.8,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.25,1001,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.3,1014.6999999999999,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.35,1026,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.4,1034,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.45,1044,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.5,1055,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.55,1066,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.6,1078,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.65,1088,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.7,1101.3,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.75,1117,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.8,1131,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.85,1147,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.9,1172,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.95,1206.05,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.975,1242.5249999999999,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.99,1284.06,2025-07-26,wk inc covid hosp,0,2025-07-26,12
+quantile,0.01,0.01456215943321859,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.025,0.014926916986937776,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.05,0.015266066713793104,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.1,0.015758271400821908,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.15,0.016031425796350533,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.2,0.01622328892296704,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.25,0.016425277185156476,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.3,0.01657834561181129,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.35,0.016728080480587257,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.4,0.016892751493447024,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.45,0.017064943822715083,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.5,0.01718402081267998,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.55,0.017292535768480444,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.6,0.017427809223514,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.65,0.01757602758535442,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.7,0.017747661555197698,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.75,0.01795604095834442,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.8,0.01814014951667468,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.85,0.018377843424415032,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.9,0.01874909087741684,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.95,0.019232676911216273,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.975,0.019739799032092383,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.99,0.020268237746004246,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
+quantile,0.01,889,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.025,917,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.05,953,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.1,993,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.15,1016.85,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.2,1039,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.25,1054,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.3,1070,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.35,1081,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.4,1096,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.45,1111,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.5,1125,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.55,1138,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.6,1150,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.65,1167,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.7,1182,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.75,1203,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.8,1223,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.85,1245,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.9,1273.1000000000001,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.95,1320,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.975,1369.5249999999999,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.99,1428.08,2025-07-26,wk inc covid hosp,1,2025-08-02,12
+quantile,0.01,0.011541696355653747,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.025,0.012330748269808508,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.05,0.01328860580451163,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.1,0.014156947378177227,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.15,0.014788557868647747,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.2,0.015317640135739842,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.25,0.015708278145863536,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.3,0.016068376911162852,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.35,0.016371850619243546,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.4,0.01674269277674682,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.45,0.017081593876762516,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.5,0.01738605369081727,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.55,0.017764516859426135,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.6,0.01809257208779109,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.65,0.018468450954193187,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.7,0.018847201912561815,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.75,0.019216502154965738,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.8,0.019729466655285386,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.85,0.020317173747360917,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.9,0.0210998848277918,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.95,0.022593233867193606,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.975,0.024130071448841894,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
+quantile,0.99,0.02591191921730833,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
 quantile,0.01,5,2025-07-26,wk inc covid hosp,0,2025-07-26,02
 quantile,0.025,6,2025-07-26,wk inc covid hosp,0,2025-07-26,02
 quantile,0.05,7,2025-07-26,wk inc covid hosp,0,2025-07-26,02
@@ -827,98 +919,6 @@ quantile,0.9,0.006970394193279176,2025-07-26,wk inc covid prop ed visits,1,2025-
 quantile,0.95,0.008016150015401955,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,10
 quantile,0.975,0.009010407733664851,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,10
 quantile,0.99,0.010371080726962393,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,10
-quantile,0.01,693.99,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.025,729.4749999999999,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.05,751,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.1,778,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.15,797,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.2,811.8,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.25,824,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.3,835,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.35,846,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.4,856,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.45,865.5500000000001,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.5,875,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.55,885,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.6,896.4,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.65,911.35,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.7,923.3,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.75,936,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.8,950.2,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.85,970,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.9,993.2000000000003,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.95,1030.05,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.975,1072,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.99,1120.05,2025-07-26,wk inc covid hosp,0,2025-07-26,12
-quantile,0.01,0.009108489758596558,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.025,0.009511372241347522,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.05,0.009953993530986777,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.1,0.01037845403338075,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.15,0.010762774926793854,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.2,0.011021801650960896,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.25,0.011244057832129718,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.3,0.011464756882529601,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.35,0.011694662686217772,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.4,0.011895837282865983,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.45,0.012082812994206063,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.5,0.01226610152798488,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.55,0.01249206183090035,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.6,0.012690312145085163,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.65,0.012872855692414774,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.7,0.013066014711325728,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.75,0.013319251026553871,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.8,0.013601052743990098,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.85,0.013945985488862236,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.9,0.01436059582748193,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.95,0.014902658547481063,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.975,0.015564111491798325,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.99,0.01619906589041801,2025-07-26,wk inc covid prop ed visits,0,2025-07-26,12
-quantile,0.01,561.97,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.025,599.475,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.05,623,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.1,658,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.15,686,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.2,712.8,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.25,728,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.3,746,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.35,759,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.4,776,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.45,793,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.5,807.5,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.55,823,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.6,839,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.65,853,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.7,870.3,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.75,887,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.8,905,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.85,934.1499999999999,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.9,964,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.95,1006,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.975,1053.0499999999997,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.99,1103.02,2025-07-26,wk inc covid hosp,1,2025-08-02,12
-quantile,0.01,0.004878636552296252,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.025,0.005355755634186022,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.05,0.005820658364684219,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.1,0.0066052965354520925,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.15,0.007272967812328294,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.2,0.007709358039436358,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.25,0.008056472483998331,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.3,0.00837687822957228,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.35,0.008697624396036463,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.4,0.009056408989470407,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.45,0.009375222077603348,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.5,0.00970562924185175,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.55,0.010026660022614847,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.6,0.010392185148951875,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.65,0.010799088983810792,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.7,0.011154075578995167,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.75,0.01162495458700715,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.8,0.012122332869091578,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.85,0.012761648599408001,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.9,0.013448447576866094,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.95,0.014530925695536448,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.975,0.015321650531274853,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
-quantile,0.99,0.01631394816110982,2025-07-26,wk inc covid prop ed visits,1,2025-08-02,12
 quantile,0.01,95,2025-07-26,wk inc covid hosp,0,2025-07-26,13
 quantile,0.025,102,2025-07-26,wk inc covid hosp,0,2025-07-26,13
 quantile,0.05,106.95,2025-07-26,wk inc covid hosp,0,2025-07-26,13
