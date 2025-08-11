@@ -106,8 +106,8 @@ get_target_data <- function(
 
   nhsn_data |>
     dplyr::rename(
-      value = observation,
-      state = jurisdiction
+      value = "observation",
+      state = "jurisdiction"
     ) |>
     dplyr::select(-c("as_of", "target")) |>
     readr::write_csv(
