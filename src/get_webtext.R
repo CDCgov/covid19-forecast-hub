@@ -33,7 +33,9 @@ base_hub_path <- args$base_hub_path
 hub_reports_path <- args$hub_reports_path
 
 weekly_data_path <- file.path(
-  hub_reports_path, "weekly-summaries", reference_date
+  hub_reports_path,
+  "weekly-summaries",
+  reference_date
 )
 
 ensemble_us_1wk_ahead <- readr::read_csv(
@@ -43,15 +45,20 @@ ensemble_us_1wk_ahead <- readr::read_csv(
   dplyr::filter(horizon == 1, location_name == "US")
 
 target_data <- readr::read_csv(
-  file.path(weekly_data_path, paste0(
-    reference_date, "_covid_target_hospital_admissions_data.csv"
-  )),
+  file.path(
+    weekly_data_path,
+    paste0(
+      reference_date,
+      "_covid_target_hospital_admissions_data.csv"
+    )
+  ),
   show_col_types = FALSE
 )
 
 contributing_teams <- readr::read_csv(
   file.path(
-    weekly_data_path, paste0(reference_date, "_covid_forecasts_data.csv")
+    weekly_data_path,
+    paste0(reference_date, "_covid_forecasts_data.csv")
   ),
   show_col_types = FALSE
 ) |>
@@ -64,11 +71,17 @@ wkly_submissions <- hubData::load_model_metadata(
   model_ids = contributing_teams
 ) |>
   dplyr::distinct(.data$model_id, .data$designated_model, .keep_all = TRUE) |>
-  dplyr::mutate(team_model_url = glue::glue(
-    "[{team_name} (Model: {model_abbr})]({website_url})"
-  )) |>
+  dplyr::mutate(
+    team_model_url = glue::glue(
+      "[{team_name} (Model: {model_abbr})]({website_url})"
+    )
+  ) |>
   dplyr::select(
-    model_id, team_abbr, model_abbr, team_model_url, designated_model
+    model_id,
+    team_abbr,
+    model_abbr,
+    team_model_url,
+    designated_model
   )
 
 # Generate flag for less than 80 percent of hospitals reporting
@@ -77,7 +90,8 @@ desired_weekendingdate <- as.Date(reference_date) - lubridate::dweeks(1)
 exclude_territories_path <- fs::path(
   base_hub_path,
   "auxiliary-data",
-  "excluded_territories.toml"
+  "excluded_territories",
+  ext = "toml"
 )
 stopifnot(fs::file_exists(exclude_territories_path))
 exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
@@ -89,51 +103,60 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   start_date = "2024-11-09"
 ) |>
   dplyr::mutate(
-    weekendingdate = as.Date(weekendingdate),
+    weekendingdate = as.Date(.data$weekendingdate),
     report_above_80_lgl = as.logical(
-      as.numeric(totalconfc19newadmperchosprepabove80pct)
+      as.numeric(.data$totalconfc19newadmperchosprepabove80pct)
     ),
-    jurisdiction = stringr::str_replace(jurisdiction, "USA", "US"),
-    location = forecasttools::us_loc_abbr_to_code(jurisdiction),
-    location_name = forecasttools::location_lookup(
-      jurisdiction,
-      location_input_format = "abbr",
-      location_output_format = "long_name"
+    jurisdiction = dplyr::case_match(
+      .data$jurisdiction,
+      "USA" ~ "US",
+      .default = .data$jurisdiction
+    ),
+    location = forecasttools::us_location_recode(
+      .data$jurisdiction,
+      "abbr",
+      "code"
+    ),
+    location_name = forecasttools::us_location_recode(
+      .data$jurisdiction,
+      "abbr",
+      "name"
     )
   ) |>
-  dplyr::filter(!(location %in% !!excluded_locations)) |>
-  dplyr::group_by(jurisdiction) |>
-  dplyr::mutate(max_weekendingdate = max(weekendingdate)) |>
+  dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
+  dplyr::group_by(.data$jurisdiction) |>
+  dplyr::mutate(max_weekendingdate = max(.data$weekendingdate)) |>
   dplyr::ungroup()
 
 jurisdiction_w_latency <- percent_hosp_reporting_below80 |>
-  dplyr::filter(max_weekendingdate < desired_weekendingdate)
+  dplyr::filter(.data$max_weekendingdate < !!desired_weekendingdate)
 
 if (nrow(jurisdiction_w_latency) > 0) {
-  cli::cli_warn("
+  cli::cli_warn(
+    "
     Some locations have missing reported data for the most recent week.
     The reference date is {reference_date}, we expect data at least
     through {desired_weekendingdate}. However, {nrow(jurisdiction_w_latency)}
     location{?s} did not have reporting through that date:
     {jurisdiction_w_latency$location_name}.
-  ")
+  "
+  )
 }
 
 latest_reporting_below80 <- percent_hosp_reporting_below80 |>
   dplyr::filter(
-    weekendingdate == max(weekendingdate),
-    !report_above_80_lgl
+    .data$weekendingdate == max(.data$weekendingdate),
+    !.data$report_above_80_lgl
   )
 
-reporting_rate_flag <- if (
-  length(latest_reporting_below80$location_name) > 0
-) {
+reporting_rate_flag <- if (length(latest_reporting_below80$location_name) > 0) {
   location_list <- if (length(latest_reporting_below80$location_name) < 3) {
     glue::glue_collapse(latest_reporting_below80$location_name, sep = " and ")
   } else {
     glue::glue_collapse(
       latest_reporting_below80$location_name,
-      sep = ", ", last = ", and "
+      sep = ", ",
+      last = ", and "
     )
   }
 
@@ -150,11 +173,11 @@ reporting_rate_flag <- if (
 
 format_statistical_values <- function(median, pi_lower, pi_upper) {
   half_width <- abs(pi_upper - pi_lower) / 2
-  place_value <- floor(log10(half_width))
+  digits <- -floor(log10(half_width))
   c(
-    median = round(median, digits = -place_value),
-    lower = round(pi_lower, digits = -place_value),
-    upper = round(pi_upper, digits = -place_value)
+    median = round(median, digits = digits),
+    lower = round(pi_lower, digits = digits),
+    upper = round(pi_upper, digits = digits)
   )
 }
 
@@ -178,15 +201,18 @@ model_incl_in_hub_ensemble <- designated$team_model_url
 model_not_incl_in_hub_ensemble <- not_designated$team_model_url
 
 first_target_data_date <- format(
-  as.Date(min(target_data$week_ending_date)), "%B %d, %Y"
+  as.Date(min(target_data$week_ending_date)),
+  "%B %d, %Y"
 )
 last_target_data_date <- format(
-  as.Date(max(target_data$week_ending_date)), "%B %d, %Y"
+  as.Date(max(target_data$week_ending_date)),
+  "%B %d, %Y"
 )
 forecast_due_date <- ensemble_us_1wk_ahead$forecast_due_date_formatted
 target_end_date_1wk_ahead <- ensemble_us_1wk_ahead$target_end_date_formatted
 target_end_date_2wk_ahead <- format(
-  ensemble_us_1wk_ahead$target_end_date + lubridate::weeks(1), "%B %d, %Y"
+  ensemble_us_1wk_ahead$target_end_date + lubridate::weeks(1),
+  "%B %d, %Y"
 )
 
 last_reported_target_data <- target_data |>
@@ -223,5 +249,6 @@ web_text <- glue::glue(
 )
 
 writeLines(
-  web_text, file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
+  web_text,
+  file.path(weekly_data_path, paste0(reference_date, "_webtext.md"))
 )

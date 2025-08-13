@@ -46,7 +46,6 @@
 #' Rscript get_map_data.R --reference-date 2024-12-21
 #' --base-hub-path ../ --horizons-to-include 0 1 2
 
-
 # set up command line argument parser
 parser <- argparser::arg_parser(
   "Save Map Data as CSV."
@@ -85,9 +84,12 @@ horizons_to_include <- as.integer(args$horizons_to_include)
 
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
-invalid_horizons <- horizons_to_include[!sapply(
-  horizons_to_include, function(x) x %in% valid_horizons
-)]
+invalid_horizons <- horizons_to_include[
+  !sapply(
+    horizons_to_include,
+    function(x) x %in% valid_horizons
+  )
+]
 if (length(invalid_horizons) > 0) {
   stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
 }
@@ -142,7 +144,8 @@ pop_data_path <- file.path(
 pop_data <- readr::read_csv(pop_data_path)
 pop_required_columns <- c("abbreviation", "population")
 missing_pop_columns <- setdiff(
-  pop_required_columns, colnames(pop_data)
+  pop_required_columns,
+  colnames(pop_data)
 )
 if (length(missing_pop_columns) > 0) {
   stop(
@@ -190,89 +193,94 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   )
 ) |>
   # usually filter out horizon 3, -1
-  dplyr::filter(horizon %in% !!horizons_to_include) |>
+  dplyr::filter(.data$horizon %in% !!horizons_to_include) |>
   # filter out excluded locations if the
   # ref date is the first week in season
-  dplyr::filter(!(location %in% excluded_locations)) |>
+  dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
   dplyr::mutate(
-    reference_date = as.Date(reference_date),
-    target_end_date = as.Date(target_end_date),
-    model = model_name
+    reference_date = as.Date(.data$reference_date),
+    target_end_date = as.Date(.data$target_end_date),
+    model = !!model_name
   ) |>
   # convert location column codes to full
   # location names
   dplyr::mutate(
-    location = forecasttools::location_lookup(
-      location,
-      location_input_format = "hub",
-      location_output_format = "long_name"
+    location = forecasttools::us_location_recode(
+      .data$location,
+      "hub",
+      "name"
     )
   ) |>
   # long name "United States" to "US"
   dplyr::mutate(
-    location = dplyr::if_else(
-      location == "United States",
-      "US",
-      location
+    location = dplyr::case_match(
+      .data$location,
+      "United States" ~ "US",
+      .default = .data$location
     ),
     # sort locations alphabetically, except
     # for US
-    location_sort_order = ifelse(location == "US", 0, 1)
+    location_sort_order = ifelse(.data$location == "US", 0, 1)
   ) |>
-  dplyr::arrange(location_sort_order, location) |>
+  dplyr::arrange(.data$location_sort_order, .data$location) |>
   dplyr::left_join(
     pop_data,
     by = c("location" = "location_name")
   ) |>
   dplyr::mutate(
-    quantile_0.025_per100k = quantile_0.025 / as.numeric(population) * 100000,
-    quantile_0.5_per100k = quantile_0.5 / as.numeric(population) * 100000,
-    quantile_0.975_per100k = quantile_0.975 / as.numeric(population) * 100000,
-    quantile_0.025_count = quantile_0.025,
-    quantile_0.5_count = quantile_0.5,
-    quantile_0.975_count = quantile_0.975,
-    quantile_0.025_per100k_rounded = round(quantile_0.025_per100k, 2),
-    quantile_0.5_per100k_rounded = round(quantile_0.5_per100k, 2),
-    quantile_0.975_per100k_rounded = round(quantile_0.975_per100k, 2),
-    quantile_0.025_count_rounded = round(quantile_0.025_count),
-    quantile_0.5_count_rounded = round(quantile_0.5_count),
-    quantile_0.975_count_rounded = round(quantile_0.975_count),
-    target_end_date_formatted = format(target_end_date, "%B %d, %Y"),
-    reference_date_formatted = format(reference_date, "%B %d, %Y"),
-    forecast_due_date = as.Date(ref_date) - 3,
-    forecast_due_date_formatted = format(forecast_due_date, "%B %d, %Y"),
+    population = as.numeric(.data$population),
+    quantile_0.025_per100k = .data$quantile_0.025 / .data$population * 100000,
+    quantile_0.5_per100k = .data$quantile_0.5 / .data$population * 100000,
+    quantile_0.975_per100k = .data$quantile_0.975 / .data$population * 100000,
+    quantile_0.025_count = .data$quantile_0.025,
+    quantile_0.5_count = .data$quantile_0.5,
+    quantile_0.975_count = .data$quantile_0.975,
+    quantile_0.025_per100k_rounded = round(.data$quantile_0.025_per100k, 2),
+    quantile_0.5_per100k_rounded = round(.data$quantile_0.5_per100k, 2),
+    quantile_0.975_per100k_rounded = round(.data$quantile_0.975_per100k, 2),
+    quantile_0.025_count_rounded = round(.data$quantile_0.025_count),
+    quantile_0.5_count_rounded = round(.data$quantile_0.5_count),
+    quantile_0.975_count_rounded = round(.data$quantile_0.975_count),
+    target_end_date_formatted = format(.data$target_end_date, "%B %d, %Y"),
+    reference_date_formatted = format(.data$reference_date, "%B %d, %Y"),
+    forecast_due_date = as.Date(!!ref_date) - 3,
+    forecast_due_date_formatted = format(.data$forecast_due_date, "%B %d, %Y"),
   ) |>
   dplyr::select(
-    location_name = location,
-    horizon,
-    quantile_0.025_per100k,
-    quantile_0.5_per100k,
-    quantile_0.975_per100k,
-    quantile_0.025_count,
-    quantile_0.5_count,
-    quantile_0.975_count,
-    quantile_0.025_per100k_rounded,
-    quantile_0.5_per100k_rounded,
-    quantile_0.975_per100k_rounded,
-    quantile_0.025_count_rounded,
-    quantile_0.5_count_rounded,
-    quantile_0.975_count_rounded,
-    target,
-    target_end_date,
-    reference_date,
-    forecast_due_date,
-    target_end_date_formatted,
-    forecast_due_date_formatted,
-    reference_date_formatted,
-    model,
+    location_name = "location",
+    "horizon",
+    "quantile_0.025_per100k",
+    "quantile_0.5_per100k",
+    "quantile_0.975_per100k",
+    "quantile_0.025_count",
+    "quantile_0.5_count",
+    "quantile_0.975_count",
+    "quantile_0.025_per100k_rounded",
+    "quantile_0.5_per100k_rounded",
+    "quantile_0.975_per100k_rounded",
+    "quantile_0.025_count_rounded",
+    "quantile_0.5_count_rounded",
+    "quantile_0.975_count_rounded",
+    "target",
+    "target_end_date",
+    "reference_date",
+    "forecast_due_date",
+    "target_end_date_formatted",
+    "forecast_due_date_formatted",
+    "reference_date_formatted",
+    "model",
   )
 
 output_folder_path <- fs::path(
-  hub_reports_path, "weekly-summaries", ref_date
+  hub_reports_path,
+  "weekly-summaries",
+  ref_date
 )
-output_filename <- paste0(ref_date, "_covid_map_data.csv")
+output_filename <- paste0(ref_date, "_covid_map_data")
 output_filepath <- fs::path(
-  output_folder_path, output_filename
+  output_folder_path,
+  output_filename,
+  ext = "csv"
 )
 
 # determine if the output folder exists,

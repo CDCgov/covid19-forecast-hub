@@ -1,35 +1,36 @@
+# Run via: Rscript ./src/get_authorized_users.R
+
 hub_path <- "."
-output_path <- "auxiliary-data/"
+output_path <- fs::path(hub_path, "auxiliary-data")
+metadata_dir <- fs::path(hub_path, "model-metadata")
 
-yml_files <- list.files(file.path(hub_path, "model-metadata"),
-  pattern = "\\.ya?ml$", full.names = TRUE
+fs::dir_create(output_path)
+
+yml_files <- list.files(
+  metadata_dir,
+  pattern = "\\.ya?ml$",
+  full.names = TRUE
 )
 
-extract_metadata <- function(file) {
-  yml_data <- yaml::yaml.load_file(file)
-  team_abbr <- ifelse("team_abbr" %in% names(yml_data), yml_data$team_abbr, NA)
-  model_abbr <- ifelse(
-    "model_abbr" %in% names(yml_data), yml_data$model_abbr, NA
-  )
-  designated_user <- ifelse(
-    "designated_github_users" %in% names(yml_data),
-    paste(yml_data$designated_github_users, collapse = ", "),
+json_list <- purrr::map(yml_files, \(file) {
+  y <- yaml::read_yaml(file)
+  team <- if (!is.null(y$team_abbr)) y$team_abbr else NA_character_
+  model <- if (!is.null(y$model_abbr)) y$model_abbr else NA_character_
+  designated_users <- if (!is.null(y$designated_github_users)) {
+    # ensure single-user lists are rendered as JSON lists
+    I(y$designated_github_users)
+  } else {
     NA
+  }
+  list(
+    model = paste(team, model, sep = "-"),
+    authorized_github_users = designated_users
   )
+})
 
-  return(list(
-    team_abbr = team_abbr,
-    model_abbr = model_abbr,
-    designated_github_users = designated_user
-  ))
-}
-
-metadata_list <- purrr::map(yml_files, extract_metadata)
-data_df <- do.call(rbind, lapply(metadata_list, as.data.frame))
-colnames(data_df) <- c("team_name", "model_name", "designated_users")
-
-output <- glue::glue(
-  "{data_df$team_name}-{data_df$model_name} {data_df$designated_users}"
+jsonlite::write_json(
+  json_list,
+  path = file.path(output_path, "authorized_users.json"),
+  pretty = TRUE,
+  auto_unbox = TRUE
 )
-
-writeLines(output, file.path(output_path, "authorized_users.txt"))

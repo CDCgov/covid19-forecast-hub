@@ -39,7 +39,7 @@ jobs:
     
     - name: get updated target data
       run: |
-        Rscript src/get_covid_hosp_data.R --target-data TRUE --base-hub-path "."
+        Rscript src/get_target_data.R --target-data TRUE --base-hub-path "."
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
@@ -47,7 +47,7 @@ jobs:
     - name: Check for Changes
       id: check_diff
       run: |
-        git diff --exit-code target-data/covid-hospital-admissions.csv || echo "changed=true" >> $GITHUB_ENV 
+        git diff --exit-code target-data/time-series.parquet || echo "changed=true" >> $GITHUB_ENV 
 
     - name: Commit changes
       if: env.changed == 'true'

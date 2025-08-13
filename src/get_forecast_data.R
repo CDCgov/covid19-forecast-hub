@@ -26,7 +26,6 @@
 #' --base-hub-path "." --hub-reports-path "path/to/covidhub-reports"
 #' --horizons-to-include 0 1 2
 
-
 # set up command line argument parser
 parser <- argparser::arg_parser(
   "Save Forecast Data as CSV."
@@ -65,9 +64,12 @@ horizons_to_include <- as.integer(args$horizons_to_include)
 
 # check for invalid horizon entries
 valid_horizons <- c(-1, 0, 1, 2, 3)
-invalid_horizons <- horizons_to_include[!sapply(
-  horizons_to_include, function(x) x %in% valid_horizons
-)]
+invalid_horizons <- horizons_to_include[
+  !sapply(
+    horizons_to_include,
+    function(x) x %in% valid_horizons
+  )
+]
 if (length(invalid_horizons) > 0) {
   stop("Invalid elements: ", paste(invalid_horizons, collapse = ", "))
 }
@@ -96,11 +98,13 @@ if (fs::file_exists(exclude_data_path_toml)) {
     current_forecasts <- hub_content |>
       dplyr::filter(reference_date == as.Date(!!ref_date)) |>
       dplyr::filter(!(location %in% excluded_locations)) |>
+      dplyr::filter(target == "wk inc covid hosp") |>
       hubData::collect_hub()
   } else {
     message("No exclusions for reference date: ", ref_date)
     current_forecasts <- hub_content |>
       dplyr::filter(reference_date == as.Date(!!ref_date)) |>
+      dplyr::filter(target == "wk inc covid hosp") |>
       hubData::collect_hub()
   }
 } else {
@@ -123,60 +127,63 @@ all_forecasts_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # convert location codes to full location
   # names and to abbreviations
   dplyr::mutate(
-    location_name = forecasttools::location_lookup(
-      location,
-      location_input_format = "hub",
-      location_output_format = "long_name"
+    location_name = forecasttools::us_location_recode(
+      .data$location,
+      "hub",
+      "name"
     ),
-    abbreviation = forecasttools::us_loc_code_to_abbr(location),
+    abbreviation = forecasttools::us_location_recode(
+      .data$location,
+      "hub",
+      "abbr"
+    ),
     # round the quantiles to nearest integer
     # for rounded versions
     dplyr::across(
-      dplyr::starts_with("quantile_"),
+      tidyselect::starts_with("quantile_"),
       round,
       .names = "{.col}_rounded"
     ),
-    forecast_due_date = as.Date(ref_date) - 3,
-    location_sort_order = ifelse(location_name == "United States", 0, 1)
+    forecast_due_date = as.Date(!!ref_date) - 3,
+    location_sort_order = ifelse(.data$location_name == "United States", 0, 1)
   ) |>
   # long name "United States" to "US"
   dplyr::mutate(
-    location_name = dplyr::if_else(
-      location_name == "United States",
-      "US",
-      location_name
+    location_name = dplyr::case_match(
+      .data$location_name,
+      "United States" ~ "US",
+      .default = .data$location_name
     )
   ) |>
-  dplyr::arrange(location_sort_order, location_name) |>
+  dplyr::arrange(.data$location_sort_order, .data$location_name) |>
   dplyr::left_join(
     dplyr::distinct(
       model_metadata,
-      model_id,
+      .data$model_id,
       .keep_all = TRUE
     ), # duplicate model_ids
-    model_metadata,
     by = "model_id"
   ) |>
   dplyr::select(
-    location_name,
-    abbreviation,
-    horizon,
-    forecast_date = reference_date,
-    target_end_date,
-    model = model_id,
-    quantile_0.025,
-    quantile_0.25,
-    quantile_0.5,
-    quantile_0.75,
-    quantile_0.975,
-    quantile_0.025_rounded,
-    quantile_0.25_rounded,
-    quantile_0.5_rounded,
-    quantile_0.75_rounded,
-    quantile_0.975_rounded,
-    forecast_team = team_name,
-    forecast_due_date,
-    model_full_name = model_name
+    "location_name",
+    "abbreviation",
+    "horizon",
+    forecast_date = "reference_date",
+    "target_end_date",
+    model = "model_id",
+    "quantile_0.025",
+    "quantile_0.25",
+    "quantile_0.5",
+    "quantile_0.75",
+    "quantile_0.975",
+    "quantile_0.025_rounded",
+    "quantile_0.25_rounded",
+    "quantile_0.5_rounded",
+    "quantile_0.75_rounded",
+    "quantile_0.975_rounded",
+    forecast_team = "team_name",
+    "forecast_due_date",
+    model_full_name = "model_name"
   )
 
 # output folder and file paths for All Forecasts

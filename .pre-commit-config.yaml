@@ -1,57 +1,76 @@
+###############################################################################
 # OVERVIEW
-# Only check files in ./src
+###############################################################################
+# This file contains the pre-commit hooks for this repository. Note that we 
+# only want to check files in the directory ./src
 #
 # Links:
+#
 # Pre-commit: https://pre-commit.com/
 # Supported hooks: https://github.com/pre-commit/pre-commit-hooks
-repos:
-########
+###############################################################################
+# CONTINUOUS INTEGRATION
+###############################################################################
+ci:
+    autofix_commit_msg: |
+        [pre-commit.ci] auto fixes from pre-commit.com hooks
+        for more information, see https://pre-commit.ci
+    autofix_prs: true
+    autoupdate_branch: ""
+    autoupdate_commit_msg: "[pre-commit.ci] pre-commit autoupdate"
+    autoupdate_schedule: weekly
+    skip: []
+    submodules: false
+###############################################################################
 # GENERAL
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+###############################################################################
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
     hooks:
-      - id: check-toml
+    -   id: check-yaml
+        args: ["--allow-multiple-documents"]
         files: ^src/
-      - id: end-of-file-fixer
+    -   id: check-toml
         files: ^src/
-      - id: mixed-line-ending
+    -   id: end-of-file-fixer
         files: ^src/
-      - id: trailing-whitespace
+    -   id: mixed-line-ending
         files: ^src/
-      - id: check-yaml
+    -   id: pretty-format-json
+        args: ["--autofix", "--no-sort-keys"]
         files: ^src/
-########
-# R-specific hooks
-  - repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9003
+    -   id: trailing-whitespace
+        files: ^src/
+###############################################################################
+# R
+###############################################################################
+-   repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3.9012
     hooks:
-      - id: style-files
-        args: [
-          --style_pkg=styler,
-          --style_fun=tidyverse_style,
-          --cache-root=styler-perm
-        ]
-        files: \.R$|\.Rmd$ 
-      - id: lintr
+    -   id: lintr
         files: \.R$|\.Rmd$
-      - id: parsable-R
+    -   id: parsable-R
         files: \.R$|\.Rmd$
-########
-# Shell (Bash) hooks
-  - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.11.0-1
+###############################################################################
+# BASH SHELL
+###############################################################################
+-   repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
     hooks:
-      - id: shfmt
-########
-# Python
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.8
+    -   id: shfmt
+###############################################################################
+# PYTHON
+###############################################################################
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.8
     hooks:
-      - id: ruff
+    -   id: ruff
         args: ["check", "--select", "I", "--fix"]
         files: '\.py$'
-      - id: ruff
+    -   id: ruff
         files: '\.py$'
-      - id: ruff-format
+    -   id: ruff-format
         args: ["--line-length", "79"]
         files: '\.py$'
+###############################################################################
