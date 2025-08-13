@@ -32,7 +32,7 @@ jobs:
         install.packages(c("fs", "readr", "dplyr", "tidyr", "cli", "lubridate", "nanoparquet", "argparser", "remotes", "genlasso"))
         remotes::install_github("cmu-delphi/epiprocess")
         remotes::install_github("cmu-delphi/epipredict")
-        remotes::install_github('cdcgov/forecasttools')
+        remotes::install_github("cdcgov/forecasttools")
       shell: Rscript {0}
   
     - name: generate baseline
