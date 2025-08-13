@@ -22,7 +22,6 @@ get_truth_data <- function(
         "US"
       )
     ) |>
-    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
       location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
       location_name = forecasttools::us_location_recode(
@@ -78,35 +77,37 @@ get_target_data <- function(
   output_dirpath <- fs::path(base_hub_path, "target-data")
   fs::dir_create(output_dirpath)
 
-  raw_nhsn_data <- forecasttools::pull_nhsn(
+  nhsn_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
     start_date = first_full_weekending_date
-  )
-
-  output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
-  hubverse_format_nhsn_data <- raw_nhsn_data |>
+  ) |>
     dplyr::rename(
       observation = "totalconfc19newadm",
-      date = "weekendingdate",
-      state = "jurisdiction"
+      date = "weekendingdate"
     ) |>
     dplyr::mutate(
       date = as.Date(.data$date),
       observation = as.numeric(.data$observation),
-      state = stringr::str_replace(.data$state, "USA", "US")
+      jurisdiction = stringr::str_replace(.data$jurisdiction, "USA", "US")
     ) |>
-    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
-      location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
+      location = forecasttools::us_location_recode(
+        .data$jurisdiction,
+        "abbr",
+        "code"
+      ),
       as_of = !!today,
       target = "wk inc covid hosp"
     ) |>
     dplyr::filter(!(location %in% !!excluded_locations))
 
-  hubverse_format_nhsn_data |>
+  hubverse_format_nhsn_data <- nhsn_data |> dplyr::select(-"jurisdiction")
+
+  nhsn_data |>
     dplyr::rename(
-      value = observation
+      value = "observation",
+      state = "jurisdiction"
     ) |>
     dplyr::select(-c("as_of", "target")) |>
     readr::write_csv(
@@ -131,11 +132,6 @@ get_target_data <- function(
       observation = as.numeric(.data$percent_visits_covid) / 100,
     ) |>
     dplyr::mutate(
-      state = forecasttools::us_location_recode(
-        .data$geography,
-        "name",
-        "abbr"
-      ),
       location = forecasttools::us_location_recode(
         .data$geography,
         "name",
@@ -146,13 +142,13 @@ get_target_data <- function(
     ) |>
     dplyr::select(
       "date",
-      "state",
       "observation",
       "location",
       "as_of",
       "target"
     )
 
+  output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
   forecasttools::read_tabular_file(output_file) |>
     dplyr::bind_rows(hubverse_format_nhsn_data, hubverse_format_nssp_data) |>
     forecasttools::write_tabular_file(output_file)
