@@ -29,13 +29,18 @@ jobs:
       with:
         install-r: false
         use-public-rspm: true
-        
-    - name: Install dependencies
-      run: |
-        install.packages(c("argparser", "remotes"))
-        remotes::install_github("cdcgov/forecasttools")
-      shell: Rscript {0}
-    
+        extra-repositories: "https://hubverse-org.r-universe.dev"
+
+    - uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        pak-version: "devel"
+        packages: |
+          any::argparser
+          any::tidyr
+          any::hubData
+          any::hubUtils
+          github::cdcgov/forecasttools
+  
     - name: Update oracle output from timeseries data
       run: |
         Rscript src/generate_oracle_output.R --base-hub-path '.'
