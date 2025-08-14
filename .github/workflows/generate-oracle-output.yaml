@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: 
-      - "main"
+      - ["main", "dhm-oracle-output"]
     paths:
       - "target-data/time-series*"
     
