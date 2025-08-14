@@ -79,7 +79,6 @@ flatten_task_list <- function(task_list, .deduplicate = TRUE) {
 #' has been filtered to a specific vintage? Default `TRUE`.
 #' @return The specific requested vintage of target data,
 #' potentially with the `as_of` column removed.
-#' @export
 hub_target_data_as_of <- function(
   hub_target_data,
   as_of = "latest",
@@ -123,7 +122,7 @@ hub_target_data_as_of <- function(
 #'
 #' @param hub_path Path to the hub root.
 #'
-#' @return nothing, inivisibly, on success.
+#' @return nothing, invisibly, on success.
 generate_oracle_output <- function(hub_path) {
   output_dirpath <- fs::path(hub_path, "target-data")
   fs::dir_create(output_dirpath)
