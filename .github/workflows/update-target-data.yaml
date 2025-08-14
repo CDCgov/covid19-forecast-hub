@@ -43,14 +43,14 @@ jobs:
     
     - name: "Update target timeseries data"
       run: |
-        Rscript src/get_target_data.R --target-data TRUE --base-hub-path "."
+        Rscript src/get_target_data.R --target-data TRUE --base-hub-path '.'
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
-	
+
     - name: "Update oracle output from timeseries data"
       run: |
-        Rscript src/generate_oracle_output.R --base-hub-path "."
+        Rscript src/generate_oracle_output.R --base-hub-path '.'
 
     - name: Check for Changes
       id: check_diff
