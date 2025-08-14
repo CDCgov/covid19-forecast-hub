@@ -1,54 +1,61 @@
-name: Update target data
+name: "Update target data"
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '00 16 * * 3'
+    - cron: "00 16 * * 3"
     
 jobs:
   update-target-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-22.04
+    runs-on: "ubuntu-latest"
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - name: Generate Installation Token
+    - name: "Generate token"
       id: get_token
       uses: actions/create-github-app-token@v1
       with:
         app-id: ${{ vars.GH_APP_ID }}
         private-key: ${{ secrets.GH_APP_KEY }}
 
-    - name: Install libcurl
-      run: sudo apt-get install -y libcurl4-openssl-dev
-
-    - name: Checkout code
+    - name: "Check out code"
       uses: actions/checkout@v4
 
-    - name: Setup R
+    - name: "Set up R"
       uses: r-lib/actions/setup-r@v2
       with:
         install-r: false
         use-public-rspm: true
-        
-    - name: Install dependencies
-      run: |
-        install.packages(c("argparser", "fs", "readr", "dplyr", "remotes", "RcppTOML"))
-        remotes::install_github('cdcgov/forecasttools')
-      shell: Rscript {0}
+        extra-repositories: "https://hubverse-org.r-universe.dev"
+
+    - name: "Set up R dependencies"
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        pak-version: "devel"
+        packages: |
+          any::argparser
+          any::tidyr
+          any::RcppTOML
+          any::hubData
+          any::hubUtils
+          github::cdcgov/forecasttools
     
-    - name: get updated target data
+    - name: get updated target timeseries data
       run: |
         Rscript src/get_target_data.R --target-data TRUE --base-hub-path "."
       env:
         NHSN_API_KEY_ID: ${{ secrets.NHSN_API_KEY_ID }}  
         NHSN_API_KEY_SECRET: ${{ secrets.NHSN_API_KEY_SECRET }}
+	
+    - name: Update oracle output from timeseries data
+      run: |
+        Rscript src/generate_oracle_output.R --base-hub-path "."
 
     - name: Check for Changes
       id: check_diff
       run: |
-        git diff --exit-code target-data/time-series.parquet || echo "changed=true" >> $GITHUB_ENV 
-
+        git diff --exit-code target-data/* || echo "changed=true" >> $GITHUB_ENV 
     - name: Commit changes
       if: env.changed == 'true'
       uses: EndBug/add-and-commit@v9
@@ -61,6 +68,6 @@ jobs:
     - name: Create pull request
       if: env.changed == 'true'
       run: |
-        gh pr create --base main --head update-target-data --title "Update target data" --body "This PR updates the covid-19 hospital admissions data based on the latest NHSN wednesday data release."
+        gh pr create --base main --head update-target-data --title "Update target data" --body "This PR updates COVID-19 hospital admissions target data based on the latest released data."
       env:
         GH_TOKEN: ${{ steps.get_token.outputs.token }}
