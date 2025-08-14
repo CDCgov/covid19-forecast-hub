@@ -7,7 +7,6 @@ on:
       - "main"
       - "dhm-oracle-output"
     paths:
-      - "target-data/time-series*"
     
 jobs:
   generate-oracle-data:
