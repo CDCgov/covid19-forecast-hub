@@ -125,11 +125,10 @@ hub_target_data_as_of <- function(
 #'
 #' @return nothing, inivisibly, on success.
 generate_oracle_output <- function(hub_path) {
-  output_dirpath <- fs::path(base_hub_path, "target-data")
+  output_dirpath <- fs::path(hub_path, "target-data")
   fs::dir_create(output_dirpath)
   target_ts <- hubData::connect_target_timeseries(hub_path)
 
-  hub_path <- "."
   config_tasks <- hubUtils::read_config(hub_path, "tasks")
   round_ids <- hubUtils::get_round_ids(config_tasks)
 
@@ -171,7 +170,7 @@ args <- argparser::arg_parser(
   argparser::add_argument(
     "--base-hub-path",
     type = "character",
-    help = "Path to the COVID-19 forecast hub directory (default: cwd).",
+    help = "Path to the COVID-19 Forecast Hub root (default: cwd).",
     default = "."
   ) |>
   argparser::parse_args()
