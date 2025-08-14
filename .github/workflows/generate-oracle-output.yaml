@@ -6,7 +6,6 @@ on:
     branches: 
       - "main"
       - "dhm-oracle-output"
-    paths:
     
 jobs:
   generate-oracle-data:
@@ -33,7 +32,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        install.packages(c("argparser", "remotes")
+        install.packages(c("argparser", "remotes"))
         remotes::install_github("cdcgov/forecasttools")
       shell: Rscript {0}
     
