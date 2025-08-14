@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches: 
-      - ["main", "dhm-oracle-output"]
+      - "main"
     paths:
       - "target-data/time-series*"
+    pull_request:
     
 jobs:
   generate-oracle-data:
