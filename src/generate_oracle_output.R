@@ -22,7 +22,6 @@ flatten_task <- function(task) {
     must.include = "target_end_date"
   )
   output_types <- names(task$output_type)
-  output_types <- unname(names(task$output_type))
 
   task_params <- purrr::map(task$task_ids, \(x) c(x$required, x$optional)) |>
     purrr::discard_at(c("horizon", "reference_date"))
