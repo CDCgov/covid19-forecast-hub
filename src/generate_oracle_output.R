@@ -64,59 +64,6 @@ flatten_task_list <- function(task_list, .deduplicate = TRUE) {
   return(flat_tasks)
 }
 
-#' Filter to a given vintage of hub target data and drop the `as_of`
-#' column.
-#'
-#' This function succeeds silently on unvintaged target data tables
-#' provided the user requests the latest available data. Otherwise,
-#' it raises an error when the data set is not vintaged.
-#'
-#' @param hub_target_data Table of hub target data to filter
-#' @param as_of As of date to filter to. If `"latest"` (default)
-#' use the latest available vintage.
-#' @param .drop Drop the `as_of` column once the dataset
-#' has been filtered to a specific vintage? Default `TRUE`.
-#' @return The specific requested vintage of target data,
-#' potentially with the `as_of` column removed.
-hub_target_data_as_of <- function(
-  hub_target_data,
-  as_of = "latest",
-  .drop = TRUE
-) {
-  checkmate::assert_scalar(as_of)
-  vintaged <- "as_of" %in% colnames(hub_target_data)
-  if (vintaged) {
-    if (as_of == "latest") {
-      as_of <- hub_target_data |>
-        dplyr::summarise(max_date = max(.data$as_of)) |>
-        dplyr::collect() |>
-        dplyr::pull() |>
-        as.Date()
-    }
-    checkmate::assert_date(as_of)
-    hub_target_data <- dplyr::filter(
-      hub_target_data,
-      as.Date(.data$as_of) == !!as_of
-    )
-  } else if (as_of != "latest") {
-    cli::cli_abort(
-      "Requested an 'as_of' date other than the default 'latest', ",
-      "but the provided hubverse target data table does not appear",
-      "to be vintaged. It has no 'as_of' column."
-    )
-  }
-
-  if (.drop) {
-    hub_target_data <- dplyr::select(
-      hub_target_data,
-      -tidyselect::any_of("as_of")
-    )
-  }
-
-  return(hub_target_data)
-}
-
-
 #' Generate and save oracle output for the Hub
 #'
 #' @param hub_path Path to the hub root.
@@ -142,7 +89,7 @@ generate_oracle_output <- function(hub_path) {
     dplyr::mutate(target_end_date = as.Date(.data$target_end_date))
 
   target_data <- target_ts |>
-    hub_target_data_as_of("latest", .drop = TRUE) |>
+    forecasttools::hub_target_data_as_of("latest", .drop = TRUE) |>
     dplyr::collect() |>
     dplyr::rename(target_end_date = "date")
 
