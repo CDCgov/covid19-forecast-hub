@@ -5,23 +5,23 @@
   },
   {
     "model": "CFA_Pyrenew-Pyrenew_E_COVID",
-    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "O957"]
   },
   {
     "model": "CFA_Pyrenew-Pyrenew_H_COVID",
-    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "O957"]
   },
   {
     "model": "CFA_Pyrenew-Pyrenew_HE_COVID",
-    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "O957"]
   },
   {
     "model": "CFA_Pyrenew-Pyrenew_HW_COVID",
-    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "O957"]
   },
   {
     "model": "CFA_Pyrenew-PyrenewHEW_COVID",
-    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "AFg6K7h4fhy2"]
+    "authorized_github_users": ["dylanhmorris", "damonbayer", "sbidari", "O957"]
   },
   {
     "model": "CMU-climate_baseline",
