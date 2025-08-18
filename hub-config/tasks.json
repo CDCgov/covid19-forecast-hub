@@ -115,7 +115,7 @@
                   "location"
                 ]
               },
-              "is_required": true,
+              "is_required": false,
               "value": {
                 "type": "double",
                 "minimum": 0
