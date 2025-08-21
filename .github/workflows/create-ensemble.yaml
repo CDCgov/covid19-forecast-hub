@@ -2,7 +2,7 @@ name: "CovidHub-ensemble"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 14 * * 4"
+    - cron: "30 13 * * 4"
 
 permissions:
   contents: write
