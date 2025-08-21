@@ -88,7 +88,7 @@ A boolean value (`true` or `false`) that indicates whether a model is an ensembl
 
 ### `ensemble_of_hub_models`
 
-A boolean value (`true` or `false`) that indicates whether a model is an ensemble specifically of other models submitted to the FluSight forecasting hub.
+A boolean value (`true` or `false`) that indicates whether a model is an ensemble specifically of other models submitted to the COVID-19 forecasting hub.
 
 ## Optional fields
 The following metadata fields are optional, but encouraged.
