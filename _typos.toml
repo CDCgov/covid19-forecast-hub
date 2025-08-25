@@ -37,5 +37,7 @@ extend-exclude = [
     "*.csl",
     "*.css",
     "*.ipynb",
-    "*.csv"
+    "*.csv",
+    "model-metadata",
+    "model-output"
 ]
