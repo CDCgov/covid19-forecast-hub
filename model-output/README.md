@@ -73,7 +73,7 @@ The combination of `team` and `model` should be unique from any other model in t
 
 ### Metadata
 
-The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team}-{model}`, and extension `.yml` or `.yaml`, e.g.
+The metadata file will be saved within the model-metadata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team}-{model}`, and extension `.yml` or `.yaml`, e.g.
 
     exampleteam-examplemodel.yml
     otherteam-othermodel.yaml
