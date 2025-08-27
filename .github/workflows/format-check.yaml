@@ -1,17 +1,5 @@
-###############################################################################
-# OVERVIEW
-###############################################################################
 # The following is a workflow derived from
 # https://github.com/posit-dev/setup-air/blob/main/examples/format-check.yaml
-#
-# Description:
-#
-# This runs air format . --check on every push to main and on every pull
-# request. This is a very simple action that fails if any files would be
-# reformatted. When this happens, reformat locally using air format . or
-# the Air: Format Workspace Folder command in VS Code or Positron, and commit
-# and push the results.
-###############################################################################
 on:
   push:
     branches: [main, master]
