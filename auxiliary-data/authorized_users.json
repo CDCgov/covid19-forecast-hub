@@ -41,7 +41,7 @@
   },
   {
     "model": "Google_SAI-Ensemble",
-    "authorized_github_users": ["zshamsi2"]
+    "authorized_github_users": ["zshamsi2", "sarahmart"]
   },
   {
     "model": "JHU_CSSE-CSSE_Ensemble",
