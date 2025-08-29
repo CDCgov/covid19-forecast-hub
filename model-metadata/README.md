@@ -70,7 +70,7 @@ A team-specified boolean indicator (`true` or `false`) for whether the model sho
 
 ### `data_inputs`
 
-List or description of the data sources used to inform the model, in particular any dataset used that are not the [target dataset](../README.md#target-data-source) of epiweekly incident COVID-19 hospital admissions reported to NHSN.
+List or description of the data sources used to inform the model, in particular any dataset used that are not the [target datasets](../README.md#target-data-source) of epiweekly incident COVID-19 hospital admissions reported to NHSN or epiweekly incident emergency department visits due to COVID-19 reported to NSSP. 
 
 
 ### `methods`
@@ -136,7 +136,7 @@ designated_github_users: ["dependabot"]
 
 Optionally, you may validate a model metadata file locally before submitting it to the hub in a pull request. Note that this is not required, since the validations will also run on the pull request, but it is encouraged. To run validations locally, follow these steps:
 
-1. Create a fork of the `covid-forecast-hub-2024` repository and then clone the fork to your computer.
+1. Create a fork of the `covid19-forecast-hub` repository and then clone the fork to your computer.
 2. Create a draft of the model metadata file for your model and place it in the `model-metadata` folder of this clone.
 3. Install the hubValidations package for R by running the following command from within an R session:
 ``` r
