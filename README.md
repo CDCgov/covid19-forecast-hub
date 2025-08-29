@@ -95,9 +95,8 @@ This repository follows the guidelines and standards outlined by the [hubverse](
 
 ## Related Documents
 
-* [Open Practices](./cdc_policies/open_practices.md)
-* [Rules of Behavior](./cdc_policies/rules_of_behavior.md)
-* [Thanks and Acknowledgements](./cdc_policies/thanks.md)
+* [Open Practices](open_practices.md)
+* [Rules of Behavior](rules_of_behavior.md)
 * [Disclaimer](DISCLAIMER.md)
 * [Contribution Notice](CONTRIBUTING.md)
 * [Code of Conduct](code-of-conduct.md)
