@@ -76,7 +76,10 @@ get_target_data <- function(
   today <- lubridate::today()
   output_dirpath <- fs::path(base_hub_path, "target-data")
   fs::dir_create(output_dirpath)
-
+  included_locations <- setdiff(
+    forecasttools::us_location_table$code,
+    excluded_locations
+  )
   nhsn_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
@@ -100,7 +103,7 @@ get_target_data <- function(
       as_of = !!today,
       target = "wk inc covid hosp"
     ) |>
-    dplyr::filter(!(location %in% !!excluded_locations))
+    dplyr::filter(location %in% !!included_locations)
 
   hubverse_format_nhsn_data <- nhsn_data |> dplyr::select(-"jurisdiction")
 
