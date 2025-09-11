@@ -2,7 +2,7 @@ get_truth_data <- function(
   reference_date,
   base_hub_path,
   hub_reports_path,
-  excluded_locations
+  included_locations
 ) {
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
@@ -31,7 +31,7 @@ get_truth_data <- function(
       )
     ) |>
     # exclude certain territories
-    dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
+    dplyr::filter(.data$location %in% !!included_locations) |>
     # long name "United States" to "US"
     dplyr::mutate(
       location_name = dplyr::case_match(
@@ -70,16 +70,13 @@ get_truth_data <- function(
 
 get_target_data <- function(
   base_hub_path,
-  excluded_locations,
+  included_locations,
   first_full_weekending_date
 ) {
   today <- lubridate::today()
   output_dirpath <- fs::path(base_hub_path, "target-data")
   fs::dir_create(output_dirpath)
-  included_locations <- setdiff(
-    forecasttools::us_location_table$code,
-    excluded_locations
-  )
+
   nhsn_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
@@ -214,10 +211,15 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 
+included_locations <- setdiff(
+  forecasttools::us_location_table$code,
+  excluded_locations
+)
+
 if (target_data) {
   get_target_data(
     base_hub_path = base_hub_path,
-    excluded_locations = excluded_locations,
+    included_locations = included_locations,
     first_full_weekending_date = first_full_weekending_date
   )
 } else {
@@ -225,6 +227,6 @@ if (target_data) {
     reference_date = reference_date,
     base_hub_path = base_hub_path,
     hub_reports_path = hub_reports_path,
-    excluded_locations = excluded_locations
+    included_locations = included_locations
   )
 }
