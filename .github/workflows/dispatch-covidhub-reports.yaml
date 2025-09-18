@@ -11,7 +11,7 @@ on:
 jobs:
   update-visualization-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Generate Installation Token
         id: get_token
