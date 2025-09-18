@@ -18,7 +18,7 @@ jobs:
   upload:
     # Don't run on forked repositories
     if: github.event.repository.fork != true
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
