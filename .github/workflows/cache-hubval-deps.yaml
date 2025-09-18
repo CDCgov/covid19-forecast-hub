@@ -1,4 +1,4 @@
-name: Build dependency cache on main branch
+name: "Build dependency cache on main branch"
 on:
   push:
     branches: [main, master]

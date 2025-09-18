@@ -1,4 +1,4 @@
-name: Upload hub data to a hubverse-hosted AWS S3 bucket
+name: "Upload hub data to a hubverse-hosted AWS S3 bucket"
 
 on:
   push:

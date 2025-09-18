@@ -5,13 +5,13 @@ on:
     branches: [main, master]
   pull_request:
 
-name: format-check.yaml
+name: "format-check.yaml"
 
 permissions: read-all
 
 jobs:
   format-check:
-    name: format-check
+    name: "format-check"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
