@@ -1,4 +1,4 @@
-name: Merge valid PRs
+name: "Merge valid PRs"
 
 on:
   workflow_run:
@@ -46,7 +46,7 @@ jobs:
       - name: Download validation artifact
         uses: actions/download-artifact@v4
         with: 
-          name: validation_status
+          name: "validation_status"
           path: artifacts_dir
           github-token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{ github.repository }}

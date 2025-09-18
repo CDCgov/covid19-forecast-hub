@@ -1,4 +1,4 @@
-name: Hub Config Validation (R)
+name: "Hub Config Validation (R)"
 
 on:
   workflow_dispatch:
