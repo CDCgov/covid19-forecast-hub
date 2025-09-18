@@ -1,4 +1,4 @@
-name: Send a dispatch to covidhub-reports
+name: "Send a dispatch to covidhub-reports"
 
 on:
   workflow_dispatch:

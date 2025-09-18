@@ -1,4 +1,4 @@
-name: Hub Submission Validation (R)
+name: "Hub Submission Validation (R)"
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Update authorized users
+name: "Update authorized users"
 
 on:
   workflow_dispatch:
