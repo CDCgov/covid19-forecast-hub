@@ -27,5 +27,5 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_token.outputs.token }}
-          repository: cdcent/covidhub-internal-reports
+          repository: cdcent/cfa-forecast-hub-internal-reports
           event-type: data-update
