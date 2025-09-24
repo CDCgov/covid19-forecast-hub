@@ -1,5 +1,5 @@
 # Target data
-This folder contains the legacy version of target data used for the COVID-19 hospital admissions forecasting task [`covid-hospital-admissions.csv`](covid-hospital-admissions.csv), and a new version of target data in [standard hubverse format](https://docs.hubverse.io/en/latest/user-guide/target-data.html), [`time-series.parquet`](time-series.parquet) containing both hospital admissions and emergency department visits data. `time-series.parquet` contains the truth data for (eventual) evaluation of the forecasts submitted to the CovidHub.
+This folder contains target data in [standard hubverse format](https://docs.hubverse.io/en/latest/user-guide/target-data.html), [`time-series.parquet`](time-series.parquet) with both weekly incident COVID-19 hospital admissions and weekly incident proportion of emergency department visits data. This `time-series.parquet` will be treated as the truth data for (eventual) evaluation of the forecasts submitted to the CovidHub.
 
 ### Target Data Dictionary
 
@@ -8,16 +8,14 @@ The following columns are included in `time-series.parquet`:
 | Column      | Description                                                        |
 |-------------|--------------------------------------------------------------------|
 | `date`      | Date of observation (YYYY-MM-DD)                                   |
-| `location`  | Location code (2 digits FIPS or `"US"` for national data)          |    
-| `state`     | State abbreviation or `"US"` for national data                     |
+| `location`  | Location code (2 digits FIPS or `"US"` for national data)          |
 | `observation` | Numeric value for the target                                     |
 | `as_of`     | Date the data was retrieved or processed                           |
 | `target`    | Description of the metric (e.g., `"wk inc covid hosp"`)            |
 
 
 ### Deprecation Notice
-
-The file `covid-hospital-admissions.csv` is being deprecated and will eventually be removed from this repository.   *Please update any workflows or scripts to use `time-series.parquet` instead.*
+The legacy version of target data containing just the COVID-19 hospital admissions data named [`covid-hospital-admissions.csv`](covid-hospital-admissions.csv) is being deprecated and will eventually be removed from this repository.   *Please update any workflows or scripts to use `time-series.parquet` instead.*
 
 
 ## Hospital Admissions Data

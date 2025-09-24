@@ -1,4 +1,4 @@
-name: Merge valid PRs
+name: "Merge valid PRs"
 
 on:
   workflow_run:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   approve-and-merge-pr:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
     permissions: 
       contents: write
@@ -46,7 +46,7 @@ jobs:
       - name: Download validation artifact
         uses: actions/download-artifact@v4
         with: 
-          name: validation_status
+          name: "validation_status"
           path: artifacts_dir
           github-token: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{ github.repository }}
