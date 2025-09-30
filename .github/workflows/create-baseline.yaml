@@ -11,46 +11,49 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - name: Generate Installation Token
+    - name: "Generate Installation Token"
       id: get_token
-      uses: actions/create-github-app-token@v1
+      uses: actions/create-github-app-token@v2
       with:
-        app-id: ${{ vars.GH_APP_ID }}
-        private-key: ${{ secrets.GH_APP_KEY }}
+        app-id: ${{ vars.CDCGOV_HUB_BOT_APP_ID }}
+        private-key: ${{ secrets.CDCGOV_HUB_BOT_APP_KEY }}
 
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - name: "Checkout Code"
+      uses: actions/checkout@v5
 
-    - name: Setup R
+    - name: "Setup R"
       uses: r-lib/actions/setup-r@v2
       with:
         install-r: true
         use-public-rspm: true
-      
-    - name: Install dependencies
-      run: |
-        install.packages(c("fs", "readr", "dplyr", "tidyr", "cli", "lubridate", "nanoparquet", "argparser", "remotes", "genlasso"))
-        remotes::install_github("cmu-delphi/epiprocess")
-        remotes::install_github("cmu-delphi/epipredict")
-        remotes::install_github("cdcgov/forecasttools")
-      shell: Rscript {0}
-  
-    - name: generate baseline
+
+    - name: "Set Up R Dependencies"
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        pak-version: "devel"
+        packages: |
+          github::cdcgov/hubhelpr
+
+    - name: "Generate Baseline"
       run: |
         REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-        Rscript src/get_baseline.R --reference-date "$REF_DATE" --base-hub-path "."
+        Rscript -e "hubhelpr::generate_hub_baseline('.', '$REF_DATE', 'covid')"
 
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with: 
-        message: "Add baseline forecasts"
-        default_author: github_actions
-        push: true
-        new_branch: add-baseline
-  
-    - name: Create pull request
+    - name: "Set Date"
+      run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
+    - name: "Commit Changes"
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -b add-covid-baseline-${{ env.DATE }}
+        git add .
+        git commit -m "Add CovidHub baseline forecasts"
+        git push origin add-covid-baseline-${{ env.DATE }}
+
+    - name: "Create Pull Request"
       id: create_pr
       run: |
-        gh pr create --base main --head add-baseline --title "Add baseline forecast" --body "This PR is generated automatically."
+        gh pr create --base main --head add-covid-baseline-${{ env.DATE }} --title "Add CovidHub baseline forecast" --body "This PR is generated automatically."
       env:
         GH_TOKEN: ${{ steps.get_token.outputs.token }}
