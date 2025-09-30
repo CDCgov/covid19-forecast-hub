@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: write
-    
+
 jobs:
   generate-covidhub-ensemble:
     if: ${{ github.repository_owner == 'CDCgov' }}
@@ -14,46 +14,54 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-    - name: Generate Installation Token
+    - name: "Generate Installation Token"
       id: get_token
-      uses: actions/create-github-app-token@v1
+      uses: actions/create-github-app-token@v2
       with:
-        app-id: ${{ vars.GH_APP_ID }}
-        private-key: ${{ secrets.GH_APP_KEY }}
+        app-id: ${{ vars.CDCGOV_HUB_BOT_APP_ID }}
+        private-key: ${{ secrets.CDCGOV_HUB_BOT_APP_KEY }}
 
-    - uses: actions/checkout@v4
-    - uses: r-lib/actions/setup-r@v2
+    - name: "Checkout Code"
+      uses: actions/checkout@v5
+
+    - name: "Setup R"
+      uses: r-lib/actions/setup-r@v2
       with:
         install-r: true
         use-public-rspm: true
-    
-    - name: Install system dependencies
+
+    - name: "Install System Dependencies"
       run: |
         sudo apt-get update
         sudo apt-get install -y libcurl4-openssl-dev
 
-    - name: Install dependencies
-      run: |
-        install.packages(c("fs", "hubEnsembles", "dplyr", "lubridate", "purrr", "yaml", "argparser", "remotes"))
-        remotes::install_github("hubverse-org/hubData")
-      shell: Rscript {0}
-  
-    - name: generate ensemble
+    - name: "Set Up R Dependencies"
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+        pak-version: "devel"
+        packages: |
+          github::cdcgov/hubhelpr
+
+    - name: "Generate Ensemble"
       run: |
         REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-        Rscript src/get_ensemble.R --reference-date "$REF_DATE" --base-hub-path "."
+        Rscript -e "hubhelpr::generate_hub_ensemble('.', '$REF_DATE', 'covid', 'hosp')"
 
-    - name: Commit changes
-      uses: EndBug/add-and-commit@v9
-      with: 
-        message: "Add CovidHub ensemble forecasts"
-        default_author: github_actions
-        push: true
-        new_branch: add-ensemble
+    - name: "Set Date"
+      run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
 
-    - name: Create pull request
+    - name: "Commit Changes"
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -b add-covid-ensemble-${{ env.DATE }}
+        git add .
+        git commit -m "Add CovidHub ensemble forecasts"
+        git push origin add-covid-ensemble-${{ env.DATE }}
+
+    - name: "Create Pull Request"
       id: create_pr
       run: |
-        gh pr create --base main --head add-ensemble --title "Add ensemble forecast" --body "This PR is generated automatically to add a quantile median ensemble forecast."
+        gh pr create --base main --head add-covid-ensemble-${{ env.DATE }} --title "Add CovidHub ensemble forecast" --body "This PR is generated automatically to add a quantile median ensemble forecast."
       env:
         GH_TOKEN: ${{ steps.get_token.outputs.token }}
