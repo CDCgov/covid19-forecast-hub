@@ -1,4 +1,4 @@
-name: "Create new modeling round"
+name: Create new modeling round
 
 on:
   # schedule:

@@ -130,7 +130,6 @@
         "methods",
         "methods_long",
         "ensemble_of_models",
-        "ensemble_of_hub_models",
-        "website_url"
+        "ensemble_of_hub_models"
     ]
 }

@@ -21,9 +21,23 @@ These instructions provide detail about the [data format](#Data-formatting) as w
 
 ## What is a forecast 
 
-Models are asked to make specific quantitative forecasts about data that will be observed in the future. These forecasts are interpreted as "unconditional" predictions about the future. That is, they are not predictions only for a limited set of possible future scenarios in which a certain set of conditions (e.g. vaccination uptake is strong, or new social-distancing mandates are put in place) hold about the future --rather, they should characterize uncertainty across all reasonable future scenarios. In practice, all forecasting models make some assumptions about how current trends in data may change and impact the forecasted outcome; some teams select a "most likely" scenario or combine predictions across multiple scenarios that may occur. Forecasts submitted to this repository will be evaluated against observed data.
+Models are asked to make specific quantitative forecasts about data that will be observed in the future. These forecasts are interpreted as
+"unconditional" predictions about the future. That is, they are not
+predictions only for a limited set of possible future scenarios in which a certain set of conditions (e.g. vaccination uptake is strong, or new social-distancing mandates are put in place) hold about the future --
+rather, they should characterize uncertainty across all reasonable
+future scenarios. In practice, all forecasting models make some
+assumptions about how current trends in data may change and impact the
+forecasted outcome; some teams select a "most likely" scenario or
+combine predictions across multiple scenarios that may occur. Forecasts
+submitted to this repository will be evaluated against observed data.
 
-We note that other modeling efforts, such as the [COVID-19 Scenario Modeling Hub](https://covid19scenariomodelinghub.org/), have been launched to collect and aggregate model outputs from "scenario projection" models. These models create longer-term projections under a specific set of assumptions about how the main drivers of the pandemic (such as non-pharmaceutical intervention compliance, or vaccination uptake) may change over time.
+We note that other modeling efforts, such as the [Influenza Scenario
+Modeling Hub](https://fluscenariomodelinghub.org/), have been
+launched to collect and aggregate model outputs from "scenario
+projection" models. These models create longer-term projections under a
+specific set of assumptions about how the main drivers of the pandemic
+(such as non-pharmaceutical intervention compliance, or vaccination
+uptake) may change over time.
 
 ## Target Data 
 
@@ -35,7 +49,10 @@ Further information on the data can be found at the NHSN's [Hospital Respiratory
 
 ## Forecast submission formatting 
 
-The automatic checks in place for forecast files submitted to this repository validates both the filename and file contents to ensure the file can be used in the visualization and ensemble forecasting.
+
+The automatic checks in place for forecast files submitted to this
+repository validates both the filename and file contents to ensure the
+file can be used in the visualization and ensemble forecasting.
 
 ### Subdirectory
 
@@ -48,20 +65,23 @@ where
 -   `team` is the team name and
 -   `model` is the name of your model.
 
-Both team and model should be less than 21 characters and not include hyphens or other special characters, with the exception of "\_".
+Both team and model should be less than 15 characters and not include
+hyphens or other special characters, with the exception of "\_".
 
 The combination of `team` and `model` should be unique from any other model in the project.
 
 
 ### Metadata
 
-The metadata file will be saved within the model-metadata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team}-{model}`, and extension `.yml` or `.yaml`, e.g.
+The metadata file will be saved within the model-metdata directory in the Hub's GitHub repository. It should be a YAML file with base name `{team}-{model}`, and extension `.yml` or `.yaml`, e.g.
 
     exampleteam-examplemodel.yml
     otherteam-othermodel.yaml
 
 
 Details on the content and formatting of metadata files are provided in the [model-metadata README](https://github.com/hubverse-org/hubTemplate/blob/master/model-metadata/README.md).
+
+
 
 
 ### Forecasts
@@ -89,12 +109,15 @@ The date YYYY-MM-DD is the [`reference_date`](#reference_date). This should be t
 
     2024-11-02-exampleteam-examplemodel.csv
 
-The `team` and `model` in this file must match the `team` and `model` in the directory this file is in. Both `team` and `model` should be less
-than 21 characters, alpha-numeric and underscores only, with no spaces or hyphens. Submission of both targets- quantiles and samples must be in the same weekly csv or parquet submission file.
+The `team` and `model` in this file must match the `team` and `model` in
+the directory this file is in. Both `team` and `model` should be less
+than 15 characters, alpha-numeric and underscores only, with no spaces
+or hyphens. Submission of both targets- quantiles and samples must be in the same weekly csv or parquet submission file.
 
 ## Forecast file format 
 
-The file must be a comma-separated value (csv) file with the following columns (in any order):
+The file must be a comma-separated value (csv) file with the following
+columns (in any order):
 
 -   `reference_date`
 -   `target`
@@ -267,7 +290,7 @@ Optionally, you may validate a forecast file locally before submitting it to the
 
 ## Weekly ensemble build 
 
-Every  Thursday morning, we will generate a CovidHub ensemble hospital admission forecast using valid forecast submissions in the current week by the Wednesday 11PM ET deadline. Some or all participant forecasts may be combined into an ensemble forecast to be published in real-time along with the participant forecasts. In addition, some or all forecasts may be displayed alongside the output of a baseline model for comparison.
+Every  Thursday morning, we will generate a  CovidHub ensemble hospital admission forecast using valid forecast submissions in the current week by the Wednesday 11PM ET deadline. Some or all participant forecasts may be combined into an ensemble forecast to be published in real-time along with the participant forecasts. In addition, some or all forecasts may be displayed alongside the output of a baseline model for comparison.
 
 
 ## Policy on late or updated submissions 

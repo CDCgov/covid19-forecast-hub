@@ -16,4 +16,4 @@ documentation:
 configuration:
   - changed-files:
     - any-glob-to-any-file:
-      - hub-config/*.json
+      - hub-config/*

@@ -1,4 +1,4 @@
-name: "Send a dispatch to CFA Forecast Hub Internal Reports repo"
+name: Send a dispatch to internal covidhub-reports
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
 jobs:
   update-webpage-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Generate Installation Token
         id: generate_token
@@ -21,11 +21,11 @@ jobs:
           app-id: ${{ vars.ENT_GH_APP_ID }}
           private-key: ${{ secrets.ENT_GH_APP_KEY }}
           owner: cdcent  
-          repositories: cfa-forecast-hub-internal-reports  
+          repositories: covidhub-internal-reports  
 
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_token.outputs.token }}
-          repository: cdcent/cfa-forecast-hub-internal-reports
+          repository: cdcent/covidhub-internal-reports
           event-type: data-update

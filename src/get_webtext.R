@@ -1,7 +1,7 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
-#' Rscript src/get_webtext.R --reference-date "2025-02-22"
-#' --hub-reports-path "../covidhub-reports"
+#' Rscript src/get_webtext.R --reference-date "2025-02-22" --base-hub-path "."
+#'  --hub-reports-path "../covidhub-reports"
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
@@ -97,11 +97,6 @@ stopifnot(fs::file_exists(exclude_territories_path))
 exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
 excluded_locations <- exclude_territories_toml$locations
 
-included_locations <- setdiff(
-  forecasttools::us_location_table$code,
-  excluded_locations
-)
-
 percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadmperchosprepabove80pct"),
@@ -128,7 +123,7 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
       "name"
     )
   ) |>
-  dplyr::filter(.data$location %in% !!included_locations) |>
+  dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
   dplyr::group_by(.data$jurisdiction) |>
   dplyr::mutate(max_weekendingdate = max(.data$weekendingdate)) |>
   dplyr::ungroup()
@@ -176,28 +171,27 @@ reporting_rate_flag <- if (length(latest_reporting_below80$location_name) > 0) {
   ""
 }
 
-round_to_place <- function(value) {
-  if (value >= 1000) {
-    rounded_val <- round(value, -2)
-  } else if (value >= 10) {
-    rounded_val <- round(value, -1)
-  } else {
-    rounded_val <- round(value, 0)
-  }
-  return(rounded_val)
+format_statistical_values <- function(median, pi_lower, pi_upper) {
+  half_width <- abs(pi_upper - pi_lower) / 2
+  digits <- -floor(log10(half_width))
+  c(
+    median = round(median, digits = digits),
+    lower = round(pi_lower, digits = digits),
+    upper = round(pi_upper, digits = digits)
+  )
 }
 
 # generate variables used in the web text
+forecast_1wk_ahead <-
+  format_statistical_values(
+    ensemble_us_1wk_ahead$quantile_0.5_count,
+    ensemble_us_1wk_ahead$quantile_0.025_count,
+    ensemble_us_1wk_ahead$quantile_0.975_count
+  )
 
-median_forecast_1wk_ahead <- round_to_place(
-  ensemble_us_1wk_ahead$quantile_0.5_count
-)
-lower_95ci_forecast_1wk_ahead <- round_to_place(
-  ensemble_us_1wk_ahead$quantile_0.025_count
-)
-upper_95ci_forecast_1wk_ahead <- round_to_place(
-  ensemble_us_1wk_ahead$quantile_0.975_count
-)
+median_forecast_1wk_ahead <- forecast_1wk_ahead["median"]
+lower_95ci_forecast_1wk_ahead <- forecast_1wk_ahead["lower"]
+upper_95ci_forecast_1wk_ahead <- forecast_1wk_ahead["upper"]
 
 designated <- wkly_submissions[wkly_submissions$designated_model, ]
 not_designated <- wkly_submissions[!wkly_submissions$designated_model, ]

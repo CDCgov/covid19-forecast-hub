@@ -1,4 +1,4 @@
-name: "Upload hub data to a hubverse-hosted AWS S3 bucket"
+name: Upload hub data to a hubverse-hosted AWS S3 bucket
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
   upload:
     # Don't run on forked repositories
     if: github.event.repository.fork != true
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout

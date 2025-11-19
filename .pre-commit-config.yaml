@@ -1,3 +1,16 @@
+###############################################################################
+# OVERVIEW
+###############################################################################
+# This file contains the pre-commit hooks for this repository. Note that we 
+# only want to check files in the directory ./src
+#
+# Links:
+#
+# Pre-commit: https://pre-commit.com/
+# Supported hooks: https://github.com/pre-commit/pre-commit-hooks
+###############################################################################
+# CONTINUOUS INTEGRATION
+###############################################################################
 ci:
     autofix_commit_msg: |
         [pre-commit.ci] auto fixes from pre-commit.com hooks
@@ -8,9 +21,12 @@ ci:
     autoupdate_schedule: weekly
     skip: []
     submodules: false
+###############################################################################
+# GENERAL
+###############################################################################
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+    rev: v5.0.0
     hooks:
     -   id: check-yaml
         args: ["--allow-multiple-documents"]
@@ -26,19 +42,28 @@ repos:
         files: ^src/
     -   id: trailing-whitespace
         files: ^src/
+###############################################################################
+# R
+###############################################################################
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9017
+    rev: v0.4.3.9012
     hooks:
     -   id: lintr
         files: \.R$|\.Rmd$
     -   id: parsable-R
         files: \.R$|\.Rmd$
+###############################################################################
+# BASH SHELL
+###############################################################################
 -   repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
+    rev: v3.12.0-1
     hooks:
     -   id: shfmt
+###############################################################################
+# PYTHON
+###############################################################################
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.5
+    rev: v0.12.3
     hooks:
     -   id: ruff
         args: ["check", "--select", "I", "--fix"]
@@ -48,8 +73,4 @@ repos:
     -   id: ruff-format
         args: ["--line-length", "79"]
         files: '\.py$'
--   repo: https://github.com/crate-ci/typos
-    rev: v1
-    hooks:
-    -   id: typos
-        args: ["--force-exclude"]
+###############################################################################

@@ -2,7 +2,7 @@ get_truth_data <- function(
   reference_date,
   base_hub_path,
   hub_reports_path,
-  included_locations
+  excluded_locations
 ) {
   covid_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
@@ -22,6 +22,7 @@ get_truth_data <- function(
         "US"
       )
     ) |>
+    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
       location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
       location_name = forecasttools::us_location_recode(
@@ -31,7 +32,7 @@ get_truth_data <- function(
       )
     ) |>
     # exclude certain territories
-    dplyr::filter(.data$location %in% !!included_locations) |>
+    dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
     # long name "United States" to "US"
     dplyr::mutate(
       location_name = dplyr::case_match(
@@ -70,44 +71,42 @@ get_truth_data <- function(
 
 get_target_data <- function(
   base_hub_path,
-  included_locations,
+  excluded_locations,
   first_full_weekending_date
 ) {
   today <- lubridate::today()
   output_dirpath <- fs::path(base_hub_path, "target-data")
   fs::dir_create(output_dirpath)
 
-  nhsn_data <- forecasttools::pull_nhsn(
+  raw_nhsn_data <- forecasttools::pull_nhsn(
     api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
     columns = c("totalconfc19newadm"),
     start_date = first_full_weekending_date
-  ) |>
+  )
+
+  output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
+  hubverse_format_nhsn_data <- raw_nhsn_data |>
     dplyr::rename(
       observation = "totalconfc19newadm",
-      date = "weekendingdate"
+      date = "weekendingdate",
+      state = "jurisdiction"
     ) |>
     dplyr::mutate(
       date = as.Date(.data$date),
       observation = as.numeric(.data$observation),
-      jurisdiction = stringr::str_replace(.data$jurisdiction, "USA", "US")
+      state = stringr::str_replace(.data$state, "USA", "US")
     ) |>
+    dplyr::filter(!stringr::str_detect(.data$state, "Region")) |>
     dplyr::mutate(
-      location = forecasttools::us_location_recode(
-        .data$jurisdiction,
-        "abbr",
-        "code"
-      ),
+      location = forecasttools::us_location_recode(.data$state, "abbr", "code"),
       as_of = !!today,
       target = "wk inc covid hosp"
     ) |>
-    dplyr::filter(location %in% !!included_locations)
+    dplyr::filter(!(location %in% !!excluded_locations))
 
-  hubverse_format_nhsn_data <- nhsn_data |> dplyr::select(-"jurisdiction")
-
-  nhsn_data |>
+  hubverse_format_nhsn_data |>
     dplyr::rename(
-      value = "observation",
-      state = "jurisdiction"
+      value = observation
     ) |>
     dplyr::select(-c("as_of", "target")) |>
     readr::write_csv(
@@ -132,6 +131,11 @@ get_target_data <- function(
       observation = as.numeric(.data$percent_visits_covid) / 100,
     ) |>
     dplyr::mutate(
+      state = forecasttools::us_location_recode(
+        .data$geography,
+        "name",
+        "abbr"
+      ),
       location = forecasttools::us_location_recode(
         .data$geography,
         "name",
@@ -142,13 +146,13 @@ get_target_data <- function(
     ) |>
     dplyr::select(
       "date",
+      "state",
       "observation",
       "location",
       "as_of",
       "target"
     )
 
-  output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
   forecasttools::read_tabular_file(output_file) |>
     dplyr::bind_rows(hubverse_format_nhsn_data, hubverse_format_nssp_data) |>
     forecasttools::write_tabular_file(output_file)
@@ -211,15 +215,10 @@ if (fs::file_exists(exclude_territories_path)) {
   stop("TOML file not found: ", exclude_territories_path)
 }
 
-included_locations <- setdiff(
-  forecasttools::us_location_table$code,
-  excluded_locations
-)
-
 if (target_data) {
   get_target_data(
     base_hub_path = base_hub_path,
-    included_locations = included_locations,
+    excluded_locations = excluded_locations,
     first_full_weekending_date = first_full_weekending_date
   )
 } else {
@@ -227,6 +226,6 @@ if (target_data) {
     reference_date = reference_date,
     base_hub_path = base_hub_path,
     hub_reports_path = hub_reports_path,
-    included_locations = included_locations
+    excluded_locations = excluded_locations
   )
 }

@@ -1,4 +1,4 @@
-name: "Validate PRs"
+name: Validate PRs
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   validate-and-save-status:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions: 
       contents: read
       pull-requests: read
@@ -65,5 +65,5 @@ jobs:
       - name: upload validation status
         uses: actions/upload-artifact@v4
         with:
-          name: "validation_status"
+          name: validation_status
           path: status

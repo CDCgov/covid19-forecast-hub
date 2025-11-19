@@ -35,5 +35,4 @@ methods_long: "This model is an ensemble of three individual forecasting models,
 ensemble_of_models: true
 ensemble_of_hub_models: false
 model_version: "1.0"
-designated_github_users: ["zshamsi2", "sarahmart"]
-website_url: "https://ai.google/applied-ai/science/"
+designated_github_users: ["zshamsi2"]

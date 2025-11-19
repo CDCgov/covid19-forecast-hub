@@ -57,14 +57,8 @@ make_baseline_forecast <- function(
     dplyr::filter(
       as_of == max(as_of)
     ) |>
-    dplyr::mutate(
-      geo_value = forecasttools::us_location_recode(
-        .data$location,
-        "code",
-        "abbr"
-      )
-    ) |>
     dplyr::rename(
+      geo_value = state,
       time_value = date
     ) |>
     dplyr::select(-c("as_of", "location", "target")) |>
