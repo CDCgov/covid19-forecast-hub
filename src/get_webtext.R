@@ -97,6 +97,11 @@ stopifnot(fs::file_exists(exclude_territories_path))
 exclude_territories_toml <- RcppTOML::parseTOML(exclude_territories_path)
 excluded_locations <- exclude_territories_toml$locations
 
+included_locations <- setdiff(
+  forecasttools::us_location_table$code,
+  excluded_locations
+)
+
 percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
   api_endpoint = "https://data.cdc.gov/resource/mpgq-jmmr.json",
   columns = c("totalconfc19newadmperchosprepabove80pct"),
@@ -123,7 +128,7 @@ percent_hosp_reporting_below80 <- forecasttools::pull_nhsn(
       "name"
     )
   ) |>
-  dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
+  dplyr::filter(.data$location %in% !!included_locations) |>
   dplyr::group_by(.data$jurisdiction) |>
   dplyr::mutate(max_weekendingdate = max(.data$weekendingdate)) |>
   dplyr::ungroup()

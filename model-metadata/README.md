@@ -90,15 +90,15 @@ A boolean value (`true` or `false`) that indicates whether a model is an ensembl
 
 A boolean value (`true` or `false`) that indicates whether a model is an ensemble specifically of other models submitted to the COVID-19 Forecast Hub.
 
+### `website_url`
+
+The url of a website with additional information about your model, such as detailed methods, visualizations, or interactive dashboards.
+
 ## Optional fields
 The following metadata fields are optional, but encouraged.
 
 ### `model_version`
 An identifier of the version of the model. We recommend [semantic versioning](https://semver.org/) style: `X.Y` or `X.Y.Z`, so `1.2` for version 1.2.
-
-### `website_url`
-
-The url of a website with additional information about your model, such as detailed methods, visualizations, or interactive dashboards.
 
 ### `repo_url`
 
