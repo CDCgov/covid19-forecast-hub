@@ -114,13 +114,13 @@ get_target_data <- function(
       fs::path(output_dirpath, "covid-hospital-admissions.csv")
     )
 
-  raw_nssp_data <- readr::read_csv(
+  raw_nssp_data <- forecasttools::read_tabular(
     fs::path(
       base_hub_path,
       "auxiliary-data",
       "nssp-raw-data",
       "latest",
-      ext = "csv"
+      ext = "parquet"
     ),
     show_col_types = FALSE
   )
@@ -149,7 +149,7 @@ get_target_data <- function(
     )
 
   output_file <- fs::path(output_dirpath, "time-series", ext = "parquet")
-  forecasttools::read_tabular_file(output_file) |>
+  forecasttools::read_tabular(output_file) |>
     dplyr::bind_rows(hubverse_format_nhsn_data, hubverse_format_nssp_data) |>
     forecasttools::write_tabular_file(output_file)
 }
