@@ -35,9 +35,9 @@ license: "CC-BY-4.0"
 designated_model: true
 methods: "Ensemble of Gaussian processes."
 data_inputs: "Weekly NHSN COVID-19 hospitalisation visits."
-methods_long: "Ensemble of Gaussian processes, implemented using AutoGP.jl"
-website_url: "https://github.com/cdcgov/pyrenew-hew"
-repo_url: "https://github.com/cdcgov/pyrenew-hew"
+methods_long: "Ensemble of Gaussian processes, implemented using NowcastAutoGP.jl after 26th Nov 2025. Prior to this date, based on AutoGP.jl package directly."
+website_url: "https://github.com/CDCgov/NowcastAutoGP"
+repo_url: "https://github.com/CDCgov/NowcastAutoGP"
 ensemble_of_models: true
 ensemble_of_hub_models: false
 designated_github_users: ["SamuelBrand1"]
