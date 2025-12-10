@@ -35,9 +35,7 @@ jobs:
           github::cdcgov/hubhelpr
 
     - name: "Generate Baseline"
-      run: |
-        REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-        Rscript -e "hubhelpr::generate_hub_baseline('.', '$REF_DATE', 'covid')"
+      run: Rscript -e "hubhelpr::generate_hub_baseline('.', forecasttools::ceiling_mmwr_epiweek(lubridate::today()), 'covid')"
 
     - name: "Set Date"
       run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
