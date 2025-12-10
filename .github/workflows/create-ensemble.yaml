@@ -18,11 +18,11 @@ jobs:
       id: get_token
       uses: actions/create-github-app-token@v2
       with:
-        app-id: ${{ vars.CDCGOV_HUB_BOT_APP_ID }}
-        private-key: ${{ secrets.CDCGOV_HUB_BOT_APP_KEY }}
+        app-id: ${{ vars.GH_APP_ID }}
+        private-key: ${{ secrets.GH_APP_KEY }}
 
     - name: "Checkout Code"
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: "Setup R"
       uses: r-lib/actions/setup-r@v2
@@ -43,9 +43,7 @@ jobs:
           github::cdcgov/hubhelpr
 
     - name: "Generate Ensemble"
-      run: |
-        REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
-        Rscript -e "hubhelpr::generate_hub_ensemble('.', '$REF_DATE', 'covid', 'hosp')"
+      run: Rscript -e "hubhelpr::generate_hub_ensemble('.', forecasttools::ceiling_mmwr_epiweek(lubridate::today()), 'covid', c('hosp', 'prop ed visits'))"
 
     - name: "Set Date"
       run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
