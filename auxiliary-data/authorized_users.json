@@ -1,5 +1,9 @@
 [
   {
+    "model": "CADPH-CovidCAT_Ensemble",
+    "authorized_github_users": ["whit1951", "tomasleon", "cdphmodeling"]
+  },
+  {
     "model": "CEPH-Rtrend_covid",
     "authorized_github_users": ["paulocv"]
   },
