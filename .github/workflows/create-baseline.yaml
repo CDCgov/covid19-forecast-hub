@@ -15,8 +15,8 @@ jobs:
       id: get_token
       uses: actions/create-github-app-token@v2
       with:
-        app-id: ${{ vars.CDCGOV_HUB_BOT_APP_ID }}
-        private-key: ${{ secrets.CDCGOV_HUB_BOT_APP_KEY }}
+        app-id: ${{ vars.GH_APP_ID }}
+        private-key: ${{ secrets.GH_APP_KEY }}
 
     - name: "Checkout Code"
       uses: actions/checkout@v6
