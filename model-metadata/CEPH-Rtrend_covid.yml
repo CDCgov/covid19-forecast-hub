@@ -38,3 +38,4 @@ ensemble_of_models: false
 ensemble_of_hub_models: false
 website_url: https://publichealth.indiana.edu/about/directory/Marco-Ajelli-majelli.html
 designated_github_users: ["paulocv"]
+team_funding: "We acknowledge support from the CDC-RFA-FT-23-0069 cooperative agreement from the CDC's Center for Forecasting and Outbreak Analytics."
