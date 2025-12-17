@@ -73,7 +73,7 @@
   },
   {
     "model": "UGA_flucast-INFLAenza",
-    "authorized_github_users": ["MayaSal"]
+    "authorized_github_users": ["MayaSal", "rajathprabhakar100"]
   },
   {
     "model": "UM-DeepOutbreak",
