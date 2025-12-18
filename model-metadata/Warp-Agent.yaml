@@ -1,0 +1,21 @@
+team_name: "Warp AI Agent"
+team_abbr: "Warp"
+model_name: "Warp Agent COVID-19 Baseline Forecast"
+model_abbr: "Agent"
+model_version: "1.0"
+model_contributors:
+  [
+    {
+      "name": "Warp Agent User",
+      "affiliation": "Independent",
+      "email": "user@example.com"
+    }
+  ]
+website_url: "https://github.com/cdcgov/covid19-forecast-hub"
+license: "CC-BY-4.0"
+designated_model: false
+methods: "Baseline forecasting model using CDC's standard flat baseline approach via epipredict package. Uses most recent observed value as median projection with uncertainty based on historical timeseries."
+data_inputs: "Epiweekly incident COVID-19 hospital admissions from the NHSN Weekly Hospital Respiratory Data dataset, https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data"
+methods_long: "This model implements the CDC standard baseline forecasting approach using the cdc_baseline_forecaster() function from the epipredict R package. The model projects the most recent observed value forward as the median forecast, with prospective uncertainty estimated from the preceding time series. This approach provides a simple but robust baseline for comparison with more complex forecasting models."
+ensemble_of_models: false
+ensemble_of_hub_models: false
