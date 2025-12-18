@@ -5,7 +5,7 @@
   },
   {
     "model": "CEPH-Rtrend_covid",
-    "authorized_github_users": ["paulocv"]
+    "authorized_github_users": ["paulocv", "allisandrak", "shreeyamhade"]
   },
   {
     "model": "CFA_Pyrenew-Pyrenew_E_COVID",
