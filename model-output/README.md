@@ -288,5 +288,9 @@ Teams wishing to contribute a non-designated baseline model to the Hub may reque
 - The model is non-designated
 - Its status as a retrospective baseline is declared prominently in the model metadata
 
+## Policy on new contributors (on GitHub) of an existing model
+
+To ensure submissions are made by valid model contributors, we require that users not already listed as a `designated github user` or as a model contributor be added to the model metadata before making a submission to an existing model. Alternatively, you may have one of the currently-listed contributors vouch for you in the comments section of the pull request (PR), but we encourage adding the `designated github users` field to facilitate automated PR review.
+
 ## Evaluation criteria
 Forecasts will be evaluated using a variety of metrics, including the weighted interval score (WIS).
