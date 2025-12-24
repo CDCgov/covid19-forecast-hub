@@ -290,7 +290,11 @@ Teams wishing to contribute a non-designated baseline model to the Hub may reque
 
 ## Policy on new contributors (on GitHub) of an existing model
 
-To ensure submissions are made by valid model contributors, we require that users not already listed in `designated_github_users` or as a model contributor in `model_contributors` (in the `model-metadata`](https://github.com/CDCgov/covid19-forecast-hub/blob/main/model-metadata/) directory) be added by an existing contributor before making a submission with an existing model. Alternatively, you may have one of the current contributors vouch for you (via tagging their GitHub user handle) in the comments section of the pull request (PR), but we encourage adding the `designated_github_users` field to your model-metadata file to facilitate automated PR review.
+To ensure submissions for existing models are made by authorized individuals, we that submitters be listed in the model's [metadata YAML file](../model-metadata/README.md) as `designated_github_users` and/or as `model_contributors`. 
+
+To add one or more new authorized submitter(s) for an existing model, a currently authorized submitter should make a PR changing the model's metadata YAML file. Alternatively, a new submitter can themself open a PR changing the metadata, but a currently authorized submitter must endorse the change via a PR comment before it can be approved and merged.
+
+We strongly encourage adding all submitters as `designated_github_users`, as this allows for submission PRs that pass validation to be automerged without manual review.
 
 ## Evaluation criteria
 Forecasts will be evaluated using a variety of metrics, including the weighted interval score (WIS).
