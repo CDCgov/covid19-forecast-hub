@@ -19,7 +19,7 @@ Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilisti
 
 The weekly percent of ED visits due to COVID-19 can be found in the `percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [Emergency Department Visits - COVID-19, Flu, RSV, Sub-state](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) dataset. Although these numbers are reported in the percentage form, we will accept forecasts as decimal proportions (i.e., `percent_visits_covid / 100`). To obtain state-level data, we filter the dataset to include only the rows where the `county` column is equal to `All`. 
 
-We are working to make the Wednesday release of this dataset available on data.cdc.gov.  Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.csv`](auxiliary-data/nssp-raw-data/latest.csv).
+We are working to make the Wednesday release of this dataset available on data.cdc.gov.  Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.parquet`](auxiliary-data/nssp-raw-data/latest.parquet).
 These Wednesday data update contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
 
 ## Dates and Deadlines 
@@ -28,6 +28,10 @@ The Challenge Period is rolling.
 Participants will be asked to submit nowcasts and forecasts by 11PM USA Eastern Time each Wednesday (the "Forecast Due Date"). If it becomes necessary to change the Forecast Due Date or time deadline, CovidHub will notify participants at least one week in advance. 
 
 Weekly submissions (including file names) will be specified in terms of a "reference date": the Saturday following the Forecast Due Date. This is the last day of the USA/CDC epiweek (Sunday to Saturday) that contains the Forecast Due Date.
+
+Please note the following updated deadlines during the holiday period:
+- Forecasts for reference date **2025-12-27** are due on **2025-12-29** (extended deadline), with expected data release on **2025-12-29** (holiday schedule).
+- Forecasts for reference date **2026-01-03** are due on **2026-01-04** (extended deadline), with expected data release on **2025-12-31** (regular schedule). 
 
 ## Prediction Targets and Horizons
 
