@@ -29,6 +29,10 @@ Participants will be asked to submit nowcasts and forecasts by 11PM USA Eastern 
 
 Weekly submissions (including file names) will be specified in terms of a "reference date": the Saturday following the Forecast Due Date. This is the last day of the USA/CDC epiweek (Sunday to Saturday) that contains the Forecast Due Date.
 
+Please note the following updated deadlines during the holiday period:
+- Forecasts for reference date **2025-12-27** are due on **2025-12-29** (extended deadline), with expected data release on **2025-12-29** (holiday schedule).
+- Forecasts for reference date **2026-01-03** are due on **2026-01-04** (extended deadline), with expected data release on **2025-12-31** (regular schedule). 
+
 ## Prediction Targets and Horizons
 
 Participating teams will be able to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) predictions for following targets.
