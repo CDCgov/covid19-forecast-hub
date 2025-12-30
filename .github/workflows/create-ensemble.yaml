@@ -1,6 +1,11 @@
 name: "CovidHub-ensemble"
 on:
   workflow_dispatch:
+    inputs:
+      reference_date:
+        description: "Reference date (YYYY-MM-DD, must be Saturday). Leave empty for auto-calculation."
+        required: false
+        type: string
   schedule:
     - cron: "30 13 * * 4"
 
@@ -40,7 +45,12 @@ jobs:
   
     - name: generate ensemble
       run: |
-        REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
+        if [ -n "${{ inputs.reference_date }}" ]; then
+          REF_DATE="${{ inputs.reference_date }}"
+        else
+          REF_DATE=$(Rscript -e "cat(strftime(lubridate::ceiling_date(lubridate::today(), 'week', week_start = 6, change_on_boundary = FALSE)))")
+        fi
+        echo "Using reference date: $REF_DATE"
         Rscript src/get_ensemble.R --reference-date "$REF_DATE" --base-hub-path "."
 
     - name: Commit changes
