@@ -1,5 +1,5 @@
 /src/* @sbidari @dylanhmorris @O957
-/.github/* @sbidari @dylanhmorris @O957
+/.github/** @sbidari @dylanhmorris @O957
 /hub-config/* @sbidari @dylanhmorris @O957
 /auxiliary_data/weekly-model-submissions/ @sbidari @dylanhmorris @O957
 /model-output/CovidHub-baseline/ @sbidari @dylanhmorris @O957
