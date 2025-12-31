@@ -21,23 +21,23 @@ jobs:
       contents: read
       pull-requests: read
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: "Checkout code"
+        uses: actions/checkout@v6
         with:
           repository: CDCgov/covid19-forecast-hub
 
-      - name: Get model output changes
+      - name: "Get model output changes"
         id: get_changed_files_in_model_output
         uses: step-security/changed-files@v45
         with:
           path: model-output
           dir_names: "true"
 
-      - name: Get all changes
+      - name: "Get all changes"
         id: get_all_changed_files
         uses: step-security/changed-files@v45
 
-      - name: Check for changes outside model-output folder
+      - name: "Check for changes outside model-output folder"
         id: check_changes_outside_model_output
         run: |
           echo "Changed files:"
@@ -50,20 +50,20 @@ jobs:
             fi
           done
 
-      - name: Set up Python
+      - name: "Set up Python"
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: check and save approval status
+      - name: "check and save approval status"
         run: |
           python .github/scripts/check_users_authorized.py \
             "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" \
             "${{ github.actor }}" \
             "auxiliary-data/authorized_users.json"
 
-      - name: upload validation status
-        uses: actions/upload-artifact@v4
+      - name: "upload validation status"
+        uses: actions/upload-artifact@v6
         with:
           name: "validation_status"
           path: status

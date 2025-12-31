@@ -1,4 +1,4 @@
-name: "Upload hub data to a hubverse-hosted AWS S3 bucket"
+name: "Upload Hub Data To Hubverse Hosted AWS S3 Bucket"
 
 on:
   push:
@@ -21,10 +21,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - name: "Checkout"
+      uses: actions/checkout@v6
 
-    - name: Get hub cloud config
+    - name: "Get hub cloud config"
       # save cloud-related fields from admin config as environment variables
       # (jq json parser is installed on Github-hosted runners)
       run: |
@@ -35,7 +35,7 @@ jobs:
         echo "CLOUD_ENABLED=$cloud_enabled" >> $GITHUB_ENV
         echo "CLOUD_STORAGE_LOCATION=$cloud_storage_location" >> $GITHUB_ENV
 
-    - name: Configure AWS credentials
+    - name: "Configure AWS credentials"
       # request credentials to assume the hub's AWS role via OpenID Connect
       if: env.CLOUD_ENABLED == 'true'
       uses: aws-actions/configure-aws-credentials@v4
@@ -43,7 +43,7 @@ jobs:
         role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/${{ env.CLOUD_STORAGE_LOCATION }}
         aws-region: us-east-1
 
-    - name: Install rclone
+    - name: "Install rclone"
       if: env.CLOUD_ENABLED == 'true'
       run: |
         # debian version of rclone is outdated and will result in config name errors
@@ -51,7 +51,7 @@ jobs:
         curl https://rclone.org/install.sh | sudo bash
         rclone version
 
-    - name: Sync files to cloud storage
+    - name: "Sync files to cloud storage"
       # sync specified hub directories to S3
       # (to exclude a directory, remove it from the hub_directories list below)
       if: env.CLOUD_ENABLED == 'true'

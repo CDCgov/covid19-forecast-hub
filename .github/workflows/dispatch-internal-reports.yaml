@@ -1,4 +1,4 @@
-name: "Send a dispatch to CFA Forecast Hub Internal Reports repo"
+name: "Send Dispatch To CFA Forecast Hub Internal Reports"
 
 on:
   workflow_dispatch:
@@ -14,16 +14,16 @@ jobs:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Installation Token
+      - name: "Generate Installation Token"
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.ENT_GH_APP_ID }}
           private-key: ${{ secrets.ENT_GH_APP_KEY }}
           owner: cdcent  
           repositories: cfa-forecast-hub-internal-reports  
 
-      - name: Repository Dispatch
+      - name: "Repository Dispatch"
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.generate_token.outputs.token }}
