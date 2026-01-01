@@ -1,0 +1,5 @@
+"model_id","designated_model","target"
+"CADPH-CovidCAT_Ensemble",TRUE,"wk inc covid hosp"
+"CMU-TimeSeries",TRUE,"wk inc covid hosp"
+"OHT_JHU-nbxd",TRUE,"wk inc covid hosp"
+"CMU-TimeSeries",TRUE,"wk inc covid prop ed visits"
