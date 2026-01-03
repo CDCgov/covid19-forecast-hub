@@ -13,16 +13,16 @@ jobs:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Installation Token
+      - name: "Generate Installation Token"
         id: get_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: CDCgov
           repositories: covidhub-reports
 
-      - name: Repository Dispatch
+      - name: "Repository Dispatch"
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.get_token.outputs.token }}
