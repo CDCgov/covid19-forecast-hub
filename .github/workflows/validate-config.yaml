@@ -22,7 +22,7 @@ jobs:
       HUB_PATH: ${{ github.workspace }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -30,7 +30,7 @@ jobs:
           use-public-rspm: true
           extra-repositories: 'https://hubverse-org.r-universe.dev'
 
-      - name: Update R
+      - name: "Update R"
         run: |
           sudo apt-get update
 
@@ -42,7 +42,7 @@ jobs:
             any::hubAdmin
             any::sessioninfo
 
-      - name: Run validations
+      - name: "Run validations"
         id: validate
         run: hubAdmin::ci_validate_hub_config(diff = "${{ runner.temp }}/diff.md")
         shell: Rscript {0}
@@ -53,7 +53,7 @@ jobs:
         with:
           pr: ${{ env.PR_NUMBER }}
           path: ${{ runner.temp }}/diff.md
-      - name: Error on Failure
+      - name: "Error on Failure"
         if: ${{ steps.validate.outputs.result == 'false' }}
         run: |
           echo "::error title=Invalid Configuration::Errors were detected in one or more config files in 'hub-config/'"

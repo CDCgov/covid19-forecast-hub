@@ -78,7 +78,7 @@ Pull requests (PRs) into the Hub repository to register a new model or modify an
 
 PR that submit forecasts for an existing model can be reviewed and merged automatically if the submission content passes automated validation checks and the submitting individual has been preregistered as an authorized submitter for the model.
 
-To authorize one or more individuals to submit forecasts for a given model, add their github usernames to the [`designated_github_users` field](designated_github_users`](model-metadata/README.md#designated_github_users) in the model's metadata.
+To authorize one or more individuals to submit forecasts for a given model, add their github usernames to the [`designated_github_users` field](model-metadata/README.md#designated_github_users) in the model's metadata.
 
 To facilitate auto-merge of valid PRs, we suggest the following workflow:
 - *Submit metadata first*: Create a PR adding your model metadata file to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on the Wednesday you plan to submit your first forecast.
