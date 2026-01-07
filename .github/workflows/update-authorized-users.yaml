@@ -1,4 +1,4 @@
-name: "Update authorized users"
+name: "Update Authorized Users"
 
 on:
   workflow_dispatch:
@@ -14,37 +14,37 @@ jobs:
     if: ${{ github.repository_owner == 'CDCgov' }}
     runs-on: ubuntu-latest
     steps:
-    - name: Generate Installation Token
+    - name: "Generate Installation Token"
       id: get_token
-      uses: actions/create-github-app-token@v1
+      uses: actions/create-github-app-token@v2
       with:
         app-id: ${{ vars.GH_APP_ID }}
         private-key: ${{ secrets.GH_APP_KEY }}
         
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - name: "Checkout code"
+      uses: actions/checkout@v6
 
-    - name: Setup R
+    - name: "Setup R"
       uses: r-lib/actions/setup-r@v2
       with:
         install-r: true
         use-public-rspm: true
         
-    - name: Install dependencies
+    - name: "Install dependencies"
       run: |
         install.packages(c("yaml", "purrr", "glue", "jsonlite", "fs"))
       shell: Rscript {0}
     
-    - name: generate users list
+    - name: "generate users list"
       run: |
         Rscript src/get_authorized_users.R
 
-    - name: Check for Changes
+    - name: "Check for Changes"
       id: check_diff
       run: |
         git diff --exit-code auxiliary-data/authorized_users.json || { echo "changed=true" | tee -a $GITHUB_ENV; }
 
-    - name: Commit changes
+    - name: "Commit changes"
       if: env.changed == 'true'
       uses: EndBug/add-and-commit@v9
       with: 
@@ -53,7 +53,7 @@ jobs:
         push: true
         new_branch: update-authorized-users
   
-    - name: Create pull request
+    - name: "Create pull request"
       if: env.changed == 'true'
       run: |
         gh pr create --base main --head update-authorized-users --title "Update authorized users" --body "This PR updates the authorized users list based on the latest metadata."
