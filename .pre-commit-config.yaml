@@ -27,7 +27,7 @@ repos:
     -   id: trailing-whitespace
         files: ^src/
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9017
+    rev: v0.4.3.9020
     hooks:
     -   id: lintr
         files: \.R$|\.Rmd$
@@ -49,7 +49,7 @@ repos:
         args: ["--line-length", "79"]
         files: '\.py$'
 -   repo: https://github.com/crate-ci/typos
-    rev: typos-dict-v0.13.13
+    rev: v1
     hooks:
     -   id: typos
         args: ["--force-exclude"]

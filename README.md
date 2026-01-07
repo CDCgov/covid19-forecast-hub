@@ -10,7 +10,7 @@ If you are interested in using these data for additional research or publication
 ## Nowcasts and Forecasts of Confirmed COVID-19 Hospital Admissions 
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
-The weekly total COVID-19 admissions counts can be found in the`totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data (HRD) dataset](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
+The weekly total COVID-19 admissions counts can be found in the `totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data (HRD) dataset](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
 NHSN provides a preliminary release of each week's HRD data on Wednesdays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data). Official weekly data is released on Fridays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy/about_data). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
@@ -20,7 +20,7 @@ Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilisti
 The weekly percent of ED visits due to COVID-19 can be found in the `percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [Emergency Department Visits - COVID-19, Flu, RSV, Sub-state](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) dataset. Although these numbers are reported in the percentage form, we will accept forecasts as decimal proportions (i.e., `percent_visits_covid / 100`). To obtain state-level data, we filter the dataset to include only the rows where the `county` column is equal to `All`. 
 
 We are working to make the Wednesday release of this dataset available on data.cdc.gov.  Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.parquet`](auxiliary-data/nssp-raw-data/latest.parquet).
-These Wednesday data update contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
+These Wednesday data updates contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
 
 ## Dates and Deadlines 
 The Challenge Period is rolling.
@@ -74,9 +74,21 @@ Standard software packages for R and Python can help you convert from dates to e
 Detailed guidelines for formatting and submitting forecasts are available in the [`model-output` directory README](model-output/README.md). Detailed guidelines for formatting and submitting model metadata can be found in the [`model-metadata` directory README](model-metadata/README.md).
 
 ## Suggested workflow for first time submitters
-First-time pull requests (PRs) into the Hub repository must be reviewed and merged manually; subsequent ones can be merged automatically if they pass appropriate checks. 
+Pull requests (PRs) into the Hub repository to register a new model or modify an existing model's metadata must always be reviewed and merged manually.
 
-We suggest that teams submitting for the first time make a PR adding their model metadata file to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on the Wednesday they plan to submit their first forecast. This will allow subsequent PRs that submit forecasts to be merged automatically, provided checks pass. We also request that teams sync their PR branch with the `main` branch using the `Update branch` button if their PR is behind the `main` branch, to ensure the automerge action runs smoothly.
+PR that submit forecasts for an existing model can be reviewed and merged automatically if the submission content passes automated validation checks and the submitting individual has been preregistered as an authorized submitter for the model.
+
+To authorize one or more individuals to submit forecasts for a given model, add their github usernames to the [`designated_github_users` field](model-metadata/README.md#designated_github_users) in the model's metadata.
+
+To facilitate auto-merge of valid PRs, we suggest the following workflow:
+- *Submit metadata first*: Create a PR adding your model metadata file to the [`model-metadata` directory](model-metadata) by 4 PM USA Eastern Time on the Wednesday you plan to submit your first forecast.
+
+- *Include `designated_github_users`*: In your metadata YAML file, include the GitHub usernames of all team members responsible for forecast submission in the [`designated_github_users`](model-metadata/README.md#designated_github_users) field. We use this to ensure changes to model outputs are made by valid model contributors.
+
+Once initial metadata PR is approved and merged, subsequent PRs that submit forecasts will be merged automatically, provided all checks pass.
+
+> [!NOTE]
+> Please sync your PR branch with the `main` branch using the `Update branch` button if your PR falls behind the main branch. This ensures the automerge action runs smoothly.
 
 ## Alignment between CovidHub and FluSight
 

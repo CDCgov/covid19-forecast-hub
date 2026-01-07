@@ -1,4 +1,4 @@
-name: "Merge valid PRs"
+name: "Merge Valid PRs"
 
 on:
   workflow_run:
@@ -14,14 +14,14 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - name: Generate Installation Token
+      - name: "Generate Installation Token"
         id: get_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
 
-      - name: Set PR Number
+      - name: "Set PR Number"
         env:
           GH_TOKEN: ${{ github.token }}
           PR_TARGET_REPO: ${{ github.repository }}
@@ -38,13 +38,13 @@ jobs:
           echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
           echo "PR number from workflow_run event: ${PR_NUMBER}"
 
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: "Checkout code"
+        uses: actions/checkout@v6
             
       # workflow_run.id identifies the artifact associated with 
       # the specific validation run that triggered this workflow
-      - name: Download validation artifact
-        uses: actions/download-artifact@v4
+      - name: "Download validation artifact"
+        uses: actions/download-artifact@v7
         with: 
           name: "validation_status"
           path: artifacts_dir
@@ -52,7 +52,7 @@ jobs:
           repository: ${{ github.repository }}
           run-id: ${{ github.event.workflow_run.id }}
       
-      - name: approve PR 
+      - name: "approve PR "
         run: |  
           STATUS=$(cat "artifacts_dir/status" | tr -d '[:space:]')
           if [ "$STATUS" != "success" ]; then
@@ -64,7 +64,7 @@ jobs:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
 
 
-      - name: Merge for approved PRs
+      - name: "Merge for approved PRs"
         run: gh pr merge --auto --squash $PR_NUMBER
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
