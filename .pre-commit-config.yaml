@@ -27,7 +27,7 @@ repos:
     -   id: trailing-whitespace
         files: ^src/
 -   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9017
+    rev: v0.4.3.9020
     hooks:
     -   id: lintr
         files: \.R$|\.Rmd$
@@ -38,7 +38,7 @@ repos:
     hooks:
     -   id: shfmt
 -   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.9
+    rev: v0.14.10
     hooks:
     -   id: ruff
         args: ["check", "--select", "I", "--fix"]

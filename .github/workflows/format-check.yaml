@@ -5,7 +5,7 @@ on:
     branches: [main, master]
   pull_request:
 
-name: "format-check.yaml"
+name: "Format Check"
 
 permissions: read-all
 
@@ -14,10 +14,10 @@ jobs:
     name: "format-check"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - name: Install
+      - name: "Install"
         uses: posit-dev/setup-air@v1
 
-      - name: Check
+      - name: "Check"
         run: air format . --check

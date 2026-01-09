@@ -1,6 +1,11 @@
 name: "CovidHub-ensemble"
 on:
   workflow_dispatch:
+    inputs:
+      reference_date:
+        description: "Reference date (YYYY-MM-DD, must be Saturday). Leave empty for auto-calculation."
+        required: false
+        type: string
   schedule:
     - cron: "30 13 * * 4"
 
