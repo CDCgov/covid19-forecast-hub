@@ -197,6 +197,7 @@ map_data <- forecasttools::pivot_hubverse_quantiles_wider(
   # filter out excluded locations if the
   # ref date is the first week in season
   dplyr::filter(!(.data$location %in% !!excluded_locations)) |>
+  dplyr::filter(.data$target == "wk inc covid hosp") |>
   dplyr::mutate(
     reference_date = as.Date(.data$reference_date),
     target_end_date = as.Date(.data$target_end_date),
