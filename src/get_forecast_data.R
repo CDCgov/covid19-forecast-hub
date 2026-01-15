@@ -23,7 +23,7 @@
 #'
 #' To run:
 #' Rscript src/get_forecast_data.R --reference-date 2024-12-21
-#' --base-hub-path "." --hub-reports-path "path/to/covidhub-reports"
+#' --base-hub-path "." --hub-reports-path "path/to/cfa-forecast-hub-reports"
 #' --horizons-to-include 0 1 2
 
 # set up command line argument parser
