@@ -27,4 +27,4 @@ jobs:
         with:
           token: ${{ steps.get_token.outputs.token }}
           repository: CDCgov/cfa-forecast-hub-reports
-          event-type: ensemble-added
+          event-type: covid-ensemble-added
