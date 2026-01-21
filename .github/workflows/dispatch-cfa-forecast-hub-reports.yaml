@@ -1,4 +1,4 @@
-name: "Send a dispatch to covidhub-reports"
+name: "Send a dispatch to cfa-forecast-hub-reports"
 
 on:
   workflow_dispatch:
@@ -20,11 +20,11 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: CDCgov
-          repositories: covidhub-reports
+          repositories: cfa-forecast-hub-reports
 
       - name: "Repository Dispatch"
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ steps.get_token.outputs.token }}
-          repository: CDCgov/covidhub-reports
+          repository: CDCgov/cfa-forecast-hub-reports
           event-type: ensemble-added
