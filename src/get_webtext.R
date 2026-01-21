@@ -1,7 +1,7 @@
 #' Rscript to generate texts for the visualization webpage
 #' To run:
 #' Rscript src/get_webtext.R --reference-date "2025-02-22"
-#' --hub-reports-path "../covidhub-reports"
+#' --hub-reports-path "../cfa-forecast-hub-reports"
 
 parser <- argparser::arg_parser(
   "Generate text for the webpage."
@@ -23,7 +23,7 @@ parser <- argparser::add_argument(
   parser,
   "--hub-reports-path",
   type = "character",
-  default = "../covidhub-reports",
+  default = "../cfa-forecast-hub-reports",
   help = "path to COVIDhub reports directory"
 )
 
