@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "10:00"
+      timezone: "America/Denver"
+    pull-request-branch-name:
+      separator: "-"
+    labels:
+      - "Automation"
