@@ -28,14 +28,14 @@ jobs:
 
       - name: "Get model output changes"
         id: get_changed_files_in_model_output
-        uses: step-security/changed-files@v45
+        uses: step-security/changed-files@v47
         with:
           path: model-output
           dir_names: "true"
 
       - name: "Get all changes"
         id: get_all_changed_files
-        uses: step-security/changed-files@v45
+        uses: step-security/changed-files@v47
 
       - name: "Check for changes outside model-output folder"
         id: check_changes_outside_model_output
