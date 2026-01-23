@@ -5,60 +5,65 @@ on:
   pull_request_target:
     branches: main
     paths:
-      - "model-output/**"
-      - "!model-output/README.md"
-      - "!model-output/CovidHub-ensemble/**"
-      - "!model-output/CovidHub-baseline/**"
-
-concurrency:
+      - 'model-output/**'
+      - '!model-output/README.md'
+      - '!model-output/CovidHub-ensemble/**'
+      - '!model-output/CovidHub-baseline/**'
+      
+concurrency: 
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
   validate-and-save-status:
     runs-on: ubuntu-latest
-    permissions:
+    permissions: 
       contents: read
       pull-requests: read
     steps:
-      - name: "Checkout Code"
-        uses: actions/checkout@v4
-
-      - name: "Setup R"
-        uses: r-lib/actions/setup-r@v2
+      - name: "Checkout code"
+        uses: actions/checkout@v6
         with:
-          use-public-rspm: true
-          extra-repositories: "https://hubverse-org.r-universe.dev"
+          repository: CDCgov/covid19-forecast-hub
 
-      - name: "Set Up R Dependencies"
-        uses: r-lib/actions/setup-r-dependencies@v2
+      - name: "Get model output changes"
+        id: get_changed_files_in_model_output
+        uses: step-security/changed-files@v45
         with:
-          pak-version: "devel"
-          packages: |
-            github::cdcgov/hubhelpr
+          path: model-output
+          dir_names: "true"
 
-      - name: "Get All Changes"
+      - name: "Get all changes"
         id: get_all_changed_files
-        uses: step-security/changed-files@v46
-        with:
-          json: true
+        uses: step-security/changed-files@v45
 
-      - name: "Check Changes for Auto-Approval"
+      - name: "Check for changes outside model-output folder"
+        id: check_changes_outside_model_output
         run: |
-          changed_files <- jsonlite::fromJSON('${{ steps.get_all_changed_files.outputs.all_modified_files }}')
-          hubhelpr::check_changes_for_autoapproval(
-            changed_files = changed_files,
-            gh_actor = "${{ github.actor }}",
-            base_hub_path = "."
-          )
-        shell: Rscript {0}
+          echo "Changed files:"
+          echo "${{ steps.get_all_changed_files.outputs.all_modified_files }}"
+          
+          for file in ${{ steps.get_all_changed_files.outputs.all_modified_files }}; do
+            if [[ "$file" != model-output/* ]]; then
+              echo "Error: Changes detected outside 'model-output' folder. File changed: $file"
+              exit 1
+            fi
+          done
 
-      - name: "Save Validation Status"
-        if: success()
-        run: echo "success" > status
+      - name: "Set up Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: "Upload Validation Status"
-        uses: actions/upload-artifact@v4
+      - name: "check and save approval status"
+        run: |
+          python .github/scripts/check_users_authorized.py \
+            "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" \
+            "${{ github.actor }}" \
+            "auxiliary-data/authorized_users.json"
+
+      - name: "upload validation status"
+        uses: actions/upload-artifact@v6
         with:
           name: "validation_status"
           path: status
