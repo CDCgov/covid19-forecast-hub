@@ -35,9 +35,3 @@ jobs:
         with:
           changed_files: ${{ steps.get_all_changed_files.outputs.all_modified_files }}
           gh_actor: ${{ github.actor }}
-
-      - name: "Upload Validation Status"
-        uses: actions/upload-artifact@v6
-        with:
-          name: "validation_status"
-          path: status

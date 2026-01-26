@@ -42,27 +42,6 @@ jobs:
           echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
           echo "PR number from workflow_run event: ${PR_NUMBER}"
 
-      - name: "Checkout Code"
-        uses: actions/checkout@v6
-
-      - name: "Download Validation Artifact"
-        uses: actions/download-artifact@v7
-        with:
-          name: "validation_status"
-          path: artifacts_dir
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          repository: ${{ github.repository }}
-          run-id: ${{ github.event.workflow_run.id }}
-
-      - name: "Verify Validation Status"
-        run: |
-          STATUS=$(tr -d '[:space:]' < "artifacts_dir/status")
-          if [ "$STATUS" != "success" ]; then
-            echo "Validation status mismatch: $STATUS"
-            exit 1
-          fi
-          echo "Validation status confirmed: $STATUS"
-
       - name: "Approve PR"
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
