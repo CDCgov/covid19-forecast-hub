@@ -1,16 +1,16 @@
-name: "Merge Valid PRs"
+name: "Auto Merge Authorized PRs"
 
 on:
   workflow_run:
-    workflows: ["Validate PRs"]
+    workflows: ["Check Authorized Users"]
     types:
       - completed
 
 jobs:
-  approve-and-merge-pr:
+  approve-and-merge:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
-    permissions: 
+    permissions:
       contents: write
       pull-requests: write
     steps:
@@ -21,7 +21,7 @@ jobs:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
 
-      - name: "Set PR Number"
+      - name: "Get PR Number"
         env:
           GH_TOKEN: ${{ github.token }}
           PR_TARGET_REPO: ${{ github.repository }}
@@ -35,36 +35,44 @@ jobs:
           PR_NUMBER=$(gh pr view --repo "${PR_TARGET_REPO}" "${PR_BRANCH}" \
             --json number \
             --jq '.number')
+          if [ -z "$PR_NUMBER" ]; then
+            echo "No PR associated with this workflow run"
+            exit 1
+          fi
           echo "PR_NUMBER=${PR_NUMBER}" >> $GITHUB_ENV
           echo "PR number from workflow_run event: ${PR_NUMBER}"
 
-      - name: "Checkout code"
+      - name: "Checkout Code"
         uses: actions/checkout@v6
-            
-      # workflow_run.id identifies the artifact associated with 
-      # the specific validation run that triggered this workflow
-      - name: "Download validation artifact"
+
+      - name: "Download Validation Artifact"
         uses: actions/download-artifact@v7
-        with: 
+        with:
           name: "validation_status"
           path: artifacts_dir
-          github-token: ${{ secrets.GITHUB_TOKEN }} 
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository }}
           run-id: ${{ github.event.workflow_run.id }}
-      
-      - name: "approve PR "
-        run: |  
-          STATUS=$(cat "artifacts_dir/status" | tr -d '[:space:]')
+
+      - name: "Verify Validation Status"
+        run: |
+          STATUS=$(tr -d '[:space:]' < "artifacts_dir/status")
           if [ "$STATUS" != "success" ]; then
             echo "Validation status mismatch: $STATUS"
             exit 1
           fi
-          gh pr review --approve $PR_NUMBER
+          echo "Validation status confirmed: $STATUS"
+
+      - name: "Approve PR"
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: |
+          gh pr review $PR_NUMBER --approve \
+            --body "Changes approved. Thank you for your contribution."
 
-
-      - name: "Merge for approved PRs"
-        run: gh pr merge --auto --squash $PR_NUMBER
+      - name: "Merge PR"
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: |
+          gh pr merge --auto $PR_NUMBER --squash \
+            --body "PR #${PR_NUMBER} was automatically merged because the user is authorized to modify these directories."
