@@ -1,0 +1,67 @@
+name: "Auto Merge Authorized PRs"
+
+on:
+  workflow_dispatch:
+  pull_request_target:
+    branches: main
+    paths:
+      - "model-output/**"
+      - "!model-output/README.md"
+      - "!model-output/CovidHub-ensemble/**"
+      - "!model-output/CovidHub-baseline/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check-authorization:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: "Checkout Code"
+        uses: actions/checkout@v6
+
+      - name: "Get All Changes"
+        id: get_all_changed_files
+        uses: step-security/changed-files@v47
+        with:
+          json: true
+
+      - name: "Check Authorized Users"
+        uses: cdcgov/hubhelpr/.github/actions/check-authorized-users@main
+        with:
+          changed_files: ${{ steps.get_all_changed_files.outputs.all_modified_files }}
+          gh_actor: ${{ github.actor }}
+
+  approve-and-merge:
+    needs: check-authorization
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: "Generate Installation Token"
+        id: get_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+
+      - name: "Approve PR"
+        env:
+          GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: |
+          gh pr review ${{ github.event.pull_request.number }} --approve \
+            --repo ${{ github.repository }} \
+            --body "Changes approved. Thank you for your contribution."
+
+      - name: "Merge PR"
+        env:
+          GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        run: |
+          gh pr merge --auto ${{ github.event.pull_request.number }} --squash \
+            --repo ${{ github.repository }} \
+            --body "PR #${{ github.event.pull_request.number }} was automatically merged because the user is authorized to modify these directories."
