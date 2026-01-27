@@ -24,6 +24,9 @@ jobs:
       - name: "Checkout Code"
         uses: actions/checkout@v6
 
+      - name: "Set Up hubhelpr"
+        uses: cdcgov/hubhelpr/actions/setup-hubhelpr@main
+
       - name: "Get All Changes"
         id: get_all_changed_files
         uses: step-security/changed-files@v47
@@ -31,7 +34,7 @@ jobs:
           json: true
 
       - name: "Check Authorized Users"
-        uses: cdcgov/hubhelpr/.github/actions/check-authorized-users@main
+        uses: cdcgov/hubhelpr/actions/check-authorized-users@main
         with:
           changed_files: ${{ steps.get_all_changed_files.outputs.all_modified_files }}
           gh_actor: ${{ github.actor }}
