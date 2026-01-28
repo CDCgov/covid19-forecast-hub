@@ -1,6 +1,12 @@
-name: "CovidHub-baseline"
+name: "CovidHub Baseline Forecast"
 on:
   workflow_dispatch:
+    inputs:
+      reference_date:
+        description: "Reference date for the forecast (YYYY-MM-DD, must be a Saturday). Defaults to the ceiling of the current MMWR epiweek."
+        required: false
+        default: "latest"
+        type: string
   schedule:
     - cron: "30 20 * * 3"
 
@@ -21,37 +27,12 @@ jobs:
     - name: "Checkout Code"
       uses: actions/checkout@v6
 
-    - name: "Setup R"
-      uses: r-lib/actions/setup-r@v2
+    - name: "Set Up hubhelpr"
+      uses: cdcgov/hubhelpr/actions/setup-hubhelpr@main
+
+    - name: "Generate Baseline Forecast"
+      uses: cdcgov/hubhelpr/actions/generate-baseline@main
       with:
-        install-r: true
-        use-public-rspm: true
-
-    - name: "Set Up R Dependencies"
-      uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        pak-version: "devel"
-        packages: |
-          github::cdcgov/hubhelpr
-
-    - name: "Generate Baseline"
-      run: Rscript -e "hubhelpr::generate_hub_baseline('.', forecasttools::ceiling_mmwr_epiweek(lubridate::today()), 'covid')"
-
-    - name: "Set Date"
-      run: echo "DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
-
-    - name: "Commit Changes"
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git checkout -b add-covid-baseline-${{ env.DATE }}
-        git add .
-        git commit -m "Add CovidHub baseline forecasts"
-        git push origin add-covid-baseline-${{ env.DATE }}
-
-    - name: "Create Pull Request"
-      id: create_pr
-      run: |
-        gh pr create --base main --head add-covid-baseline-${{ env.DATE }} --title "Add CovidHub baseline forecast" --body "This PR is generated automatically."
-      env:
-        GH_TOKEN: ${{ steps.get_token.outputs.token }}
+        disease: "covid"
+        github_token: ${{ steps.get_token.outputs.token }}
+        reference_date: ${{ inputs.reference_date || 'latest' }}
