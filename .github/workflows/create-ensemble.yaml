@@ -35,4 +35,4 @@ jobs:
       with:
         disease: "covid"
         github_token: ${{ steps.get_token.outputs.token }}
-        reference_date: ${{ inputs.reference_date }}
+        reference_date: ${{ inputs.reference_date || 'latest' }}
