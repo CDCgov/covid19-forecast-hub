@@ -1,4 +1,4 @@
-name: "Update Target Data"
+name: "Update COVID Target Data"
 
 on:
   workflow_dispatch:
