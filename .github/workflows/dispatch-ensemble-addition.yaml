@@ -1,0 +1,50 @@
+name: "Send Dispatch for ensemble addition"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'model-output/CovidHub-ensemble/*'
+
+jobs:
+  dispatch-internal-reports:
+    if: ${{ github.repository_owner == 'CDCgov' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Generate Installation Token"
+        id: get_token_ent
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.ENT_GH_APP_ID }}
+          private-key: ${{ secrets.ENT_GH_APP_KEY }}
+          owner: cdcent
+          repositories: cfa-forecast-hub-internal-reports
+
+      - name: "Repository Dispatch"
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          token: ${{ steps.get_token_ent.outputs.token }}
+          repository: cdcent/cfa-forecast-hub-internal-reports
+          event-type: covid-ensemble-added
+
+  dispatch-visualization-data:
+    if: ${{ github.repository_owner == 'CDCgov' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Generate Installation Token"
+        id: get_token_gov
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+          owner: CDCgov
+          repositories: cfa-forecast-hub-reports
+
+      - name: "Repository Dispatch"
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          token: ${{ steps.get_token_gov.outputs.token }}
+          repository: CDCgov/cfa-forecast-hub-reports
+          event-type: covid-ensemble-added

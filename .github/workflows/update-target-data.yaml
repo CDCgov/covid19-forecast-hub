@@ -3,7 +3,7 @@ name: "Update Target Data"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 16 * * 3"
+    - cron: "00 17 * * 3" # run every Wednesday at 5:00 PM UTC (1:00 PM EST)
     
 jobs:
   update-target-data:
