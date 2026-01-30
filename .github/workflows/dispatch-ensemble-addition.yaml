@@ -1,4 +1,4 @@
-name: "Send Dispatch for ensemble addition"
+name: "Send Dispatch For COVID Ensemble Addition"
 
 on:
   workflow_dispatch:

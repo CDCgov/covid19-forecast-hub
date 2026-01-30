@@ -7,8 +7,13 @@ on:
         required: false
         default: "latest"
         type: string
+      targets:
+        description: "JSON array of target suffixes (e.g., [\"hosp\", \"prop ed visits\"]). Leave empty for all."
+        required: false
+        default: ""
+        type: string
   schedule:
-    - cron: "30 13 * * 4"
+    - cron: "30 13 * * 4" # run every Thursday at 1:30 PM UTC (8:30 AM EST)
 
 jobs:
   generate-ensemble-forecasts:
@@ -36,3 +41,4 @@ jobs:
         disease: "covid"
         github_token: ${{ steps.get_token.outputs.token }}
         reference_date: ${{ inputs.reference_date || 'latest' }}
+        targets: ${{ inputs.targets }}
