@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       nssp_update_local:
-        description: "Update NSSP data from the Hub-hosted raw data file."
+        description: "Update NSSP data from the Hub-hosted raw data file?"
         type: boolean
         default: true
   schedule:
