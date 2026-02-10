@@ -8,7 +8,7 @@ on:
         default: "latest"
         type: string
       targets:
-        description: "JSON array of target suffixes (e.g., [\"hosp\", \"prop ed visits\"]). Leave empty for all."
+        description: "JSON array of full target names (e.g., [\"wk inc covid hosp\", \"wk inc covid prop ed visits\"]). Leave empty for all."
         required: false
         default: ""
         type: string
