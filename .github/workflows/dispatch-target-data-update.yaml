@@ -1,4 +1,4 @@
-name: "Send a dispatch for target data update"
+name: "Send Dispatch For COVID Target Data Update"
 
 on:
   workflow_dispatch:
