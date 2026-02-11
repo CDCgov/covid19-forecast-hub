@@ -7,8 +7,13 @@ on:
         required: false
         default: "latest"
         type: string
+      targets:
+        description: "JSON array of full target names (e.g., [\"wk inc covid hosp\", \"wk inc covid prop ed visits\"]). Leave empty for all."
+        required: false
+        default: ""
+        type: string
   schedule:
-    - cron: "30 20 * * 3"
+    - cron: "30 20 * * 3" # run every Wednesday at 8:30 PM UTC (3:30 PM EST)
 
 jobs:
   generate-baseline-forecasts:
@@ -36,3 +41,4 @@ jobs:
         disease: "covid"
         github_token: ${{ steps.get_token.outputs.token }}
         reference_date: ${{ inputs.reference_date || 'latest' }}
+        targets: ${{ inputs.targets }}

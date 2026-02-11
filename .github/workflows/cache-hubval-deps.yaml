@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/cache-hubval-deps.yaml'
   schedule:
-    - cron: "10 0 * * *"
+    - cron: "10 0 * * *" # run daily at 12:10 AM UTC (7:10 PM EST)
 
 jobs:
   build-deps-cache-on-main:
