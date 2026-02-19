@@ -1,0 +1,15 @@
+model_id,designated_model,target
+CADPH-CovidCAT_Ensemble,TRUE,wk inc covid hosp
+CEPH-Rtrend_covid,TRUE,wk inc covid hosp
+CFA-EpiAutoGP,TRUE,wk inc covid hosp
+CMU-TimeSeries,TRUE,wk inc covid hosp
+CovidHub-baseline,FALSE,wk inc covid hosp
+Google_SAI-Ensemble,TRUE,wk inc covid hosp
+NEU_ISI-AdaptiveEnsemble,TRUE,wk inc covid hosp
+OHT_JHU-nbxd,TRUE,wk inc covid hosp
+UGA_flucast-INFLAenza,TRUE,wk inc covid hosp
+UMass-ar6_pooled,TRUE,wk inc covid hosp
+UMass-gbqr,TRUE,wk inc covid hosp
+CMU-TimeSeries,TRUE,wk inc covid prop ed visits
+CovidHub-baseline,FALSE,wk inc covid prop ed visits
+UGA_flucast-INFLAenza,TRUE,wk inc covid prop ed visits
