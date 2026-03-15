@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: "Generate Installation Token"
         id: get_token_ent
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ vars.ENT_GH_APP_ID }}
           private-key: ${{ secrets.ENT_GH_APP_KEY }}
@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: "Generate Installation Token"
         id: get_token_gov
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ vars.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
