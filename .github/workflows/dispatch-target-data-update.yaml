@@ -3,11 +3,11 @@ name: "Send Dispatch For COVID Target Data Update"
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - main
     paths:
       - 'target-data/*'
-    
+
 jobs:
   update-visualization-data:
     if: ${{ github.repository_owner == 'CDCgov' }}
@@ -19,8 +19,8 @@ jobs:
         with:
           app-id: ${{ vars.ENT_GH_APP_ID }}
           private-key: ${{ secrets.ENT_GH_APP_KEY }}
-          owner: cdcent  
-          repositories: cfa-forecast-hub-internal-reports  
+          owner: cdcent
+          repositories: cfa-forecast-hub-internal-reports
 
       - name: "Repository Dispatch"
         uses: peter-evans/repository-dispatch@v4
