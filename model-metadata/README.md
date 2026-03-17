@@ -62,7 +62,7 @@ One of the following [accepted licenses](https://github.com/CDCgov/covid19-forec
  - `PPDL`: [Public Domain Dedication and License](https://opendatacommons.org/licenses/pddl/summary/)
  - `ODC-by`: [Open Data Commons Attribution License](https://opendatacommons.org/licenses/by/1-0/)
  - `ODbL`: [Open Data Commons Open Database License](https://opendatacommons.org/licenses/odbl/)
- - `OGL-3.0`: [UK National Archives Open Government License 3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) 
+ - `OGL-3.0`: [UK National Archives Open Government License 3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
 
 ### `designated_model`
 
@@ -70,7 +70,7 @@ A team-specified boolean indicator (`true` or `false`) for whether the model sho
 
 ### `data_inputs`
 
-List or description of the data sources used to inform the model, in particular any dataset used that are not the [target datasets](../README.md#target-data-source) of epiweekly incident COVID-19 hospital admissions reported to NHSN or epiweekly incident emergency department visits due to COVID-19 reported to NSSP. 
+List or description of the data sources used to inform the model, in particular any dataset used that are not the [target datasets](../README.md#target-data-source) of epiweekly incident COVID-19 hospital admissions reported to NHSN or epiweekly incident emergency department visits due to COVID-19 reported to NSSP.
 
 
 ### `methods`
@@ -102,11 +102,11 @@ An identifier of the version of the model. We recommend [semantic versioning](ht
 
 ### `repo_url`
 
-The URL of a Github (or similar) code repository containing model source code. 
+The URL of a Github (or similar) code repository containing model source code.
 
 ### `citation`
 
-Citations for one or more publications, preprints, et cetera with additional model details. Example: 
+Citations for one or more publications, preprints, et cetera with additional model details. Example:
 ```
 citation: "Gibson GC , Reich NG , Sheldon D. Real-time mechanistic bayesian forecasts of Covid-19 mortality. medRxiv. 2020. https://doi.org/10.1101/2020.12.22.20248736".
 ```
@@ -127,7 +127,7 @@ designated_github_users: [
   "octocat"
 ]
 ```
-or 
+or
 ```
 designated_github_users: ["dependabot"]
 ```
