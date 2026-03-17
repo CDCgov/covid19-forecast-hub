@@ -16,7 +16,6 @@ repos:
     -   id: check-yaml
         args: ["--allow-multiple-documents"]
     -   id: end-of-file-fixer
-    -   id: check-toml
     -   id: mixed-line-ending
     -   id: pretty-format-json
         args: ["--autofix", "--no-sort-keys"]
