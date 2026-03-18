@@ -1,11 +1,3 @@
-[default]
-extend-ignore-identifiers-re = [
-    "AttributeID.*Supress.*",
-]
-
-[default.extend-identifiers]
-AttributeIDSupressMenu = "AttributeIDSupressMenu"
-
 [default.extend-words]
 # words that should not be corrected
 Damon = "Damon"
