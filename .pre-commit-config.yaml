@@ -8,46 +8,19 @@ ci:
     autoupdate_schedule: weekly
     skip: []
     submodules: false
+exclude: "^model-output/.*\\.(csv|parquet)$|^model-metadata/.*\\.ya?ml$"
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
     -   id: check-yaml
         args: ["--allow-multiple-documents"]
-        files: ^src/
-    -   id: check-toml
-        files: ^src/
     -   id: end-of-file-fixer
-        files: ^src/
+    -   id: check-toml
     -   id: mixed-line-ending
-        files: ^src/
     -   id: pretty-format-json
         args: ["--autofix", "--no-sort-keys"]
-        files: ^src/
     -   id: trailing-whitespace
-        files: ^src/
--   repo: https://github.com/lorenzwalthert/precommit
-    rev: v0.4.3.9021
-    hooks:
-    -   id: lintr
-        files: \.R$|\.Rmd$
-    -   id: parsable-R
-        files: \.R$|\.Rmd$
--   repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
-    hooks:
-    -   id: shfmt
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.5
-    hooks:
-    -   id: ruff
-        args: ["check", "--select", "I", "--fix"]
-        files: '\.py$'
-    -   id: ruff
-        files: '\.py$'
-    -   id: ruff-format
-        args: ["--line-length", "79"]
-        files: '\.py$'
 -   repo: https://github.com/crate-ci/typos
     rev: v1
     hooks:
