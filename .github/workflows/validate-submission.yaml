@@ -30,7 +30,7 @@ jobs:
           packages: |
             any::hubValidations
             any::sessioninfo
-          
+
       - name: "Get model output changes"
         id: get_changed_files_in_model_output
         uses: step-security/changed-files@v47
@@ -39,7 +39,7 @@ jobs:
           dir_names: "true"
 
       - name: "check output dirs modified"
-        run: |   
+        run: |
           if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" == "CovidHub-ensemble" ]; then
             { echo "model=ensemble" | tee -a $GITHUB_ENV; }
           else
