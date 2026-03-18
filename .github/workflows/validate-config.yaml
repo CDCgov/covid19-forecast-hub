@@ -58,4 +58,3 @@ jobs:
         run: |
           echo "::error title=Invalid Configuration::Errors were detected in one or more config files in 'hub-config/'"
           exit 1
-
