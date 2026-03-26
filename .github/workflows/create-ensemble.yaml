@@ -13,7 +13,8 @@ on:
         default: ""
         type: string
   schedule:
-    - cron: "30 13 * * 4" # run every Thursday at 1:30 PM UTC (8:30 AM EST)
+    - cron: "45 9 * * 4" # run every Thursday at 9:45 AM ET
+      timezone: "America/New_York"
 
 jobs:
   generate-ensemble-forecasts:
