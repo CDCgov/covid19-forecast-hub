@@ -16,67 +16,67 @@ permissions:
 
 jobs:
   upload:
-    # Don't run on forked repositories
+    # don't run on forked repositories
     if: github.event.repository.fork != true
     runs-on: ubuntu-latest
 
     steps:
-    - name: "Checkout"
-      uses: actions/checkout@v6
+      - name: "Checkout"
+        uses: actions/checkout@v6
 
-    - name: "Get hub cloud config"
-      # save cloud-related fields from admin config as environment variables
-      # (jq json parser is installed on Github-hosted runners)
-      run: |
-        cloud_enabled=$(cat ./hub-config/admin.json | jq -r '.cloud.enabled') \
-          && echo "CLOUD_ENABLED=$cloud_enabled"
-        cloud_storage_location=$(cat ./hub-config/admin.json | jq -r '.cloud.host.storage_location') \
-          && echo "CLOUD_STORAGE_LOCATION=$cloud_storage_location"
-        echo "CLOUD_ENABLED=$cloud_enabled" >> $GITHUB_ENV
-        echo "CLOUD_STORAGE_LOCATION=$cloud_storage_location" >> $GITHUB_ENV
+      - name: "Get Hub Cloud Config"
+        # save cloud-related fields from admin config as environment variables
+        # (jq json parser is installed on Github-hosted runners)
+        run: |
+          cloud_enabled=$(jq -r '.cloud.enabled' ./hub-config/admin.json) \
+            && echo "CLOUD_ENABLED=$cloud_enabled"
+          cloud_storage_location=$(jq -r '.cloud.host.storage_location' ./hub-config/admin.json) \
+            && echo "CLOUD_STORAGE_LOCATION=$cloud_storage_location"
+          echo "CLOUD_ENABLED=$cloud_enabled" >> $GITHUB_ENV
+          echo "CLOUD_STORAGE_LOCATION=$cloud_storage_location" >> $GITHUB_ENV
 
-    - name: "Configure AWS credentials"
-      # request credentials to assume the hub's AWS role via OpenID Connect
-      if: env.CLOUD_ENABLED == 'true'
-      uses: aws-actions/configure-aws-credentials@v6
-      with:
-        role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/${{ env.CLOUD_STORAGE_LOCATION }}
-        aws-region: us-east-1
+      - name: "Configure AWS Credentials"
+        # request credentials to assume the hub's AWS role via OpenID Connect
+        if: env.CLOUD_ENABLED == 'true'
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/${{ env.CLOUD_STORAGE_LOCATION }}
+          aws-region: us-east-1
 
-    - name: "Install rclone"
-      if: env.CLOUD_ENABLED == 'true'
-      run: |
-        # debian version of rclone is outdated and will result in config name errors
-        # https://github.com/rclone/rclone/issues/6060
-        curl https://rclone.org/install.sh | sudo bash
-        rclone version
+      - name: "Install rclone"
+        if: env.CLOUD_ENABLED == 'true'
+        run: |
+          # debian version of rclone is outdated and will result in config name errors
+          # https://github.com/rclone/rclone/issues/6060
+          curl https://rclone.org/install.sh | sudo bash
+          rclone version
 
-    - name: "Sync files to cloud storage"
-      # sync specified hub directories to S3
-      # (to exclude a directory, remove it from the hub_directories list below)
-      if: env.CLOUD_ENABLED == 'true'
-      run: |
-        hub_directories=(
-          'auxiliary-data'
-          'hub-config'
-          'model-abstracts'
-          'model-metadata'
-          'target-data'
-        )
-        for DIRECTORY in "${hub_directories[@]}"
-        do
-          if [ -d "./$DIRECTORY" ]
-          then
-            rclone sync \
-              "./$DIRECTORY/" \
-              ":s3,provider=AWS,env_auth:$BUCKET_NAME/$DIRECTORY" \
-              --checksum --verbose --stats-one-line --config=/dev/null
-          fi
-        done
-        # unlike other data, model-outputs are synced to a "raw" location
-        # so we can transform it before presenting to users
-        rclone sync ./model-output/ ":s3,provider=AWS,env_auth:$BUCKET_NAME/raw/model-output" \
-          --checksum --verbose --stats-one-line --config=/dev/null
-      shell: bash
-      env:
-        BUCKET_NAME: ${{ env.CLOUD_STORAGE_LOCATION }}
+      - name: "Sync Files To Cloud Storage"
+        # sync specified hub directories to S3
+        # (to exclude a directory, remove it from the hub_directories list below)
+        if: env.CLOUD_ENABLED == 'true'
+        run: |
+          hub_directories=(
+            'auxiliary-data'
+            'hub-config'
+            'model-abstracts'
+            'model-metadata'
+            'target-data'
+          )
+          for DIRECTORY in "${hub_directories[@]}"
+          do
+            if [ -d "./$DIRECTORY" ]
+            then
+              rclone sync \
+                "./$DIRECTORY/" \
+                ":s3,provider=AWS,env_auth:$BUCKET_NAME/$DIRECTORY" \
+                --checksum --verbose --stats-one-line --config=/dev/null
+            fi
+          done
+          # unlike other data, model-outputs are synced to a "raw" location
+          # so we can transform it before presenting to users
+          rclone sync ./model-output/ ":s3,provider=AWS,env_auth:$BUCKET_NAME/raw/model-output" \
+            --checksum --verbose --stats-one-line --config=/dev/null
+        shell: bash
+        env:
+          BUCKET_NAME: ${{ env.CLOUD_STORAGE_LOCATION }}

@@ -8,7 +8,8 @@ on:
         type: boolean
         default: true
   schedule:
-    - cron: "00 17 * * 3" # run every Wednesday at 5:00 PM UTC (1:00 PM EST)
+    - cron: "00 13 * * 3" # run every Wednesday at 1:00 PM ET
+      timezone: "America/New_York"
 
 jobs:
   update-target-data:
