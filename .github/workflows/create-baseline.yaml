@@ -13,7 +13,8 @@ on:
         default: ""
         type: string
   schedule:
-    - cron: "30 20 * * 3" # run every Wednesday at 8:30 PM UTC (3:30 PM EST)
+    - cron: "30 15 * * 3" # run every Wednesday at 3:30 PM ET
+      timezone: "America/New_York"
 
 jobs:
   generate-baseline-forecasts:
