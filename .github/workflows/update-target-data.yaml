@@ -40,3 +40,7 @@ jobs:
         api_key_secret: ${{ secrets.NHSN_API_KEY_SECRET }}
         legacy_file: "true"
         nssp_update_local: ${{ inputs.nssp_update_local || 'true' }}
+        # JSON array (e.g., '["VI", "GU"]') excludes from all targets.
+        # JSON object (e.g., '{"all": ["VI"], "wk inc covid hosp": ["GU"]}')
+        # supports target-specific exclusions.
+        excluded_locations: '["VI", "GU", "AS", "MP", "UM"]'
