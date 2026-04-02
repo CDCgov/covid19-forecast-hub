@@ -652,5 +652,8 @@
         "end": -3
       }
     }
+  ],
+  "derived_task_ids": [
+    "target_end_date"
   ]
 }
