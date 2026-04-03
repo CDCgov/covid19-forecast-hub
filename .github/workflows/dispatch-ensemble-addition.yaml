@@ -48,4 +48,4 @@ jobs:
           token: ${{ steps.get_token_gov.outputs.token }}
           repository: CDCgov/cfa-forecast-hub-reports
           event-type: covid-ensemble-added
-          client-payload: '{"hub_repo":"${{ github.repository }}","disease":"covid"}'
+          client-payload: '{"disease":"covid"}'
