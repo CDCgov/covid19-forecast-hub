@@ -242,7 +242,7 @@ Download all of target-data contents to your current working directory:
 aws s3 cp s3://covid19-forecast-hub/target-data/ . --recursive --no-sign-request
 ```
 
-Download the model-output files for a specific team (e.g., the hub baseline):
+Download the model-output files for a specific model (e.g., the hub baseline):
 
 ```sh
 aws s3 cp s3://covid19-forecast-hub/model-output/CovidHub-baseline/ . --recursive --no-sign-request
