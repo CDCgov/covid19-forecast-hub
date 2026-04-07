@@ -97,6 +97,163 @@ We have made changes from previous versions of the [COVID-19 Forecast Hub](https
 Both Hubs will require quantile-based forecasts of epiweekly incident hospital admissions reported into NHSN, with the same -1:3 week horizon span. Both will accept these forecasts via Github pull requests of files formatted according to the standard [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output). The Hubs also plan to share a forecast deadline of 11pm USA/Eastern time on Wednesdays.
 
 
+## Accessing COVID-19 Data On The Cloud
+
+To ensure greater access to the data created by and submitted to this hub, real-time copies of files in the following directories are hosted on the Hubverse's Amazon Web Services (AWS) infrastructure, in a public S3 bucket: `covid19-forecast-hub`.
+
+- `auxiliary-data`
+- `hub-config`
+- `model-metadata`
+- `model-output`
+- `target-data`
+
+GitHub remains the primary interface for operating the COVID-19 Forecast Hub and collecting forecasts from modelers. However, the mirrors of hub files on S3 are the most convenient way to access hub data without using `git`/GitHub or cloning the entire hub to your local machine.
+
+The sections below provide examples for accessing hub data on the cloud, depending on your goals and
+preferred tools. The options include:
+
+| Access Method              | Description                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------- |
+| hubData (R)                | Hubverse R client and R code for accessing hub data.                                  |
+| hub-data (Python)          | Python package for working with hubverse data                                         |
+| AWS command line interface | Download data and use hubData, Pyarrow, or another tool for fast local access.        |
+
+In general, accessing the data directly from S3 (instead of downloading it first) is more convenient. However, if performance is critical (for example, you're building an interactive visualization), or if you need to work offline,
+we recommend downloading the data first.
+
+<details markdown=1>
+
+<summary>hubData (R)</summary>
+
+[hubData](https://hubverse-org.github.io/hubData), the Hubverse R client, can create an interactive session for accessing, filtering, and transforming hub model output data stored in S3.
+
+hubData is a good choice if you:
+
+- already use R for data analysis
+- want to interactively explore hub data from the cloud without downloading it
+- want to save a subset of the hub's data (*e.g.*, forecasts for a specific date or target) to your local machine
+- want to save hub data in a different file format (*e.g.*, `.parquet` to `.csv`)
+
+### Installing hubData
+
+To install `hubData` and its dependencies (including the `dplyr` and `arrow` packages), follow the [instructions in the hubData documentation](https://hubverse-org.github.io/hubData/#installation).
+
+### Using hubData
+
+hubData's [`connect_hub()` function](https://hubverse-org.github.io/hubData/reference/connect_hub.html) returns an [Arrow multi-file dataset](https://arrow.apache.org/docs/r/reference/Dataset.html) that represents a hub's model output data. The dataset can be filtered and transformed using dplyr and then materialized into a local data frame using the [`collect_hub()` function](https://hubverse-org.github.io/hubData/reference/collect_hub.html).
+
+#### Accessing Model Output Data
+
+Use hubData to connect to a hub on S3 and retrieve all model-output files into a local dataframe. (note: depending on the size of the hub, this operation will take a few minutes):
+
+```r
+library(dplyr)
+library(hubData)
+
+bucket_name <- "covid19-forecast-hub"
+hub_bucket <- s3_bucket(bucket_name)
+hub_con <- hubData::connect_hub(hub_bucket, file_format = "parquet", skip_checks = TRUE)
+model_output <- hub_con %>%
+  hubData::collect_hub()
+```
+
+Use hubData to connect to a hub on S3 and filter model output data before "collecting" it into a local dataframe:
+
+```r
+library(dplyr)
+library(hubData)
+
+bucket_name <- "covid19-forecast-hub"
+hub_bucket <- s3_bucket(bucket_name)
+hub_con <- hubData::connect_hub(hub_bucket, file_format = "parquet", skip_checks = TRUE)
+hub_con %>%
+  dplyr::filter(target == "wk inc covid hosp", location == "25", output_type == "quantile") %>%
+  hubData::collect_hub() %>%
+  dplyr::select(reference_date, model_id, target_end_date, location, output_type_id, value)
+```
+
+- [Full hubData documentation](https://hubverse-org.github.io/hubData/)
+
+</details>
+
+<details markdown=1>
+
+<summary>hub-data (Python)</summary>
+
+The Hubverse team is developing a Python client which provides some initial tools for accessing Hubverse data. The repository is located at <https://github.com/hubverse-org/hub-data>.
+
+
+### Installing hub-data
+
+Use `pip` to install `hub-data` (the `pypi` package is <https://pypi.org/project/hubdata>):
+
+```sh
+pip install hubdata
+```
+
+### Using hub-data
+
+Please see the [hub-data package documentation](https://hubverse-org.github.io/hub-data) for examples of how to use the CLI, and the `hubdata.connect_hub()` and `hubdata.create_hub_schema()` functions.
+
+</details>
+
+
+<details markdown=1>
+
+<summary>AWS CLI</summary>
+
+AWS provides a terminal-based command line interface (CLI) for exploring and downloading S3 files.
+
+This option is ideal if you:
+
+- plan to work with hub data offline but don't want to use git or GitHub
+- want to download a subset of the data (instead of the entire hub)
+- are using the data for an application that requires local storage or fast response times
+
+### Installing AWS CLI
+
+- Install the AWS CLI using the [instructions here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- You can skip the instructions for setting up security credentials, since Hubverse data is public
+
+### Using AWS CLI
+
+When using the AWS CLI, the `--no-sign-request` option is required, since it tells AWS to bypass a credential check
+(*i.e.*, `--no-sign-request` allows anonymous access to public S3 data).
+
+> [!NOTE]
+>
+> Files in the bucket's `raw` directory should not be used for analysis (they're for internal use only).
+
+List all directories in the hub's S3 bucket:
+
+```sh
+aws s3 ls covid19-forecast-hub --no-sign-request
+```
+
+List all files in the hub's bucket:
+
+```sh
+aws s3 ls covid19-forecast-hub --recursive --no-sign-request
+```
+
+Download all of target-data contents to your current working directory:
+
+```sh
+aws s3 cp s3://covid19-forecast-hub/target-data/ . --recursive --no-sign-request
+```
+
+Download the model-output files for a specific team (e.g., the hub baseline):
+
+```sh
+aws s3 cp s3://covid19-forecast-hub/model-output/CovidHub-baseline/ . --recursive --no-sign-request
+```
+
+- [Full documentation for `aws s3 ls`](https://docs.aws.amazon.com/cli/latest/reference/s3/ls.html)
+- [Full documentation for `aws s3 cp`](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html)
+
+</details>
+
+
 ## Acknowledgments
 This repository follows the guidelines and standards outlined by the [hubverse](https://hubdocs.readthedocs.io/en/latest/), which provides a set of data formats and open source tools for modeling hubs.
 
