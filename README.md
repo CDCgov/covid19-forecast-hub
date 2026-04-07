@@ -118,8 +118,7 @@ preferred tools. The options include:
 | hub-data (Python)          | Python package for working with hubverse data                                         |
 | AWS command line interface | Download data and use hubData, Pyarrow, or another tool for fast local access.        |
 
-In general, accessing the data directly from S3 (instead of downloading it first) is more convenient. However, if performance is critical (for example, you're building an interactive visualization), or if you need to work offline,
-we recommend downloading the data first.
+In general, accessing the data directly from S3 (instead of downloading it first) is more convenient. However, if performance is critical (for example, you're building an interactive visualization), or if you need to work offline, we recommend downloading the data first.
 
 <details markdown=1>
 
