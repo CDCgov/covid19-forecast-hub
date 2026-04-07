@@ -266,7 +266,7 @@ We recommend accessing hub data through official [hubverse](https://hubverse.io)
 
 > [!WARNING]
 >
-> The layout of this repository is **not a stable public API**. Directories, file names, and schemas outside the hubverse-managed paths may change at any time, possibly without notice.
+> The layout of this repository is **not a stable public API**. Directories, file names, and schemas outside the hubverse-managed paths may change at any time, possibly without formal notice.
 
 Specifically:
 
