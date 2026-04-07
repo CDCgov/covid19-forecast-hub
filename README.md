@@ -260,7 +260,7 @@ If you are building a product (e.g., a dashboard, analysis pipeline, or evaluati
 
 ### Prefer Hubverse Tooling Over Direct File Paths
 
-We recommend accessing hub data through official [hubverse](https://hubverse.io) tooling rather than by hard-coding paths into this repository's file tree. The hubverse R and Python packages (e.g., [`hubData`](https://hubverse-org.github.io/hubData/) and [`hub-data`](https://github.com/hubverse-org/hub-data)) provide interfaces to the COVIDHub model output, target data, and model metadata, which all follow the [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output). 
+We recommend accessing hub data through official [hubverse](https://hubverse.io) tooling rather than by hard-coding paths into this repository's file tree. The hubverse R and Python packages (e.g., [`hubData`](https://hubverse-org.github.io/hubData/) and [`hub-data`](https://github.com/hubverse-org/hub-data)) provide interfaces to the COVIDHub model output, target data, and model metadata, which all follow the [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output).
 
 ### Hubverse schema version
 The specific version of the Hubverse schema currently used by the Hub is specified in the Hub's [`admin.json`](hub-config/admin.json) file. We notify users in advance of planned schema version update.
