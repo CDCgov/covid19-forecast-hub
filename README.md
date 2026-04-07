@@ -99,7 +99,7 @@ Both Hubs will require quantile-based forecasts of epiweekly incident hospital a
 
 ## Using Hub Data In Downstream Products
 
-If you are building a product (e.g., a dashboard, analysis pipeline, or evaluation) downstream of `covid19-forecast-hub` that consumes data from this hub, please note the following:.
+If you are building a product (e.g., a dashboard, analysis pipeline, or evaluation) downstream of `covid19-forecast-hub` that uses data from this hub, please note the following:.
 
 ### Prefer Hubverse Tooling Over Direct File Paths
 
