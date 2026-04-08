@@ -256,7 +256,7 @@ aws s3 cp s3://covid19-forecast-hub/model-output/CovidHub-baseline/ . --recursiv
 
 ## Using Hub Data In Downstream Products
 
-If you are building a product (e.g., a dashboard, analysis pipeline, or evaluation) downstream of `covid19-forecast-hub` that uses data from this hub, please note the following:.
+If you are building a product (e.g., a dashboard, analysis pipeline, or evaluation) downstream of `covid19-forecast-hub` that uses data from this hub, please follow the guidance in this section.
 
 ### Prefer Hubverse Tooling Over Direct File Paths
 
