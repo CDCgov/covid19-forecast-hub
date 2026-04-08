@@ -276,7 +276,7 @@ Specifically:
 - Hubverse-managed directories (`model-output/`, `model-metadata/`, `target-data/`, `hub-config/`) follow the [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output). Changes here are guided by hubverse conventions; we will communicate planned changes in advance.
 - `auxiliary-data/` is a catch-all for supporting files (e.g., location tables, raw NSSP snapshots, weekly submission summaries). Files within have no formal schema and no guarantee of consistency across time (e.g. they may be renamed, restructured, or removed). Please do not rely on specific filenames or columns in `auxiliary-data/`.
 
-If you need a file only available through `auxiliary-data/`, please [open an issue](https://github.com/CDCgov/covid19-forecast-hub/issues) with your use case so we can consider making its presence more stable.
+If you need a file only available through `auxiliary-data/` for a downstream product, please [open an issue](https://github.com/CDCgov/covid19-forecast-hub/issues) with your use case so we can consider making its presence more stable.
 
 ### Following Changes
 
