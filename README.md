@@ -284,14 +284,12 @@ If you maintain a downstream product and want to be notified of planned changes 
 To add or update product details, please open a [pull request](https://github.com/CDCgov/covid19-forecast-hub/pulls) that edits this file.
 
 Suggested fields for each entry include:
-- `Product_name`
-- `Contact_name`
-- `Affiliation`
-- `Project_url`
-- `Description`
-- `Email`
-
-If you prefer not to make your email public, you can provide it via email to [covidhub@cdc.gov](mailto:covidhub@cdc.gov).
+- `name`
+- `designated_contacts`
+- `email`
+- `affiliation`
+- `url`
+- `description`
 
 ## Acknowledgments
 
