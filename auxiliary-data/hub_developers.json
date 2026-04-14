@@ -7,7 +7,7 @@
         "contact_email": "zib2@cdc.gov"
       }
     ],
-    "affiliation": "CDC",
+    "organization": "CDC",
     "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
     "description": "Weekly summarized COVIDHub data"
   }

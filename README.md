@@ -280,7 +280,7 @@ If you need a file only available through `auxiliary-data/` for a downstream pro
 
 ### Following Changes
 
-If you maintain a downstream product and want to be notified of planned changes to hub data or structure, consider adding an entry to [`auxiliary-data/downstream_products.json`](auxiliary-data/downstream_products.json).
+If you maintain a downstream product and want to be notified of planned changes to hub data or structure, consider adding an entry to [`auxiliary-data/hub_developers.json`](auxiliary-data/hub_developers.json).
 To add or update product details, please open a [pull request](https://github.com/CDCgov/covid19-forecast-hub/pulls) that edits this file.
 
 Suggested fields for each entry include:
@@ -288,7 +288,7 @@ Suggested fields for each entry include:
 - `designated_contacts`
   - `contact_name`
   - `contact_email`
-- `affiliation`
+- `organization`
 - `url`
 - `description`
 
@@ -304,7 +304,7 @@ An example entry:
         "contact_email": "zib2@cdc.gov"
        }
     ],
-    "affiliation": "CDC",
+    "organization": "CDC",
     "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
     "description": "Weekly summarized COVIDHub data"
   },
@@ -316,7 +316,7 @@ An example entry:
         "contact_email": "my_email@example.com"
       }
     ],
-    "affiliation": "My Affiliation",
+    "organization": "My Organization",
     "url": "https://example.com/my-org-name/my-repo",
     "description": "My product description"
   }
