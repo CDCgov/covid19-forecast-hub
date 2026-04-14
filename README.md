@@ -292,7 +292,7 @@ Suggested fields for each entry include:
 - `url`
 - `description`
 
-An example entry:
+Example of adding a new entry to the existing list of downstream products:
 
 ```json
 [
