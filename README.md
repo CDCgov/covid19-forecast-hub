@@ -296,6 +296,18 @@ An example entry:
 ```json
 [
   {
+    "name": "COVIDHub Reports",
+    "designated_contacts": [
+      "Subekshya Bidari"
+    ],
+    "email": [
+      "zib2@cdc.gov"
+    ],
+    "affiliation": "CDC",
+    "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
+    "description": "Weekly summarized COVIDHub data"
+  },
+  {
     "name": "My Downstream Product",
     "designated_contacts": [
       "My Name"
