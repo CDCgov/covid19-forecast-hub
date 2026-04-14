@@ -291,6 +291,27 @@ Suggested fields for each entry include:
 - `url`
 - `description`
 
+An example entry:
+
+```json
+[
+  {
+    "name": "My Downstream Product",
+    "designated_contacts": [
+      "My Name"
+    ],
+    "email": [
+      "my_email@example.com"
+    ],
+    "affiliation": "My Affiliation",
+    "url": "https://example.com/my-org-name/my-repo",
+    "description": "My product description"
+  }
+]
+```
+
+
+
 ## Acknowledgments
 
 This repository follows the guidelines and standards outlined by the [hubverse](https://hubdocs.readthedocs.io/en/latest/), which provides a set of data formats and open source tools for modeling hubs.
