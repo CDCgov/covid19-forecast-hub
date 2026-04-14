@@ -2,10 +2,10 @@
   {
     "name": "COVIDHub Reports",
     "designated_contacts": [
-      "Subekshya Bidari"
-    ],
-    "email": [
-      "zib2@cdc.gov"
+      {
+        "contact_name": "Subekshya Bidari",
+        "contact_email": "zib2@cdc.gov"
+      }
     ],
     "affiliation": "CDC",
     "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",

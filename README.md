@@ -286,7 +286,8 @@ To add or update product details, please open a [pull request](https://github.co
 Suggested fields for each entry include:
 - `name`
 - `designated_contacts`
-- `email`
+  - `contact_name`
+  - `contact_email`
 - `affiliation`
 - `url`
 - `description`
@@ -298,10 +299,10 @@ An example entry:
   {
     "name": "COVIDHub Reports",
     "designated_contacts": [
-      "Subekshya Bidari"
-    ],
-    "email": [
-      "zib2@cdc.gov"
+      {
+        "contact_name": "Subekshya Bidari",
+        "contact_email": "zib2@cdc.gov"
+       }
     ],
     "affiliation": "CDC",
     "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
@@ -310,10 +311,10 @@ An example entry:
   {
     "name": "My Downstream Product",
     "designated_contacts": [
-      "My Name"
-    ],
-    "email": [
-      "my_email@example.com"
+      {
+        "contact_name" :"My Name",
+        "contact_email": "my_email@example.com"
+      }
     ],
     "affiliation": "My Affiliation",
     "url": "https://example.com/my-org-name/my-repo",
