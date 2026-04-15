@@ -280,7 +280,50 @@ If you need a file only available through `auxiliary-data/` for a downstream pro
 
 ### Following Changes
 
-If you maintain a downstream product and want to be notified of planned changes to hub data or structure, please email [covidhub@cdc.gov](mailto:covidhub@cdc.gov) to be added to our announcement list.
+If you maintain a downstream product and want to be notified of planned changes to hub data or structure, consider adding an entry to [`auxiliary-data/hub_developers.json`](auxiliary-data/hub_developers.json).
+To add or update product details, please open a [pull request](https://github.com/CDCgov/covid19-forecast-hub/pulls) that edits this file.
+
+Suggested fields for each entry include:
+- `name`
+- `designated_contacts`
+  - `contact_name`
+  - `contact_email`
+- `organization`
+- `url`
+- `description`
+
+Example of adding a new entry to the existing list of downstream products:
+
+```json
+[
+  {
+    "name": "COVIDHub Reports",
+    "designated_contacts": [
+      {
+        "contact_name": "Subekshya Bidari",
+        "contact_email": "zib2@cdc.gov"
+       }
+    ],
+    "organization": "CDC",
+    "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
+    "description": "Weekly summarized COVIDHub data"
+  },
+  {
+    "name": "My Downstream Product",
+    "designated_contacts": [
+      {
+        "contact_name" :"My Name",
+        "contact_email": "my_email@example.com"
+      }
+    ],
+    "organization": "My Organization",
+    "url": "https://example.com/my-org-name/my-repo",
+    "description": "My product description"
+  }
+]
+```
+
+
 
 ## Acknowledgments
 
