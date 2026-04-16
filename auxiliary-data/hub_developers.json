@@ -10,5 +10,17 @@
     "organization": "CDC",
     "url": "https://github.com/CDCgov/cfa-forecast-hub-reports",
     "description": "Weekly summarized COVIDHub data"
+  },
+  {
+    "name": "Delphi Epidata",
+    "designated_contacts": [
+      {
+        "contact_name": "Adam Johns et al.",
+        "contact_email": "delphi-production@andrew.cmu.edu"
+      }
+    ],
+    "organization": "Delphi",
+    "url": "https://delphi.cmu.edu/",
+    "description": "Mirror and archive datasets"
   }
 ]
