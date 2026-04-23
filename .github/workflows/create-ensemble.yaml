@@ -13,7 +13,7 @@ on:
         default: ""
         type: string
   schedule:
-    - cron: "45 9 * * 4" # run every Thursday at 9:45 AM ET
+    - cron: "51 8 * * 4" # run every Thursday at 8:51 AM ET
       timezone: "America/New_York"
 
 jobs:
