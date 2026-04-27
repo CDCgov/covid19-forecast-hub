@@ -68,7 +68,7 @@ One of the following [accepted licenses](https://github.com/CDCgov/covid19-forec
 
 A team-specified boolean indicator (`true` or `false`) for whether the model should be considered eligible for inclusion in Hub ensembles and public visualizations. A team may specify up to two models as `designated_model`s for inclusion. Models which have a designated_model value of `false` will still be included in internal forecasting Hub evaluations, but not in published ensembles and visualizations.
 
-Designation applies to every target the model submits to unless narrowed by the optional `designated_targets` field (see [Optional fields](#optional-fields)).
+Designation applies to every target the model submits unless narrowed by the optional `designated_targets` field (see [Optional fields](#optional-fields)).
 
 ### `data_inputs`
 
@@ -102,7 +102,7 @@ The following metadata fields are optional, but encouraged.
 
 ### `designated_targets`
 
-A list of target names for which the model is designated. When present, narrows the effect of `designated_model: true` to only the listed targets. When absent or empty, a designated model is eligible for every target it submits to. Has no effect when `designated_model` is `false`. Example:
+A list of target names for which the model is designated. When present, narrows the effect of `designated_model: true` to only the listed targets. When absent or empty, a designated model is eligible for every target it submits. Has no effect when `designated_model` is `false`. Example:
 
 ```
 designated_targets: ["wk inc covid hosp"]
