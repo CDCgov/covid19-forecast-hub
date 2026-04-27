@@ -80,8 +80,19 @@
       ]
     },
     "designated_model": {
-      "description": "Team-specified indicator for whether the model should be eligible for inclusion in a Hub ensemble and public visualization. A team may designate up to two models.",
+      "description": "Team-specified indicator for whether the model should be eligible for inclusion in a Hub ensemble and public visualization. A team may designate up to two models. Designation applies to every target the model submits unless narrowed by 'designated_targets'.",
       "type": "boolean"
+    },
+    "designated_targets": {
+      "description": "Optional list of target names for which this model is designated. When present, 'designated_model=true' applies only to listed targets. When absent or empty, a designated model is eligible for every target it submits. Has no effect when 'designated_model' is false.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "wk inc covid hosp",
+          "wk inc covid prop ed visits"
+        ]
+      }
     },
     "citation": {
       "description": "One or more citations for this model",
