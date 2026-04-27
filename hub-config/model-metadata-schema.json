@@ -80,7 +80,7 @@
       ]
     },
     "designated_model": {
-      "description": "Team-specified indicator for whether the model should be eligible for inclusion in a Hub ensemble and public visualization. A team may designate up to two models. Designation applies to every target the model submits to unless narrowed by 'designated_targets'.",
+      "description": "Team-specified indicator for whether the model should be eligible for inclusion in a Hub ensemble and public visualization. A team may designate up to two models. Designation applies to every target the model submits unless narrowed by 'designated_targets'.",
       "type": "boolean"
     },
     "designated_targets": {
