@@ -68,6 +68,8 @@ One of the following [accepted licenses](https://github.com/CDCgov/covid19-forec
 
 A team-specified boolean indicator (`true` or `false`) for whether the model should be considered eligible for inclusion in Hub ensembles and public visualizations. A team may specify up to two models as `designated_model`s for inclusion. Models which have a designated_model value of `false` will still be included in internal forecasting Hub evaluations, but not in published ensembles and visualizations.
 
+Designation applies to every target the model submits unless narrowed by the optional `designated_targets` field (see [Optional fields](#optional-fields)).
+
 ### `data_inputs`
 
 List or description of the data sources used to inform the model, in particular any dataset used that are not the [target datasets](../README.md#target-data-source) of epiweekly incident COVID-19 hospital admissions reported to NHSN or epiweekly incident emergency department visits due to COVID-19 reported to NSSP.
@@ -95,7 +97,22 @@ A boolean value (`true` or `false`) that indicates whether a model is an ensembl
 The url of a website with additional information about your model, such as detailed methods, visualizations, or interactive dashboards.
 
 ## Optional fields
+
 The following metadata fields are optional, but encouraged.
+
+### `designated_targets`
+
+A list of target names for which the model is designated. When present, narrows the effect of `designated_model: true` to only the listed targets. When absent or empty, a designated model is eligible for every target it submits. Has no effect when `designated_model` is `false`. Example:
+
+```
+designated_targets: ["wk inc covid hosp"]
+```
+
+or for multiple targets:
+
+```
+designated_targets: ["wk inc covid hosp", "wk inc covid prop ed visits"]
+```
 
 ### `model_version`
 An identifier of the version of the model. We recommend [semantic versioning](https://semver.org/) style: `X.Y` or `X.Y.Z`, so `1.2` for version 1.2.
