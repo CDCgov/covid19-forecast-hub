@@ -24,6 +24,11 @@ model_contributors: [
     "email": "alkummer@iu.edu",
   },
   {
+    "name": "Shreeya Mhade",
+    "affiliation": "Indiana University Bloomington",
+    "email": "smhade@iu.edu",
+  },
+  {
     "name": "Alessandro Vespignani",
     "affiliation": "Northeastern University",
     "email": "a.vespignani@northeastern.edu",
