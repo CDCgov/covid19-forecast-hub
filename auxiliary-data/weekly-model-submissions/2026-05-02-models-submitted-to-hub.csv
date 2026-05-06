@@ -1,0 +1,20 @@
+model_id,target,designated
+CADPH-CovidCAT_Ensemble,wk inc covid hosp,TRUE
+CEPH-Rtrend_covid,wk inc covid hosp,TRUE
+CFA_Pyrenew-Pyrenew_H_COVID,wk inc covid hosp,FALSE
+CFA_Pyrenew-Pyrenew_HE_COVID,wk inc covid hosp,TRUE
+CFA-EpiAutoGP,wk inc covid hosp,TRUE
+CMU-TimeSeries,wk inc covid hosp,TRUE
+CovidHub-baseline,wk inc covid hosp,FALSE
+CovidHub-ensemble,wk inc covid hosp,FALSE
+Google_SAI-Ensemble,wk inc covid hosp,TRUE
+OHT_JHU-nbxd,wk inc covid hosp,TRUE
+UGA_flucast-INFLAenza,wk inc covid hosp,TRUE
+UMass-ar6_pooled,wk inc covid hosp,TRUE
+UMass-gbqr,wk inc covid hosp,TRUE
+CFA_Pyrenew-Pyrenew_E_COVID,wk inc covid prop ed visits,TRUE
+CFA_Pyrenew-Pyrenew_HE_COVID,wk inc covid prop ed visits,FALSE
+CMU-TimeSeries,wk inc covid prop ed visits,TRUE
+CovidHub-baseline,wk inc covid prop ed visits,FALSE
+CovidHub-ensemble,wk inc covid prop ed visits,FALSE
+UGA_flucast-INFLAenza,wk inc covid prop ed visits,TRUE
