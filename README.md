@@ -380,3 +380,5 @@ All comments, messages, pull requests, and other submissions received through CD
 This repository is not a source of government records, but is a copy to increase collaboration and collaborative potential. All government records will be published through the [CDC web site](http://www.cdc.gov).
 
 </details>
+
+[^1]: Chakraborty P, Lewis B, Eubank S, Brownstein JS, Marathe M, Ramakrishnan N. "What to know before forecasting the flu." *PLoS Computational Biology*. 2018;14(10):e1005964. https://doi.org/10.1371/journal.pcbi.1005964
