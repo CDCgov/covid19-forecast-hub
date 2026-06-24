@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: "Get Hub Cloud Config"
         # save cloud-related fields from admin config as environment variables
