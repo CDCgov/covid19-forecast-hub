@@ -3,6 +3,8 @@ name: "Check For Dead Links"
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
   schedule:
     - cron: "0 13 * * 1" # 08:00 EST (UTC-5; 09:00 EDT)
