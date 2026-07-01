@@ -18,8 +18,8 @@ jobs:
       - name: link checker
         uses: lycheeverse/lychee-action@v2
         with:
-          # (200 success, 206 partial content, 403 
-          # forbidden and 429 too-many-requests OK; 
+          # (200 success, 206 partial content, 403
+          # forbidden and 429 too-many-requests OK;
           # actually dead links are 404 and fail)
           args: >-
             --no-progress
