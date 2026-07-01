@@ -1,0 +1,35 @@
+name: "Check For Dead Links"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 13 * * 1" # 08:00 EST (UTC-5; 09:00 EDT)
+
+permissions:
+  contents: read
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: link checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # (200 success, 206 partial content, 403
+          # forbidden and 429 too-many-requests OK;
+          # actually dead links are 404 and fail)
+          args: >-
+            --no-progress
+            --max-retries 2
+            --accept 200,206,403,429
+            './**/*.md'
+            './model-metadata/*.yml'
+            './model-metadata/*.yaml'
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
