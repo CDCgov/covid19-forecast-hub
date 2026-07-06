@@ -35,6 +35,6 @@ jobs:
         if: steps.lychee.outputs.exit_code != 0
         uses: peter-evans/create-issue-from-file@v5
         with:
-          title: "Dead Link Notice"
+          title: "Consider Investigating These Dead Links"
           content-filepath: ./lychee/out.md
           labels: dead-links
