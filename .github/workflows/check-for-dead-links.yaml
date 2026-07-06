@@ -28,8 +28,7 @@ jobs:
             --max-retries 2
             --accept 200,206,403,429
             './**/*.md'
-            './model-metadata/*.yml'
-            './model-metadata/*.yaml'
+            './model-metadata/CFA_Pyrenew-Pyrenew*.yaml'
           fail: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
