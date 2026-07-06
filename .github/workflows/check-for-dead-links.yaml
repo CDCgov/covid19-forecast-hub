@@ -1,0 +1,40 @@
+name: "Check For Dead Links"
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 08:00 EST (UTC-5; 09:00 EDT) on the 1st of every
+    # other month (Jan, Mar, May, Jul, Sep, Nov)
+    - cron: "0 13 1 */2 *"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  linkcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: "Dead Link Checker"
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # (200 success, 206 partial content, 403
+          # forbidden and 429 too-many-requests OK;
+          # actually dead links are 404 and fail)
+          args: >-
+            --no-progress
+            --max-retries 2
+            --accept 200,206,403,429
+            './**/*.md'
+          fail: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Create Issue From Report"
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Fix autodetected broken links"
+          content-filepath: ./lychee/out.md
+          labels: dead-links
