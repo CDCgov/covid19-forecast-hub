@@ -6,8 +6,19 @@ This repository is designed to collect forecast data for the COVID-19 Forecast H
 
 If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
 
+> [!NOTE]
+>
+> [COVID-19](https://www.cdc.gov/covid/index.html) remains a leading cause of respiratory illness, hospitalization, and death in the United States. CDC [preliminary burden estimates](https://data.cdc.gov/Public-Health-Surveillance/Preliminary-2024-2025-U-S-COVID-19-Burden-Estimate/ahrf-yqdt) attribute roughly 390,000–550,000 hospitalizations and 45,000–64,000 deaths to COVID-19 during the 2024–2025 respiratory season (October 12, 2024–September 27, 2025). Tracking COVID-19 hospital admissions and emergency department visits helps public health professionals understand trends in virus circulation[^circulation], estimate disease burden[^burden], and respond to outbreaks[^response]. Accurate nowcasts and forecasts of hospital admissions linked to COVID-19 help support appropriate public health interventions and planning, as COVID-19, [influenza](https://github.com/cdcepi/FluSight-forecast-hub), [RSV](https://github.com/CDCgov/rsv-forecast-hub), and other [respiratory pathogens](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html) co-circulate.
+
+[^circulation]: For example, CDC's weekly [Respiratory Virus Activity Levels](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html) and the [NHSN Hospital Respiratory Data](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html) dataset show when and where COVID-19 hospital admissions and emergency department visits are rising or falling across jurisdictions, signaling changes in transmission.
+
+[^burden]: For example, CDC combines surveillance data into [preliminary seasonal burden estimates](https://www.cdc.gov/covid/php/surveillance/burden-estimates.html) of COVID-19 symptomatic illnesses, hospitalizations, and deaths (such as the 2024–2025 estimates cited above, published as the [`ahrf-yqdt` dataset](https://data.cdc.gov/Public-Health-Surveillance/Preliminary-2024-2025-U-S-COVID-19-Burden-Estimate/ahrf-yqdt) on `data.cdc.gov`).
+
+[^response]: Hospital admission forecasts inform bed and staffing capacity planning during surges and support vaccine policy decisions, such as ACIP's annual [COVID-19 vaccine recommendations](https://www.cdc.gov/mmwr/volumes/74/wr/mm7406a1.htm) and the timing of updated vaccine campaigns.
+
 
 ## Nowcasts and Forecasts of Confirmed COVID-19 Hospital Admissions
+
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
 The weekly total COVID-19 admissions counts can be found in the `totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data (HRD) dataset](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
@@ -15,14 +26,17 @@ The weekly total COVID-19 admissions counts can be found in the `totalconfc19new
 NHSN provides a preliminary release of each week's HRD data on Wednesdays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/mpgq-jmmr/about_data). Official weekly data is released on Fridays [here](https://data.cdc.gov/Public-Health-Surveillance/Weekly-Hospital-Respiratory-Data-HRD-Metrics-by-Ju/ua7e-t2fy/about_data). For more details on this dataset, its release schedule, and its schema, see the [NHSN Hospital Respiratory Data page](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
 
 ## Nowcasts and Forecasts of Covid-19 Emergency Department Visits
+
 Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilistic nowcasts and forecasts of the proportion of emergency department visits due to COVID-19. This new target represents COVID-19 as a proportion of emergency department (ED) visits, aggregated by epiweek (Sunday-Saturday) and jurisdiction (states, DC, United States). The numerator is the number of visits with a discharge diagnosis of COVID-19, and the denominator is total visits. This target is optional for any submitted location and forecast horizon.
 
 The weekly percent of ED visits due to COVID-19 can be found in the `percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [Emergency Department Visits - COVID-19, Flu, RSV, Sub-state](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) dataset. Although these numbers are reported in the percentage form, we will accept forecasts as decimal proportions (i.e., `percent_visits_covid / 100`). To obtain state-level data, we filter the dataset to include only the rows where the `county` column is equal to `All`.
 
 We are working to make the Wednesday release of this dataset available on data.cdc.gov.  Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.parquet`](auxiliary-data/nssp-raw-data/latest.parquet).
+
 These Wednesday data updates contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
 
 ## Dates and Deadlines
+
 The Challenge Period is rolling.
 
 Participants will be asked to submit nowcasts and forecasts by 11PM USA Eastern Time each Wednesday (the "Forecast Due Date"). If it becomes necessary to change the Forecast Due Date or time deadline, CovidHub will notify participants at least one week in advance.
@@ -74,6 +88,7 @@ Standard software packages for R and Python can help you convert from dates to e
 Detailed guidelines for formatting and submitting forecasts are available in the [`model-output` directory README](model-output/README.md). Detailed guidelines for formatting and submitting model metadata can be found in the [`model-metadata` directory README](model-metadata/README.md).
 
 ## Suggested workflow for first time submitters
+
 Pull requests (PRs) into the Hub repository to register a new model or modify an existing model's metadata must always be reviewed and merged manually.
 
 PR that submit forecasts for an existing model can be reviewed and merged automatically if the submission content passes automated validation checks and the submitting individual has been preregistered as an authorized submitter for the model.
