@@ -1,0 +1,28 @@
+name: "Upload Hub Data To Hubverse Hosted AWS S3 Bucket"
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  # Hubverse AWS account number
+  AWS_ACCOUNT: 767397675902
+
+permissions:
+  contents: read
+  # id-token write required for AWS auth
+  id-token: write
+
+jobs:
+  upload:
+    # don't run on forked repositories
+    if: github.event.repository.fork != true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v7
+
+      - name: "Upload to AWS"
+        uses:
