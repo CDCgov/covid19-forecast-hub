@@ -6,6 +6,8 @@ This repository is designed to collect forecast data for the COVID-19 Forecast H
 
 If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
 
+> [!WARNING]
+> **Note for retrospective forecasters**: the performance on finalized data (or data as it appears after the season is over), can be significantly better than performance on versioned data as it was at the time. See a [previous paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC6193572/)[^1] on this topic for Flu that is also relevant for COVID-19, specifically the "Forecasting practices" section. You should restrict your training set for a forecast to data as it was on that report date or your results will be incomparable with anything in this repository. See [below](#accessing-covid19-data-on-the-cloud) for how to obtain historical releases.
 
 ## Nowcasts and Forecasts of Confirmed COVID-19 Hospital Admissions
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
@@ -108,6 +110,8 @@ To ensure greater access to the data created by and submitted to this hub, real-
 - `model-metadata`
 - `model-output`
 - `target-data`
+
+ If you are retrospectively forecasting on this data, the latest files in `auxiliary-data` and `target_data` will give you an inaccurate picture of your forecasting accuracy. You can reconstruct an archive of all releases using git from this repository directly, since we commit each release in the repository, or use a pre-bundled version provided by [Delphi Epidata](https://delphi.cmu.edu/epidata/v5) either directly or via [epidatr](https://cmu-delphi.github.io/epidatr/)/[epidatpy](https://cmu-delphi.github.io/epidatpy/).
 
 GitHub remains the primary interface for operating the COVID-19 Forecast Hub and collecting forecasts from modelers. However, the mirrors of hub files on S3 are the most convenient way to access hub data without using `git`/GitHub or cloning the entire hub to your local machine.
 
@@ -376,3 +380,5 @@ All comments, messages, pull requests, and other submissions received through CD
 This repository is not a source of government records, but is a copy to increase collaboration and collaborative potential. All government records will be published through the [CDC web site](http://www.cdc.gov).
 
 </details>
+
+[^1]: Chakraborty P, Lewis B, Eubank S, Brownstein JS, Marathe M, Ramakrishnan N. "What to know before forecasting the flu." *PLoS Computational Biology*. 2018;14(10):e1005964. https://doi.org/10.1371/journal.pcbi.1005964
