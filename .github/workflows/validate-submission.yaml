@@ -4,57 +4,36 @@ on:
   workflow_dispatch:
   pull_request:
     branches: main
+    paths:
+      - 'model-output/**'
+      - 'model-metadata/*'
+      - '!**README**'
+
+permissions:
+  contents: read
+  pull-requests: read
 
 jobs:
   validate-submission:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v7
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          install-r: true
-          use-public-rspm: true
-          extra-repositories: 'https://hubverse-org.r-universe.dev'
-
-      - name: "Update R"
-        run: |
-          sudo apt-get update
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          pak-version: "devel"
-          packages: |
-            any::hubValidations
-            any::sessioninfo
-
-      - name: "Get model output changes"
+      - uses: step-security/changed-files@v47
         id: get_changed_files_in_model_output
-        uses: step-security/changed-files@v47
         with:
           path: model-output
           dir_names: "true"
 
-      - name: "check output dirs modified"
+      - name: "Check output dirs modified"
+        shell: bash
         run: |
-          if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" == "CovidHub-ensemble" ]; then
-            { echo "model=ensemble" | tee -a $GITHUB_ENV; }
+          if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" = "CovidHub-ensemble" ]; then
+            echo "skip_submit_window_check=true" >> "$GITHUB_ENV"
           else
-            { echo "model=other" | tee -a $GITHUB_ENV; }
+            echo "skip_submit_window_check=false" >> "$GITHUB_ENV"
           fi
 
-      - name: "Run validations"
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-        run: |
-          library("hubValidations")
-          v <- hubValidations::validate_pr(
-              gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
-              pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = Sys.getenv("model") == "ensemble"
-          )
-          hubValidations::check_for_errors(v, verbose = TRUE)
-        shell: Rscript {0}
+      - uses: hubverse-org/hubverse-actions/validate-submission@main
+        with:
+          skip_submit_window_check: ${{ env.skip_submit_window_check }}
