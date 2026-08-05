@@ -5,56 +5,26 @@ on:
   pull_request:
     branches: main
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   validate-submission:
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: "ubuntu-latest"
 
     steps:
       - uses: actions/checkout@v7
 
-      - uses: r-lib/actions/setup-r@v2
-        with:
-          install-r: true
-          use-public-rspm: true
-          extra-repositories: 'https://hubverse-org.r-universe.dev'
-
-      - name: "Update R"
-        run: |
-          sudo apt-get update
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          pak-version: "devel"
-          packages: |
-            any::hubValidations
-            any::sessioninfo
-
-      - name: "Get model output changes"
-        id: get_changed_files_in_model_output
+      - name: "Get model output directory changes"
+        id: "model_output_diffs"
         uses: step-security/changed-files@v47
         with:
           path: model-output
           dir_names: "true"
 
-      - name: "check output dirs modified"
-        run: |
-          if [ "${{ steps.get_changed_files_in_model_output.outputs.all_modified_files }}" == "CovidHub-ensemble" ]; then
-            { echo "model=ensemble" | tee -a $GITHUB_ENV; }
-          else
-            { echo "model=other" | tee -a $GITHUB_ENV; }
-          fi
-
-      - name: "Run validations"
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-        run: |
-          library("hubValidations")
-          v <- hubValidations::validate_pr(
-              gh_repo = Sys.getenv("GITHUB_REPOSITORY"),
-              pr_number = Sys.getenv("PR_NUMBER"),
-              skip_submit_window_check = Sys.getenv("model") == "ensemble"
-          )
-          hubValidations::check_for_errors(v, verbose = TRUE)
-        shell: Rscript {0}
+      # point at fork until install R option merged to main or rejected
+      - uses: dylanhmorris/hubverse-actions/validate-submission@9a6fa991f6ff350cd5c51737532fc36cc3dbe23d
+        with:
+          install_r: true
+          skip_submit_window_check: ${{ steps.model_output_diffs.outputs.all_modified_files == 'CovidHub-ensemble' }}
