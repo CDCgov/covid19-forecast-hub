@@ -37,7 +37,8 @@ model_contributors: [
 ]
 
 license: "CC-BY-4.0"
-designated_model: false
+designated_model: true
+designated_targets: ["wk inc covid prop ed visits"]
 methods: "Renewal model using the Pyrenew-HEW framework fit to emergency department visits."
 data_inputs: "Daily incident COVID-19 emergency department visits via the National Syndromic Surveillance Program (NSSP)."
 methods_long: "Renewal model fit to emergency department visits and used to forecast proportion of ed visits target (NSSP) signal."
