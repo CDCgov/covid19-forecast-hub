@@ -17,7 +17,7 @@ jobs:
         id: get_token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ vars.ENT_GH_APP_ID }}
+          client-id: ${{ vars.ENT_GH_APP_ID }}
           private-key: ${{ secrets.ENT_GH_APP_KEY }}
           owner: cdcent
           repositories: cfa-forecast-hub-internal-reports
