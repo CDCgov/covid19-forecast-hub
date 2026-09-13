@@ -17,5 +17,6 @@ methods_long: "A universal differential equation (UDE) model. An SIRS compartmen
 ensemble_of_models: true
 ensemble_of_hub_models: false
 website_url: "https://person.zju.edu.cn/leihao"
+designated_targets: ["wk inc covid hosp"]
 model_version: "1.0"
 designated_github_users: ["Dimlitter"]
