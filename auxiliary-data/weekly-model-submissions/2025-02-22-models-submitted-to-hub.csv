@@ -1,6 +1,6 @@
 "Model","Designated_Model"
 "CEPH-Rtrend_covid",TRUE
-"CFA_Pyrenew-Pyrenew_H_COVID",FALSE
+"CFA-PyRenew_H",FALSE
 "CMU-TimeSeries",TRUE
 "CMU-climate_baseline",FALSE
 "JHU_CSSE-CSSE_Ensemble",TRUE

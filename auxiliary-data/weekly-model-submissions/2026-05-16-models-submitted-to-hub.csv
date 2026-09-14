@@ -1,7 +1,7 @@
 model_id,target,designated
 CEPH-Rtrend_covid,wk inc covid hosp,TRUE
-CFA_Pyrenew-Pyrenew_H_COVID,wk inc covid hosp,FALSE
-CFA_Pyrenew-Pyrenew_HE_COVID,wk inc covid hosp,TRUE
+CFA-PyRenew_H,wk inc covid hosp,FALSE
+CFA-PyRenew_HE,wk inc covid hosp,TRUE
 CFA-EpiAutoGP,wk inc covid hosp,TRUE
 CMU-TimeSeries,wk inc covid hosp,TRUE
 CovidHub-baseline,wk inc covid hosp,FALSE
@@ -11,8 +11,8 @@ UGA_flucast-INFLAenza,wk inc covid hosp,TRUE
 UM-DeepOutbreak,wk inc covid hosp,TRUE
 UMass-ar6_pooled,wk inc covid hosp,TRUE
 UMass-gbqr,wk inc covid hosp,TRUE
-CFA_Pyrenew-Pyrenew_E_COVID,wk inc covid prop ed visits,TRUE
-CFA_Pyrenew-Pyrenew_HE_COVID,wk inc covid prop ed visits,FALSE
+CFA-PyRenew_E,wk inc covid prop ed visits,TRUE
+CFA-PyRenew_HE,wk inc covid prop ed visits,FALSE
 CMU-TimeSeries,wk inc covid prop ed visits,TRUE
 CovidHub-baseline,wk inc covid prop ed visits,FALSE
 UGA_flucast-INFLAenza,wk inc covid prop ed visits,TRUE
