@@ -1,0 +1,22 @@
+team_name: "Hao Lei Lab, ZJU School of Public Health"
+team_abbr: "ZJU_LeiLab"
+model_name: "Multi-pathogen UDE ensemble"
+model_abbr: "MPUDE_ens"
+model_contributors: [
+  {
+    "name": "Weibo Tang",
+    "affiliation": "School of Public Health, Zhejiang University",
+    "email": "viiber@zju.edu.cn"
+  }
+]
+license: "CC-BY-4.0"
+designated_model: true
+data_inputs: "Weekly incident COVID-19 hospital admissions (NHSN, via the COVID-19 Forecast Hub target data). Weekly incident influenza and RSV hospital admissions (NHSN, via the FluSight and RSV Forecast Hub target data) as covariates. Every series is used as published by the forecast date; when a covariate is not updated (e.g. the FluSight off-season), its last value is carried forward."
+methods: "SIRS model whose transmission and cross-pathogen (influenza, RSV) coupling terms are learned by neural networks (a universal differential equation), calibrated and ensembled with a flat baseline."
+methods_long: "A universal differential equation (UDE) model. An SIRS compartmental skeleton is kept, and the terms that are hard to specify in closed form are learned by small neural networks: a seasonal transmission term and a multiplicative cross-pathogen coupling term driven by recent influenza and RSV hospital admissions. The ODE is integrated with a differentiable solver, so the networks are fitted end to end to weekly COVID-19 hospital admissions under a negative binomial likelihood; regularisation keeps the coupling small unless the data support it. The model is refitted every week on the data published by the forecast date, and the seasonal transmission term is not extrapolated beyond the last observed week. State-level fits share the neural networks across locations (partial pooling) while each location keeps its own epidemic state and scale; the national series is fitted separately. Predictive quantiles come from conformal calibration of each component on its own past real-time forecast errors, and the submitted forecast is a quantile average of the calibrated UDE and a calibrated flat random-walk baseline. Settings such as the ensemble weights may be refined over time; changes will be recorded here with dates."
+ensemble_of_models: true
+ensemble_of_hub_models: false
+website_url: "https://person.zju.edu.cn/leihao"
+designated_targets: ["wk inc covid hosp"]
+model_version: "1.0"
+designated_github_users: ["Dimlitter"]
