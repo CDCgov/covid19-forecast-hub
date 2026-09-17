@@ -1,4 +1,5 @@
 # COVID-19 Forecast Hub
+
 This repository is designed to collect forecast data for the COVID-19 Forecast Hub run by the US CDC. The project collects forecast for two datasets:
 
    1. weekly new hospitalizations due to COVID-19, and
@@ -6,8 +7,13 @@ This repository is designed to collect forecast data for the COVID-19 Forecast H
 
 If you are interested in using these data for additional research or publications, please contact [covidhub@cdc.gov](mailto:covidhub@cdc.gov) for information regarding attribution of the source forecasts.
 
+> [!IMPORTANT]
+>
+> See upcoming information on the _[sunset of `latest.parquet`](https://github.com/CDCgov/rsv-forecast-hub#sunset-of-latest.parquet)_
+
 
 ## Nowcasts and Forecasts of Confirmed COVID-19 Hospital Admissions
+
 During the submission period, participating teams will be invited to submit national- and jurisdiction-specific (all 50 states, Washington DC, and Puerto Rico) probabilistic nowcasts and forecasts of the weekly number of confirmed COVID-19 hospital admissions during the preceding [epidemiological week ("epiweek")](https://epiweeks.readthedocs.io/en/stable/background.html), the current epiweek, and the following three epiweeks.
 
 The weekly total COVID-19 admissions counts can be found in the `totalconfc19newadm` column of the [National Healthcare Safety Network](https://www.cdc.gov/nhsn/index.html) (NHSN) [Hospital Respiratory Data (HRD) dataset](https://www.cdc.gov/nhsn/psc/hospital-respiratory-reporting.html).
@@ -19,8 +25,11 @@ Beginning June 18, 2025, the COVID-19 Forecast Hub will also accept probabilisti
 
 The weekly percent of ED visits due to COVID-19 can be found in the `percent_visits_covid` column of the [National Syndromic Surveillance Program](https://www.cdc.gov/nssp/index.html) (NSSP) [Emergency Department Visits - COVID-19, Flu, RSV, Sub-state](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) dataset. Although these numbers are reported in the percentage form, we will accept forecasts as decimal proportions (i.e., `percent_visits_covid / 100`). To obtain state-level data, we filter the dataset to include only the rows where the `county` column is equal to `All`.
 
-We are working to make the Wednesday release of this dataset available on data.cdc.gov.  Until then, we will update the dataset every Wednesday in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory of our GitHub repository as a file named [`latest.parquet`](auxiliary-data/nssp-raw-data/latest.parquet).
-These Wednesday data updates contain the same data that are published on Fridays at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data) and underlie the percentage ED visit reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/activity-levels.html), which is also refreshed every Friday. The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available on the 2025-06-11 release will be for the week ending 2025-06-07.
+The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data), and the Hub's weekly target data updates are built from it. These data underlie the percentage ED visits reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/index.html) (refreshed every Friday). The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available as of the 2025-06-11 release were for the week ending 2025-06-07.
+
+### Sunset Of `latest.parquet`
+
+The copy of this dataset kept in the [`auxiliary-data/nssp-raw-data`](auxiliary-data/nssp-raw-data) directory as `latest.parquet` will be removed from this repository on `2026-10-12`. It is being removed, rather than no longer updated, so that it cannot be used by mistake once out of date.
 
 ## Dates and Deadlines
 The Challenge Period is rolling.
