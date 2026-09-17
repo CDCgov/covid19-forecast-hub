@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       nssp_update_local:
-        description: "Update NSSP data from the Hub-hosted raw data file instead of data.cdc.gov? (the file is removed on 2026-10-12)"
+        description: "Update NSSP data from the Hub-hosted raw data file instead of data.cdc.gov? (the file will be removed on 2026-10-12)"
         type: boolean
         default: false
   schedule:
