@@ -12,7 +12,7 @@ UGA_flucast-INFLAenza,wk inc covid hosp,TRUE
 UMass-ar6_pooled,wk inc covid hosp,TRUE
 UMass-gbqr,wk inc covid hosp,TRUE
 ZJU_LeiLab-MPUDE_ens,wk inc covid hosp,TRUE
-CFA-NowcastAutoGP,wk inc covid prop ed visits,TRUE
+CFA-EpiAutoGP,wk inc covid prop ed visits,TRUE
 CFA-PyRenew_E,wk inc covid prop ed visits,TRUE
 CFA-PyRenew_HE,wk inc covid prop ed visits,FALSE
 CMU-TimeSeries,wk inc covid prop ed visits,TRUE
