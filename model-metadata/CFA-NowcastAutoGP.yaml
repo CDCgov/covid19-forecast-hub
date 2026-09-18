@@ -35,7 +35,7 @@ license: "CC-BY-4.0"
 designated_model: true
 methods: "Ensemble of Gaussian processes."
 data_inputs: "Epiweekly incident COVID-19 hospital admissions from NHSN HRD via data.cdc.gov. Epiweekly incident COVID-19 emergency department visits via the National Syndromic Surveillance Program (NSSP)."
-methods_long: "Ensemble of Gaussian processes, with most recent week nowcasting, implemented using NowcastAutoGP.jl. Before reference date, 2025-11-29, model was based directly on AutoGP.jl, and has been updated to NowcastAutoGP.jl."
+methods_long: "Ensemble of Gaussian processes, with most recent week nowcasting, implemented using NowcastAutoGP.jl. Before reference date, 2025-11-29, model was based directly on AutoGP.jl, and has been updated to NowcastAutoGP.jl. For additional information on the pipeline that produces these forecasts, see https://github.com/CDCgov/cfa-stf-routine-forecasting."
 website_url: "https://github.com/CDCgov/NowcastAutoGP"
 repo_url: "https://github.com/CDCgov/NowcastAutoGP"
 ensemble_of_models: true
