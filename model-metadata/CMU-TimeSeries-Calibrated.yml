@@ -1,7 +1,7 @@
 team_name: "Carnegie Mellon Delphi Group"
 team_abbr: "CMU"
 model_name: "AR ensemble with auxiliary data, online-calibrated"
-model_abbr: "TimeSeries-Calibrated"
+model_abbr: "TimeSeries_Cal"
 model_version: "1.0"
 model_contributors:
   [
