@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       nssp_update_local:
-        description: "Update NSSP data from the Hub-hosted raw data file?"
+        description: "Update NSSP data from the Hub-hosted raw data file instead of data.cdc.gov? (the file will be removed on 2026-10-12)"
         type: boolean
-        default: true
+        default: false
   schedule:
     - cron: "00 13 * * 3" # run every Wednesday at 1:00 PM ET
       timezone: "America/New_York"
@@ -39,7 +39,7 @@ jobs:
         api_key_id: ${{ secrets.NHSN_API_KEY_ID }}
         api_key_secret: ${{ secrets.NHSN_API_KEY_SECRET }}
         legacy_file: "true"
-        nssp_update_local: ${{ inputs.nssp_update_local || 'true' }}
+        nssp_update_local: ${{ inputs.nssp_update_local || 'false' }}
         # JSON array (e.g., '["VI", "GU"]') excludes from all targets.
         # JSON object (e.g., '{"all": ["VI"], "wk inc covid hosp": ["GU"]}')
         # supports target-specific exclusions.
