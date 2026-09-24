@@ -6,6 +6,7 @@ CFA-PyRenew_HE,wk inc covid hosp,TRUE
 CMU-TimeSeries,wk inc covid hosp,TRUE
 CMU-TimeSeries_Cal,wk inc covid hosp,FALSE
 CovidHub-baseline,wk inc covid hosp,FALSE
+CovidHub-ensemble,wk inc covid hosp,FALSE
 Google_SAI-Ensemble,wk inc covid hosp,TRUE
 NEU_ISI-AdaptiveEnsemble,wk inc covid hosp,TRUE
 OHT_JHU-nbxd,wk inc covid hosp,TRUE
@@ -17,4 +18,5 @@ CFA-PyRenew_E,wk inc covid prop ed visits,TRUE
 CFA-PyRenew_HE,wk inc covid prop ed visits,FALSE
 CMU-TimeSeries,wk inc covid prop ed visits,TRUE
 CovidHub-baseline,wk inc covid prop ed visits,FALSE
+CovidHub-ensemble,wk inc covid prop ed visits,FALSE
 UGA_flucast-INFLAenza,wk inc covid prop ed visits,TRUE
