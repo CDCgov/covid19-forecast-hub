@@ -23,7 +23,6 @@ jobs:
           path: model-output
           dir_names: "true"
 
-      # point at fork until install R option merged to main or rejected
       - uses: hubverse-org/hubverse-actions/validate-submission@main
         with:
           summary: true
