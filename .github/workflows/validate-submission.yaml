@@ -27,4 +27,3 @@ jobs:
       - uses: hubverse-org/hubverse-actions/validate-submission@main
         with:
           summary: true
-          skip_submit_window_check: true
