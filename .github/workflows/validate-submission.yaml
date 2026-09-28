@@ -27,3 +27,4 @@ jobs:
       - uses: hubverse-org/hubverse-actions/validate-submission@main
         with:
           summary: true
+          skip_submit_window_check: ${{ steps.model_output_diffs.outputs.all_modified_files == 'CovidHub-ensemble' }}
