@@ -5,17 +5,23 @@ model_abbr: INFLAenza
 model_contributors: [
   {
     "name": "Spencer J. Fox",
-    "affiliation": "University of Georgia",
-    "email": "sjfox@uga.edu",
+    "affiliation": "Northern Arizona University",
+    "email": "spencer.fox@nau.edu",
     "orcid": "0000-0003-1969-3778"
   },
   {
     "name": "Bren Case",
-    "affiliation": "University of Georgia",
-    "email": "bcase@uga.edu",
+    "affiliation": "Northern Arizona University",
+    "email": "brynn.case@nau.edu",
     "orcid": "1234-1234-1234-1234"
   },
-{
+  {
+    "name": "Kalyana Pabbisetty",
+    "affiliation": "Northern Arizona University",
+    "email": "kp2469@nau.edu",
+    "orcid": "1234-1234-1234-1234"
+  },
+  {
     "name": "Mariah Salcedo",
     "affiliation": "University of Georgia",
     "email": "mariah.salcedo@uga.edu",
@@ -34,7 +40,8 @@ team_funding: CSTE/CDC award NU38OT000297
 designated_github_users:
   [
     "MayaSal", 
-    "rajathprabhakar100"
+    "rajathprabhakar100",
+    "kp2469-Kaly"
   ]
 
 

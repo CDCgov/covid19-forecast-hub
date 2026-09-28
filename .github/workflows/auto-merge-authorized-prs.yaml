@@ -22,7 +22,7 @@ jobs:
       pull-requests: read
     steps:
       - name: "Checkout Code"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: "Set Up hubhelpr"
         uses: cdcgov/hubhelpr/actions/setup-hubhelpr@main

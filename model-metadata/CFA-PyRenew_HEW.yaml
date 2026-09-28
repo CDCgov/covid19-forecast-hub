@@ -1,0 +1,48 @@
+team_name: "Center for Forecasting and Outbreak Analytics (CDC/CFA)"
+team_abbr: "CFA"
+model_name: "PyRenew-HEW"
+model_abbr: "PyRenew_HEW"
+model_version: "0.1.0"
+model_contributors: [
+  {
+    "name": "Subekshya Bidari",
+    "affiliation": "CDC/CFA",
+    "email": "zib2@cdc.gov"
+  },
+  {
+    "name": "Damon M. Bayer",
+    "affiliation": "CDC/CFA",
+    "email": "xum8@cdc.gov"
+  },
+  {
+    "name": "George Vega Yon",
+    "affiliation": "CDC/CFA",
+    "email": "xrd4@cdc.gov"
+  },
+  {
+    "name": "Samuel Brand",
+    "affiliation": "CDC/CFA",
+    "email": "usi1@cdc.gov"
+  },
+  {
+    "name": "Trevor Martin",
+    "affiliation": "CDC/CFA",
+    "email": "upx3@cdc.gov"
+  },
+  {
+    "name": "Dylan H. Morris",
+    "affiliation": "CDC/CFA",
+    "email": "dzl1@cdc.gov"
+  }
+]
+
+license: "CC-BY-4.0"
+designated_model: false
+methods: "Renewal model using the PyRenew-HEW framework fit jointly to three epidemiological signals: hospital admissions, emergency department visits and wastewater virus genome concentrations."
+data_inputs: "Epiweekly incident COVID-19 hospital admissions from NHSN HRD via data.cdc.gov.  Daily incident COVID-19 emergency department visits via the National Syndromic Surveillance Program (NSSP). Wastewater virus genome concentration measurements via the National Wastewater Surveillance System (NWSS)."
+methods_long: "Renewal model fit to three signals and used to forecast the targets: NHSN hospital admissions counts and NSSP proportion ed visits signal. This is the renamed successor to model ID `CFA_Pyrenew-PyrenewHEW_COVID`; historical submissions retain that identifier. For additional information on the pipeline that produces these forecasts, see https://github.com/CDCgov/cfa-stf-routine-forecasting."
+website_url: "https://github.com/CDCgov/pyrenew-multisignal"
+repo_url: "https://github.com/CDCgov/pyrenew-multisignal"
+ensemble_of_models: false
+ensemble_of_hub_models: false
+designated_github_users: ["dylanhmorris", "damonbayer", "sbidari", "O957"]
