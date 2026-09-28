@@ -13,3 +13,4 @@ ensemble_of_hub_models: false
 website_url: "https://github.com/docxology"
 model_version: "1.0.0"
 designated_github_users: ["docxology"]
+designated_targets: ["wk inc covid hosp"]
