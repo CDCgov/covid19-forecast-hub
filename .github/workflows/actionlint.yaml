@@ -14,6 +14,16 @@ jobs:
         id: get_actionlint
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
         shell: bash
+      # stale action metadata bundled with actionlint
+      # (v1.7.12 predates create-github-app-token
+      # v3.1.0, which added client-id and deprecated
+      # app-id); remove this when actionlint refreshes
+      # its database
       - name: "Check Workflow Files"
-        run: ${{ steps.get_actionlint.outputs.executable }} -color -ignore "SC2086" -ignore "timezone"
+        run: |
+          ${{ steps.get_actionlint.outputs.executable }} -color \
+            -ignore "SC2086" \
+            -ignore "timezone" \
+            -ignore 'missing input "app-id" which is required by action "actions/create-github-app-token' \
+            -ignore 'input "client-id" is not defined in action "actions/create-github-app-token'
         shell: bash
