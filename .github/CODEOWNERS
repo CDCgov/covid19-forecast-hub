@@ -1,9 +1,9 @@
-/.github/** @dylanhmorris @O957
-/hub-config/* @dylanhmorris @O957
-/auxiliary_data/weekly-model-submissions/ @dylanhmorris @O957
-/model-output/CovidHub-baseline/ @dylanhmorris @O957
-/model-output/CovidHub-ensemble/ @dylanhmorris @O957
-/model-metadata/ @dylanhmorris @O957
-README.md @dylanhmorris @O957
-.pre-commit-config.yaml @dylanhmorris @O957
-.gitignore @dylanhmorris @O957
+/.github/** @dylanhmorris @O957 @antoniobgondim
+/hub-config/* @dylanhmorris @O957 @antoniobgondim
+/auxiliary_data/weekly-model-submissions/ @dylanhmorris @O957 @antoniobgondim
+/model-output/CovidHub-baseline/ @dylanhmorris @O957 @antoniobgondim
+/model-output/CovidHub-ensemble/ @dylanhmorris @O957 @antoniobgondim
+/model-metadata/ @dylanhmorris @O957 @antoniobgondim
+README.md @dylanhmorris @O957 @antoniobgondim
+.pre-commit-config.yaml @dylanhmorris @O957 @antoniobgondim
+.gitignore @dylanhmorris @O957 @antoniobgondim

@@ -1,0 +1,16 @@
+team_name: "docxology"
+team_abbr: "docxology"
+model_name: "docxology analog"
+model_abbr: "analog"
+model_contributors: [{"name": "Daniel Ari Friedman", "affiliation": "Private Investigator", "email": "danielarifriedman@gmail.com"}]
+license: "CC0-1.0"
+designated_model: true
+data_inputs: "Retained weekly wk inc covid hosp target observations from the CDCgov/covid19-forecast-hub hub/NHSN. No other submitted hub forecasts are model inputs."
+methods: "Direct multi-horizon median of twelve past trajectories matched on two recent increments, epidemic level, and annual phase."
+methods_long: "Proposed candidate docxology-analog, version 1.0.0. Direct multi-horizon median of twelve past trajectories matched on two recent increments, epidemic level, and annual phase. Analog matching and residual calibration use each location's own history. There is no explicit cross-location spatial model. Predictive uncertainty comes from level-matched pseudo-out-of-sample residual quantiles. Target: wk inc covid hosp. Requested forecast horizons: [0, 1, 2, 3]. Submission value policy: float; the submission adapter enforces nonnegative monotone quantiles. Each future submission must retain its actual input vintage, source/config identities and local validation. This draft does not assert scientific superiority, prospective selection/freeze, organizer registration or acceptance. Development-based configuration choices do not establish performance on this disease. The implementation, fitted-state records and detailed configuration are retained privately. This methods description does not grant a source-code license."
+ensemble_of_models: false
+ensemble_of_hub_models: false
+website_url: "https://github.com/docxology"
+model_version: "1.0.0"
+designated_github_users: ["docxology"]
+designated_targets: ["wk inc covid hosp"]
