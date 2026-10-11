@@ -26,10 +26,12 @@ The emergency department visits prediction target `wk inc covid prop ed visits` 
 
 The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data), and the Hub's weekly target data updates are built from it. These data underlie the percentage ED visits reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/index.html) (refreshed every Friday). The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available as of the 2025-06-11 release were for the week ending 2025-06-07.
 
-### `latest.parquet` will be removed on 2026-10-12
+### NSSP `latest.parquet` Has Been Removed
 
-Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided a Wednesday release at [`auxiliary-data/nssp-raw-data/latest.parquet`](../auxiliary-data/nssp-raw-data). `latest.parquet` has a slightly different schema from the `data.cdc.gov` release, but all columns corresponding to forecast targets are identical.
+Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file was removed on `2026-10-12` and the directory no longer exists.
 
-We plan to remove `latest.parquet` on `2026-10-12`. We are removing it rather than no longer updating it so that it cannot be used by mistake once out of date. Please migrate any workflows that use it to point at the `data.cdc.gov` endpoint prior to `2026-10-12`.
+> [!NOTE]
+>
+> Please use the `data.cdc.gov` endpoint linked above instead.
 
 `wk inc covid prop ed visits` is included in [`time-series.parquet`](time-series.parquet), which is updated every Wednesday.
