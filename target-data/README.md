@@ -26,7 +26,7 @@ The emergency department visits prediction target `wk inc covid prop ed visits` 
 
 The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Emergency Department Visit trajectories](https://data.cdc.gov/Public-Health-Surveillance/NSSP-Emergency-Department-Visit-Trajectories-by-St/rdmq-nq56/about_data), and the Hub's weekly target data updates are built from it. These data underlie the percentage ED visits reported on the PRISM Data Channel's [Respiratory Activity Levels page](https://www.cdc.gov/respiratory-viruses/data/index.html) (refreshed every Friday). The data represent the information available as of Wednesday morning through the previous Saturday. For example, the most recent data available as of the 2025-06-11 release were for the week ending 2025-06-07.
 
-### NSSP `latest.parquet` Has Been Removed
+### NSSP `latest.parquet` has been removed
 
 Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file was removed on `2026-10-12` and the directory no longer exists.
 
