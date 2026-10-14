@@ -59,7 +59,7 @@ jobs:
         run: |
           gh pr review ${{ github.event.pull_request.number }} --approve \
             --repo ${{ github.repository }} \
-            --body "Changes approved. Thank you for your contribution."
+            --body "Changes are eligible for automatic merge and will be merged if and when validation checks pass."
 
       - name: "Merge PR"
         env:
