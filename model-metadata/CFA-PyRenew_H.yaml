@@ -45,4 +45,4 @@ website_url: "https://github.com/CDCgov/pyrenew-multisignal"
 repo_url: "https://github.com/CDCgov/pyrenew-multisignal"
 ensemble_of_models: false
 ensemble_of_hub_models: false
-designated_github_users: ["dylanhmorris", "damonbayer", "sbidari", "O957"]
+designated_github_users: ["dylanhmorris", "damonbayer", "sbidari", "O957", "antoniobgondim"]
