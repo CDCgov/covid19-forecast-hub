@@ -28,7 +28,7 @@ The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Em
 
 ### NSSP `latest.parquet` has been removed
 
-Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file was removed on `2026-10-12` and the directory no longer exists.
+Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file has since been removed, and the directory no longer exists. Use the `data.cdc.gov` endpoint linked above instead.
 
 > [!NOTE]
 >
