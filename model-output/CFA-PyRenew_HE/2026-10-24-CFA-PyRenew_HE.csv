@@ -629,7 +629,7 @@ sample,WV_314,0.00296652011413329,2026-10-24,wk inc covid prop ed visits,2,2026-
 sample,WV_317,0.00143585850572982,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
 sample,WV_318,0.00126679250686754,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
 sample,WV_338,0.00373066042176733,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
-sample,WV_341,0.0043242983768514796,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
+sample,WV_341,0.00432429837685147,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
 sample,WV_354,0.00122040084831573,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
 sample,WV_360,0.00446735901959183,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
 sample,WV_371,0.00289933429999787,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,54
@@ -1174,12 +1174,12 @@ sample,VA_1732,0.00501161393935872,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,VA_1742,0.00579374413207192,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1745,0.0055969331439037,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1749,0.00482002931502477,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
-sample,VA_1751,0.0065193900726068996,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
+sample,VA_1751,0.00651939007260689,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1770,0.00532031549340888,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1799,0.0054599923715739,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1800,0.00580791099290133,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1802,0.00529235309690349,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
-sample,VA_1820,0.0059711143011484296,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
+sample,VA_1820,0.00597111430114842,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1824,0.00566653248241693,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1850,0.005671370070473,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
 sample,VA_1851,0.00556668017385362,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,51
@@ -6772,7 +6772,7 @@ sample,SD_1713,0.0013791879989764,2026-10-24,wk inc covid prop ed visits,0,2026-
 sample,SD_1717,6.865799228519026e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
 sample,SD_1723,0.00200186196487999,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
 sample,SD_1724,6.928633421900244e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
-sample,SD_1739,0.0010538180033390699,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
+sample,SD_1739,0.00105381800333906,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
 sample,SD_1761,3.4458523648888886e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
 sample,SD_1776,0.00155748978859935,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
 sample,SD_1781,0.00102103378138873,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,46
@@ -7184,7 +7184,7 @@ sample,SD_1819,0.00480330349826669,2026-10-24,wk inc covid prop ed visits,2,2026
 sample,SD_1821,8.349034521690161e-4,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
 sample,SD_1823,6.671012462428367e-4,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
 sample,SD_1833,8.853467182037718e-4,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
-sample,SD_1846,0.0050763820928546996,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
+sample,SD_1846,0.00507638209285469,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
 sample,SD_1859,5.16273665999633e-4,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
 sample,SD_1889,8.69017568052189e-4,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
 sample,SD_1892,0.00697095249078608,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,46
@@ -7802,7 +7802,7 @@ sample,RI_1993,0.00272184931662701,2026-10-24,wk inc covid prop ed visits,1,2026
 sample,RI_7,0.00251521277135501,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
 sample,RI_8,0.00832332038643623,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
 sample,RI_31,0.00686994878742452,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
-sample,RI_32,0.0051149478719725696,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
+sample,RI_32,0.00511494787197256,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
 sample,RI_43,0.01012535256044209,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
 sample,RI_71,0.0073032898877093,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
 sample,RI_74,0.00163089229952263,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,44
@@ -11877,7 +11877,7 @@ sample,NV_734,0.0047935980481051,2026-10-24,wk inc covid prop ed visits,2,2026-1
 sample,NV_741,0.00160443484830256,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
 sample,NV_743,0.00508718924267093,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
 sample,NV_753,0.00918906185677195,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
-sample,NV_781,0.0062387371920721996,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
+sample,NV_781,0.00623873719207219,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
 sample,NV_783,0.00691671902563495,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
 sample,NV_784,0.00394886668726331,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
 sample,NV_788,0.00566676374752003,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,32
@@ -13998,7 +13998,7 @@ sample,ND_1919,0.00339099328404388,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,ND_1929,9.442840719716346e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,38
 sample,ND_1948,1.5442622422185862e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,38
 sample,ND_1958,0.001537698956368,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,38
-sample,ND_1998,0.00094807635907522155,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,38
+sample,ND_1998,9.4807635907522e-4,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,38
 sample,ND_2,3.184449314244468e-4,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,38
 sample,ND_6,6.551033163399749e-4,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,38
 sample,ND_28,9.165528586516604e-4,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,38
@@ -21599,806 +21599,6 @@ sample,DC_1945,0.00124010442942246,2026-10-24,wk inc covid prop ed visits,2,2026
 sample,DC_1951,0.01376440867937965,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,11
 sample,DC_1954,0.00665326588049427,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,11
 sample,DC_1997,0.00593572972018469,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,11
-sample,CA_5,627,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_19,750,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_26,681,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_37,648,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_41,884,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_51,839,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_66,981,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_72,564,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_86,686,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_87,784,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_106,536,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_114,962,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_154,1007,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_158,918,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_186,886,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_187,993,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_203,698,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_208,834,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_212,835,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_215,942,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_227,634,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_238,897,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_244,519,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_263,907,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_279,998,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_294,1158,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_309,721,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_319,709,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_321,815,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_338,596,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_345,1084,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_346,606,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_354,1133,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_367,820,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_373,773,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_375,578,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_395,799,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_396,734,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_398,877,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_406,872,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_412,921,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_426,620,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_458,1140,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_459,776,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_461,906,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_463,752,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_489,860,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_490,993,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_498,870,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_513,886,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_516,949,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_519,797,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_531,1005,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_535,782,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_544,900,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_546,1006,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_552,805,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_559,784,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_577,697,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_584,903,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_601,954,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_614,732,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_624,863,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_628,796,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_635,785,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_658,1130,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_674,541,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_682,607,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_684,716,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_686,914,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_720,776,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_722,688,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_755,832,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_793,716,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_805,985,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_806,694,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_811,587,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_826,698,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_844,748,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_852,704,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_854,904,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_856,910,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_861,754,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_876,981,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_884,860,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_890,1202,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_906,699,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_911,839,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_912,878,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_913,939,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_922,871,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_935,968,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_950,857,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_957,939,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_978,779,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_979,763,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_984,730,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_991,607,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_993,742,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_996,1056,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_999,633,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1004,722,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1014,1068,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1026,723,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1036,1060,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1053,1230,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1064,775,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1073,830,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1100,834,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1114,932,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1117,994,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1121,1046,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1138,806,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1150,1096,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1160,638,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1166,991,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1175,934,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1176,780,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1181,591,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1187,760,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1188,720,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1196,904,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1205,804,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1207,971,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1229,813,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1239,942,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1247,844,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1249,912,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1258,805,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1274,1145,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1279,965,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1288,647,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1291,883,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1296,727,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1328,912,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1332,1003,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1343,761,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1350,769,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1351,1409,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1353,1117,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1393,646,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1404,1074,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1408,523,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1421,502,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1478,693,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1513,609,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1517,980,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1532,912,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1549,929,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1551,810,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1570,1071,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1579,746,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1593,816,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1615,828,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1616,1208,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1622,859,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1637,704,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1645,788,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1667,872,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1691,513,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1697,778,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1704,550,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1713,805,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1718,532,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1723,772,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1734,778,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1752,809,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1763,753,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1764,966,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1770,1135,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1777,819,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1785,944,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1791,941,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1800,815,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1814,985,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1828,671,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1830,1227,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1831,992,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1833,676,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1834,700,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1837,735,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1848,756,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1869,868,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1881,706,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1886,712,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1900,1057,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1906,806,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1907,825,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1908,767,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1924,1288,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1937,656,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1941,601,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1943,680,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1950,887,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1964,814,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1973,952,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1976,834,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1978,1071,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1985,712,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_1992,848,2026-10-24,wk inc covid hosp,-1,2026-10-17,06
-sample,CA_5,593,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_19,708,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_26,646,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_37,832,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_41,769,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_51,851,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_66,973,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_72,767,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_86,673,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_87,671,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_106,848,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_114,948,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_154,882,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_158,983,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_186,728,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_187,737,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_203,671,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_208,994,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_212,765,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_215,936,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_227,613,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_238,900,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_244,940,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_263,860,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_279,892,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_294,1012,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_309,952,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_319,1019,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_321,852,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_338,862,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_345,743,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_346,565,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_354,521,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_367,554,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_373,980,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_375,753,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_395,738,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_396,856,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_398,682,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_406,765,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_412,783,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_426,708,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_458,870,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_459,674,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_461,625,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_463,967,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_489,594,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_490,1146,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_498,719,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_513,670,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_516,904,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_519,703,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_531,867,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_535,654,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_544,664,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_546,788,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_552,967,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_559,688,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_577,816,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_584,703,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_601,746,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_614,742,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_624,601,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_628,659,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_635,696,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_658,711,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_674,543,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_682,1127,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_684,540,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_686,1083,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_720,862,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_722,696,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_755,715,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_793,710,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_805,615,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_806,874,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_811,800,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_826,561,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_844,879,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_852,423,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_854,545,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_856,931,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_861,925,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_876,736,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_884,593,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_890,478,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_906,673,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_911,753,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_912,619,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_913,590,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_922,649,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_935,880,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_950,704,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_957,888,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_978,912,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_979,730,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_984,885,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_991,731,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_993,904,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_996,1020,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_999,828,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1004,692,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1014,808,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1026,682,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1036,956,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1053,1233,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1064,532,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1073,1173,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1100,613,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1114,684,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1117,787,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1121,1017,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1138,1124,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1150,963,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1160,795,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1166,731,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1175,626,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1176,681,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1181,798,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1187,943,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1188,857,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1196,776,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1205,981,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1207,880,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1229,816,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1239,901,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1247,589,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1249,944,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1258,661,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1274,702,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1279,984,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1288,793,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1291,831,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1296,1018,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1328,868,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1332,597,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1343,707,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1350,673,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1351,420,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1353,1042,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1393,893,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1404,763,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1408,854,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1421,592,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1478,713,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1513,961,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1517,589,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1532,608,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1549,817,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1551,795,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1570,913,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1579,707,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1593,772,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1615,917,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1616,799,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1622,741,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1637,862,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1645,1133,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1667,966,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1691,922,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1697,787,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1704,821,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1713,796,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1718,733,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1723,598,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1734,678,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1752,894,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1763,647,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1764,974,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1770,1111,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1777,852,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1785,788,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1791,630,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1800,778,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1814,985,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1828,1088,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1830,815,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1831,947,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1833,741,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1834,870,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1837,650,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1848,713,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1869,997,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1881,1007,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1886,990,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1900,1027,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1906,466,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1907,883,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1908,842,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1924,923,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1937,875,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1941,919,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1943,769,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1950,1075,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1964,774,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1973,716,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1976,618,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1978,864,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1985,1031,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_1992,904,2026-10-24,wk inc covid hosp,0,2026-10-24,06
-sample,CA_5,646,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_19,547,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_26,689,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_37,981,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_41,1170,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_51,895,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_66,751,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_72,781,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_86,498,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_87,1193,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_106,731,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_114,759,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_154,1696,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_158,738,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_186,1188,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_187,452,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_203,867,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_208,718,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_212,914,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_215,703,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_227,1094,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_238,869,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_244,869,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_263,874,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_279,619,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_294,961,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_309,633,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_319,1054,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_321,754,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_338,906,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_345,921,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_346,849,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_354,363,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_367,1321,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_373,847,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_375,656,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_395,1185,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_396,531,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_398,588,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_406,530,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_412,561,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_426,540,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_458,874,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_459,680,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_461,625,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_463,818,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_489,833,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_490,1428,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_498,892,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_513,693,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_516,812,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_519,1173,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_531,815,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_535,851,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_544,837,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_546,851,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_552,1116,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_559,915,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_577,980,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_584,471,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_601,733,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_614,646,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_624,630,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_628,558,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_635,616,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_658,711,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_674,784,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_682,743,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_684,842,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_686,1347,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_720,948,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_722,724,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_755,559,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_793,707,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_805,711,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_806,892,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_811,817,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_826,591,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_844,773,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_852,546,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_854,589,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_856,1049,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_861,719,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_876,814,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_884,657,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_890,950,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_906,757,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_911,735,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_912,743,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_913,693,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_922,755,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_935,762,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_950,603,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_957,694,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_978,798,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_979,885,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_984,717,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_991,1009,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_993,779,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_996,827,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_999,883,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1004,1040,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1014,852,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1026,728,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1036,849,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1053,835,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1064,545,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1073,1025,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1100,569,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1114,550,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1117,794,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1121,1460,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1138,700,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1150,755,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1160,663,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1166,566,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1175,652,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1176,909,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1181,1019,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1187,761,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1188,555,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1196,596,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1205,1089,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1207,691,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1229,833,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1239,955,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1247,770,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1249,710,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1258,1108,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1274,742,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1279,1031,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1288,622,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1291,677,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1296,1073,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1328,756,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1332,584,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1343,693,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1350,800,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1351,951,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1353,861,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1393,1032,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1404,888,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1408,490,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1421,643,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1478,823,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1513,769,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1517,580,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1532,545,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1549,731,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1551,899,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1570,597,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1579,1018,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1593,860,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1615,1117,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1616,732,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1622,491,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1637,664,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1645,718,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1667,729,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1691,933,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1697,842,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1704,1810,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1713,700,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1718,603,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1723,994,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1734,1074,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1752,705,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1763,526,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1764,963,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1770,993,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1777,1083,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1785,1322,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1791,995,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1800,908,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1814,734,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1828,979,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1830,639,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1831,1155,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1833,1320,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1834,902,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1837,846,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1848,759,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1869,1204,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1881,910,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1886,852,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1900,700,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1906,667,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1907,879,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1908,829,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1924,714,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1937,653,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1941,854,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1943,678,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1950,668,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1964,481,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1973,948,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1976,750,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1978,550,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1985,725,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_1992,1035,2026-10-24,wk inc covid hosp,1,2026-10-31,06
-sample,CA_5,389,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_19,590,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_26,761,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_37,728,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_41,1478,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_51,1013,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_66,697,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_72,439,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_86,590,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_87,1260,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_106,865,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_114,812,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_154,1749,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_158,576,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_186,1190,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_187,535,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_203,919,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_208,906,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_212,589,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_215,516,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_227,1122,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_238,527,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_244,819,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_263,846,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_279,589,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_294,582,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_309,600,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_319,2240,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_321,792,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_338,630,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_345,1247,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_346,973,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_354,480,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_367,1842,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_373,806,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_375,544,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_395,1435,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_396,911,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_398,546,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_406,689,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_412,879,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_426,646,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_458,931,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_459,541,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_461,1264,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_463,881,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_489,1075,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_490,3197,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_498,1207,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_513,606,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_516,681,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_519,406,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_531,696,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_535,767,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_544,873,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_546,862,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_552,2062,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_559,708,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_577,993,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_584,752,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_601,497,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_614,715,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_624,616,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_628,846,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_635,586,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_658,883,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_674,863,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_682,1022,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_684,670,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_686,1070,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_720,834,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_722,1123,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_755,678,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_793,519,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_805,461,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_806,1163,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_811,1059,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_826,517,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_844,656,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_852,454,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_854,616,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_856,790,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_861,460,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_876,946,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_884,875,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_890,562,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_906,1486,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_911,662,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_912,653,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_913,752,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_922,1275,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_935,703,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_950,634,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_957,730,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_978,843,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_979,684,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_984,1127,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_991,738,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_993,679,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_996,1339,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_999,683,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1004,932,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1014,769,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1026,434,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1036,1269,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1053,1161,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1064,728,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1073,1919,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1100,426,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1114,501,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1117,680,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1121,2694,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1138,525,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1150,621,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1160,685,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1166,687,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1175,877,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1176,858,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1181,899,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1187,831,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1188,532,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1196,711,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1205,948,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1207,878,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1229,882,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1239,747,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1247,580,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1249,1300,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1258,544,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1274,975,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1279,1218,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1288,690,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1291,1710,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1296,730,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1328,731,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1332,919,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1343,622,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1350,744,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1351,1047,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1353,2420,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1393,442,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1404,801,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1408,577,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1421,646,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1478,887,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1513,719,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1517,436,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1532,384,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1549,858,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1551,938,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1570,765,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1579,842,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1593,616,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1615,1146,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1616,989,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1622,463,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1637,638,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1645,759,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1667,1789,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1691,365,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1697,1163,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1704,2785,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1713,753,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1718,403,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1723,759,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1734,1725,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1752,598,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1763,538,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1764,753,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1770,1015,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1777,1081,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1785,1108,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1791,1047,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1800,678,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1814,717,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1828,1464,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1830,604,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1831,2600,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1833,1178,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1834,914,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1837,871,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1848,640,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1869,2064,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1881,980,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1886,583,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1900,772,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1906,654,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1907,979,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1908,687,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1924,1311,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1937,581,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1941,1107,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1943,796,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1950,649,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1964,467,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1973,876,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1976,798,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1978,449,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1985,552,2026-10-24,wk inc covid hosp,2,2026-11-07,06
-sample,CA_1992,1013,2026-10-24,wk inc covid hosp,2,2026-11-07,06
 sample,AR_4,0.00418544752092723,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,05
 sample,AR_8,0.0038112620108433,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,05
 sample,AR_12,0.00370430020937349,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,05
@@ -22617,7 +21817,7 @@ sample,AR_140,0.00370390277002913,2026-10-24,wk inc covid prop ed visits,0,2026-
 sample,AR_170,0.00241036033808403,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
 sample,AR_172,0.00310008270313545,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
 sample,AR_175,0.00319257181205134,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
-sample,AR_183,0.0034239767644777498,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
+sample,AR_183,0.00342397676447774,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
 sample,AR_205,0.00297830508318613,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
 sample,AR_207,0.00228062938741247,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
 sample,AR_217,0.00336042419651138,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,05
@@ -29056,7 +28256,7 @@ sample,MA_537,0.00331390569920573,2026-10-24,wk inc covid prop ed visits,0,2026-
 sample,MA_543,0.00311214867080219,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
 sample,MA_545,0.0038438236792504,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
 sample,MA_550,0.00305557334683659,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
-sample,MA_555,0.0028360592667958898,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
+sample,MA_555,0.00283605926679588,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
 sample,MA_556,0.00386402237630209,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
 sample,MA_560,0.00436252386543983,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
 sample,MA_565,0.00358079432932437,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,25
@@ -33208,7 +32408,7 @@ sample,OR_94,0.00657696372898095,2026-10-24,wk inc covid prop ed visits,1,2026-1
 sample,OR_98,0.00587482471105553,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
 sample,OR_103,0.0102439677726894,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
 sample,OR_109,0.01232769928145285,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
-sample,OR_111,0.013613355153528829,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
+sample,OR_111,0.01361335515352882,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
 sample,OR_120,0.00790136331844069,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
 sample,OR_125,0.00510075886921212,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
 sample,OR_135,0.00684910541626077,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,41
@@ -33480,7 +32680,7 @@ sample,OR_745,0.0217726776766053,2026-10-24,wk inc covid prop ed visits,2,2026-1
 sample,OR_752,0.00612727525337966,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
 sample,OR_753,0.00713758385336674,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
 sample,OR_770,0.00629373187165026,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
-sample,OR_774,0.010122066312792029,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
+sample,OR_774,0.01012206631279202,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
 sample,OR_779,0.00584707139271352,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
 sample,OR_784,0.00415081420140254,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
 sample,OR_787,0.00860207849737327,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,41
@@ -34773,7 +33973,7 @@ sample,NH_1747,0.00319434636241007,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,NH_1788,0.00204530655027334,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
 sample,NH_1802,0.00327876457630146,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
 sample,NH_1814,0.00421067641677043,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
-sample,NH_1828,0.0054474597285528396,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
+sample,NH_1828,0.00544745972855283,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
 sample,NH_1829,0.00269829169335814,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
 sample,NH_1830,0.00646104957827591,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
 sample,NH_1844,0.0011337473094548,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,33
@@ -34855,7 +34055,7 @@ sample,NH_437,0.00115528996034455,2026-10-24,wk inc covid prop ed visits,1,2026-
 sample,NH_449,0.00597596468281062,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
 sample,NH_481,0.003303776503807,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
 sample,NH_487,0.00439610759991261,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
-sample,NH_507,0.0011466579221831399,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
+sample,NH_507,0.00114665792218313,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
 sample,NH_522,0.00175275919648926,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
 sample,NH_532,0.00435703066942892,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
 sample,NH_534,0.00318517474679426,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,33
@@ -35102,7 +34302,7 @@ sample,NH_1053,0.00433210382813635,2026-10-24,wk inc covid prop ed visits,2,2026
 sample,NH_1070,0.00743763222679868,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
 sample,NH_1077,0.00693461225135227,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
 sample,NH_1107,0.00713648076171899,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
-sample,NH_1128,0.021070433847849748,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
+sample,NH_1128,0.02107043384784974,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
 sample,NH_1134,0.00472019359907933,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
 sample,NH_1158,0.00389664531212216,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
 sample,NH_1184,0.00473892436495648,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,33
@@ -42042,7 +41242,7 @@ sample,ID_437,0.00365878024368807,2026-10-24,wk inc covid prop ed visits,1,2026-
 sample,ID_453,0.00674826796164961,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
 sample,ID_473,0.0054934095886755,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
 sample,ID_478,0.00961362213074881,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
-sample,ID_489,0.0083749181154449091,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
+sample,ID_489,0.0083749181154449,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
 sample,ID_494,0.01136899503605951,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
 sample,ID_496,0.00361562889125796,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
 sample,ID_501,0.01125579671300701,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,16
@@ -45188,7 +44388,7 @@ sample,AZ_1846,0.00523071556649548,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,AZ_1850,0.00382742627387566,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
 sample,AZ_1877,0.00466397722616821,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
 sample,AZ_1878,0.00508082536023871,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
-sample,AZ_1903,0.0036647792769472598,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
+sample,AZ_1903,0.00366477927694725,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
 sample,AZ_1906,0.00475276177898247,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
 sample,AZ_1930,0.00466039999247724,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
 sample,AZ_1931,0.0051589641840929,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,04
@@ -45605,12 +44805,12 @@ sample,IL_35,0.00182943334235604,2026-10-24,wk inc covid prop ed visits,-1,2026-
 sample,IL_37,0.00194122203660323,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_78,0.00190396192076158,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_82,0.00222989363687255,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
-sample,IL_96,0.0019505366308912699,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
+sample,IL_96,0.00195053663089126,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_101,0.00161510166738241,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_108,0.00151256267331447,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_109,0.00180148225586648,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_113,0.00217403474723347,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
-sample,IL_114,0.0019505366308912699,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
+sample,IL_114,0.00195053663089126,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_125,0.00259282403305384,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_159,0.00189464645710445,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_201,0.00172693837163713,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
@@ -45705,7 +44905,7 @@ sample,IL_1126,0.00175489363290985,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,IL_1138,0.0018853308195589,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1149,0.00200642054574638,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1164,0.0020343601564031,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
-sample,IL_1167,0.0019505366308912699,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
+sample,IL_1167,0.00195053663089126,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1170,0.00197847937061958,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1177,0.00217403474723347,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1193,0.00222989363687255,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
@@ -45788,7 +44988,7 @@ sample,IL_1880,0.00215541372746612,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,IL_1893,0.00211816960286652,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1894,0.00189464645710445,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1897,0.00205298569442241,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
-sample,IL_1918,0.0019505366308912699,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
+sample,IL_1918,0.00195053663089126,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1928,0.00214610295695663,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1935,0.00201573392312214,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
 sample,IL_1949,0.00170830066091632,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,17
@@ -50859,7 +50059,7 @@ sample,VT_598,0.0024373966837827,2026-10-24,wk inc covid prop ed visits,1,2026-1
 sample,VT_654,0.0033042171486462,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
 sample,VT_657,0.00363994942489029,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
 sample,VT_666,0.00517196510426611,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
-sample,VT_670,0.0019206183866434599,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
+sample,VT_670,0.00192061838664345,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
 sample,VT_706,0.00140570341414863,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
 sample,VT_714,0.00187127157865891,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
 sample,VT_716,0.00157915671630816,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,50
@@ -53272,7 +52472,7 @@ sample,PA_726,0.00246613582975638,2026-10-24,wk inc covid prop ed visits,1,2026-
 sample,PA_737,0.00342473290815308,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
 sample,PA_742,0.00393736956575058,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
 sample,PA_749,0.00271994942253762,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
-sample,PA_754,0.0040767361829607196,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
+sample,PA_754,0.00407673618296071,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
 sample,PA_780,0.00181924985336235,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
 sample,PA_795,0.00270682316262724,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
 sample,PA_812,0.00251078963685104,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,42
@@ -55924,7 +55124,7 @@ sample,NM_1111,0.00264301090836551,2026-10-24,wk inc covid prop ed visits,2,2026
 sample,NM_1120,0.00746090298540038,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
 sample,NM_1121,0.00622608695310702,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
 sample,NM_1132,0.00656842598197231,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
-sample,NM_1134,0.0036185491938123698,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
+sample,NM_1134,0.00361854919381236,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
 sample,NM_1148,0.01016376910286532,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
 sample,NM_1168,0.00284805769201266,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
 sample,NM_1204,0.00201407654693256,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,35
@@ -58782,7 +57982,7 @@ sample,LA_1813,0.00518092509294237,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,LA_1816,0.00449926480847552,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
 sample,LA_1824,0.00396884129407024,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
 sample,LA_1829,0.00406144966981118,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
-sample,LA_1853,0.0045840344377688896,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
+sample,LA_1853,0.00458403443776888,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
 sample,LA_1856,0.00357005642204711,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
 sample,LA_1858,0.00532556839516803,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
 sample,LA_1860,0.00445052974739764,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,22
@@ -58924,7 +58124,7 @@ sample,LA_1234,0.00442340473398143,2026-10-24,wk inc covid prop ed visits,1,2026
 sample,LA_1235,0.00251423126627729,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
 sample,LA_1240,0.00399653605546503,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
 sample,LA_1258,0.00494852617360679,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
-sample,LA_1262,0.0042151886789812696,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
+sample,LA_1262,0.00421518867898126,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
 sample,LA_1275,0.00309248004445165,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
 sample,LA_1278,0.00298068113013524,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
 sample,LA_1284,0.00314933404664605,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,22
@@ -61595,7 +60795,7 @@ sample,DE_1905,0.00194825184957717,2026-10-24,wk inc covid prop ed visits,2,2026
 sample,DE_1930,0.00357151953620873,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
 sample,DE_1934,0.00292171155497785,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
 sample,DE_1937,0.00532464432136665,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
-sample,DE_1942,0.0016049284891476699,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
+sample,DE_1942,0.00160492848914766,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
 sample,DE_1957,0.00250185195819412,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
 sample,DE_1963,0.00307262005516414,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
 sample,DE_2000,0.00275550445576772,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,10
@@ -65980,7 +65180,7 @@ sample,AL_1789,0.00354939613049714,2026-10-24,wk inc covid prop ed visits,0,2026
 sample,AL_1795,0.00427936844430894,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
 sample,AL_1817,0.00374155018230687,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
 sample,AL_1835,0.00316847720310252,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
-sample,AL_1841,0.0034795465764838698,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
+sample,AL_1841,0.00347954657648386,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
 sample,AL_1852,0.00302593611887902,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
 sample,AL_1853,0.00357541164605165,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
 sample,AL_1883,0.00393811486288186,2026-10-24,wk inc covid prop ed visits,0,2026-10-24,01
@@ -66584,7 +65784,7 @@ sample,US_1859,0.0044011335443927,2026-10-24,wk inc covid prop ed visits,-1,2026
 sample,US_1860,0.00452902931738764,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
 sample,US_1865,0.00441692968049817,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
 sample,US_1872,0.00433832931363837,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
-sample,US_1878,0.0043568246341319896,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
+sample,US_1878,0.00435682463413198,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
 sample,US_1885,0.00440537158132871,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
 sample,US_1901,0.00434372385309668,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
 sample,US_1906,0.00433023739484497,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,US
@@ -68093,11 +67293,11 @@ sample,SC_1008,0.00530873796820119,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,SC_1009,0.00520204864183627,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1010,0.00525539616570585,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1019,0.00632114637739386,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
-sample,SC_1020,0.0057086192109776996,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
+sample,SC_1020,0.00570861921097769,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1023,0.00549538923439845,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1024,0.00552204798284412,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1025,0.00533540672422113,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
-sample,SC_1026,0.0057086192109776996,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
+sample,SC_1026,0.00570861921097769,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1038,0.00578855688061101,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1039,0.00538873994638069,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1041,0.00432098765432098,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
@@ -68125,7 +67325,7 @@ sample,SC_1217,0.00509533642629193,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,SC_1219,0.00554870530209617,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1221,0.00530873796820119,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1245,0.00562866868583987,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
-sample,SC_1252,0.0057086192109776996,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
+sample,SC_1252,0.00570861921097769,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1267,0.00584184151995069,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1280,0.00546872905664423,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1287,0.00450800976735449,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
@@ -68148,7 +67348,7 @@ sample,SC_1468,0.00544206744946651,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,SC_1474,0.00560201565347914,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1480,0.00613480497213887,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1494,0.00506865479510834,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
-sample,SC_1500,0.0057086192109776996,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
+sample,SC_1500,0.00570861921097769,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1504,0.00557536119226954,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1532,0.00496191395772985,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
 sample,SC_1541,0.00626791310636702,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,45
@@ -72088,7 +71288,7 @@ sample,NJ_949,0.00372927999176986,2026-10-24,wk inc covid prop ed visits,-1,2026
 sample,NJ_958,0.0035755167136114,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_964,0.00392141736737895,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_990,0.00427987558800092,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
-sample,NJ_995,0.0039598359496535096,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
+sample,NJ_995,0.0039598359496535,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1001,0.00349861727442279,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1002,0.00454854998907834,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1030,0.00394703008485471,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
@@ -72127,8 +71327,8 @@ sample,NJ_1340,0.00329349406270503,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,NJ_1352,0.00415188441565119,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1373,0.00445900796710357,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1380,0.00419028522217509,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
-sample,NJ_1383,0.0039598359496535096,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
-sample,NJ_1395,0.0039598359496535096,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
+sample,NJ_1383,0.0039598359496535,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
+sample,NJ_1395,0.0039598359496535,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1397,0.00398544669143643,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1402,0.00390861051467657,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 sample,NJ_1404,0.00390861051467657,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
@@ -74173,7 +73373,7 @@ sample,NC_1720,0.00582555031975458,2026-10-24,wk inc covid prop ed visits,1,2026
 sample,NC_1746,0.00831468623304581,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
 sample,NC_1774,0.0067346228499276,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
 sample,NC_1777,0.00593084639545376,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
-sample,NC_1788,0.0076970711392969696,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
+sample,NC_1788,0.00769707113929696,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
 sample,NC_1814,0.00527796262773943,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
 sample,NC_1819,0.00881099227558781,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
 sample,NC_1839,0.00782096201318949,2026-10-24,wk inc covid prop ed visits,1,2026-10-31,37
@@ -74224,7 +73424,7 @@ sample,NC_210,0.00410647783528053,2026-10-24,wk inc covid prop ed visits,2,2026-
 sample,NC_212,0.00354338744887871,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_215,0.00456452369903265,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_216,0.009510355658226,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
-sample,NC_219,0.013647813842875429,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
+sample,NC_219,0.01364781384287542,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_222,0.00600780491083727,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_236,0.01533764571297306,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_254,0.00490536943070556,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
@@ -74305,7 +73505,7 @@ sample,NC_923,0.01059369543190043,2026-10-24,wk inc covid prop ed visits,2,2026-
 sample,NC_953,0.00314941161141872,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_984,0.01141006521984839,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_1013,0.00568928803066607,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
-sample,NC_1022,0.0038766087341975098,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
+sample,NC_1022,0.0038766087341975,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_1034,0.00445946554767058,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_1041,0.00981309358473179,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
 sample,NC_1042,0.00606434078810877,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,37
@@ -74405,12 +73605,12 @@ sample,MN_7,0.00227926222035205,2026-10-24,wk inc covid prop ed visits,-1,2026-1
 sample,MN_16,0.00168415143328304,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_19,0.00217429423110643,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_62,0.00231424664258915,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_66,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_66,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_80,0.00192928300827837,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_101,0.00206930415263748,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_105,0.00224427534453133,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_109,0.00196429197797186,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_111,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_111,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_115,0.0021392999929859,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_116,0.0018592577001333,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_119,0.00269891342446547,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74449,7 +73649,7 @@ sample,MN_356,0.00238420812734476,2026-10-24,wk inc covid prop ed visits,-1,2026
 sample,MN_362,0.00227926222035205,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_364,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_382,0.00147394279698192,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_406,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_406,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_407,0.00171917760157181,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_418,0.00199929849175727,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_451,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74478,7 +73678,7 @@ sample,MN_679,0.00224427534453133,2026-10-24,wk inc covid prop ed visits,-1,2026
 sample,MN_686,0.00224427534453133,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_691,0.0023492286115007,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_704,0.00150898371701291,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_718,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_718,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_722,0.0027338684238197,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_751,0.002104303300249,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_767,0.00206930415263748,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74546,7 +73746,7 @@ sample,MN_1468,0.00192928300827837,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,MN_1485,0.00231424664258915,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1486,0.00192928300827837,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1487,0.00248913195905202,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_1488,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_1488,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1510,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1511,0.0021392999929859,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1515,0.00220928601486884,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74556,7 +73756,7 @@ sample,MN_1525,0.00199929849175727,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,MN_1526,0.00266395597462231,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1527,0.00206930415263748,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1528,0.0023492286115007,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_1546,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_1546,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1550,0.0023492286115007,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1561,0.0018592577001333,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1563,0.00227926222035205,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74566,7 +73766,7 @@ sample,MN_1574,0.00248913195905202,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,MN_1578,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1588,0.0018242413611647,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1593,0.00231424664258915,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_1596,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_1596,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1600,0.00269891342446547,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1614,0.00231424664258915,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1634,0.0027338684238197,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74574,7 +73774,7 @@ sample,MN_1651,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,MN_1658,0.00199929849175727,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1665,0.00192928300827837,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1667,0.00161409172251657,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_1670,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_1670,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1675,0.00171917760157181,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1692,0.00262899607403252,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1702,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -74593,7 +73793,7 @@ sample,MN_1834,0.00199929849175727,2026-10-24,wk inc covid prop ed visits,-1,202
 sample,MN_1845,0.00217429423110643,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1855,0.00147394279698192,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1889,0.00220928601486884,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
-sample,MN_1914,0.0024191851903793498,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
+sample,MN_1914,0.00241918519037934,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1926,0.0027338684238197,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1933,0.00203430254989302,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
 sample,MN_1935,0.0018592577001333,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,27
@@ -82855,7 +82055,7 @@ quantile,0.35,0.00380614383623294,2026-10-24,wk inc covid prop ed visits,-1,2026
 quantile,0.4,0.00384457131101167,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 quantile,0.45,0.0038958033326476,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 quantile,0.5,0.00392141736737895,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
-quantile,0.55,0.0039598359496535096,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
+quantile,0.55,0.0039598359496535,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 quantile,0.6,0.00399825156844595,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 quantile,0.65,0.00403666422409914,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
 quantile,0.7,0.0040878764895682,2026-10-24,wk inc covid prop ed visits,-1,2026-10-17,34
@@ -85913,7 +85113,7 @@ quantile,0.3,0.00338835629108373,2026-10-24,wk inc covid prop ed visits,2,2026-1
 quantile,0.35,0.00356792900401127,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
 quantile,0.4,0.00377559324471872,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
 quantile,0.45,0.00395409228103204,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
-quantile,0.5,0.0041279436058006096,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
+quantile,0.5,0.0041279436058006,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
 quantile,0.55,0.00438470817032233,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
 quantile,0.6,0.00458139796901699,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
 quantile,0.65,0.00481008982217877,2026-10-24,wk inc covid prop ed visits,2,2026-11-07,24
