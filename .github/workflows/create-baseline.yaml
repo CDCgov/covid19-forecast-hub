@@ -34,12 +34,15 @@ jobs:
       uses: actions/checkout@v7
 
     - name: "Set Up hubhelpr"
-      uses: cdcgov/hubhelpr/actions/setup-hubhelpr@main
+      uses: cdcgov/hubhelpr/actions/setup-hubhelpr@5bc67a13a37d5bf217c825299daf24c0081906a5 # v0.2.0
+      with:
+        version: "0.2.0"
 
     - name: "Generate Baseline Forecast"
-      uses: cdcgov/hubhelpr/actions/generate-baseline@main
+      uses: cdcgov/hubhelpr/actions/generate-baseline@5bc67a13a37d5bf217c825299daf24c0081906a5 # v0.2.0
       with:
         disease: "covid"
         github_token: ${{ steps.get_token.outputs.token }}
         reference_date: ${{ inputs.reference_date || 'latest' }}
         targets: ${{ inputs.targets }}
+        version: "0.2.0"
