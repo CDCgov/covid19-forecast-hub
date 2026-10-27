@@ -1,6 +1,6 @@
 # Model outputs folder
 
-This folder contains a set of subdirectories, one for each model, that contains submitted model output files for that model. The structure of these directories and their contents follows general [hubverse model output guidelines](https://hubdocs.readthedocs.io/en/latest/user-guide/model-output.html). Specific documentation for the COVID-19 Forecast Hub follows.
+This folder contains a set of subdirectories, one for each model, that contains submitted model output files for that model. The structure of these directories and their contents follows general [hubverse model output guidelines](https://docs.hubverse.io/en/latest/user-guide/model-output.html). Specific documentation for the COVID-19 Forecast Hub follows.
 
 
 # Data submission instructions
@@ -39,7 +39,7 @@ The automatic checks in place for forecast files submitted to this repository va
 
 ### Subdirectory
 
-Each model that submits forecasts for this project will have a unique subdirectory within the [model-output/](model-output/) directory in this GitHub repository where forecasts will be submitted. Each subdirectory must be named
+Each model that submits forecasts for this project will have a unique subdirectory within the [model-output/](./) directory in this GitHub repository where forecasts will be submitted. Each subdirectory must be named
 
     team-model
 
@@ -240,7 +240,7 @@ Here, `output_type_id = s0` and `output_type_id = s1` specifies that the predict
 | 2024-10-15 |  1      |  NH | sample | S1 | - |
 
 The above table shows two samples indexed by `output_type_id:` `S1` and `S2` from a joint predictive distribution across `location`s and `horizon`s.
-More details on sample output can be found in the [hubverse documentation of sample output type](https://hubverse.io/en/latest/user-guide/sample-output-type.html).
+More details on sample output can be found in the [hubverse documentation of sample output type](https://docs.hubverse.io/en/latest/user-guide/sample-output-type.html).
 
 ### `value`
 

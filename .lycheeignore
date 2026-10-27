@@ -1,0 +1,11 @@
+# cdc-internal hosts that require a cdc login
+^https?://sat\.cdc\.gov/?
+^https?://servicedesk\.cdc\.gov/?
+
+# dead links inherited from the cdcgov template (
+# code-of-conduct.md, open_practices.md)
+^https?://github\.com/18F/code-of-conduct/?$
+^https?://(www\.)?philab\.cdc\.gov/?
+^https?://open\.cdc\.gov/?
+
+^file://.*/issues/?$
