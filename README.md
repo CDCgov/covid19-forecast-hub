@@ -24,7 +24,7 @@ The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Em
 
 ### NSSP `latest.parquet` has been removed
 
-Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file was removed on `2026-10-12` and the directory no longer exists.
+Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file has since been removed, and the directory no longer exists.
 
 > [!NOTE]
 >
@@ -63,7 +63,7 @@ Teams can submit nowcasts or forecasts for these targets for the following tempo
 
 ### Epiweeks
 
-We use epiweeks as defined by the [US CDC](https://wwwn.cdc.gov/nndss/document/MMWR_Week_overview.pdf), which run Sunday through Saturday. The `target_end_date` for a prediction is the Saturday that ends the epiweek of interest. That is:
+We use epiweeks as defined by the [US CDC](https://ndc.services.cdc.gov/wp-content/uploads/MMWR_Week_overview.pdf), which run Sunday through Saturday. The `target_end_date` for a prediction is the Saturday that ends the epiweek of interest. That is:
 
 ```python
 target_end_date = reference_date + (horizon * 7)
@@ -102,7 +102,7 @@ Once initial metadata PR is approved and merged, subsequent PRs that submit fore
 
 We have made changes from previous versions of the [COVID-19 Forecast Hub](https://github.com/reichlab/covid19-forecast-hub) challenges to align COVID-19 forecasting challenges with influenza forecasting run via the [Flusight Forecast Hub](https://github.com/cdcepi/FluSight-forecast-hub).
 
-Both Hubs will require quantile-based forecasts of epiweekly incident hospital admissions reported into NHSN, with the same -1:3 week horizon span. Both will accept these forecasts via Github pull requests of files formatted according to the standard [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output). The Hubs also plan to share a forecast deadline of 11pm USA/Eastern time on Wednesdays.
+Both Hubs will require quantile-based forecasts of epiweekly incident hospital admissions reported into NHSN, with the same -1:3 week horizon span. Both will accept these forecasts via Github pull requests of files formatted according to the standard [hubverse schema](https://docs.hubverse.io/en/latest/user-guide/model-output.html#model-output). The Hubs also plan to share a forecast deadline of 11pm USA/Eastern time on Wednesdays.
 
 
 
@@ -268,7 +268,7 @@ If you are building a product (e.g., a dashboard, analysis pipeline, or evaluati
 
 ### Prefer Hubverse Tooling Over Direct File Paths
 
-We recommend accessing hub data through official [hubverse](https://hubverse.io) tooling rather than by hard-coding paths into this repository's file tree. The hubverse R and Python packages (e.g., [`hubData`](https://hubverse-org.github.io/hubData/) and [`hub-data`](https://github.com/hubverse-org/hub-data)) provide interfaces to the COVIDHub model output, target data, and model metadata, which all follow the [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output).
+We recommend accessing hub data through official [hubverse](https://hubverse.io) tooling rather than by hard-coding paths into this repository's file tree. The hubverse R and Python packages (e.g., [`hubData`](https://hubverse-org.github.io/hubData/) and [`hub-data`](https://github.com/hubverse-org/hub-data)) provide interfaces to the COVIDHub model output, target data, and model metadata, which all follow the [hubverse schema](https://docs.hubverse.io/en/latest/user-guide/model-output.html#model-output).
 
 ### Hubverse schema version
 The specific version of the Hubverse schema currently used by the Hub is specified in the Hub's [`admin.json`](hub-config/admin.json) file. We notify users in advance of planned schema version update.
@@ -281,7 +281,7 @@ The specific version of the Hubverse schema currently used by the Hub is specifi
 
 Specifically:
 
-- Hubverse-managed directories (`model-output/`, `model-metadata/`, `target-data/`, `hub-config/`) follow the [hubverse schema](https://hubverse.io/en/latest/user-guide/model-output.html#model-output). Changes here are guided by hubverse conventions; we will communicate planned changes in advance.
+- Hubverse-managed directories (`model-output/`, `model-metadata/`, `target-data/`, `hub-config/`) follow the [hubverse schema](https://docs.hubverse.io/en/latest/user-guide/model-output.html#model-output). Changes here are guided by hubverse conventions; we will communicate planned changes in advance.
 - `auxiliary-data/` is a catch-all for supporting files (e.g., location tables, raw NSSP snapshots, weekly submission summaries). Files within have no formal schema and no guarantee of consistency across time (e.g. they may be renamed, restructured, or removed). Please do not rely on specific filenames or columns in `auxiliary-data/`.
 
 If you need a file only available through `auxiliary-data/` for a downstream product, please [open an issue](https://github.com/CDCgov/covid19-forecast-hub/issues) with your use case so we can consider making its presence more stable.
@@ -335,7 +335,7 @@ Example of adding a new entry to the existing list of downstream products:
 
 ## Acknowledgments
 
-This repository follows the guidelines and standards outlined by the [hubverse](https://hubdocs.readthedocs.io/en/latest/), which provides a set of data formats and open source tools for modeling hubs.
+This repository follows the guidelines and standards outlined by the [hubverse](https://docs.hubverse.io/en/latest/), which provides a set of data formats and open source tools for modeling hubs.
 
 <details markdown=1>
 

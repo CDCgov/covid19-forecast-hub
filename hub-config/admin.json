@@ -15,7 +15,7 @@
     "csv",
     "parquet"
   ],
-  "timezone": "US/Eastern",
+  "timezone": "America/New_York",
   "cloud": {
     "enabled": true,
     "host": {
