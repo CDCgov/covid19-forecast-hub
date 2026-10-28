@@ -2,11 +2,14 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    groups:
+      actions:
+        patterns:
+          - "*"
     schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "10:00"
-      timezone: "America/Denver"
+      interval: "monthly"
+    cooldown:
+      default-days: 14
     pull-request-branch-name:
       separator: "-"
     labels:

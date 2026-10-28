@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: "Upload to S3 bucket"
-        uses: cdcgov/hubhelpr/actions/s3-bucket-upload@main
+        uses: cdcgov/hubhelpr/actions/s3-bucket-upload@v0.2.0
         with:
           aws_account: "767397675902"
           dry_run: "false"
