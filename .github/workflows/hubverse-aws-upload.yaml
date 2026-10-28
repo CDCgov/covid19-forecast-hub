@@ -27,4 +27,3 @@ jobs:
           aws_account: "767397675902"
           dry_run: "false"
           enforce_default_branch: "true"
-          version: "v0.2.0"

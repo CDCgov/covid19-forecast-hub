@@ -45,4 +45,3 @@ jobs:
         github_token: ${{ steps.get_token.outputs.token }}
         reference_date: ${{ inputs.reference_date || 'latest' }}
         targets: ${{ inputs.targets }}
-        version: "v0.2.0"

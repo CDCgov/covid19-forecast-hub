@@ -36,7 +36,6 @@ jobs:
         api_key_id: ${{ secrets.NHSN_API_KEY_ID }}
         api_key_secret: ${{ secrets.NHSN_API_KEY_SECRET }}
         legacy_file: "true"
-        version: "v0.2.0"
         # JSON array (e.g., '["VI", "GU"]') excludes from all targets.
         # JSON object (e.g., '{"all": ["VI"], "wk inc covid hosp": ["GU"]}')
         # supports target-specific exclusions.

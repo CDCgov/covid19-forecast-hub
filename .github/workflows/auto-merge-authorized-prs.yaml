@@ -39,7 +39,6 @@ jobs:
         with:
           changed_files: ${{ steps.get_all_changed_files.outputs.all_modified_files }}
           gh_actor: ${{ github.actor }}
-          version: "v0.2.0"
 
   approve-and-merge:
     needs: check-authorization
