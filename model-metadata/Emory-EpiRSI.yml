@@ -1,0 +1,27 @@
+team_name: "Emory University Melody Lab"
+team_abbr: "Emory"
+model_name: "EpiRSI recursive self-improvement forecaster"
+model_abbr: "EpiRSI"
+model_version: "v16g"
+model_contributors:
+  - name: "Bohan Wang"
+    affiliation: "Emory University"
+    email: "bohan.wang2@emory.edu"
+  - name: "Zhengxu Tang"
+    affiliation: "Emory University"
+    email: "zhengxu.tang@emory.edu"
+  - name: "Zewen Liu"
+    affiliation: "Emory University"
+    email: "zewen.liu@emory.edu"
+  - name: "Wei Jin"
+    affiliation: "Emory University"
+    email: "wei.jin@emory.edu"
+website_url: "https://www.cs.emory.edu/~wjin30/lab/"
+designated_github_users: ["Bohan7"]
+license: "CC-BY-4.0"
+designated_model: true
+ensemble_of_models: true
+ensemble_of_hub_models: false
+methods: "EpiRSI: an LLM agent writes data skills for frozen time-series foundation models and boosted trees, verified on past seasons; fixed greedy ensemble selection of the experts, no LLM at forecast time."
+data_inputs: "NHSN weekly COVID-19 admissions (hub target data as available at the deadline); NSSP percent of emergency-department visits with COVID-19 and ILINet (Delphi Epidata, versions as of the deadline); US holiday calendar."
+methods_long: "Experts run every week on the data available at the deadline: Chronos-2, TimesFM-3 and Toto-2 whose inputs are built by an agent-written skill (history back-extended with NSSP; the NSSP signal extended over its reporting lag with a renewal-equation projection from the reproduction number estimated with a COVID-19 generation-interval prior; newest-week admissions corrected when they lag the ED signal; old waves far above the recent level compressed; national per-capita and holiday covariates), pooled LightGBM quantile regression on lagged features (also with NSSP as a joint series and with ILINet covariates), a LightGBM quantile regression whose training table is built by an agent-written skill (history back-extended with NSSP and ILINet, seasonal encodings of the target dates, smoothed growth kinetics, reproduction-number, renewal-projection, weeks-since-peak and cumulative-incidence features), and two simple mechanistic models. Skills were proposed by an LLM agent (Gemini 3.1 Pro) and accepted only if they improved the score in at least two thirds of 6 past seasons rebuilt with the data as of each deadline (NHSN 2024-25, HHS Protect 2021-2024, NSSP 2022-2024). The forecast is a fixed weighted average of the experts in log space: members and weights were chosen once by greedy forward ensemble selection with replacement (Caruana et al. 2004) on the same 6 past seasons - Chronos-2 with the skill inputs 0.5, the skill-built LightGBM 0.4, the SIR model 0.1. Backfill: the newest reported week is raised towards the growth implied by the ED-visit signal when it grows clearly less (by at most x1.5). During the season the members change only when a new expert passes the same multi-season test and the change is pre-registered before its first use (model_version names the deployed version); no manual adjustment; the LLM is not called at forecast time."
