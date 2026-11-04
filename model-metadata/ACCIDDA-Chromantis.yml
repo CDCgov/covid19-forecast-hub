@@ -1,0 +1,26 @@
+team_name: Atlantic Coast Center for Infectious Disease Dynamics and Analytics
+team_abbr: ACCIDDA
+model_name: Chromantis
+model_abbr: Chromantis
+model_version: '0.1'
+model_contributors:
+- name: Joseph Lemaitre
+  affiliation: University of North Carolina at Chapel Hill
+  email: jo.lemaitresamra@gmail.com
+- name: Justin Lessler
+  affiliation: University of North Carolina at Chapel Hill
+  email: jlessler@unc.edu
+website_url: https://github.com/ACCIDDA/chromantis
+license: CC-BY-4.0
+designated_model: true
+designated_github_users:
+- jcblemai
+team_funding: J.L. and J.C.L. disclose support from the Insight Net cooperative agreement
+  CDC-RFA-FT-23-0069 from the CDC’s Center for Forecasting and Outbreak Analytics.
+methods: Equal-weight mixture of neural-network models trained jointly across locations.
+data_inputs: NHSN COVID-19 hospital admissions and NSSP COVID-19 ED visit share.
+methods_long: Equal-weight mixture of several neural-network forecasting models trained on past
+  seasons jointly across locations, each fitted with several random seeds.
+ensemble_of_models: false
+ensemble_of_hub_models: false
+repo_url: https://github.com/ACCIDDA/chromantis
