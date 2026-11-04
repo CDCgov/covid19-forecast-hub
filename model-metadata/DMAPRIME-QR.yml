@@ -1,0 +1,24 @@
+team_name: "CPHMR, Clemson University"
+team_abbr: "DMAPRIME"
+model_name: "Quantile Regression"
+model_abbr: "QR"
+model_contributors: [
+  {
+    "name": "Tanvir Ahammed",
+    "affiliation": "Clemson University, South Carolina",
+    "email": "tahamme@g.clemson.edu"
+  }
+]
+license: "CC-BY-4.0"
+designated_model: true
+
+data_inputs: "CDC COVID-19 Forecast Hub weekly COVID-19 hospital admissions, NSSP COVID-19 emergency department visit proportions, jurisdiction populations, and historical admissions releases used to estimate reporting revisions"
+methods: "Recursive quantile regression blended with phase-aware historical analogs and cross-state information."
+methods_long: "The model forecasts weekly COVID-19 hospital admissions at horizons 0 through 3 by combining a location-specific recursive quantile regression forecast with phase-aware historical analogs and a quantile regression trained on pooled state data. The component weights and other model choices are selected using validation forecasts. Recursive predictions are fed back into the features to forecast subsequent weeks. Predictors include recent admissions, trends, seasonality, the share of states with rising admissions, and, when sufficient data are available, growth in the NSSP COVID-19 emergency department visit proportion. The model applies a damped growth cap and a noise-aware near-peak rule. Prediction intervals are calibrated using horizon-specific errors from validation forecasts. Recent admissions are adjusted for typical reporting revisions when suitable release history is available."
+ensemble_of_models: true
+ensemble_of_hub_models: false
+model_version: "1.0"
+website_url: "https://github.com/Ahammed-Tanvir/covidHub"
+team_funding: "Center for Forecasting and Outbreak Analytics of the Centers for Disease Control and Prevention (CDC) under award number NU38FT000011 and National Library of Medicine of the National Institutes of Health (NIH) under award number R01LM014193."
+designated_github_users: ["Ahammed-Tanvir"]
+
