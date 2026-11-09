@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: "Checkout Code"
         uses: actions/checkout@v7
+        with:
+          persist-credentials: false
 
       - name: "Set Up hubhelpr"
         uses: cdcgov/hubhelpr/actions/setup-hubhelpr@v0.2.0
