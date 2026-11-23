@@ -24,7 +24,10 @@ The Wednesday release of this dataset is available on `data.cdc.gov` at [NSSP Em
 
 ### NSSP `latest.parquet` has been removed
 
-Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file has since been removed, and the directory no longer exists.
+Before Wednesday `data.cdc.gov` releases of this dataset were routine, the Hub provided its own Wednesday release at `auxiliary-data/nssp-raw-data/latest.parquet`. That file has since been removed, and the directory no longer exists. The `wk inc covid prop ed visits` target is included in
+[`target-data/time-series.parquet`](target-data/time-series.parquet),
+which is updated every Wednesday. Values are expressed as decimal
+proportions (`percent_visits_covid / 100`).
 
 > [!NOTE]
 >
